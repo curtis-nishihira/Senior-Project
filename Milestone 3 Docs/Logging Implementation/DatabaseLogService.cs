@@ -9,13 +9,16 @@ namespace LongHorn.ArrowNav.Logging
         {
             try
             {
-                var connection = @"Server=localhost\SQLEXPRESS01;Database=Logging;Trusted_Connection=True;";
+                var connection = @"Server=localhost\SQLEXPRESS01;Database=Logging;Trusted_Connection=True";
+
                 using (var conn = new SqlConnection(connection))
                 {
-                    var sql = "Insert Into Logging Values ('"+ DateTime.UtcNow + " " + description + "');";
+                    
+                    var sql = "Insert Into Logging Values ('"+ DateTime.Now.ToString() +" " + description + "');";
                     using (var command = new SqlCommand(sql, conn))
                     {
-                        command.ExecuteReader();
+                        command.Connection.Open();
+                        command.ExecuteNonQuery();
                     }
                 }
 

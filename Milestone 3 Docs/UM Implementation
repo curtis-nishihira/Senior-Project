@@ -1,0 +1,33 @@
+using Microsoft.Data.SqlClient;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ArrowNav
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string connectionString = "Server=myServerAddress;Database=ArrowNav;Integrated Security=true;"; //user id= idhere; password= passwordhere";
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                var sql = "Select * FROM Account";
+                using (var command = new SqlCommand(sql, conn))
+                {
+                    command.ExecuteReader();
+                }
+
+                /*
+                using (var adapter = new SqlDataAdapter())
+                {
+
+                }
+                */
+            }
+        }
+    }
+}

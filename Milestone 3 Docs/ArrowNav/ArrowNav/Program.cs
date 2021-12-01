@@ -1,4 +1,4 @@
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,7 @@ namespace ArrowNav
     {
         static void Main(string[] args)
         {
+            //github change test
             string connectionString = "Server=myServerAddress;Database=ArrowNav;Integrated Security=true;"; //user id= idhere; password= passwordhere";
             SqlConnection conn = new SqlConnection(connectionString);
             SqlCommand command = conn.CreateCommand();

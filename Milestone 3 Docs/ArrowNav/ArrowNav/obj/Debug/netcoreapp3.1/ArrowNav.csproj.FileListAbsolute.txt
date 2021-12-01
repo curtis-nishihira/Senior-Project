@@ -1,0 +1,4 @@
+C:\Users\spenc\source\repos\ArrowNav\ArrowNav\bin\Debug\netcoreapp3.1\ArrowNav.exe
+C:\Users\spenc\source\repos\ArrowNav\ArrowNav\obj\Debug\netcoreapp3.1\ArrowNav.csprojAssemblyReference.cache
+C:\Users\spenc\source\repos\ArrowNav\ArrowNav\obj\Debug\netcoreapp3.1\ArrowNav.AssemblyInfoInputs.cache
+C:\Users\spenc\source\repos\ArrowNav\ArrowNav\obj\Debug\netcoreapp3.1\ArrowNav.AssemblyInfo.cs

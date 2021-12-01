@@ -12,7 +12,7 @@ namespace ArrowNav
         static void Main(string[] args)
         {
             //github change test
-            string connectionString = "Server=myServerAddress;Database=ArrowNav;Integrated Security=true;"; //user id= idhere; password= passwordhere";
+            string connectionString = "Data Source = LAPTOP - KI9GTVUJ\SQLEXPRESS01; Initial Catalog = ArrowNav; Integrated Security = True"; //user id= idhere; password= passwordhere";
             SqlConnection conn = new SqlConnection(connectionString);
             SqlCommand command = conn.CreateCommand();
 

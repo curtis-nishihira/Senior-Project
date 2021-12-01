@@ -2356,19 +2356,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\spenc\\.nuget\\packages\\": {}
+    "C:\\Users\\migue\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\spenc\\source\\repos\\ArrowNav\\ArrowNav\\ArrowNav.csproj",
+      "projectUniqueName": "C:\\Users\\migue\\Senior-Project\\Milestone 3 Docs\\ArrowNav\\ArrowNav\\ArrowNav.csproj",
       "projectName": "ArrowNav",
-      "projectPath": "C:\\Users\\spenc\\source\\repos\\ArrowNav\\ArrowNav\\ArrowNav.csproj",
-      "packagesPath": "C:\\Users\\spenc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\spenc\\source\\repos\\ArrowNav\\ArrowNav\\obj\\",
+      "projectPath": "C:\\Users\\migue\\Senior-Project\\Milestone 3 Docs\\ArrowNav\\ArrowNav\\ArrowNav.csproj",
+      "packagesPath": "C:\\Users\\migue\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\migue\\Senior-Project\\Milestone 3 Docs\\ArrowNav\\ArrowNav\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\spenc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\migue\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2380,6 +2385,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -2391,6 +2397,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.Data.SqlClient": {
             "target": "Package",
@@ -2412,7 +2419,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

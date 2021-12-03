@@ -1,0 +1,26 @@
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.ArrowNav.Logging\bin\Debug\netcoreapp3.1\LongHorn.Logging.deps.json
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.ArrowNav.Logging\bin\Debug\netcoreapp3.1\LongHorn.Logging.dll
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.ArrowNav.Logging\bin\Debug\netcoreapp3.1\LongHorn.Logging.pdb
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.ArrowNav.Logging\bin\Debug\netcoreapp3.1\LongHorn.DAL.dll
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.ArrowNav.Logging\bin\Debug\netcoreapp3.1\LongHorn.DAL.pdb
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.ArrowNav.Logging\obj\Debug\netcoreapp3.1\LongHorn.Logging.csproj.AssemblyReference.cache
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.ArrowNav.Logging\obj\Debug\netcoreapp3.1\LongHorn.Logging.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.ArrowNav.Logging\obj\Debug\netcoreapp3.1\LongHorn.Logging.AssemblyInfoInputs.cache
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.ArrowNav.Logging\obj\Debug\netcoreapp3.1\LongHorn.Logging.AssemblyInfo.cs
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.ArrowNav.Logging\obj\Debug\netcoreapp3.1\LongHorn.Logging.csproj.CoreCompileInputs.cache
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.ArrowNav.Logging\obj\Debug\netcoreapp3.1\LongHorn.Logging.csproj.CopyComplete
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.ArrowNav.Logging\obj\Debug\netcoreapp3.1\LongHorn.Logging.dll
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.ArrowNav.Logging\obj\Debug\netcoreapp3.1\LongHorn.Logging.pdb
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.ArrowNav.Logging\bin\Debug\netcoreapp3.1\LongHorn.Logging.deps.json
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.ArrowNav.Logging\bin\Debug\netcoreapp3.1\LongHorn.Logging.dll
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.ArrowNav.Logging\bin\Debug\netcoreapp3.1\LongHorn.Logging.pdb
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.ArrowNav.Logging\bin\Debug\netcoreapp3.1\LongHorn.DAL.dll
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.ArrowNav.Logging\bin\Debug\netcoreapp3.1\LongHorn.DAL.pdb
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.ArrowNav.Logging\obj\Debug\netcoreapp3.1\LongHorn.Logging.csproj.AssemblyReference.cache
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.ArrowNav.Logging\obj\Debug\netcoreapp3.1\LongHorn.Logging.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.ArrowNav.Logging\obj\Debug\netcoreapp3.1\LongHorn.Logging.AssemblyInfoInputs.cache
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.ArrowNav.Logging\obj\Debug\netcoreapp3.1\LongHorn.Logging.AssemblyInfo.cs
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.ArrowNav.Logging\obj\Debug\netcoreapp3.1\LongHorn.Logging.csproj.CoreCompileInputs.cache
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.ArrowNav.Logging\obj\Debug\netcoreapp3.1\LongHorn.Logging.csproj.CopyComplete
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.ArrowNav.Logging\obj\Debug\netcoreapp3.1\LongHorn.Logging.dll
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.ArrowNav.Logging\obj\Debug\netcoreapp3.1\LongHorn.Logging.pdb

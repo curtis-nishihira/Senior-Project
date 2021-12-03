@@ -1,0 +1,20 @@
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.DAL\bin\Debug\netcoreapp3.1\LongHorn.DAL.deps.json
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.DAL\bin\Debug\netcoreapp3.1\LongHorn.DAL.dll
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.DAL\bin\Debug\netcoreapp3.1\LongHorn.DAL.pdb
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.DAL\obj\Debug\netcoreapp3.1\LongHorn.DAL.csproj.AssemblyReference.cache
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.DAL\obj\Debug\netcoreapp3.1\LongHorn.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.DAL\obj\Debug\netcoreapp3.1\LongHorn.DAL.AssemblyInfoInputs.cache
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.DAL\obj\Debug\netcoreapp3.1\LongHorn.DAL.AssemblyInfo.cs
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.DAL\obj\Debug\netcoreapp3.1\LongHorn.DAL.csproj.CoreCompileInputs.cache
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.DAL\obj\Debug\netcoreapp3.1\LongHorn.DAL.dll
+C:\Users\fuent\source\repos\LongHorn.ArrowNav.Logging\LongHorn.DAL\obj\Debug\netcoreapp3.1\LongHorn.DAL.pdb
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.DAL\bin\Debug\netcoreapp3.1\LongHorn.DAL.deps.json
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.DAL\bin\Debug\netcoreapp3.1\LongHorn.DAL.dll
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.DAL\bin\Debug\netcoreapp3.1\LongHorn.DAL.pdb
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.DAL\obj\Debug\netcoreapp3.1\LongHorn.DAL.csproj.AssemblyReference.cache
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.DAL\obj\Debug\netcoreapp3.1\LongHorn.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.DAL\obj\Debug\netcoreapp3.1\LongHorn.DAL.AssemblyInfoInputs.cache
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.DAL\obj\Debug\netcoreapp3.1\LongHorn.DAL.AssemblyInfo.cs
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.DAL\obj\Debug\netcoreapp3.1\LongHorn.DAL.csproj.CoreCompileInputs.cache
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.DAL\obj\Debug\netcoreapp3.1\LongHorn.DAL.dll
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Milestone 3 Docs\LongHorn.ArrowNav\LongHorn.DAL\obj\Debug\netcoreapp3.1\LongHorn.DAL.pdb

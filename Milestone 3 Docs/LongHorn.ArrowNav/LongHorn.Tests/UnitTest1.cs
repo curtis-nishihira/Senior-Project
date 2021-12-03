@@ -14,7 +14,7 @@ namespace LongHorn.ArrowNav.Tests
             ILogService service = new DatabaseLogService();
             
             //execute
-            var actualOutput = service.Log("Log was successful");
+            var actualOutput = service.Log("Log entry number 1");
             var expectedOutput = true;
             var actualTimeElapsed = service.getElapsedTime();
             var expectedTime = 5;

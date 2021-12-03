@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "LongHorn.ArrowNav.Managers/1.0.0": {
+        "runtime": {
+          "LongHorn.ArrowNav.Managers.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LongHorn.ArrowNav.Managers/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

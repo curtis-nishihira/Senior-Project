@@ -1,0 +1,10 @@
+C:\Users\curti\source\repos\Senior-Project\Project Code\LongHorn.ArrowNav\LongHorn.ArrowNav.Managers\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.Managers.deps.json
+C:\Users\curti\source\repos\Senior-Project\Project Code\LongHorn.ArrowNav\LongHorn.ArrowNav.Managers\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.Managers.dll
+C:\Users\curti\source\repos\Senior-Project\Project Code\LongHorn.ArrowNav\LongHorn.ArrowNav.Managers\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.Managers.pdb
+C:\Users\curti\source\repos\Senior-Project\Project Code\LongHorn.ArrowNav\LongHorn.ArrowNav.Managers\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Managers.csproj.AssemblyReference.cache
+C:\Users\curti\source\repos\Senior-Project\Project Code\LongHorn.ArrowNav\LongHorn.ArrowNav.Managers\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Managers.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\curti\source\repos\Senior-Project\Project Code\LongHorn.ArrowNav\LongHorn.ArrowNav.Managers\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Managers.AssemblyInfoInputs.cache
+C:\Users\curti\source\repos\Senior-Project\Project Code\LongHorn.ArrowNav\LongHorn.ArrowNav.Managers\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Managers.AssemblyInfo.cs
+C:\Users\curti\source\repos\Senior-Project\Project Code\LongHorn.ArrowNav\LongHorn.ArrowNav.Managers\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Managers.csproj.CoreCompileInputs.cache
+C:\Users\curti\source\repos\Senior-Project\Project Code\LongHorn.ArrowNav\LongHorn.ArrowNav.Managers\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Managers.dll
+C:\Users\curti\source\repos\Senior-Project\Project Code\LongHorn.ArrowNav\LongHorn.ArrowNav.Managers\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Managers.pdb

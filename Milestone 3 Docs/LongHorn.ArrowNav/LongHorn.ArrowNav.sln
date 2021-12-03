@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LongHorn.Tests", "LongHorn.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LongHorn.DAL", "LongHorn.DAL\LongHorn.DAL.csproj", "{35B16ABB-D21C-4FC8-83B7-0704B2F51076}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LongHorn.ArrowNav.Archiving", "LongHorn.ArrowNav.Archiving\LongHorn.ArrowNav.Archiving.csproj", "{7F32243A-BEE0-456F-B38C-C042CECF44EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LongHorn.Archiving", "LongHorn.ArrowNav.Archiving\LongHorn.Archiving.csproj", "{7F32243A-BEE0-456F-B38C-C042CECF44EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LongHorn.ArrowNav.Managers", "LongHorn.ArrowNav.Managers\LongHorn.ArrowNav.Managers.csproj", "{E4888D53-AAD8-4172-B026-D427A58D8F84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{7F32243A-BEE0-456F-B38C-C042CECF44EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F32243A-BEE0-456F-B38C-C042CECF44EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F32243A-BEE0-456F-B38C-C042CECF44EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4888D53-AAD8-4172-B026-D427A58D8F84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4888D53-AAD8-4172-B026-D427A58D8F84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4888D53-AAD8-4172-B026-D427A58D8F84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4888D53-AAD8-4172-B026-D427A58D8F84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

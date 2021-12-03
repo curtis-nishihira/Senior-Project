@@ -2,7 +2,7 @@
 
 namespace LongHorn.ArrowNav.Archiving
 {
-    public class ArchivingService : IArchiveService
+    public class FileArchiveService : IArchiveService
     {
         public bool archive()
         {

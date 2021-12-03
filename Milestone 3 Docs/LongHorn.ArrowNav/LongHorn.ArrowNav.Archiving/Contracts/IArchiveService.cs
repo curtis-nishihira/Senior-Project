@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LongHorn.ArrowNav.Archiving
+namespace LongHorn.Archiving
 {
     public interface IArchiveService
     {

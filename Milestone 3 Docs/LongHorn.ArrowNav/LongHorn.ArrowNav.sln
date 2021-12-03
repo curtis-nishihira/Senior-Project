@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LongHorn.Logging", "LongHor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LongHorn.Tests", "LongHorn.Tests\LongHorn.Tests.csproj", "{696EABC3-13EE-4937-BD72-F4D5B96E3373}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LongHorn.DAL", "LongHorn.DAL\LongHorn.DAL.csproj", "{35B16ABB-D21C-4FC8-83B7-0704B2F51076}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LongHorn.ArrowNav.DAL", "LongHorn.DAL\LongHorn.ArrowNav.DAL.csproj", "{35B16ABB-D21C-4FC8-83B7-0704B2F51076}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LongHorn.Archiving", "LongHorn.ArrowNav.Archiving\LongHorn.Archiving.csproj", "{7F32243A-BEE0-456F-B38C-C042CECF44EC}"
 EndProject

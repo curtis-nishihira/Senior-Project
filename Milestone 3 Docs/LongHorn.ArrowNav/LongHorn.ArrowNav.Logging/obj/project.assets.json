@@ -152,17 +152,17 @@
           }
         }
       },
-      "LongHorn.DAL/1.0.0": {
+      "LongHorn.ArrowNav.DAL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "System.Data.SqlClient": "4.8.3"
         },
         "compile": {
-          "bin/placeholder/LongHorn.DAL.dll": {}
+          "bin/placeholder/LongHorn.ArrowNav.DAL.dll": {}
         },
         "runtime": {
-          "bin/placeholder/LongHorn.DAL.dll": {}
+          "bin/placeholder/LongHorn.ArrowNav.DAL.dll": {}
         }
       }
     }
@@ -597,15 +597,15 @@
         "version.txt"
       ]
     },
-    "LongHorn.DAL/1.0.0": {
+    "LongHorn.ArrowNav.DAL/1.0.0": {
       "type": "project",
-      "path": "../LongHorn.DAL/LongHorn.DAL.csproj",
-      "msbuildProject": "../LongHorn.DAL/LongHorn.DAL.csproj"
+      "path": "../LongHorn.DAL/LongHorn.ArrowNav.DAL.csproj",
+      "msbuildProject": "../LongHorn.DAL/LongHorn.ArrowNav.DAL.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "LongHorn.DAL >= 1.0.0",
+      "LongHorn.ArrowNav.DAL >= 1.0.0",
       "System.Data.SqlClient >= 4.8.3",
       "linq2db >= 3.6.0"
     ]
@@ -637,8 +637,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\curti\\Source\\Repos\\Senior-Project\\Milestone 3 Docs\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.DAL.csproj": {
-              "projectPath": "C:\\Users\\curti\\Source\\Repos\\Senior-Project\\Milestone 3 Docs\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.DAL.csproj"
+            "C:\\Users\\curti\\Source\\Repos\\Senior-Project\\Milestone 3 Docs\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.ArrowNav.DAL.csproj": {
+              "projectPath": "C:\\Users\\curti\\Source\\Repos\\Senior-Project\\Milestone 3 Docs\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.ArrowNav.DAL.csproj"
             }
           }
         }

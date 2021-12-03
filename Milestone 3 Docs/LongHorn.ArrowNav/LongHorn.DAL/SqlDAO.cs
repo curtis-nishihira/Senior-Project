@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace LongHorn.DAL
+namespace LongHorn.ArrowNav.DAL
 {
     public class SqlDAO : IRepository<string>
     {
@@ -39,7 +40,7 @@ namespace LongHorn.DAL
             throw new NotImplementedException();
         }
 
-        public bool Read()
+        public List<string> Read(string model)
         {
             throw new NotImplementedException();
         }

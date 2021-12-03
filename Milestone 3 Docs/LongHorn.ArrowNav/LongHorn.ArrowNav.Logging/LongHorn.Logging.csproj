@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LongHorn.DAL\LongHorn.DAL.csproj" />
+    <ProjectReference Include="..\LongHorn.DAL\LongHorn.ArrowNav.DAL.csproj" />
   </ItemGroup>
 
 </Project>

@@ -459,9 +459,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\curti\\Source\\Repos\\Senior-Project\\Milestone 3 Docs\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.DAL.csproj",
-      "projectName": "LongHorn.DAL",
-      "projectPath": "C:\\Users\\curti\\Source\\Repos\\Senior-Project\\Milestone 3 Docs\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.DAL.csproj",
+      "projectUniqueName": "C:\\Users\\curti\\Source\\Repos\\Senior-Project\\Milestone 3 Docs\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.ArrowNav.DAL.csproj",
+      "projectName": "LongHorn.ArrowNav.DAL",
+      "projectPath": "C:\\Users\\curti\\Source\\Repos\\Senior-Project\\Milestone 3 Docs\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.ArrowNav.DAL.csproj",
       "packagesPath": "C:\\Users\\curti\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\curti\\Source\\Repos\\Senior-Project\\Milestone 3 Docs\\LongHorn.ArrowNav\\LongHorn.DAL\\obj\\",
       "projectStyle": "PackageReference",

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LongHorn.DAL
+namespace LongHorn.ArrowNav.DAL
 {
     public interface IRepository<T>
     {
         bool Create(T model);
-        bool Read();
+        List<T> Read(T model);
         bool Update(T model);
         bool Delete(T model);
 

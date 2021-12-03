@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iXx9TS2uMhCr8PLWM36d4hkfrRFvCeTo9vs/r8/ww+pIuYWYadwTSaI7Rkii3zAL0273XtNOJY92kiONERYM9Q==",
+  "dgSpecHash": "an/KZzXUj8GeQjjaIB+ap0W/3FkQ1LiU88o8hMIADcnwoezve37bccOrxQ86vbgLquahB92lUdV6K+TNMYqWiQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\curti\\Source\\Repos\\Senior-Project\\Milestone 3 Docs\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.DAL.csproj",
+  "projectFilePath": "C:\\Users\\curti\\Source\\Repos\\Senior-Project\\Milestone 3 Docs\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.ArrowNav.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\curti\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\curti\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

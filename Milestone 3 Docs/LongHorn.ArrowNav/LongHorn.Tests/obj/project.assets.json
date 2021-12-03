@@ -1802,24 +1802,24 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "LongHorn.DAL/1.0.0": {
+      "LongHorn.ArrowNav.DAL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "System.Data.SqlClient": "4.8.3"
         },
         "compile": {
-          "bin/placeholder/LongHorn.DAL.dll": {}
+          "bin/placeholder/LongHorn.ArrowNav.DAL.dll": {}
         },
         "runtime": {
-          "bin/placeholder/LongHorn.DAL.dll": {}
+          "bin/placeholder/LongHorn.ArrowNav.DAL.dll": {}
         }
       },
       "LongHorn.Logging/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "LongHorn.DAL": "1.0.0",
+          "LongHorn.ArrowNav.DAL": "1.0.0",
           "System.Data.SqlClient": "4.8.3",
           "linq2db": "3.6.0"
         },
@@ -6687,10 +6687,10 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "LongHorn.DAL/1.0.0": {
+    "LongHorn.ArrowNav.DAL/1.0.0": {
       "type": "project",
-      "path": "../LongHorn.DAL/LongHorn.DAL.csproj",
-      "msbuildProject": "../LongHorn.DAL/LongHorn.DAL.csproj"
+      "path": "../LongHorn.DAL/LongHorn.ArrowNav.DAL.csproj",
+      "msbuildProject": "../LongHorn.DAL/LongHorn.ArrowNav.DAL.csproj"
     },
     "LongHorn.Logging/1.0.0": {
       "type": "project",

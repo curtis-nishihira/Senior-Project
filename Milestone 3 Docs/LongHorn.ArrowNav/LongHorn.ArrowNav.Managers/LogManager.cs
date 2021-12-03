@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LongHorn.ArrowNav.Logging.Interfaces
+namespace LongHorn.ArrowNav.Managers
 {
-    interface IlogManager
+    class LogManager
     {
     }
 }

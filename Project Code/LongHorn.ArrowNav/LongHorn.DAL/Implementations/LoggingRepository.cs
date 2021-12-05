@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace LongHorn.ArrowNav.DAL
 {
-    public class SqlDAO : IRepository<string>
+    public class LoggingRepository : IRepository<string>
     {
         public bool Create(string description)
         {

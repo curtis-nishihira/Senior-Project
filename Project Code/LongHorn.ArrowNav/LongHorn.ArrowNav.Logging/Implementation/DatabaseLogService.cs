@@ -12,7 +12,7 @@ namespace LongHorn.Logging
         {
             Stopwatch watch = new Stopwatch();
             watch.Start();
-            IRepository<string> r = new SqlDAO();
+            IRepository<string> r = new LoggingRepository();
             var result = r.Create(description);
             watch.Stop();
             timeElapsed = watch.Elapsed.TotalSeconds;

@@ -14,7 +14,7 @@ namespace LongHorn.Archiving
         {
 
             throw new NotImplementedException();
-            IRepository<string> repository = new SqlDAO();
+            IRepository<string> repository = new LoggingRepository();
             // statement: select * from Logging where UtcTimeStamp BETWEEN DATEADD(DAY,-30,GETUTCDATE()) and GETUTCDATE();
             string filter = "date > now - 30"; // configurable value not hardcoded
             var result = repository.Read(filter);

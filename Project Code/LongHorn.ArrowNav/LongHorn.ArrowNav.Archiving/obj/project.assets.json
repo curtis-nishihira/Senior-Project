@@ -69,7 +69,7 @@
           }
         }
       },
-      "System.Data.SqlClient/4.8.3": {
+      "System.Data.SqlClient/4.8.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.Win32.Registry": "4.7.0",
@@ -135,7 +135,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "System.Data.SqlClient": "4.8.3"
+          "System.Data.SqlClient": "4.8.2"
         },
         "compile": {
           "bin/placeholder/LongHorn.ArrowNav.DAL.dll": {}
@@ -274,10 +274,10 @@
         "version.txt"
       ]
     },
-    "System.Data.SqlClient/4.8.3": {
-      "sha512": "yERfVLXAY0QbylAgaGLByYN0hFxX28aeEQ0hUgJO+Ntn1AfmWl5HHUoYJA0Yl9HhIUUJHVaS/Sw/RLZr5aaC+A==",
+    "System.Data.SqlClient/4.8.2": {
+      "sha512": "80vGtW6uLB4AkyrdVuKTXYUyuXDPAsSKbTVfvjndZaRAYxzFzWhJbvUfeAKrN+128ycWZjLIAl61dFUwWHOOTw==",
       "type": "package",
-      "path": "system.data.sqlclient/4.8.3",
+      "path": "system.data.sqlclient/4.8.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -354,7 +354,7 @@
         "runtimes/win/lib/netstandard2.0/System.Data.SqlClient.xml",
         "runtimes/win/lib/uap10.0.16299/System.Data.SqlClient.dll",
         "runtimes/win/lib/uap10.0.16299/System.Data.SqlClient.xml",
-        "system.data.sqlclient.4.8.3.nupkg.sha512",
+        "system.data.sqlclient.4.8.2.nupkg.sha512",
         "system.data.sqlclient.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -472,20 +472,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\curti\\.nuget\\packages\\": {}
+    "C:\\Users\\fuent\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Archiving\\LongHorn.Archiving.csproj",
+      "projectUniqueName": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Archiving\\LongHorn.Archiving.csproj",
       "projectName": "LongHorn.Archiving",
-      "projectPath": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Archiving\\LongHorn.Archiving.csproj",
-      "packagesPath": "C:\\Users\\curti\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Archiving\\obj\\",
+      "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Archiving\\LongHorn.Archiving.csproj",
+      "packagesPath": "C:\\Users\\fuent\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Archiving\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\curti\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\fuent\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -498,8 +506,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\curti\\source\\repos\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.ArrowNav.DAL.csproj": {
-              "projectPath": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.ArrowNav.DAL.csproj"
+            "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.ArrowNav.DAL.csproj": {
+              "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.ArrowNav.DAL.csproj"
             }
           }
         }

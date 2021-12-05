@@ -11,7 +11,7 @@ namespace LongHorn.ArrowNav.Tests
         {
             //initialize
             IArchiveService service = new FileArchiveService();
-
+            service.archive();
             ////execute
             //var actualOutput = service.Log("Log entry number 1");
             //var expectedOutput = true;

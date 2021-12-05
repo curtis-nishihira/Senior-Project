@@ -12,30 +12,39 @@ namespace LongHorn.Archiving
     {
         public bool archive() // could change later to Predicate<T>
         {
-
-            throw new NotImplementedException();
             IRepository<string> repository = new LoggingRepository();
             // statement: select * from Logging where UtcTimeStamp BETWEEN DATEADD(DAY,-30,GETUTCDATE()) and GETUTCDATE();
-            string filter = "date > now - 30"; // configurable value not hardcoded
-            var result = repository.Read(filter);
+            // var result = repository.Read(filter);
             // check
             // Writes database contents to file
+            List<string> result = new List<string>()
+            {
+                "carrot",
+                "fox",
+                "explorer"
+            };
             string filename = @"C:\Users\curti\OneDrive\Desktop\filename.txt";
             using (FileStream fs = File.Create(filename))
             {
-                for (int counter = 0; counter > result.Count; counter++)
+                for (int counter = 0; counter < result.Count; counter++)
                 {
-                    Byte[] fileContents = new UTF8Encoding(true).GetBytes(result[counter]);
+                    Byte[] fileContents = new UTF8Encoding(true).GetBytes(result[counter]+"\n");
                     fs.Write(fileContents, 0, fileContents.Length);
                 }
             }
             // zips file just created
-            ZipFile.CreateFromDirectory(filename, filename.Replace(".txt", ".zip"));
-            // Removes from database
-            for (int counter = 0; counter > result.Count; counter++)
+            string zipPath = @"C:\Users\curti\OneDrive\Desktop\test.zip";
+
+            using (ZipArchive archive = ZipFile.Open(zipPath, ZipArchiveMode.Create))
             {
-                var result2 = repository.Delete(result[counter]);
+                archive.CreateEntryFromFile(filename, Path.GetFileName(filename));
             }
+            return true;
+            // Removes from database
+            //for (int counter = 0; counter > result.Count; counter++)
+            //{
+            //    var result2 = repository.Delete(result[counter]);
+            //}
 
         }
     }

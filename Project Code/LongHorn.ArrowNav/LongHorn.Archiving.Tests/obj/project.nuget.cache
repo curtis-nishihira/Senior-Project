@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "jD5paDs+8xLEdyQmtUZ6PFy9xPPz1/sfNo2JxSrDQwnDMSlTH3RSpyTMZTh69xXRIudVhV3zWibmddtVpTvaTQ==",
+  "dgSpecHash": "7b0eAyj3pkIXSFzNcu2gDxG3wh+MQwo2WSv8MnTmAaBCmXWEEFlWxO9tHJLhWqqbVso4lubauQlfDyHtIxDBig==",
   "success": true,
-  "projectFilePath": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.Tests\\LongHorn.Logging.Tests.csproj",
+  "projectFilePath": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.Archiving.Tests\\LongHorn.Archiving.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\curti\\.nuget\\packages\\coverlet.collector\\3.0.2\\coverlet.collector.3.0.2.nupkg.sha512",
-    "C:\\Users\\curti\\.nuget\\packages\\linq2db\\3.6.0\\linq2db.3.6.0.nupkg.sha512",
     "C:\\Users\\curti\\.nuget\\packages\\microsoft.codecoverage\\16.9.4\\microsoft.codecoverage.16.9.4.nupkg.sha512",
     "C:\\Users\\curti\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
     "C:\\Users\\curti\\.nuget\\packages\\microsoft.net.test.sdk\\16.9.4\\microsoft.net.test.sdk.16.9.4.nupkg.sha512",
@@ -44,7 +43,6 @@
     "C:\\Users\\curti\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Users\\curti\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\curti\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
-    "C:\\Users\\curti\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "C:\\Users\\curti\\.nuget\\packages\\system.console\\4.3.0\\system.console.4.3.0.nupkg.sha512",
     "C:\\Users\\curti\\.nuget\\packages\\system.data.sqlclient\\4.8.3\\system.data.sqlclient.4.8.3.nupkg.sha512",
     "C:\\Users\\curti\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",

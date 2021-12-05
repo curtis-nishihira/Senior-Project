@@ -3,7 +3,7 @@ using System;
 using System.Data.SqlClient;
 using System.Diagnostics;
 
-namespace LongHorn.ArrowNav.Logging
+namespace LongHorn.Logging
 {
     public class DatabaseLogService : ILogService
     {

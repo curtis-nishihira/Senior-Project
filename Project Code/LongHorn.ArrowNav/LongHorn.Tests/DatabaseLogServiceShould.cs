@@ -1,4 +1,4 @@
-using LongHorn.ArrowNav.Logging;
+using LongHorn.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

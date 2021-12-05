@@ -6,9 +6,9 @@ using System.IO;
 using System.IO.Compression;
 using System.Text;
 
-namespace LongHorn.Archiving.Implementations
+namespace LongHorn.Archiving
 {
-    class FileArchiveService : IArchiveService
+    public class FileArchiveService : IArchiveService
     {
         public bool archive() // could change later to Predicate<T>
         {

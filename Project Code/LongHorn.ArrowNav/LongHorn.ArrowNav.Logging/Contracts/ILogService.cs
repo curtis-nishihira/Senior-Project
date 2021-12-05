@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LongHorn.ArrowNav.Logging
+namespace LongHorn.Logging
 {
     public interface ILogService
     {

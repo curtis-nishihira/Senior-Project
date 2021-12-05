@@ -156,7 +156,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "System.Data.SqlClient": "4.8.3"
+          "System.Data.SqlClient": "4.8.2"
         },
         "compile": {
           "bin/placeholder/LongHorn.ArrowNav.DAL.dll": {}
@@ -611,20 +611,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\curti\\.nuget\\packages\\": {}
+    "C:\\Users\\fuent\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Logging\\LongHorn.Logging.csproj",
+      "projectUniqueName": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Logging\\LongHorn.Logging.csproj",
       "projectName": "LongHorn.Logging",
-      "projectPath": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Logging\\LongHorn.Logging.csproj",
-      "packagesPath": "C:\\Users\\curti\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Logging\\obj\\",
+      "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Logging\\LongHorn.Logging.csproj",
+      "packagesPath": "C:\\Users\\fuent\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Logging\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\curti\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\fuent\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -637,8 +645,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\curti\\source\\repos\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.ArrowNav.DAL.csproj": {
-              "projectPath": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.ArrowNav.DAL.csproj"
+            "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.ArrowNav.DAL.csproj": {
+              "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Project Code\\LongHorn.ArrowNav\\LongHorn.DAL\\LongHorn.ArrowNav.DAL.csproj"
             }
           }
         }

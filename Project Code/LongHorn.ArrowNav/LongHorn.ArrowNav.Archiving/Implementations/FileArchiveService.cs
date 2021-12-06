@@ -12,17 +12,17 @@ namespace LongHorn.Archiving
     {
         public bool archive() // could change later to Predicate<T>
         {
-            IRepository<string> repository = new LoggingRepository();
+            LoggingRepository repository = new LoggingRepository();
             // statement: select * from Logging where UtcTimeStamp BETWEEN DATEADD(DAY,-30,GETUTCDATE()) and GETUTCDATE();
-            // var result = repository.Read(filter);
+            var result = repository.ReadAllBasedOnRangeOf(DateTime.UtcNow.AddDays(-30), DateTime.UtcNow);
             // check
             // Writes database contents to file
-            List<string> result = new List<string>()
-            {
-                "carrot",
-                "fox",
-                "explorer"
-            };
+            //list<string> result = new list<string>()
+            //{
+            //    "carrot",
+            //    "fox",
+            //    "explorer"
+            //};
             string filename = @"C:\Users\curti\OneDrive\Desktop\filename.txt";
             using (FileStream fs = File.Create(filename))
             {
@@ -39,6 +39,7 @@ namespace LongHorn.Archiving
             {
                 archive.CreateEntryFromFile(filename, Path.GetFileName(filename));
             }
+            var result2 = repository.DeleteBasedOnRangeOf(DateTime.UtcNow.AddDays(-30), DateTime.UtcNow);
             return true;
             // Removes from database
             //for (int counter = 0; counter > result.Count; counter++)

@@ -11,6 +11,5 @@ namespace LongHorn.ArrowNav.DAL
         bool Update(T model);
         bool Delete(T model);
 
-
     }
 }

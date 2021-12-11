@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LongHorn.ArrowNav.DAL\LongHorn.ArrowNav.DAL.csproj" />
     <ProjectReference Include="..\LongHorn.Models\LongHorn.ArrowNav.Models.csproj" />
   </ItemGroup>
 

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LongHorn.Logging.Tests", "LongHorn.Logging.Tests\LongHorn.Logging.Tests.csproj", "{58B3EB57-B546-4012-8B2B-A0EFF75815AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LongHorn.Archiving.Tests", "LongHorn.Archiving.Tests\LongHorn.Archiving.Tests.csproj", "{8BCC1CA8-A22F-43DF-ADFA-2D344B1DFD15}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{58B3EB57-B546-4012-8B2B-A0EFF75815AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58B3EB57-B546-4012-8B2B-A0EFF75815AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58B3EB57-B546-4012-8B2B-A0EFF75815AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58B3EB57-B546-4012-8B2B-A0EFF75815AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BCC1CA8-A22F-43DF-ADFA-2D344B1DFD15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BCC1CA8-A22F-43DF-ADFA-2D344B1DFD15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BCC1CA8-A22F-43DF-ADFA-2D344B1DFD15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BCC1CA8-A22F-43DF-ADFA-2D344B1DFD15}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D3337A34-ADDA-4C5A-8342-FC8E9768EBFD}
+	EndGlobalSection
+EndGlobal

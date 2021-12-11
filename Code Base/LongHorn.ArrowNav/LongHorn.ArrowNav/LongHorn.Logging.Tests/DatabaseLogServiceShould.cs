@@ -1,3 +1,4 @@
+using LongHorn.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics;

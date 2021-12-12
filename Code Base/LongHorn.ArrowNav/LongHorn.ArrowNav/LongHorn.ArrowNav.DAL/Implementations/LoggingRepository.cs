@@ -1,8 +1,8 @@
-﻿using LongHorn.Models;
+﻿using LongHorn.ArrowNav.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
-
 namespace LongHorn.ArrowNav.DAL
 {
     public class LoggingRepository : IRepository<Log>
@@ -16,6 +16,7 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
+                    //need to add the rest. Only does logs and timestamp for now
                     var sqlStatement = string.Format("INSERT INTO Logging (logs, UtcTimeStamp, logLevel, userPerformingOperator, category ) " +
                         "VALUES('{0}', '{1}','{2}','{3}','{4}');", logEntry._Log, logEntry._UtcTime, logEntry._Level, logEntry._User, logEntry._Type);
                     using (var command = new SqlCommand(sqlStatement, connection))
@@ -49,10 +50,11 @@ namespace LongHorn.ArrowNav.DAL
             }
         }
 
-        public bool Delete(Log model)
+        public string Delete(Log entry)
         {
             throw new NotImplementedException();
         }
+
         public string DeleteBasedOnRangeOf(DateTime start, DateTime now)
         {
             try
@@ -77,10 +79,11 @@ namespace LongHorn.ArrowNav.DAL
             }
         }
 
-        public List<string> Read(Log model)
+        public List<string> Read(Log logEntry)
         {
             throw new NotImplementedException();
         }
+
         public List<string> ReadAllBasedOnRangeOf(DateTime now, DateTime end)
         {
             List<string> retrievedLogs = new List<string>();
@@ -114,10 +117,11 @@ namespace LongHorn.ArrowNav.DAL
             return retrievedLogs;
         }
 
-        public bool Update(Log model)
+        public string Update(Log logEntry)
         {
             throw new NotImplementedException();
         }
+
         public string getConnection()
         {
             var SQLConnectionString = @"Server=localhost\SQLEXPRESS;Database=Logging;Trusted_Connection=True";

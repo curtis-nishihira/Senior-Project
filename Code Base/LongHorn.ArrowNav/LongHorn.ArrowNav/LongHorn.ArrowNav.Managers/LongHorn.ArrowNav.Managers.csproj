@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LongHorn.Archiving\LongHorn.Archiving.csproj" />
     <ProjectReference Include="..\LongHorn.Logging\LongHorn.Logging.csproj" />
   </ItemGroup>
 

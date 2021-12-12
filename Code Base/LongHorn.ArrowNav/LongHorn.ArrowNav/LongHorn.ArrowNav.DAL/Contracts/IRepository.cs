@@ -8,7 +8,7 @@ namespace LongHorn.ArrowNav.DAL
     {
         string Create(T model);
         List<string> Read(T model);
-        bool Update(T model);
-        bool Delete(T model);
+        string Update(T model);
+        string Delete(T model);
     }
 }

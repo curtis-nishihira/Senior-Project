@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LongHorn.Models
+namespace LongHorn.ArrowNav.Models
 {
     public class Log
     {

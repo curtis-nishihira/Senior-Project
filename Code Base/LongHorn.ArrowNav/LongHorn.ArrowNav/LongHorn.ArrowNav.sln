@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LongHorn.Archiving", "LongH
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LongHorn.ArrowNav.Tests", "LongHorn.ArrowNav.Tests\LongHorn.ArrowNav.Tests.csproj", "{336D5693-D926-4CA2-B202-CCE463F6B0B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LongHorn.ArrowNav.Services", "LongHorn.ArrowNav.Services\LongHorn.ArrowNav.Services.csproj", "{9728BC81-F932-481E-9114-1FD8E76CD0CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{336D5693-D926-4CA2-B202-CCE463F6B0B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{336D5693-D926-4CA2-B202-CCE463F6B0B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{336D5693-D926-4CA2-B202-CCE463F6B0B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9728BC81-F932-481E-9114-1FD8E76CD0CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9728BC81-F932-481E-9114-1FD8E76CD0CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9728BC81-F932-481E-9114-1FD8E76CD0CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9728BC81-F932-481E-9114-1FD8E76CD0CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

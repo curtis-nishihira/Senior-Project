@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LongHorn.ArrowNav.DAL", "Lo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LongHorn.ArrowNav.Managers", "LongHorn.ArrowNav.Managers\LongHorn.ArrowNav.Managers.csproj", "{E23B8EA2-653E-4CEC-90DF-363D86F5CE1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LongHorn.Archiving", "LongHorn.Archiving\LongHorn.Archiving.csproj", "{3AA6609B-31F5-42E2-9F6D-5C25F9B32A21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LongHorn.Archiving", "LongHorn.Archiving\LongHorn.Archiving.csproj", "{3AA6609B-31F5-42E2-9F6D-5C25F9B32A21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LongHorn.ArrowNav.Tests", "LongHorn.ArrowNav.Tests\LongHorn.ArrowNav.Tests.csproj", "{336D5693-D926-4CA2-B202-CCE463F6B0B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{3AA6609B-31F5-42E2-9F6D-5C25F9B32A21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AA6609B-31F5-42E2-9F6D-5C25F9B32A21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AA6609B-31F5-42E2-9F6D-5C25F9B32A21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{336D5693-D926-4CA2-B202-CCE463F6B0B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{336D5693-D926-4CA2-B202-CCE463F6B0B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{336D5693-D926-4CA2-B202-CCE463F6B0B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{336D5693-D926-4CA2-B202-CCE463F6B0B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

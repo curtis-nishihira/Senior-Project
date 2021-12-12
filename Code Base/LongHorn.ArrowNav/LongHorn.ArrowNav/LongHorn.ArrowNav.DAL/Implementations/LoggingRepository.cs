@@ -16,7 +16,6 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    //need to add the rest. Only does logs and timestamp for now
                     var sqlStatement = string.Format("INSERT INTO Logging (logs, UtcTimeStamp, logLevel, userPerformingOperator, category ) " +
                         "VALUES('{0}', '{1}','{2}','{3}','{4}');", logEntry._Log, logEntry._UtcTime, logEntry._Level, logEntry._User, logEntry._Type);
                     using (var command = new SqlCommand(sqlStatement, connection))

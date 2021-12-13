@@ -17,6 +17,9 @@ namespace LongHorn.ArrowNav.Managers
         {
             CreateService createService = new CreateService();
             var result = createService.CreateAccount(account);
+            LogManager logManager = new LogManager();
+            Log entry = new Log(result, "Info", "Data Layer",account._email);
+            logManager.Log(entry);
             return result;
         }
     }

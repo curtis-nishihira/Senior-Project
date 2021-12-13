@@ -1152,6 +1152,14 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
+      "LongHorn.Archiving/1.0.0": {
+        "dependencies": {
+          "LongHorn.ArrowNav.DAL": "1.0.0"
+        },
+        "runtime": {
+          "LongHorn.Archiving.dll": {}
+        }
+      },
       "LongHorn.ArrowNav.DAL/1.0.0": {
         "dependencies": {
           "LongHorn.ArrowNav.Models": "1.0.0",
@@ -1163,6 +1171,8 @@
       },
       "LongHorn.ArrowNav.Managers/1.0.0": {
         "dependencies": {
+          "LongHorn.Archiving": "1.0.0",
+          "LongHorn.ArrowNav.Services": "1.0.0",
           "LongHorn.Logging": "1.0.0"
         },
         "runtime": {
@@ -1172,6 +1182,15 @@
       "LongHorn.ArrowNav.Models/1.0.0": {
         "runtime": {
           "LongHorn.ArrowNav.Models.dll": {}
+        }
+      },
+      "LongHorn.ArrowNav.Services/1.0.0": {
+        "dependencies": {
+          "LongHorn.ArrowNav.DAL": "1.0.0",
+          "LongHorn.ArrowNav.Models": "1.0.0"
+        },
+        "runtime": {
+          "LongHorn.ArrowNav.Services.dll": {}
         }
       },
       "LongHorn.Logging/1.0.0": {
@@ -1863,6 +1882,11 @@
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
     },
+    "LongHorn.Archiving/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "LongHorn.ArrowNav.DAL/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -1874,6 +1898,11 @@
       "sha512": ""
     },
     "LongHorn.ArrowNav.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LongHorn.ArrowNav.Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

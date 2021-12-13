@@ -11,12 +11,12 @@ namespace LongHorn.ArrowNav.Models
         public string _User { get; }
         public DateTime _UtcTime { get; }
 
-        public Log(string description, string level, string type, string user, DateTime time)
+        public Log(string description, string level, string type, string user)
         {
             _Log = description;
             _Level = level;
             _Type = type;
-            _UtcTime = time;
+            _UtcTime = DateTime.UtcNow;
             _User = user;
         }
     }

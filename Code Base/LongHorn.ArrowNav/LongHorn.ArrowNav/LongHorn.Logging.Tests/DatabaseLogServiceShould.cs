@@ -13,7 +13,7 @@ namespace LongHorn.ArrowNav.Tests
         public void LogValid()
         {
             //initialize
-            Log entry = new Log("Test scenario 1 with Objects", "Bussiness", "Info", "Curtis", DateTime.UtcNow);
+            Log entry = new Log("Test scenario 1 with Objects", "Bussiness", "Info", "Curtis");
             LogManager logManager = new LogManager();
             //execute
             var actualOutput = logManager.Log(entry);
@@ -28,7 +28,7 @@ namespace LongHorn.ArrowNav.Tests
         public void LogNotSaved()
         {
             //intialize
-            Log entry = new Log("Test scenario 1 with Objects", "Bussiness", "Info", "Brayan", DateTime.UtcNow);
+            Log entry = new Log("Test scenario 1 with Objects", "Bussiness", "Info", "Brayan");
             LogManager logManager = new LogManager();
             //execute
             var actualOutput = logManager.Log(entry);
@@ -45,7 +45,7 @@ namespace LongHorn.ArrowNav.Tests
         public void LogLongerThan5Seconds()
         {
             //intialize
-            Log entry = new Log("Test scenario 3 with Objects", "Bussiness", "Info", "Spencer", DateTime.UtcNow);
+            Log entry = new Log("Test scenario 3 with Objects", "Bussiness", "Info", "Spencer");
             LogManager logManager = new LogManager();
             //execute
             var actualOutput = logManager.Log(entry);

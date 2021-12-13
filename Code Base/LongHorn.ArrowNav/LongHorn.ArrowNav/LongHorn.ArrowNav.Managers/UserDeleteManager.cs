@@ -16,10 +16,9 @@ namespace LongHorn.ArrowNav.Managers
         {
             DeleteService createService = new DeleteService();
             var result = createService.DeleteAccount(account);
-            Log entry = new Log(result, "Bussiness", "Info", account._email, DateTime.UtcNow);
-            //LogManager logManager = new LogManager();
-            //execute
-            //var actualOutput = logManager.Log(entry);
+            LogManager logManager = new LogManager();
+            Log entry = new Log(result, "Info", "Data Layer", account._email);
+            logManager.Log(entry);
             return result;
         }
     }

@@ -123,7 +123,7 @@ namespace LongHorn.ArrowNav.DAL
 
         public string getConnection()
         {
-            var SQLConnectionString = @"Server=localhost\SQLEXPRESS;Database=Logging;Trusted_Connection=True";
+            var SQLConnectionString = @"Server=localhost\SQLEXPRESS01;Database=Logging;Trusted_Connection=True";
             return SQLConnectionString;
         }
     }

@@ -1,0 +1,470 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Main\\LongHorn.ArrowNav.Main.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Archiving\\LongHorn.Archiving.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Archiving\\LongHorn.Archiving.csproj",
+        "projectName": "LongHorn.Archiving",
+        "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Archiving\\LongHorn.Archiving.csproj",
+        "packagesPath": "C:\\Users\\fuent\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Archiving\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\fuent\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj": {
+                "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj",
+        "projectName": "LongHorn.ArrowNav.DAL",
+        "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj",
+        "packagesPath": "C:\\Users\\fuent\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\fuent\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj": {
+                "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Main\\LongHorn.ArrowNav.Main.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Main\\LongHorn.ArrowNav.Main.csproj",
+        "projectName": "LongHorn.ArrowNav.Main",
+        "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Main\\LongHorn.ArrowNav.Main.csproj",
+        "packagesPath": "C:\\Users\\fuent\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Main\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\fuent\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Managers\\LongHorn.ArrowNav.Managers.csproj": {
+                "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Managers\\LongHorn.ArrowNav.Managers.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Managers\\LongHorn.ArrowNav.Managers.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Managers\\LongHorn.ArrowNav.Managers.csproj",
+        "projectName": "LongHorn.ArrowNav.Managers",
+        "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Managers\\LongHorn.ArrowNav.Managers.csproj",
+        "packagesPath": "C:\\Users\\fuent\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Managers\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\fuent\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Archiving\\LongHorn.Archiving.csproj": {
+                "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Archiving\\LongHorn.Archiving.csproj"
+              },
+              "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\LongHorn.ArrowNav.Services.csproj": {
+                "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\LongHorn.ArrowNav.Services.csproj"
+              },
+              "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Logging\\LongHorn.Logging.csproj": {
+                "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Logging\\LongHorn.Logging.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\LongHorn.ArrowNav.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\LongHorn.ArrowNav.Services.csproj",
+        "projectName": "LongHorn.ArrowNav.Services",
+        "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\LongHorn.ArrowNav.Services.csproj",
+        "packagesPath": "C:\\Users\\fuent\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\fuent\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj": {
+                "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj"
+              },
+              "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj": {
+                "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Logging\\LongHorn.Logging.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Logging\\LongHorn.Logging.csproj",
+        "projectName": "LongHorn.Logging",
+        "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Logging\\LongHorn.Logging.csproj",
+        "packagesPath": "C:\\Users\\fuent\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Logging\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\fuent\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj": {
+                "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj"
+              },
+              "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj": {
+                "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj",
+        "projectName": "LongHorn.ArrowNav.Models",
+        "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj",
+        "packagesPath": "C:\\Users\\fuent\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\fuent\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

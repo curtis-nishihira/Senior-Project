@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\migue\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj": {}
+    "C:\\Users\\Grand Master Wizard\\OneDrive\\Documents\\491A\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\migue\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj": {
+    "C:\\Users\\Grand Master Wizard\\OneDrive\\Documents\\491A\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\migue\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj",
+        "projectUniqueName": "C:\\Users\\Grand Master Wizard\\OneDrive\\Documents\\491A\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj",
         "projectName": "LongHorn.ArrowNav.Models",
-        "projectPath": "C:\\Users\\migue\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj",
-        "packagesPath": "C:\\Users\\migue\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\migue\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\obj\\",
+        "projectPath": "C:\\Users\\Grand Master Wizard\\OneDrive\\Documents\\491A\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj",
+        "packagesPath": "C:\\Users\\Grand Master Wizard\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Grand Master Wizard\\OneDrive\\Documents\\491A\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\migue\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Grand Master Wizard\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,7 +54,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

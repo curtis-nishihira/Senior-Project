@@ -1,5 +1,5 @@
 using LongHorn.ArrowNav.Managers;
-using LongHorn.Models;
+using LongHorn.ArrowNav.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics;

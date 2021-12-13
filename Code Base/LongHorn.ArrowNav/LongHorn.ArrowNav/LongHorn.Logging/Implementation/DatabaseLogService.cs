@@ -1,5 +1,5 @@
 ﻿using LongHorn.ArrowNav.DAL;
-using LongHorn.Models;
+using LongHorn.ArrowNav.Models;
 using System;
 using System.Diagnostics;
 

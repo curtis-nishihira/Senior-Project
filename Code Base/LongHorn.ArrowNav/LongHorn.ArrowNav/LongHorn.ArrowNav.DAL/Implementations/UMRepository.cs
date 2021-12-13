@@ -17,9 +17,9 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    //need to add the rest. Only does logs and timestamp for now
+
                     var sqlStatement = string.Format("INSERT INTO accounts (email, passphrase, accountStatus, accountType) " +
-                        "VALUES('{0}', '{1}', 'active' ,'{2}');", account._email, account._passphrase, account._accountStatus);
+                        "VALUES('{0}', '{1}', 'active' ,'{2}');", account._email, account._passphrase, account._accountType);
                     using (var command = new SqlCommand(sqlStatement, connection))
                     {
                         command.ExecuteNonQuery();
@@ -97,7 +97,31 @@ namespace LongHorn.ArrowNav.DAL
 
         public string Update(AccountInfo account)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var sqlConnectionString = getConnection();
+
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    var sqlStatement = string.Format("update accounts set passphrase = '{0}', accountType = '{1}' where email = '{2}'", account._passphrase, account._accountType, account._email);
+                    using (var command = new SqlCommand(sqlStatement, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    var savedSqlStatement = string.Format("select * from accounts where email = '{0}'", account._email);
+                    using (var checkSave = new SqlCommand(savedSqlStatement, connection))
+                    {
+                        SqlDataReader reader = checkSave.ExecuteReader();
+
+                        return "Account Updated";
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                return "Data Access Layer error.";
+            }
         }
 
         public string Disable(AccountInfo account)

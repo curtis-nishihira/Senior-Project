@@ -1,5 +1,5 @@
 ﻿using LongHorn.Logging;
-using LongHorn.Models;
+using LongHorn.ArrowNav.Models;
 using System;
 
 namespace LongHorn.ArrowNav.Managers

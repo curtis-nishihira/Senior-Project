@@ -489,24 +489,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\spenc\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Grand Master Wizard\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\spenc\\Senior Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\LongHorn.ArrowNav.Services.csproj",
+      "projectUniqueName": "C:\\Users\\Grand Master Wizard\\OneDrive\\Documents\\491A\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\LongHorn.ArrowNav.Services.csproj",
       "projectName": "LongHorn.ArrowNav.Services",
-      "projectPath": "C:\\Users\\spenc\\Senior Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\LongHorn.ArrowNav.Services.csproj",
-      "packagesPath": "C:\\Users\\spenc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\spenc\\Senior Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\obj\\",
+      "projectPath": "C:\\Users\\Grand Master Wizard\\OneDrive\\Documents\\491A\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\LongHorn.ArrowNav.Services.csproj",
+      "packagesPath": "C:\\Users\\Grand Master Wizard\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Grand Master Wizard\\OneDrive\\Documents\\491A\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\spenc\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Grand Master Wizard\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -520,11 +515,11 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\spenc\\Senior Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj": {
-              "projectPath": "C:\\Users\\spenc\\Senior Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj"
+            "C:\\Users\\Grand Master Wizard\\OneDrive\\Documents\\491A\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj": {
+              "projectPath": "C:\\Users\\Grand Master Wizard\\OneDrive\\Documents\\491A\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj"
             },
-            "C:\\Users\\spenc\\Senior Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj": {
-              "projectPath": "C:\\Users\\spenc\\Senior Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj"
+            "C:\\Users\\Grand Master Wizard\\OneDrive\\Documents\\491A\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj": {
+              "projectPath": "C:\\Users\\Grand Master Wizard\\OneDrive\\Documents\\491A\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj"
             }
           }
         }

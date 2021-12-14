@@ -6,10 +6,10 @@ using System.Diagnostics;
 namespace LongHorn.ArrowNav.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class UserManagementShould
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CreateUserValid()
         {
             UserCreateManager manager = new UserCreateManager();
             AccountInfo account = new AccountInfo(@"admin2@gmail.com", "pasword", "admin");
@@ -18,8 +18,9 @@ namespace LongHorn.ArrowNav.Tests
             Trace.WriteLine(actual);
             Assert.IsTrue(actual == expected);
         }
+
         [TestMethod]
-        public void TestMethod2()
+        public void DeleteUserValid()
         {
             UserDeleteManager manager = new UserDeleteManager();
             AccountInfo account = new AccountInfo(@"admin2@gmail.com", "pasword", "admin");
@@ -29,7 +30,7 @@ namespace LongHorn.ArrowNav.Tests
             Assert.IsTrue(actual == expected);
         }
         [TestMethod]
-        public void TestMethod3()
+        public void EnableUserValid()
         {
             UserEnableManager manager = new UserEnableManager();
             AccountInfo account = new AccountInfo(@"admin@gmail.com", "pasword", "admin");
@@ -39,7 +40,7 @@ namespace LongHorn.ArrowNav.Tests
             Assert.IsTrue(actual == expected);
         }
         [TestMethod]
-        public void TestMethod4()
+        public void DisableUserValid()
         {
             UserDisableManager manager = new UserDisableManager();
             AccountInfo account = new AccountInfo(@"admin@gmail.com", "password123", "user");

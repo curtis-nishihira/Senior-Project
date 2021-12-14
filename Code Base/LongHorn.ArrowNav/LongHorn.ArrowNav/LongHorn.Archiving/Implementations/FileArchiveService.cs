@@ -28,9 +28,9 @@ namespace LongHorn.Archiving
 
         public void Offload(List<string> result)
         {
-            string fileName = @"C:\Users\curti\OneDrive\Desktop\log -"
+            string fileName = ConfigurationManager.AppSettings.Get("ArchiveTxtPath")
                  + DateTime.UtcNow.ToString("dd-MM-yyyy")
-                + ".txt";
+                + ConfigurationManager.AppSettings.Get("TxtFileExtension");
             using (FileStream fileStream = File.Create(fileName))
             {
                 for (int counter = 0; counter < result.Count; counter++)
@@ -40,13 +40,20 @@ namespace LongHorn.Archiving
                 }
             }
             // zips file just created
-            string zipPath = @"C:\Users\curti\OneDrive\Desktop\log -"
-                + DateTime.UtcNow.ToString("dd-MM-yyyy")
-                + ".zip";
-
-            using (ZipArchive archive = ZipFile.Open(zipPath, ZipArchiveMode.Create))
+            try
             {
-                archive.CreateEntryFromFile(fileName, Path.GetFileName(fileName));
+                string zipPath = ConfigurationManager.AppSettings.Get("ArchvieZipPath")
+                                + DateTime.UtcNow.ToString("dd-MM-yyyy")
+                                + ConfigurationManager.AppSettings.Get("ZipFileExtension");
+
+                using (ZipArchive archive = ZipFile.Open(zipPath, ZipArchiveMode.Create))
+                {
+                    archive.CreateEntryFromFile(fileName, Path.GetFileName(fileName));
+                }
+            }
+            catch(System.IO.IOException e)
+            {
+                Console.WriteLine("Archive already exists");
             }
             File.Delete(fileName);
         }

@@ -95,7 +95,6 @@ namespace LongHorn.ArrowNav.Main
                     }
                     else if (response.Equals("user"))
                     {
-                        //make sure that it doesn't display menu after deleting.
                         bool userLoop = true;
                         while (userLoop)
                         {

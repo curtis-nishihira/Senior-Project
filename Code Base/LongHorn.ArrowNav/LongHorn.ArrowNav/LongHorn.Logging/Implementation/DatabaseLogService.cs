@@ -1,6 +1,7 @@
 ﻿using LongHorn.ArrowNav.DAL;
 using LongHorn.ArrowNav.Models;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace LongHorn.Logging
@@ -35,6 +36,11 @@ namespace LongHorn.Logging
             {
                 return false;
             }
+        }
+
+        public IList<Log> GetAllLogs()
+        {
+            throw new NotImplementedException();
         }
     }
 }

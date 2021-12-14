@@ -8,5 +8,7 @@ namespace LongHorn.Logging
     public interface ILogService
     {
         string Log(Log entry);
+
+        IList<Log> GetAllLogs();
     }
 }

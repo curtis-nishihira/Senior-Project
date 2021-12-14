@@ -19,5 +19,11 @@ namespace LongHorn.ArrowNav.Models
             _UtcTime = DateTime.UtcNow;
             _User = user;
         }
+        public Log(string description)
+        {
+            _Log = description;
+            _UtcTime = DateTime.UtcNow;
+
+        }
     }
 }

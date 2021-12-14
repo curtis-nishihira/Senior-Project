@@ -124,7 +124,7 @@ namespace LongHorn.ArrowNav.DAL
 
         public string getConnection()
         {
-            var SQLConnectionString = @"Server=localhost\SQLEXPRESS;Database=Logging;Trusted_Connection=True";
+            var SQLConnectionString = ConfigurationManager.AppSettings.Get("LogsqlConnectionString");
             return SQLConnectionString;
         }
     }

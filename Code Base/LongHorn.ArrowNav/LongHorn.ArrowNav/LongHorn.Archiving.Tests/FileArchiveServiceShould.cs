@@ -8,7 +8,7 @@ namespace LongHorn.ArrowNav.Tests
     public class FileArchiveServiceShould
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ArchiveValid()
         {
             //initialize
             ArchiveManager archiveManager = new ArchiveManager();

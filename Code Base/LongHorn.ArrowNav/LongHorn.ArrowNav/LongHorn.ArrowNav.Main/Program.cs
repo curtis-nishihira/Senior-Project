@@ -1,4 +1,5 @@
-﻿using LongHorn.ArrowNav.Managers;
+﻿using LongHorn.ArrowNav.DAL;
+using LongHorn.ArrowNav.Managers;
 using LongHorn.ArrowNav.Models;
 using System;
 
@@ -9,10 +10,10 @@ namespace LongHorn.ArrowNav.Main
         public static void Main(string[] args)
         {
             bool loop = true;
-            Program p = new Program();
+            Program program = new Program();
             while (loop)
             {
-                p.getLoginMenu();
+                program.getLoginMenu();
                 var loginMenu = Console.ReadLine();
                 if (loginMenu.Equals("1"))
                 {
@@ -28,13 +29,13 @@ namespace LongHorn.ArrowNav.Main
                         bool adminLoop = true;
                         while (adminLoop)
                         {
-                            p.getAdminMenu();
+                            program.getAdminMenu();
                             var choice = Console.ReadLine();
                             switch (choice)
                             {
                                 case "1":
                                     UserCreateManager createManager = new UserCreateManager();
-                                    AccountInfo account = p.newAccountInfo();
+                                    AccountInfo account = program.newAccountInfo();
                                     var createMessage = createManager.SaveChanges(account);
                                     Console.WriteLine(createMessage + "\n");
                                     break;
@@ -114,7 +115,7 @@ namespace LongHorn.ArrowNav.Main
                             }
                             else
                             {
-                                p.getUserMenu();
+                                program.getUserMenu();
                                 var choice = Console.ReadLine();
                                 if (choice.Equals("1"))
                                 {

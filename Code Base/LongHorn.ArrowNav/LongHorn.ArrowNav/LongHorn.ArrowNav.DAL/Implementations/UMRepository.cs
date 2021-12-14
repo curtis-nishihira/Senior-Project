@@ -1,6 +1,7 @@
 ﻿using LongHorn.ArrowNav.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -281,8 +282,8 @@ namespace LongHorn.ArrowNav.DAL
         }
         public string getConnection()
         {
-            //var SQLConnectionString = ConfigurationManager.AppSettings.Get("sqlConnectionString");
-            var SQLConnectionString = @"Server=localhost\SQLEXPRESS;Database=UM;Trusted_Connection=True";
+            var SQLConnectionString = ConfigurationManager.AppSettings.Get("UMsqlConnectionString");
+            //var SQLConnectionString = @"Server=localhost\SQLEXPRESS;Database=UM;Trusted_Connection=True";
             return SQLConnectionString;
         }
     }

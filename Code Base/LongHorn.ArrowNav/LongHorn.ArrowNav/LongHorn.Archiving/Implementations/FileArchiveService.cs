@@ -28,9 +28,9 @@ namespace LongHorn.Archiving
 
         public void Offload(List<string> result)
         {
-            string fileName = @"C:\Users\curti\OneDrive\Desktop\log -"
+            string fileName = ConfigurationManager.AppSettings.Get("ArchiveTxtPath")
                  + DateTime.UtcNow.ToString("dd-MM-yyyy")
-                + ".txt";
+                + ConfigurationManager.AppSettings.Get("TxtFileExtension");
             using (FileStream fileStream = File.Create(fileName))
             {
                 for (int counter = 0; counter < result.Count; counter++)
@@ -40,9 +40,9 @@ namespace LongHorn.Archiving
                 }
             }
             // zips file just created
-            string zipPath = @"C:\Users\curti\OneDrive\Desktop\log -"
+            string zipPath = ConfigurationManager.AppSettings.Get("ArchvieZipPath")
                 + DateTime.UtcNow.ToString("dd-MM-yyyy")
-                + ".zip";
+                + ConfigurationManager.AppSettings.Get("ZipFileExtension");
 
             using (ZipArchive archive = ZipFile.Open(zipPath, ZipArchiveMode.Create))
             {

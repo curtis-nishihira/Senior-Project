@@ -13,8 +13,8 @@ namespace LongHorn.ArrowNav.Main
             while (loop)
             {
                 p.getLoginMenu();
-                var x = Console.ReadLine();
-                if (x.Equals("1"))
+                var loginMenu = Console.ReadLine();
+                if (loginMenu.Equals("1"))
                 {
                     Console.WriteLine("Email");
                     var email = Console.ReadLine();
@@ -35,7 +35,8 @@ namespace LongHorn.ArrowNav.Main
                                 case "1":
                                     UserCreateManager createManager = new UserCreateManager();
                                     AccountInfo account = p.newAccountInfo();
-                                    var message = createManager.SaveChanges(account);
+                                    var createMessage = createManager.SaveChanges(account);
+                                    Console.WriteLine(createMessage + "\n");
                                     break;
                                 case "2":
                                     UserUpdateManager updateManager = new UserUpdateManager();
@@ -46,28 +47,37 @@ namespace LongHorn.ArrowNav.Main
                                     Console.WriteLine("Please enter the account type(admin or user) that you want to change it to");
                                     var accountType2 = Console.ReadLine();
                                     AccountInfo newAccount = new AccountInfo(email, passphrase, accountType2);
-                                    var message2 = updateManager.SaveChanges(newAccount);
+                                    var updateMessage = updateManager.SaveChanges(newAccount);
+                                    Console.WriteLine(updateMessage + "\n");
                                     break;
                                 case "3":
                                     UserDeleteManager deleteManager = new UserDeleteManager();
                                     Console.WriteLine("Enter the email of the account you would want to delete");
                                     var requstedAccountDeletion = Console.ReadLine();
                                     AccountInfo deleteAccount = new AccountInfo(requstedAccountDeletion);
-                                    var message3 = deleteManager.SaveChanges(deleteAccount);
+                                    var deleteMessage = deleteManager.SaveChanges(deleteAccount);
+                                    Console.WriteLine(deleteMessage + "\n");
                                     break;
                                 case "4":
                                     UserDisableManager disableManager = new UserDisableManager();
                                     Console.WriteLine("Enter the email of the account you would want to disable");
                                     var requstedAccountDisable = Console.ReadLine();
                                     AccountInfo disableAccount = new AccountInfo(requstedAccountDisable);
-                                    var message4 = disableManager.SaveChanges(disableAccount);
+                                    var disableMessage = disableManager.SaveChanges(disableAccount);
+                                    Console.WriteLine(disableMessage + "\n");
                                     break;
                                 case "5":
                                     UserEnableManager enableManager = new UserEnableManager();
                                     Console.WriteLine("Enter the email of the account you would want to enable");
                                     var requstedAccountEnable = Console.ReadLine();
                                     AccountInfo enableAccount = new AccountInfo(requstedAccountEnable);
-                                    var message5 = enableManager.SaveChanges(enableAccount);
+                                    var enableMessage = enableManager.SaveChanges(enableAccount);
+                                    Console.WriteLine(enableMessage + "\n");
+                                    break;
+                                case "6":
+                                    ArchiveManager archiveManager = new ArchiveManager();
+                                    var archiveMessage = archiveManager.Archive();
+                                    Console.WriteLine(archiveMessage + "\n");
                                     break;
                                 case "e":
                                     adminLoop = false;
@@ -85,35 +95,53 @@ namespace LongHorn.ArrowNav.Main
                     }
                     else if (response.Equals("user"))
                     {
-
+                        //make sure that it doesn't display menu after deleting.
                         bool userLoop = true;
                         while (userLoop)
                         {
-                            p.getUserMenu();
-                            var choice = Console.ReadLine();
-                            if (choice.Equals("1"))
+                            var doesExist = authorizationManager.AuthzAccount(loginAccount);
+                            if (doesExist.Equals("Account not found."))
                             {
-                                Console.WriteLine("Are you sure you would like to delete your account(y/n)");
-                                var delete = Console.ReadLine();
-                                if (delete.Equals("Y") || delete.Equals("y"))
+                                Console.WriteLine("Press 'e' to exit");
+                                var exit = Console.ReadLine();
+                                if (exit.Equals("e") || exit.Equals("E"))
                                 {
-                                    UserDeleteManager deleteManager = new UserDeleteManager();
-                                    var message = deleteManager.SaveChanges(loginAccount);
-                                    Console.WriteLine(message + "\n");
+                                    userLoop = false;
                                 }
-                                else if (delete.Equals("N") || delete.Equals("n"))
+                                else 
                                 {
-                                    break;
+                                    Console.WriteLine("Invalid Input");
                                 }
-                            }
-                            else if (choice.Equals("e") || choice.Equals("E"))
-                            {
-                                userLoop = false;
                             }
                             else
                             {
-                                Console.WriteLine("Invalid Input. Try Again.");
+                                p.getUserMenu();
+                                var choice = Console.ReadLine();
+                                if (choice.Equals("1"))
+                                {
+                                    Console.WriteLine("Are you sure you would like to delete your account(y/n)");
+                                    var delete = Console.ReadLine();
+                                    if (delete.Equals("Y") || delete.Equals("y"))
+                                    {
+                                        UserDeleteManager deleteManager = new UserDeleteManager();
+                                        var message = deleteManager.SaveChanges(loginAccount);
+                                        Console.WriteLine(message + "\n");
+                                    }
+                                    else if (delete.Equals("N") || delete.Equals("n"))
+                                    {
+                                        break;
+                                    }
+                                }
+                                else if (choice.Equals("e") || choice.Equals("E"))
+                                {
+                                    userLoop = false;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Invalid Input. Try Again.");
+                                }
                             }
+                            
                         }
 
 
@@ -123,7 +151,7 @@ namespace LongHorn.ArrowNav.Main
                         Console.WriteLine(response);
                     }
                 }
-                else if (x.Equals("2"))
+                else if (loginMenu.Equals("2"))
                 {
                     Console.WriteLine("Please enter an email");
                     var email = Console.ReadLine();
@@ -131,12 +159,12 @@ namespace LongHorn.ArrowNav.Main
                     var passphrase = Console.ReadLine();
                     Console.WriteLine("Please re enter your password");
                     var samePassphrase = Console.ReadLine();
-                    var innerloop = true;
-                    while (innerloop)
+                    var innerLoop = true;
+                    while (innerLoop)
                     {
                         if (passphrase.Equals(samePassphrase))
                         {
-                            innerloop = false;
+                            innerLoop = false;
                         }
                         else
                         {
@@ -150,7 +178,7 @@ namespace LongHorn.ArrowNav.Main
                     Console.WriteLine(response + "\n");
 
                 }
-                else if (x.Equals("e") || x.Equals("E"))
+                else if (loginMenu.Equals("e") || loginMenu.Equals("E"))
                 {
                     loop = false;
                 }
@@ -172,7 +200,7 @@ namespace LongHorn.ArrowNav.Main
         }
         public void getAdminMenu()
         {
-            Console.WriteLine("1) Create User\n2) Update Account\n3) Delete Account\n4) Disable Account\n5) Enable Account\nPress 'e' to log out");
+            Console.WriteLine("1) Create User\n2) Update Account\n3) Delete Account\n4) Disable Account\n5) Enable Account\n6) Trigger Archive\nPress 'e' to log out");
         }
         public AccountInfo newAccountInfo()
         {

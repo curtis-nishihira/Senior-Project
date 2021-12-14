@@ -21,8 +21,6 @@ namespace LongHorn.Archiving
             LoggingRepository archiveRepository = new LoggingRepository();
             var listOfLogs = archiveRepository.ReadAllBasedOnRangeOf(DateTime.UtcNow.Date.AddDays(-30), DateTime.UtcNow.Date);
             Offload(listOfLogs);
-            //checklist()
-            // note: Change to just date no time
             var repsonse = archiveRepository.DeleteBasedOnRangeOf(DateTime.UtcNow.Date.AddDays(-30), DateTime.UtcNow.Date);
             return repsonse;
         }

@@ -83,14 +83,15 @@ namespace LongHorn.ArrowNav.DAL
             throw new NotImplementedException();
         }
 
-        public List<string> ReadAllBasedOnRangeOf(DateTime now, DateTime end)
+        public List<string> ReadAllBasedOnRangeOf(DateTime start, DateTime end)
         {
+            
             List<string> retrievedLogs = new List<string>();
             var sqlConnectionString = getConnection();
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 //going to get entries that are older than 30 days
-                var sqlStatement = string.Format("select * from Logging where UtcTimeStamp BETWEEN '{0}' AND '{1}';", now, end);
+                var sqlStatement = string.Format("select * from Logging where UtcTimeStamp BETWEEN '{0}' AND '{1}';", start, end);
                 using (var command = new SqlCommand(sqlStatement, connection))
                 {
                     command.Connection.Open();
@@ -123,7 +124,7 @@ namespace LongHorn.ArrowNav.DAL
 
         public string getConnection()
         {
-            var SQLConnectionString = @"Server=localhost\SQLEXPRESS01;Database=Logging;Trusted_Connection=True";
+            var SQLConnectionString = @"Server=localhost\SQLEXPRESS;Database=Logging;Trusted_Connection=True";
             return SQLConnectionString;
         }
     }

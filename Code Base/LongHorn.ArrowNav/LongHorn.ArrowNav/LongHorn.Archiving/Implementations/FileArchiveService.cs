@@ -19,11 +19,10 @@ namespace LongHorn.Archiving
         public string Archive() // could change later to Predicate<T>
         {
             LoggingRepository archiveRepository = new LoggingRepository();
-            var listOfLogs = archiveRepository.ReadAllBasedOnRangeOf(DateTime.UtcNow.Date.AddDays(-30), DateTime.UtcNow.Date);
+            var listOfLogs = archiveRepository.ReadAllBasedOnRangeOf(DateTime.UtcNow.Date.AddYears(-10), DateTime.UtcNow.Date.AddDays(-30));
             Offload(listOfLogs);
-            //checklist()
-            // note: Change to just date no time
-            var repsonse = archiveRepository.DeleteBasedOnRangeOf(DateTime.UtcNow.Date.AddDays(-30), DateTime.UtcNow.Date);
+            CheckList(listOfLogs);
+            var repsonse = archiveRepository.DeleteBasedOnRangeOf(DateTime.UtcNow.Date.AddYears(-10),DateTime.UtcNow.Date.AddDays(-30));
             return repsonse;
         }
 

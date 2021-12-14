@@ -40,13 +40,20 @@ namespace LongHorn.Archiving
                 }
             }
             // zips file just created
-            string zipPath = ConfigurationManager.AppSettings.Get("ArchvieZipPath")
-                + DateTime.UtcNow.ToString("dd-MM-yyyy")
-                + ConfigurationManager.AppSettings.Get("ZipFileExtension");
-
-            using (ZipArchive archive = ZipFile.Open(zipPath, ZipArchiveMode.Create))
+            try
             {
-                archive.CreateEntryFromFile(fileName, Path.GetFileName(fileName));
+                string zipPath = ConfigurationManager.AppSettings.Get("ArchvieZipPath")
+                                + DateTime.UtcNow.ToString("dd-MM-yyyy")
+                                + ConfigurationManager.AppSettings.Get("ZipFileExtension");
+
+                using (ZipArchive archive = ZipFile.Open(zipPath, ZipArchiveMode.Create))
+                {
+                    archive.CreateEntryFromFile(fileName, Path.GetFileName(fileName));
+                }
+            }
+            catch(System.IO.IOException e)
+            {
+                Console.WriteLine("Archive already exists");
             }
             File.Delete(fileName);
         }

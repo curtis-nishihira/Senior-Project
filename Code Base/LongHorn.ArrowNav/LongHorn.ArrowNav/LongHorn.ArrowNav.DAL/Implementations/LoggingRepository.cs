@@ -101,7 +101,7 @@ namespace LongHorn.ArrowNav.DAL
                     {
                         while (reader.Read())
                         {
-                            var entry = string.Format("{0} {1} {2} {3} {4}", reader["logs"], reader["UtcTimeStamp"], reader["logLevel"],reader["userPerformingOperator"],reader["categorye"]);
+                            var entry = string.Format("{0} {1} {2} {3} {4}", reader["logs"], reader["UtcTimeStamp"], reader["logLevel"],reader["userPerformingOperator"],reader["category"]);
                             retrievedLogs.Add(entry);
                         }
                     }

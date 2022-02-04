@@ -18,3 +18,13 @@ C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongH
 C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.Models\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.csproj.CoreCompileInputs.cache
 C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.Models\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.dll
 C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.Models\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.pdb
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.Models\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.deps.json
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.Models\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.dll
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.Models\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.pdb
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.Models\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.csproj.AssemblyReference.cache
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.Models\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.Models\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.AssemblyInfoInputs.cache
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.Models\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.AssemblyInfo.cs
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.Models\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.csproj.CoreCompileInputs.cache
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.Models\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.dll
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.Models\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.pdb

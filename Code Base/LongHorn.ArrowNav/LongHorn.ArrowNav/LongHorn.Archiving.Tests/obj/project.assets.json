@@ -6954,23 +6954,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\spenc\\.nuget\\packages\\": {},
+    "C:\\Users\\fuent\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\spenc\\Senior Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Archiving.Tests\\LongHorn.Archiving.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Archiving.Tests\\LongHorn.Archiving.Tests.csproj",
       "projectName": "LongHorn.Archiving.Tests",
-      "projectPath": "C:\\Users\\spenc\\Senior Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Archiving.Tests\\LongHorn.Archiving.Tests.csproj",
-      "packagesPath": "C:\\Users\\spenc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\spenc\\Senior Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Archiving.Tests\\obj\\",
+      "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Archiving.Tests\\LongHorn.Archiving.Tests.csproj",
+      "packagesPath": "C:\\Users\\fuent\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Archiving.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\spenc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\fuent\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6985,8 +6985,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\spenc\\Senior Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Managers\\LongHorn.ArrowNav.Managers.csproj": {
-              "projectPath": "C:\\Users\\spenc\\Senior Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Managers\\LongHorn.ArrowNav.Managers.csproj"
+            "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Managers\\LongHorn.ArrowNav.Managers.csproj": {
+              "projectPath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Managers\\LongHorn.ArrowNav.Managers.csproj"
             }
           }
         }
@@ -7033,7 +7033,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

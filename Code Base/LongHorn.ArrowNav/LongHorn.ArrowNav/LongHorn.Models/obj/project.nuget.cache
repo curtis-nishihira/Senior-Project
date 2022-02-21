@@ -1,12 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1j511Y/L+ZvrrQ6wQA6L2Q2FqzWowXy81fAnJgPsnSkL8bK5VlLInXF2hshHv0vHEDsh0+AhXBTLYnmmc2NLCQ==",
+  "dgSpecHash": "rADKSZjzXUt1iRskZMKHioarF6DUxUKNr2jWqeXN63YdWu8c8sAgz8+0ZDoSQ9m00VJTImUDvl2lTqC8lgPS2w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\spenc\\Senior Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\spenc\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
-    "C:\\Users\\spenc\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512",
-    "C:\\Users\\spenc\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\fuent\\OneDrive\\Desktop\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Models\\LongHorn.ArrowNav.Models.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,13 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LongHorn.Archiving\LongHorn.Archiving.csproj" />
+    <ProjectReference Include="..\LongHorn.ArrowNav.Archiving\LongHorn.ArrowNav.Archiving.csproj" />
+    <ProjectReference Include="..\LongHorn.ArrowNav.Logging\LongHorn.ArrowNav.Logging.csproj" />
     <ProjectReference Include="..\LongHorn.ArrowNav.Services\LongHorn.ArrowNav.Services.csproj" />
-    <ProjectReference Include="..\LongHorn.Logging\LongHorn.Logging.csproj" />
   </ItemGroup>
 
 </Project>

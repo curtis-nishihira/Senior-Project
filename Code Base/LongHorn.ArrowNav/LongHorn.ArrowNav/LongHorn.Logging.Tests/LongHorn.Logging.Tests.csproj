@@ -1,23 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.2.3" />
-    <PackageReference Include="MSTest.TestFramework" Version="2.2.3" />
-    <PackageReference Include="coverlet.collector" Version="3.0.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.7" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.7" />
+    <PackageReference Include="coverlet.collector" Version="3.1.0" />
   </ItemGroup>
-	<Target Name="CopyCustomContent" AfterTargets="AfterBuild">
-		<Copy SourceFiles="App.config" DestinationFiles="$(OutDir)\testhost.dll.config" />
-	</Target>
+
   <ItemGroup>
     <ProjectReference Include="..\LongHorn.ArrowNav.Managers\LongHorn.ArrowNav.Managers.csproj" />
-    <ProjectReference Include="..\LongHorn.Models\LongHorn.ArrowNav.Models.csproj" />
+    <ProjectReference Include="..\LongHorn.ArrowNav.Models\LongHorn.ArrowNav.Models.csproj" />
   </ItemGroup>
 
 </Project>

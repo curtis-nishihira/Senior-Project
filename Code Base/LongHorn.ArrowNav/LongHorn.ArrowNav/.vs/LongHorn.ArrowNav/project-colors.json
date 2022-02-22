@@ -5,7 +5,117 @@
       "ProjectGuid": "e78d6156-8273-4d2b-a63a-b26576b68ad4",
       "DisplayName": "Front-End",
       "ColorIndex": 0
+    },
+    "3aa6609b-31f5-42e2-9f6d-5c25f9b32a21": {
+      "ProjectGuid": "3aa6609b-31f5-42e2-9f6d-5c25f9b32a21",
+      "DisplayName": "LongHorn.Archiving",
+      "ColorIndex": 1
+    },
+    "8bcc1ca8-a22f-43df-adfa-2d344b1dfd15": {
+      "ProjectGuid": "8bcc1ca8-a22f-43df-adfa-2d344b1dfd15",
+      "DisplayName": "LongHorn.Archiving.Tests",
+      "ColorIndex": 2
+    },
+    "6d6466d9-9eb1-4076-a249-fbf1f5862268": {
+      "ProjectGuid": "6d6466d9-9eb1-4076-a249-fbf1f5862268",
+      "DisplayName": "LongHorn.ArrowNav.DAL",
+      "ColorIndex": 3
+    },
+    "336d5693-d926-4ca2-b202-cce463f6b0b6": {
+      "ProjectGuid": "336d5693-d926-4ca2-b202-cce463f6b0b6",
+      "DisplayName": "LongHorn.ArrowNav.Tests",
+      "ColorIndex": 4
+    },
+    "e23b8ea2-653e-4cec-90df-363d86f5ce1a": {
+      "ProjectGuid": "e23b8ea2-653e-4cec-90df-363d86f5ce1a",
+      "DisplayName": "LongHorn.ArrowNav.Managers",
+      "ColorIndex": 5
+    },
+    "9728bc81-f932-481e-9114-1fd8e76cd0cd": {
+      "ProjectGuid": "9728bc81-f932-481e-9114-1fd8e76cd0cd",
+      "DisplayName": "LongHorn.ArrowNav.Services",
+      "ColorIndex": 6
+    },
+    "f8d1f5b7-1608-4162-8214-9db8b9eb88c8": {
+      "ProjectGuid": "f8d1f5b7-1608-4162-8214-9db8b9eb88c8",
+      "DisplayName": "LongHorn.ArrowNav.Models",
+      "ColorIndex": 7
+    },
+    "f1d0498f-0e71-4653-b3e5-eac66474b05d": {
+      "ProjectGuid": "f1d0498f-0e71-4653-b3e5-eac66474b05d",
+      "DisplayName": "LongHorn.Logging",
+      "ColorIndex": 8
+    },
+    "d3011755-3822-4c43-9260-1b3ee9109323": {
+      "ProjectGuid": "d3011755-3822-4c43-9260-1b3ee9109323",
+      "DisplayName": "LongHorn.ArrowNav.Main",
+      "ColorIndex": 9
+    },
+    "d646f5e8-02b3-40c2-ae08-4cffb90ebdbc": {
+      "ProjectGuid": "d646f5e8-02b3-40c2-ae08-4cffb90ebdbc",
+      "DisplayName": "LongHorn.ArrowNav.Archiving",
+      "ColorIndex": 10
+    },
+    "0b98a628-58b0-4bd6-aeb9-949dd91c1978": {
+      "ProjectGuid": "0b98a628-58b0-4bd6-aeb9-949dd91c1978",
+      "DisplayName": "LongHorn.ArrowNav.DAL",
+      "ColorIndex": 11
+    },
+    "f88f6309-40e1-495a-af8f-0e8c13917e14": {
+      "ProjectGuid": "f88f6309-40e1-495a-af8f-0e8c13917e14",
+      "DisplayName": "LongHorn.ArrowNav.Logging",
+      "ColorIndex": 12
+    },
+    "51f1d6e8-b358-4bf3-b955-7bd6b434a313": {
+      "ProjectGuid": "51f1d6e8-b358-4bf3-b955-7bd6b434a313",
+      "DisplayName": "LongHorn.ArrowNav.Managers",
+      "ColorIndex": 13
+    },
+    "676139e5-4258-4903-b16d-cb67f5b86e59": {
+      "ProjectGuid": "676139e5-4258-4903-b16d-cb67f5b86e59",
+      "DisplayName": "LongHorn.ArrowNav.Services",
+      "ColorIndex": 14
+    },
+    "563510fb-7ac2-4d49-acb3-803670315a2d": {
+      "ProjectGuid": "563510fb-7ac2-4d49-acb3-803670315a2d",
+      "DisplayName": "LongHorn.ArrowNav.Models",
+      "ColorIndex": 15
+    },
+    "5d4fe7e9-2cec-4215-ab47-1843fd743f43": {
+      "ProjectGuid": "5d4fe7e9-2cec-4215-ab47-1843fd743f43",
+      "DisplayName": "LongHorn.Archiving.Tests",
+      "ColorIndex": 0
+    },
+    "550f4687-bd56-4d0e-94cc-e8a166267702": {
+      "ProjectGuid": "550f4687-bd56-4d0e-94cc-e8a166267702",
+      "DisplayName": "LongHorn.ArrowNav.Tests",
+      "ColorIndex": 1
+    },
+    "58b3eb57-b546-4012-8b2b-a0eff75815af": {
+      "ProjectGuid": "58b3eb57-b546-4012-8b2b-a0eff75815af",
+      "DisplayName": "LongHorn.Logging.Tests",
+      "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "49b61ce3-56f4-4998-b3de-ec1940e7a9bf": {
+      "ProjectGuid": "49b61ce3-56f4-4998-b3de-ec1940e7a9bf",
+      "DisplayName": "LongHorn.Archiving.Tests",
+      "ColorIndex": 3
+    },
+    "77477367-625f-4a83-9447-621d4ff87d49": {
+      "ProjectGuid": "77477367-625f-4a83-9447-621d4ff87d49",
+      "DisplayName": "LongHorn.Logging.Tests",
+      "ColorIndex": 4
+    },
+    "d9ff9bd7-5534-4107-9168-c148681a7bca": {
+      "ProjectGuid": "d9ff9bd7-5534-4107-9168-c148681a7bca",
+      "DisplayName": "LongHorn.ArrowNav.Tests",
+      "ColorIndex": 5
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 6
 }

@@ -76,6 +76,11 @@
     display: none;
 }
 
+.navbar-toggler {
+    background-color: white;
+}
+
+
 @media screen and (max-width: 950px) {
     .nav-menu {
         display: flex;

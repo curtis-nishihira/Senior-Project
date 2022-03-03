@@ -1,0 +1,39 @@
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.deps.json
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.dll
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.pdb
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.dll
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.pdb
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.csproj.AssemblyReference.cache
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.AssemblyInfoInputs.cache
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.AssemblyInfo.cs
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.csproj.CoreCompileInputs.cache
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.csproj.CopyComplete
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.dll
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.pdb
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.deps.json
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.dll
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.pdb
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.dll
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.pdb
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.csproj.AssemblyReference.cache
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.AssemblyInfoInputs.cache
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.AssemblyInfo.cs
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.csproj.CoreCompileInputs.cache
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.csproj.CopyComplete
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.dll
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.pdb
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.deps.json
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.dll
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.pdb
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.dll
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\bin\Debug\netcoreapp3.1\LongHorn.ArrowNav.Models.pdb
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.csproj.AssemblyReference.cache
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.AssemblyInfoInputs.cache
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.AssemblyInfo.cs
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.csproj.CoreCompileInputs.cache
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.csproj.CopyComplete
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.dll
+C:\Users\spenc\Senior Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.DAL\obj\Debug\netcoreapp3.1\LongHorn.ArrowNav.DAL.pdb

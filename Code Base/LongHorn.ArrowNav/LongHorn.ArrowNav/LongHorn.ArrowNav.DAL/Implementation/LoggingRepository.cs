@@ -18,14 +18,13 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    var sqlStatement = string.Format("INSERT INTO Logging (logs, UtcTimeStamp, logLevel, userPerformingOperator, category ) " +
-                        "VALUES('{0}', '{1}','{2}','{3}','{4}');", logEntry._Log, logEntry._UtcTime, logEntry._Level, logEntry._User, logEntry._Type);
+                    var sqlStatement = string.Format("exec InsertLog '{0}', '{1}','{2}','{3}','{4}'", logEntry._Log, logEntry._UtcTime, logEntry._Level, logEntry._User, logEntry._Type);
                     using (var command = new SqlCommand(sqlStatement, connection))
                     {
                         command.ExecuteNonQuery();
 
                     }
-                    var savedSqlStatement = string.Format("select * from Logging where UtcTimeStamp = '{0}'", logEntry._UtcTime);
+                    var savedSqlStatement = string.Format("exec GetLogByTime '{0}'", logEntry._UtcTime);
                     using (var checkSave = new SqlCommand(savedSqlStatement, connection))
                     {
                         SqlDataReader reader = checkSave.ExecuteReader();
@@ -63,7 +62,7 @@ namespace LongHorn.ArrowNav.DAL
                 var sqlConnectionString = getConnection();
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
-                    var deleteSqlStatement = string.Format("delete from Logging where UtcTimeStamp BETWEEN '{0}' AND '{1}';", start, now);
+                    var deleteSqlStatement = string.Format("exec DeleteLogsBetween '{0}', '{1}'", start, now);
                     using (var command = new SqlCommand(deleteSqlStatement, connection))
                     {
                         command.Connection.Open();
@@ -93,7 +92,7 @@ namespace LongHorn.ArrowNav.DAL
             using (var connection = new SqlConnection(sqlConnectionString))
             {
                 //going to get entries that are older than 30 days
-                var sqlStatement = string.Format("select * from Logging where UtcTimeStamp BETWEEN '{0}' AND '{1}';", start, end);
+                var sqlStatement = string.Format("exec GetLogsBetween '{0}', '{1}'", start, end);
                 using (var command = new SqlCommand(sqlStatement, connection))
                 {
                     command.Connection.Open();

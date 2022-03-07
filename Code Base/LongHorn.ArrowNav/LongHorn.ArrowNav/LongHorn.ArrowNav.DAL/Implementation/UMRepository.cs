@@ -9,17 +9,6 @@ namespace LongHorn.ArrowNav.DAL
 {
     public class UMRepository : IRepository<AccountInfo>
     {
-        /** My thought process is that everyone will be a user in the system and if need be we can change their accessLevel from the database. 
-         * Just changed the Create method to the way i think it should be. As well as it is the only one that currently has the implementation of the new tables 
-         * Also the possiblility of having another if statement which will first check if the account already exists. If it does the account creation is then cut short and returns 
-         * that the account already exists.
-         * TODO:
-         * done 1) Write an if statement that checks beforehand if the account already exists in the database 
-         * done 2) Update the SQL statements so that it reflects the current tables in the database(might do stored procedures in this method)
-         * done 3) Check the logging repository to see if it needs any new changes due to the update AccountInfo model
-         * 4) Test run the controller.
-         * 5) Debug if you need to 
-         */
         public string Create(AccountInfo account)
         {
             try
@@ -95,12 +84,12 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    var sqlStatement = string.Format("delete from accounts where email = '{0}'", account._email);
+                    var sqlStatement = string.Format("exec deleteUser '{0}'", account._email);
                     using (var command = new SqlCommand(sqlStatement, connection))
                     {
                         command.ExecuteNonQuery();
                     }
-                    var savedSqlStatement = string.Format("select * from accounts where email = '{0}'", account._email);
+                    var savedSqlStatement = string.Format("exec GetUserByEmail '{0}'", account._email);
                     using (var checkSave = new SqlCommand(savedSqlStatement, connection))
                     {
                         SqlDataReader reader = checkSave.ExecuteReader();
@@ -139,12 +128,12 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    var sqlStatement = string.Format("update accounts set passphrase = '{0}', accountType = '{1}' where email = '{2}'", account._passphrase, "", account._email);
+                    var sqlStatement = string.Format("exec UpdateUser '{0}','{1}'", account._passphrase, "", account._email);
                     using (var command = new SqlCommand(sqlStatement, connection))
                     {
                         command.ExecuteNonQuery();
                     }
-                    var savedSqlStatement = string.Format("select * from accounts where email = '{0}'", account._email);
+                    var savedSqlStatement = string.Format("exec GetUserByEmail '{0}'", account._email);
                     using (var checkSave = new SqlCommand(savedSqlStatement, connection))
                     {
                         SqlDataReader reader = checkSave.ExecuteReader();
@@ -168,12 +157,12 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    var sqlStatement = string.Format("update accounts set accountStatus = 'disabled' where email = '{0}'", account._email);
+                    var sqlStatement = string.Format("exec DisableAccountStatus '{0}'", account._email);
                     using (var command = new SqlCommand(sqlStatement, connection))
                     {
                         command.ExecuteNonQuery();
                     }
-                    var savedSqlStatement = string.Format("select * from accounts where email = '{0}'", account._email);
+                    var savedSqlStatement = string.Format("exec GetUserByEmail '{0}'", account._email);
                     using (var checkSave = new SqlCommand(savedSqlStatement, connection))
                     {
                         SqlDataReader reader = checkSave.ExecuteReader();
@@ -219,12 +208,12 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    var sqlStatement = string.Format("update accounts set accountStatus = 'active' where email = '{0}'", account._email);
+                    var sqlStatement = string.Format("exec EnableAccountStatus '{0}'", account._email);
                     using (var command = new SqlCommand(sqlStatement, connection))
                     {
                         command.ExecuteNonQuery();
                     }
-                    var savedSqlStatement = string.Format("select * from accounts where email = '{0}'", account._email);
+                    var savedSqlStatement = string.Format("exec GetUserByEmail '{0}'", account._email);
                     using (var checkSave = new SqlCommand(savedSqlStatement, connection))
                     {
                         SqlDataReader reader = checkSave.ExecuteReader();
@@ -271,7 +260,7 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    var sqlStatement = string.Format("select * from accounts where email = '{0}'", model._Username);
+                    var sqlStatement = string.Format("exec GetUserByEmail '{0}'", model._Username);
                     using (var command = new SqlCommand(sqlStatement, connection))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -282,7 +271,7 @@ namespace LongHorn.ArrowNav.DAL
                             var password = "";
                             while (reader.Read())
                             {
-                                password = string.Format("{0}", reader["passphrase"]);
+                                password = string.Format("{0}", reader["password"]);
 
                             }
                             if (password.Equals(model._Password))
@@ -317,7 +306,7 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    var sqlStatement = string.Format("select * from accounts where email = '{0}'", account._email);
+                    var sqlStatement = string.Format("exec GetUserByEmail '{0}'", account._email);
                     using (var command = new SqlCommand(sqlStatement, connection))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -330,7 +319,7 @@ namespace LongHorn.ArrowNav.DAL
                             while (reader.Read())
                             {
                                 active = string.Format("{0}", reader["accountStatus"]);
-                                authorizedView = string.Format("{0}", reader["accountType"]);
+                                authorizedView = string.Format("{0}", reader["accessLevel"]);
 
                             }
                             if (active.Equals("active"))
@@ -398,9 +387,9 @@ namespace LongHorn.ArrowNav.DAL
         public string getConnection()
         {
             //var SQLConnectionString = ConfigurationManager.AppSettings.Get("UMsqlConnectionString");
-            return @"Server=localhost\SQLEXPRESS;Database=UM;Trusted_Connection=True";
-            //var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            //return AzureConnectionString;
+            //return @"Server=localhost\SQLEXPRESS;Database=UM;Trusted_Connection=True";
+            var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            return AzureConnectionString;
         }
     }
 }

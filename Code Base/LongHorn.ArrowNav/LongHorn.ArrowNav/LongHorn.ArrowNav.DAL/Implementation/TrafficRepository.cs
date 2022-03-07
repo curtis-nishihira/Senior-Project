@@ -28,7 +28,7 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    var checkTotalValues = string.Format("Select TotalValue from traffic where WeekdayName = '{0}' and ZoneName = '{1}' and TimeSlot = '{2}'", model._WeekdayName, model._ZoneName, model._TimeSlot);
+                    var checkTotalValues = string.Format("exec GetTotalValue '{0}', '{1}','{2}'", model._WeekdayName, model._ZoneName, model._TimeSlot);
                     using (var checkValue = new SqlCommand(checkTotalValues, connection))
                     {
                         SqlDataReader rdr = checkValue.ExecuteReader();
@@ -54,7 +54,7 @@ namespace LongHorn.ArrowNav.DAL
             var sqlConnectionString = getConnection();
             using (var connection = new SqlConnection(sqlConnectionString))
             {
-                var sqlStatement = string.Format("select * from Traffic where TimeSlot = '{0}' AND WeekDayName = '{1}';", model._TimeSlot, model._WeekdayName);
+                var sqlStatement = string.Format("exec GetTrafficWithTimeAndWeekDay '{0}','{1}'", model._TimeSlot, model._WeekdayName);
                 using (var command = new SqlCommand(sqlStatement, connection))
                 {
                     command.Connection.Open();
@@ -89,7 +89,7 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    var checkTotalValues = string.Format("Select TotalValue from traffic where WeekdayName = '{0}' and ZoneName = '{1}' and TimeSlot = '{2}'", model._WeekdayName, model._ZoneName, model._TimeSlot);
+                    var checkTotalValues = string.Format("exec GetTotalValue '{0}', '{1}','{2}'", model._WeekdayName, model._ZoneName, model._TimeSlot);
                     using (var checkValue = new SqlCommand(checkTotalValues, connection))
                     {
                         int totalValues = 0;
@@ -102,7 +102,7 @@ namespace LongHorn.ArrowNav.DAL
                         addToTotalValues = totalValues + model._TotalValue;
                         rdr.Close();
                     }
-                    var updatingValuesString = string.Format("Update traffic set TotalValue = {0} where  WeekdayName = '{1}' and ZoneName = '{2}' and TimeSlot = '{3}'", addToTotalValues, model._WeekdayName, model._ZoneName, model._TimeSlot);
+                    var updatingValuesString = string.Format("exec UpdateTrafficValue {0},'{1}','{2}','{3}'", addToTotalValues, model._WeekdayName, model._ZoneName, model._TimeSlot);
                     using (var updateValues = new SqlCommand(updatingValuesString, connection))
                     {
                         updateValues.ExecuteNonQuery();
@@ -121,9 +121,9 @@ namespace LongHorn.ArrowNav.DAL
         public string getConnection()
         {
             //var SQLConnectionString = ConfigurationManager.AppSettings.Get("UMsqlConnectionString");
-            return @"Server=localhost\SQLEXPRESS;Database=ArrowNav;Trusted_Connection=True";
-            //var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            //return AzureConnectionString;
+            // return @"Server=localhost\SQLEXPRESS;Database=ArrowNav;Trusted_Connection=True";
+            var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            return AzureConnectionString;
         }
     }
 }

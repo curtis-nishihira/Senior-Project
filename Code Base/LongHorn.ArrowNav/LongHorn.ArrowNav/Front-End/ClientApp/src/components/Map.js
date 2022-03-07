@@ -10,6 +10,10 @@ export const Map = () => {
     const [lng, setLng] = useState(-118.112437);
     const [lat, setLat] = useState(33.782105);
     const [zoom, setZoom] = useState(14.75);
+    //lat,long or y,z
+    const Zone1 = [33.781604, -118.114287, 33.782103, -118.112431];
+    const Zone2 = [33.779446, -118.113831, 33.780275, -118.112984];
+    const Zone3 = [33.783709, -118.110060, 33.784859, -118.108612];
 
     const [firstRouteDuration, setFirstRouteDuration] = useState(0);
     const [secondRouteDuration, setSecondRouteDuration] = useState(0);
@@ -340,6 +344,16 @@ export const Map = () => {
                     })
                         .then(response => response.json())
                         .then(data => {
+                            const zoneUrl = "https://localhost:44465/trafficsurvey"
+                            fetch(zoneUrl, {
+                                method: 'GET',
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                })
+                                .catch((error) => {
+                                    console.error('Error', error);
+                                });
                             let distance = data.routes[0].distance / 1609;
                             setFirstRouteDistance(distance.toFixed(2));
                             setFirstRouteDuration(Math.round((data.routes[0].duration) / 60));
@@ -381,12 +395,29 @@ export const Map = () => {
                     })
                         .then(response => response.json())
                         .then(data => {
-                            let distance = data.routes[0].distance / 1609;
-                            setSecondRouteDistance(distance.toFixed(2));
-                            setSecondRouteDuration(Math.round((data.routes[0].duration) / 60));
+                            const zoneUrl = "https://localhost:44465/trafficsurvey";
+                            var TimeAdditions = [];
+                            fetch(zoneUrl, {
+                                method: 'GET',
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    //loop through the keys and save them to the list which will be used later to update the duration of the route
+                                    for (const [key, value] of Object.entries(data)) {
+                                        console.log( value);
+                                    }
+                                })
+                                .catch((error) => {
+                                    console.error('Error', error);
+                                });
+                            
                             for (let i = 0; i < data.routes[0].legs[0].steps.length; i++) {
                                 coords.push(data.routes[0].legs[0].steps[i].maneuver.location);
                             }
+
+                            let distance = data.routes[0].distance / 1609;
+                            setSecondRouteDistance(distance.toFixed(2));
+                            setSecondRouteDuration(Math.round((data.routes[0].duration) / 60));
                             map.addLayer({
                                 "id": "route2",
                                 "type": "line",
@@ -454,7 +485,7 @@ export const Map = () => {
                 <button type="button" id="driving-btn"> Driving</button>
                 <button type="button" id="cycling-btn"> Cycling </button>
                 <div id="information" className="route-information">
-                    <p id = "first-route-info" className = "first-route-container">Blue Route = Time:{firstRouteDuration} min | Distance: {firstRouteDistance} mi</p>
+                    <p id="first-route-info" className="first-route-container">Blue Route = Time:{firstRouteDuration} min | Distance: {firstRouteDistance} mi</p>
                     <p id="second-route-info" className="second-route-container">Red Route = Time:{secondRouteDuration} min | Distance: {secondRouteDistance} mi</p>
                 </div>
             </div>

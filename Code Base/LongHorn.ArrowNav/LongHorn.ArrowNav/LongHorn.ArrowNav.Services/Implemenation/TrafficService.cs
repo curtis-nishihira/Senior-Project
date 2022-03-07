@@ -24,14 +24,16 @@ namespace LongHorn.ArrowNav.Services
             return Int32.Parse(value[0]);
         }
 
-        public Dictionary<String, int> GetAllTraffic(TrafficModel model)
+        public Dictionary<String, Tuple<int, int>> GetAllTraffic(TrafficModel model)
         {
             TrafficRepository trafficRepo = new TrafficRepository();
             List<String> value = trafficRepo.GetAllValues(model);
-            Dictionary<String,int> keyValuePairs = new Dictionary<String,int>();
+            Dictionary<String, Tuple<int, int>> keyValuePairs = new Dictionary<String,Tuple<int,int>>();
             for (int i = 0; i < value.Count; i++)
             {
-                keyValuePairs.Add(value[i].Split(" ")[0], Int32.Parse(value[i].Split(" ")[1]));
+                var tuple = Tuple.Create(Int32.Parse(value[i].Split(" ")[1]), Int32.Parse(value[i].Split(" ")[2]));
+
+                keyValuePairs.Add(value[i].Split(" ")[0], tuple );
             }
             return keyValuePairs;
         }

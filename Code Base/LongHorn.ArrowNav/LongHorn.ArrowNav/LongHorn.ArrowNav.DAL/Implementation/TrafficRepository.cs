@@ -64,7 +64,7 @@ namespace LongHorn.ArrowNav.DAL
                     {
                         while (reader.Read())
                         {
-                            var entry = string.Format("{0} {1}", reader["ZoneName"], reader["TotalValue"]);
+                            var entry = string.Format("{0} {1} {2}", reader["ZoneName"], reader["TotalValue"],reader["TotalSurveys"]);
                             retrievedValues.Add(entry);
                         }
                     }
@@ -106,6 +106,28 @@ namespace LongHorn.ArrowNav.DAL
                     using (var updateValues = new SqlCommand(updatingValuesString, connection))
                     {
                         updateValues.ExecuteNonQuery();
+                    }
+                    var addTotalSurveys = 0;
+                    var checkTotalSurveys = string.Format("exec GetTotalSurveys '{0}', '{1}','{2}'", model._WeekdayName, model._ZoneName, model._TimeSlot);
+                    using (var checkSurveys = new SqlCommand(checkTotalValues, connection))
+                    {
+                        int totalSurveys = 0;
+                        SqlDataReader rdr = checkSurveys.ExecuteReader();
+                        while (rdr.Read())
+                        {
+                            int temp = (int)rdr["TotalSurveys"];
+                            totalSurveys = totalSurveys + temp;
+                        }
+                        if (model._TotalValue > 0)
+                        {
+                            addTotalSurveys = totalSurveys + 1;
+                        }
+                        rdr.Close();
+                    }
+                    var updatingSurveysString = string.Format("exec UpdateTrafficSurveys {0},'{1}','{2}','{3}'", addTotalSurveys, model._WeekdayName, model._ZoneName, model._TimeSlot);
+                    using (var updateSurveys = new SqlCommand(updatingValuesString, connection))
+                    {
+                        updateSurveys.ExecuteNonQuery();
                     }
                     connection.Close();
                 }

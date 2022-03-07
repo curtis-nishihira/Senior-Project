@@ -12,17 +12,19 @@ const RadioInput = ({ label, value, checked, setter }) => {
 	);
 };
 
-function openForm() {
-	document.getElementById("box").style.visibility = "visible"
-}
-function closeForm() {
-	document.getElementsById("box").style.visiblity = "hidden";
-}
-window.onload = openForm();
+
 export const TrafficSurvey = (props) => {
 	const [zone1, setZone1] = React.useState();
 	const [zone2, setZone2] = React.useState();
 	const [zone3, setZone3] = React.useState();
+
+	//function openForm() {
+	//	console.log(document.getElementById('box'))
+	//}
+	const closeForm = () => {
+		document.getElementById("box").style.visiblity = "hidden";
+	}
+	//window.onload = openForm();
 
 	const handleSubmit = e => {
 		e.preventDefault();
@@ -73,8 +75,8 @@ export const TrafficSurvey = (props) => {
 
 	return (
 		<div className="surveyBox">
-			<div id="box"  className="box">
-				<span className="close-icon" onClick={closeForm()}>x</span>
+			<div id="box" className="box">
+				<span className="close-icon" onClick={() => { document.getElementById('box').style.visibility='hidden' }} >x</span>
 				<form onSubmit={surveyHandler}>
 					<h3>Traffic Survey</h3>
 					<p>This optional survey is to improve user experience and more

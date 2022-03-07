@@ -21,7 +21,63 @@ namespace LongHorn.ArrowNav.DAL
 
         public List<string> Read(TrafficModel model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var connectionString = getConnection();
+                string value = "";
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    var checkTotalValues = string.Format("Select TotalValue from traffic where WeekdayName = '{0}' and ZoneName = '{1}' and TimeSlot = '{2}'", model._WeekdayName, model._ZoneName, model._TimeSlot);
+                    using (var checkValue = new SqlCommand(checkTotalValues, connection))
+                    {
+                        SqlDataReader rdr = checkValue.ExecuteReader();
+                        while (rdr.Read())
+                        {
+                            value = (string)rdr["TotalValue"];
+                        }
+                        rdr.Close();
+                    }
+                    connection.Close();
+                }
+                return new List<string> { value }; ;
+            }
+            catch (Exception ex)
+            {
+                return new List<string> { ex.ToString() };
+            }
+        }
+
+        public List<string> GetAllValues(TrafficModel model)
+        {
+            List<string> retrievedValues = new List<string>();
+            var sqlConnectionString = getConnection();
+            using (var connection = new SqlConnection(sqlConnectionString))
+            {
+                var sqlStatement = string.Format("select * from Traffic where TimeSlot = '{0}' AND WeekDayName = '{1}';", model._TimeSlot, model._WeekdayName);
+                using (var command = new SqlCommand(sqlStatement, connection))
+                {
+                    command.Connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            var entry = string.Format("{0} {1}", reader["ZoneName"], reader["TotalValue"]);
+                            retrievedValues.Add(entry);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No rows found.");
+                    }
+                    reader.Close();
+                    command.Connection.Close();
+                }
+            }
+
+            return retrievedValues;
         }
 
         public string Update(TrafficModel model)

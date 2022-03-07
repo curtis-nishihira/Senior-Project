@@ -17,9 +17,9 @@ namespace Front_End.Controllers
     public class LoginController : ControllerBase
     {
         [HttpGet]
-        public string random()
+        public string get()
         {
-            return "nice it works";
+            return "default get";
         }
         [HttpPost]
         public string Login(LoginModel login)

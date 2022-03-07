@@ -12,10 +12,18 @@ const RadioInput = ({ label, value, checked, setter }) => {
 	);
 };
 
+function openForm() {
+	document.getElementById("box").style.visibility = "visible"
+}
+function closeForm() {
+	document.getElementsById("box").style.visiblity = "hidden";
+}
+window.onload = openForm();
 export const TrafficSurvey = (props) => {
 	const [zone1, setZone1] = React.useState();
 	const [zone2, setZone2] = React.useState();
 	const [zone3, setZone3] = React.useState();
+
 	const handleSubmit = e => {
 		e.preventDefault();
 		const data = { zone1, zone2, zone3 };
@@ -64,38 +72,43 @@ export const TrafficSurvey = (props) => {
 	};
 
 	return (
-		<form onSubmit={surveyHandler}>
-			<h3>Traffic Survey</h3>
-			<p>This optional survey is to improve user experience and more
-				accurately model the traffic of campus</p>
-			<p>Please rate the following the traffic of locations on campus
-				from a scale of 1-5, based on the following criteria...</p>
-			<div>
-				<label>Staircase next to USU:</label>
-				<RadioInput label="1" value="1" checked={zone1} setter={setZone1} />
-				<RadioInput label="2" value="2" checked={zone1} setter={setZone1} />
-				<RadioInput label="3" value="3" checked={zone1} setter={setZone1} />
-				<RadioInput label="4" value="4" checked={zone1} setter={setZone1} />
-				<RadioInput label="5" value="5" checked={zone1} setter={setZone1} />
+		<div className="surveyBox">
+			<div id="box"  className="box">
+				<span className="close-icon" onClick={closeForm()}>x</span>
+				<form onSubmit={surveyHandler}>
+					<h3>Traffic Survey</h3>
+					<p>This optional survey is to improve user experience and more
+						accurately model the traffic of campus</p>
+					<p>Please rate the following the traffic of locations on campus
+						from a scale of 1-5, based on the following criteria...</p>
+					<div>
+						<label>Staircase next to USU:</label>
+						<RadioInput label="1" value="1" checked={zone1} setter={setZone1} />
+						<RadioInput label="2" value="2" checked={zone1} setter={setZone1} />
+						<RadioInput label="3" value="3" checked={zone1} setter={setZone1} />
+						<RadioInput label="4" value="4" checked={zone1} setter={setZone1} />
+						<RadioInput label="5" value="5" checked={zone1} setter={setZone1} />
+					</div>
+					<div>
+						<label>Walkway in front of Bookstore:</label>
+						<RadioInput label="1" value="1" checked={zone2} setter={setZone2} />
+						<RadioInput label="2" value="2" checked={zone2} setter={setZone2} />
+						<RadioInput label="3" value="3" checked={zone2} setter={setZone2} />
+						<RadioInput label="4" value="4" checked={zone2} setter={setZone2} />
+						<RadioInput label="5" value="5" checked={zone2} setter={setZone2} />
+					</div>
+					<div>
+						<label>Walkway in front of SRWC:</label>
+						<RadioInput label="1" value="1" checked={zone3} setter={setZone3} />
+						<RadioInput label="2" value="2" checked={zone3} setter={setZone3} />
+						<RadioInput label="3" value="3" checked={zone3} setter={setZone3} />
+						<RadioInput label="4" value="4" checked={zone3} setter={setZone3} />
+						<RadioInput label="5" value="5" checked={zone3} setter={setZone3} />
+					</div>
+					<button type="submit">Submit</button>
+				</form>
 			</div>
-			<div>
-				<label>Walkway in front of Bookstore:</label>
-				<RadioInput label="1" value="1" checked={zone2} setter={setZone2} />
-				<RadioInput label="2" value="2" checked={zone2} setter={setZone2} />
-				<RadioInput label="3" value="3" checked={zone2} setter={setZone2} />
-				<RadioInput label="4" value="4" checked={zone2} setter={setZone2} />
-				<RadioInput label="5" value="5" checked={zone2} setter={setZone2} />
-			</div>
-			<div>
-				<label>Walkway in front of SRWC:</label>
-				<RadioInput label="1" value="1" checked={zone3} setter={setZone3} />
-				<RadioInput label="2" value="2" checked={zone3} setter={setZone3} />
-				<RadioInput label="3" value="3" checked={zone3} setter={setZone3} />
-				<RadioInput label="4" value="4" checked={zone3} setter={setZone3} />
-				<RadioInput label="5" value="5" checked={zone3} setter={setZone3} />
-			</div>
-			<button type="submit">Submit</button>
-		</form>
+		</div>
 	);
 };
 

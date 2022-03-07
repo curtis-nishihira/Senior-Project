@@ -8,7 +8,7 @@ import { Register } from "./components/pages/Register";
 import { WellnessHub } from "./components/pages/WellnessHub";
 import { ConfirmationPage } from "./components/pages/ConfirmationPage";
 import { UserHome } from "./components/pages/UserHome";
-import { TrafficSurvey } from "./components/TrafficSurvey";
+import { TrafficSurvey } from "./components/pages/TrafficSurvey";
 import './custom.css'
 
 export default class App extends Component {
@@ -22,7 +22,7 @@ export default class App extends Component {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/account" element={<Login />} />
-                        <Route path="/wellnesshub" element={<TrafficSurvey />} />
+                        <Route path="/wellnesshub" element={<WellnessHub />} />
                         <Route path="/account/register" element={<Register />} />
                         <Route path="/account/confirmationpage" element={<ConfirmationPage />} />
                         <Route path="/account/userhome" element={<UserHome />}/>

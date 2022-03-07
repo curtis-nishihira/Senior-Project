@@ -65,10 +65,10 @@ namespace LongHorn.ArrowNav.Managers
             logManager.Log(entry);
             return result;
         }
-        public string AuthenAccount(AccountInfo account)
+        public string AuthenAccount(LoginModel model)
         {
             AuthnService authnService = new AuthnService();
-            var result = authnService.ApplyAuthn(account);
+            var result = authnService.ApplyAuthn(model);
             return result;
         }
         public string AuthzAccount(AccountInfo account)

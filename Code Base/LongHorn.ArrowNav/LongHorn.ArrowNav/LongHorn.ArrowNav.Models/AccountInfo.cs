@@ -11,16 +11,5 @@ namespace LongHorn.ArrowNav.Models
 
         public string _firstName { get; set; } = "";
         public string _lastName { get; set; } = "";
-
-        //public AccountInfo(string email, string passphrase, string firstName, string lastName)
-        //{
-        //    _email = email;
-        //    _passphrase = passphrase;
-        //    _firstName = firstName;
-        //    _lastName = lastName;
-        //}
-
-
-
     }
 }

@@ -1,0 +1,17 @@
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\bin\Debug\net6.0\LongHorn.ArrowNav.Services.deps.json
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\bin\Debug\net6.0\LongHorn.ArrowNav.Services.dll
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\bin\Debug\net6.0\ref\LongHorn.ArrowNav.Services.dll
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\bin\Debug\net6.0\LongHorn.ArrowNav.Services.pdb
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\bin\Debug\net6.0\LongHorn.ArrowNav.DAL.dll
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\bin\Debug\net6.0\LongHorn.ArrowNav.Models.dll
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\bin\Debug\net6.0\LongHorn.ArrowNav.DAL.pdb
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\bin\Debug\net6.0\LongHorn.ArrowNav.Models.pdb
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\obj\Debug\net6.0\LongHorn.ArrowNav.Services.csproj.AssemblyReference.cache
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\obj\Debug\net6.0\LongHorn.ArrowNav.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\obj\Debug\net6.0\LongHorn.ArrowNav.Services.AssemblyInfoInputs.cache
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\obj\Debug\net6.0\LongHorn.ArrowNav.Services.AssemblyInfo.cs
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\obj\Debug\net6.0\LongHorn.ArrowNav.Services.csproj.CoreCompileInputs.cache
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\obj\Debug\net6.0\LongHorn.ArrowNav.Services.csproj.CopyComplete
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\obj\Debug\net6.0\LongHorn.ArrowNav.Services.dll
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\obj\Debug\net6.0\ref\LongHorn.ArrowNav.Services.dll
+C:\Users\curti\source\repos\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Services\obj\Debug\net6.0\LongHorn.ArrowNav.Services.pdb

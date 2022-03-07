@@ -6,12 +6,12 @@ using System.Text;
 
 namespace LongHorn.ArrowNav.Services
 {
-    public class AuthnService : IAuthnService<AccountInfo>
+    public class AuthnService : IAuthnService<LoginModel>
     {
-        public string ApplyAuthn(AccountInfo account)
+        public string ApplyAuthn(LoginModel model)
         {
             UMRepository umRepository = new UMRepository();
-            var result = umRepository.AuthnAccount(account);
+            var result = umRepository.AuthnAccount(model);
             return result;
         }
         public string confirmEmail(string email)

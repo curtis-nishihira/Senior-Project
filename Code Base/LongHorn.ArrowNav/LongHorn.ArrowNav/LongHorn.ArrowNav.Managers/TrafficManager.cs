@@ -15,8 +15,13 @@ namespace LongHorn.ArrowNav.Managers
             TrafficService trafficService = new TrafficService();
             var response = trafficService.UpdateTraffic(model);
             return response;
+        }
 
-            
+        public Dictionary<String,int> GetZonevalues(TrafficModel model)
+        {
+            TrafficService trafficService = new TrafficService();
+            var response = trafficService.GetAllTraffic(model);
+            return response;
         }
 
 

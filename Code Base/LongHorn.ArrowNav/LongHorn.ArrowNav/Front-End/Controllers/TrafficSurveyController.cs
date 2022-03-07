@@ -8,8 +8,24 @@ namespace Front_End.Controllers
     [Route("[controller]")]
     public class TrafficSurveyController : ControllerBase
     {
+        [HttpGet]
+        public Dictionary<String, int> GetZoneValues()
+        {
+            Dictionary<String, int> trafficValues = new Dictionary<String, int>();
+            TrafficModel model = new TrafficModel();
+            DayOfWeek dayOfWeek = DateTime.UtcNow.DayOfWeek;
+            //model._WeekdayName = dayOfWeek.ToString();
+            //model._TimeSlot = DateTime.UtcNow.ToString("HH:00");
+            model._WeekdayName = "Monday";
+            model._TimeSlot = "9:00";
+            TrafficManager trafficManager = new TrafficManager(); ;
+            var response = trafficManager.GetZonevalues(model);
+            return response;
+        }
+
+
         [HttpPost]
-        public string Login(List<TrafficModel> list)
+        public string Update(List<TrafficModel> list)
         {
             var returnString = "";
             for (int i = 0; i < list.Count; i++)
@@ -21,14 +37,11 @@ namespace Front_End.Controllers
                 TrafficManager trafficManager = new TrafficManager(); ;
                 var response  = trafficManager.UpdateZoneValues(model);
                 returnString = returnString + " " + response;
-
                 returnString = returnString + model._ZoneName + " " + model._WeekdayName + " " + model._TimeSlot + " " + model._TotalValue + " " + "\n";
 
             }
             return returnString;
         }
-
-
 
     }
 }

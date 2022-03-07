@@ -262,9 +262,51 @@ namespace LongHorn.ArrowNav.DAL
                 return "Data Access Layer error.";
             }
         }
-        public string AuthnAccount(AccountInfo account)
+        public string AuthnAccount(LoginModel model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var sqlConnectionString = getConnection();
+
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    var sqlStatement = string.Format("select * from accounts where email = '{0}'", model._Username);
+                    using (var command = new SqlCommand(sqlStatement, connection))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.HasRows)
+                        {
+
+                            var password = "";
+                            while (reader.Read())
+                            {
+                                password = string.Format("{0}", reader["passphrase"]);
+
+                            }
+                            if (password.Equals(model._Password))
+                            {
+                                return "Account is authenticated";
+                            }
+                            else
+                            {
+                                connection.Close();
+                                return "Incorrect Password";
+                            }
+                        }
+                        else
+                        {
+                            connection.Close();
+                            return "Account not found.";
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                return "Data Access Layer error.";
+            }
         }
         public string AuthzAccount(AccountInfo account)
         {
@@ -356,9 +398,9 @@ namespace LongHorn.ArrowNav.DAL
         public string getConnection()
         {
             //var SQLConnectionString = ConfigurationManager.AppSettings.Get("UMsqlConnectionString");
-            //var SQLConnectionString = @"Server=localhost\SQLEXPRESS;Database=UM;Trusted_Connection=True";
-            var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            return AzureConnectionString;
+            return @"Server=localhost\SQLEXPRESS;Database=UM;Trusted_Connection=True";
+            //var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            //return AzureConnectionString;
         }
     }
 }

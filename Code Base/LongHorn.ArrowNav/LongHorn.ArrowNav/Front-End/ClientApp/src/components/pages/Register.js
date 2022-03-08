@@ -14,8 +14,7 @@ export const Register = () => {
         e.preventDefault();
         //will have to change when it gets published so that it will actually communicate with the
         //live website
-        //https://longhorntest.azurewebsites.net/registerform/createaccount
-        fetch('https://localhost:44492/registerform/createaccount', {
+        fetch('https://arrownav.azurewebsites.net/registerform/createaccount', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

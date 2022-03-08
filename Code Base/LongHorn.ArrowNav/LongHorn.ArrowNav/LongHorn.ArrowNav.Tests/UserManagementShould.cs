@@ -1,4 +1,3 @@
-using LongHorn.ArrowNav.Managers;
 using LongHorn.ArrowNav.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
@@ -8,7 +7,6 @@ namespace LongHorn.ArrowNav.Tests
     [TestClass]
     public class UserManagementShould
     {
-        [TestMethod]
         //public void CreateUserValid()
         //{
         //    UserCreateManager manager = new UserCreateManager();

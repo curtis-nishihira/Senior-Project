@@ -1,6 +1,7 @@
 ﻿import React, { useRef, useEffect, useState } from 'react';
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import mapboxgl from '!mapbox-gl';
+import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import './Map.css';
 
 mapboxgl.accessToken = "pk.eyJ1IjoiYnJheWFuLWZ1ZW50ZXMyMSIsImEiOiJja3hxdW5ycWo0ZjRmMzBvNHM5ODdxZ2poIn0.MoTF9LUSyOlwGx7L-pCCjw";
@@ -343,8 +344,12 @@ export const Map = () => {
             positionOptions: { enableHighAccuracy: true },
             showUserHeading: true
         })
-
+        const geocoder = new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl
+        });
         map.addControl(geolocateControl, 'bottom-right');
+        map.addControl(geocoder,"bottom-left")
 
         const endPoint = new mapboxgl.Marker();
 

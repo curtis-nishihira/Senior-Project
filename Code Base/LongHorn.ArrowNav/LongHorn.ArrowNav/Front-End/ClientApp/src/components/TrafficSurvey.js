@@ -107,7 +107,7 @@ export const TrafficSurvey = (props) => {
 						<RadioInput label="4" value="4" checked={zone3} setter={setZone3} />
 						<RadioInput label="5" value="5" checked={zone3} setter={setZone3} />
 					</div>
-					<button type="submit">Submit</button>
+					<button type="submit" >Submit</button>
 				</form>
 			</div>
 		</div>

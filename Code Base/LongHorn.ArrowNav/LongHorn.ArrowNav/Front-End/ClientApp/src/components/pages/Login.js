@@ -32,7 +32,7 @@ export const Login = (props) => {
      * */
     const loginHandler = (e) => {
         e.preventDefault();
-        fetch('https://localhost:44465/login', {
+        fetch('https://arrownav.azurewebsites.net/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

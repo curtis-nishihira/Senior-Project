@@ -1,6 +1,5 @@
 ﻿import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 const RadioInput = ({ label, value, checked, setter }) => {
 	return (
 		<label>
@@ -15,6 +14,7 @@ export const TrafficSurvey = (props) => {
 	const [zone1, setZone1] = React.useState();
 	const [zone2, setZone2] = React.useState();
 	const [zone3, setZone3] = React.useState();
+	const navigate = useNavigate();
 	const handleSubmit = e => {
 		e.preventDefault();
 		const data = { zone1, zone2, zone3 };
@@ -26,7 +26,7 @@ export const TrafficSurvey = (props) => {
 	const surveyHandler = (e) => {
 		e.preventDefault();
 		console.log(parseInt(zone1));
-		fetch('https://localhost:44465/trafficsurvey', {
+		fetch('https://arrownav.azurewebsites.net/trafficsurvey', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
@@ -56,6 +56,7 @@ export const TrafficSurvey = (props) => {
 			.then(response => response.json())
 			.then(data => {
 				console.log(data);
+				navigate("/account", { state: { message: "Survey Completed" } });
 			})
 			.catch((error) => {
 				console.error('Error', error);

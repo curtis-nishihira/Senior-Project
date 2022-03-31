@@ -42,8 +42,8 @@ export const NavBar = () => {
                         </li>
                     </ul>
                     <div className="nav-icon" onClick={handleClick}>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                            <span class="navbar-toggler-icon"></span>
+                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                            <span className="navbar-toggler-icon"></span>
                         </button>
                     </div>
                 </div>

@@ -1,0 +1,9 @@
+﻿.notification-container {
+    visibility: hidden;
+    transition: width 2s;
+    background-color: palegreen;
+    float: right;
+    width: 30%;
+    border-radius: 8px;
+    text-align: center;
+}

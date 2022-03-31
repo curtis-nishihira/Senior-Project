@@ -303,6 +303,35 @@ export const Map = () => {
             }
         };
 
+        function zonesPassed(listOfCoordinates) {
+            const listofPassedZones = []
+            for (let x = 0; x < listOfCoordinates.length; x++)
+            {
+                if ((listOfCoordinates[x][0] >= Zone1[1] && listOfCoordinates[x][0] <= Zone1[3]) && (listOfCoordinates[x][1] >= Zone1[0] && listOfCoordinates[x][1] <= Zone1[2]))
+                {
+                    if (!listofPassedZones.includes("Zone1"))
+                    {
+                        listofPassedZones.push("Zone1");
+                    }
+                }
+                else if ((listOfCoordinates[x][0] >= Zone2[1] && listOfCoordinates[x][0] <= Zone2[3]) && (listOfCoordinates[x][1] >= Zone2[0] && listOfCoordinates[x][1] <= Zone2[2]))
+                {
+                    if (!listofPassedZones.includes("Zone1"))
+                    {
+                        listofPassedZones.push("Zone1");
+                    }
+                }
+                else if ((listOfCoordinates[x][0] >= Zone3[1] && listOfCoordinates[x][0] <= Zone3[3]) && (listOfCoordinates[x][1] >= Zone3[0] && listOfCoordinates[x][1] <= Zone3[2]))
+                {
+                    if (!listofPassedZones.includes("Zone1"))
+                    {
+                        listofPassedZones.push("Zone1");
+                    }
+                }
+            }
+            return listofPassedZones;
+        }
+
         const map = new mapboxgl.Map({
             container: mapContainerRef.current,
             style: 'mapbox://styles/brayan-fuentes21/cky54exmf1uvl14qcvixitiqo',
@@ -344,22 +373,50 @@ export const Map = () => {
                     })
                         .then(response => response.json())
                         .then(data => {
-                            const zoneUrl = "https://localhost:44465/trafficsurvey"
+                            const zoneUrl = "https://arrownav.azurewebsites.net/trafficsurvey";
+                            var TimeAdditions = [];
+                            for (let i = 0; i < data.routes[0].legs[0].steps.length; i++) {
+                                coordinates.push(data.routes[0].legs[0].steps[i].maneuver.location);
+                            }
                             fetch(zoneUrl, {
                                 method: 'GET',
                             })
                                 .then(response => response.json())
-                                .then(data => {
+                                .then(data2 => {
+                                    //loop through the keys and save them to the list which will be used later to update the duration of the route 
+                                    for (const [key, value] of Object.entries(data2)) {
+                                        var zoneValue = value["item1"];
+                                        var surveyCount = value["item2"];
+                                        var timeAdded = zoneValue / surveyCount;
+                                        if (isNaN(timeAdded)) {
+                                            TimeAdditions.push([key, 0]);
+                                        }
+                                        else {
+                                            TimeAdditions.push([key, Math.ceil(timeAdded)]);
+                                        }
+                                    }
+                                    const zones = zonesPassed(coordinates);
+                                    var timeAddedForRoute1 = 0;
+                                    if (zones.includes("Zone1")) {
+                                        timeAddedForRoute1 = timeAddedForRoute1  + TimeAdditions[0][1];
+
+                                    }
+                                    if (zones.includes("Zone2")) {
+                                        timeAddedForRoute1 = timeAddedForRoute1 + TimeAdditions[1][1];
+
+                                    }
+                                    if (zones.includes("Zone3")) {
+                                        timeAddedForRoute1 = timeAddedForRoute1 + TimeAdditions[2][1];
+                                    }
+
+                                    let distance = data.routes[0].distance / 1609;
+                                    setFirstRouteDistance(distance.toFixed(2));
+                                    setFirstRouteDuration(Math.round((data.routes[0].duration) / 60) + timeAddedForRoute1);
                                 })
                                 .catch((error) => {
                                     console.error('Error', error);
                                 });
-                            let distance = data.routes[0].distance / 1609;
-                            setFirstRouteDistance(distance.toFixed(2));
-                            setFirstRouteDuration(Math.round((data.routes[0].duration) / 60));
-                            for (let i = 0; i < data.routes[0].legs[0].steps.length; i++) {
-                                coordinates.push(data.routes[0].legs[0].steps[i].maneuver.location);
-                            }
+
                             map.addLayer({
                                 "id": "route",
                                 "type": "line",
@@ -395,29 +452,50 @@ export const Map = () => {
                     })
                         .then(response => response.json())
                         .then(data => {
-                            const zoneUrl = "https://localhost:44465/trafficsurvey";
+                            const zoneUrl = "https://arrownav.azurewebsites.net/trafficsurvey";
                             var TimeAdditions = [];
+                            for (let i = 0; i < data.routes[0].legs[0].steps.length; i++) {
+                                coords.push(data.routes[0].legs[0].steps[i].maneuver.location);
+                            }
                             fetch(zoneUrl, {
                                 method: 'GET',
                             })
                                 .then(response => response.json())
-                                .then(data => {
-                                    //loop through the keys and save them to the list which will be used later to update the duration of the route
-                                    for (const [key, value] of Object.entries(data)) {
-                                        console.log( value);
+                                .then(data2 => {
+                                    //loop through the keys and save them to the list which will be used later to update the duration of the route 
+                                    for (const [key, value] of Object.entries(data2)) {
+                                        var zoneValue = value["item1"];
+                                        var surveyCount = value["item2"];
+                                        var timeAdded = zoneValue / surveyCount;
+                                        if (isNaN(timeAdded)) {
+                                            TimeAdditions.push([key, 0]);
+                                        }
+                                        else {
+                                            TimeAdditions.push([key, Math.ceil(timeAdded)]);
+                                        }
                                     }
+                                    const zones = zonesPassed(coords);
+                                    var timeAddedForRoute2 = 0;
+                                    if (zones.includes("Zone1"))
+                                    {
+                                        timeAddedForRoute2 = timeAddedForRoute2 + TimeAdditions[0][1];
+
+                                    }
+                                    if (zones.includes("Zone2")) {
+                                        timeAddedForRoute2 = timeAddedForRoute2 + TimeAdditions[1][1];
+
+                                    }
+                                    if (zones.includes("Zone3")) {
+                                        timeAddedForRoute2 = timeAddedForRoute2 + TimeAdditions[2][1];
+                                    }
+                                    let distance = data.routes[0].distance / 1609;
+                                    setSecondRouteDistance(distance.toFixed(2));
+                                    setSecondRouteDuration(Math.round((data.routes[0].duration) / 60) + timeAddedForRoute2);
                                 })
                                 .catch((error) => {
                                     console.error('Error', error);
                                 });
                             
-                            for (let i = 0; i < data.routes[0].legs[0].steps.length; i++) {
-                                coords.push(data.routes[0].legs[0].steps[i].maneuver.location);
-                            }
-
-                            let distance = data.routes[0].distance / 1609;
-                            setSecondRouteDistance(distance.toFixed(2));
-                            setSecondRouteDuration(Math.round((data.routes[0].duration) / 60));
                             map.addLayer({
                                 "id": "route2",
                                 "type": "line",

@@ -10,10 +10,7 @@ export const Login = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (location.state == undefined) {
-            console.log("nothing");
-        }
-        else {
+        if (location.state != undefined) {
             document.getElementById('notification').style.visibility = 'visible';
             setMessage(location.state.message);
             console.log(message);
@@ -30,9 +27,31 @@ export const Login = (props) => {
      * The fetch does not work. Would suggest making a model for the login info or research another way.
      * 
      * */
+    const test = (e) => {
+        e.preventDefault();
+        fetch('https://localhost:44465/login/createcookie', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'appliction/json',
+            },
+            body: JSON.stringify({
+                _Username: email,
+                _Password: password
+            }),
+        })
+            .then(response => response.json())
+            .then(data2 => {
+                console.log(data2);
+            })
+            .catch((error) => {
+                console.error('Error', error);
+            });
+    }
+
     const loginHandler = (e) => {
         e.preventDefault();
-        fetch('https://arrownav.azurewebsites.net/login', {
+        fetch('https://localhost:44465/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -46,7 +65,8 @@ export const Login = (props) => {
             .then(response => response.json())
             .then(data => {
                 if (data == "Account is authenticated") {
-                    navigate("/account/userhome");
+                    
+                   // navigate("/account/userhome");
                 }
                 else if (data == "Incorrect Password") {
                     navigate("/account", { state: { message: data } });
@@ -94,7 +114,10 @@ export const Login = (props) => {
                         <a href="account/register">Register?</a>
                     </p>
                 </form>
+                <button type='button' onClick={test}> click </button>
             </div>
+
+
         </>
     );
 }

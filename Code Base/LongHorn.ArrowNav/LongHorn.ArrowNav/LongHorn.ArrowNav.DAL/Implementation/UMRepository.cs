@@ -271,6 +271,7 @@ namespace LongHorn.ArrowNav.DAL
                             var password = "";
                             while (reader.Read())
                             {
+                                Console.WriteLine(reader["password"]);
                                 password = string.Format("{0}", reader["password"]);
 
                             }

@@ -1,6 +1,5 @@
 ﻿using LongHorn.ArrowNav.DAL;
 using LongHorn.ArrowNav.Models;
-using LongHorn.ArrowNav.DAL;
 using System;
 
 namespace LongHorn.ArrowNav.Services

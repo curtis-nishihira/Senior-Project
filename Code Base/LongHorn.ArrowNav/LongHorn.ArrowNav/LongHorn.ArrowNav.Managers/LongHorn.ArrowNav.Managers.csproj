@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\LongHorn.ArrowNav.Archiving\LongHorn.ArrowNav.Archiving.csproj" />
     <ProjectReference Include="..\LongHorn.ArrowNav.Logging\LongHorn.ArrowNav.Logging.csproj" />
+    <ProjectReference Include="..\LongHorn.ArrowNav.Models\LongHorn.ArrowNav.Models.csproj" />
     <ProjectReference Include="..\LongHorn.ArrowNav.Services\LongHorn.ArrowNav.Services.csproj" />
   </ItemGroup>
 

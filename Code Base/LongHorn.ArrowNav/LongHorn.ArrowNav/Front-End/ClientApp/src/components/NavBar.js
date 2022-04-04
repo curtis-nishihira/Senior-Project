@@ -6,6 +6,14 @@ export const NavBar = () => {
     const [click, setClick] = useState(false);
 
     const handleClick = () => setClick(!click);
+    const doesCookieExist = () => {
+        if (document.cookie == "") {
+            return "/account";
+        }
+        else {
+            return "/account/userhome";
+        }
+    }
 
     return (
         <div>
@@ -29,7 +37,7 @@ export const NavBar = () => {
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/account" className={(navData) => navData.isActive ? "active" : "nav-links"}
+                            <NavLink to={doesCookieExist()} className={(navData) => navData.isActive ? "active" : "nav-links"}
                                 onClick={handleClick}>
                                 Account
                             </NavLink>

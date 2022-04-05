@@ -27,27 +27,7 @@ export const Login = (props) => {
      * The fetch does not work. Would suggest making a model for the login info or research another way.
      * 
      * */
-    const test = (e) => {
-        e.preventDefault();
-        fetch('https://localhost:44465/login/createcookie', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'appliction/json',
-            },
-            body: JSON.stringify({
-                _Username: email,
-                _Password: password
-            }),
-        })
-            .then(response => response.json())
-            .then(data2 => {
-                console.log(data2);
-            })
-            .catch((error) => {
-                console.error('Error', error);
-            });
-    }
+
 
     const loginHandler = (e) => {
         e.preventDefault();
@@ -65,8 +45,25 @@ export const Login = (props) => {
             .then(response => response.json())
             .then(data => {
                 if (data == "Account is authenticated") {
-                    
-                   // navigate("/account/userhome");
+                    fetch('https://localhost:44465/login/createcookie', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            _Username: email,
+                            _Password: password
+                        }),
+                    })
+                        .then(response => response.json())
+                        .then(cookieResponse=> {
+                            navigate("/account/userhome");
+                           
+                        })
+                        .catch((error) => {
+                            console.error('Error', error);
+                        });
                 }
                 else if (data == "Incorrect Password") {
                     navigate("/account", { state: { message: data } });
@@ -114,7 +111,6 @@ export const Login = (props) => {
                         <a href="account/register">Register?</a>
                     </p>
                 </form>
-                <button type='button' onClick={test}> click </button>
             </div>
 
 

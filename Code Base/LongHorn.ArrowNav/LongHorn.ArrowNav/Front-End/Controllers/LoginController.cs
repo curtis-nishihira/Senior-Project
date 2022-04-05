@@ -27,7 +27,7 @@ namespace Front_End.Controllers
 
         public List<LoginModel>accounts = new List<LoginModel>();
 
-        public string key = "arrownav123";
+        public string key = "arrownav";
 
         [HttpPost]
         [Route("createcookie")]
@@ -42,7 +42,7 @@ namespace Front_End.Controllers
             {
                 Expires = DateTime.Now.AddDays(2)
             };
-
+            Response.Cookies.Append(key, JsonSerializer.Serialize(loginModel), cookieOptions);
             return "cookie created";
 
         }

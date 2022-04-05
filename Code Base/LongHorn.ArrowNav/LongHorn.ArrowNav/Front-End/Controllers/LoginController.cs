@@ -27,9 +27,36 @@ namespace Front_End.Controllers
 
         public List<LoginModel>accounts = new List<LoginModel>();
 
-        public string key = "arrownav123";
-        
-        
+        public string key = "arrownav";
+
+        [HttpPost]
+        [Route("createcookie")]
+        public string CreateCookie(LoginModel model)
+        {
+            LoginModel loginModel = new LoginModel()
+            {
+                _Username = model._Username
+            };
+
+            CookieOptions cookieOptions = new CookieOptions
+            {
+                Expires = DateTime.Now.AddDays(2)
+            };
+            Response.Cookies.Append(key, JsonSerializer.Serialize(loginModel), cookieOptions);
+            return "cookie created";
+
+        }
+
+
+
+
+        public void RemoveCookie()
+        {
+            if (Request.Cookies[key] != null)
+            {
+                Response.Cookies.Delete(key);
+            }
+        }
 
 
     }

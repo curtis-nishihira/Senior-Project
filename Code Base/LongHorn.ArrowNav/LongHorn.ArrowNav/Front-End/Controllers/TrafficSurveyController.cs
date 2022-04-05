@@ -11,7 +11,7 @@ namespace Front_End.Controllers
         [HttpGet]
         public Dictionary<String, Tuple<int, int>> GetZoneValues()
         {
-            Dictionary<String, int> trafficValues = new Dictionary<String, int>();
+            //Dictionary<String, int> trafficValues = new Dictionary<String, int>();
             TrafficModel model = new TrafficModel();
             DayOfWeek dayOfWeek = DateTime.UtcNow.DayOfWeek;
             //model._WeekdayName = dayOfWeek.ToString();

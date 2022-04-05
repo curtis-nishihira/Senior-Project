@@ -1,7 +1,7 @@
 ﻿import React, { useState, useEffect } from "react"
 
 export const ScheduleAddClass = () => {
-    const initialFormValues = { subject: "", course: "", section: "", building: "CDC", room: "", day:"Monday", secondday:"", starttime:"", endtime:"" };
+    const initialFormValues = { subject: "", course: "", section: "", building: "CDC", room: "", day: "", secondday:"", starttime:"", endtime:"" };
     const [classValues, setClassValues] = useState(initialFormValues);
     const [classValuesErrors, setClassValuesErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
@@ -108,23 +108,23 @@ export const ScheduleAddClass = () => {
                         <input type="number" name="section" placeholder="Enter Class Section Number Here" value={classValues.section} onChange={handleChange}></input>
                     </div>
                     <p>{classValuesErrors.section}</p>
-
+                    //lat long
                     <div className='form-inputs'>
                         <label>Select Building</label>
                         <select name="building" value={classValues.building} onChange={handleChange}>
-                            <option value="CDC">CDC - Child Development Center</option>
-                            <option value="COB">COB - College of Business</option>
+                            <option value="33.78840102644194, -118.12053225184958">CDC - Child Development Center</option>
+                            <option value="33.784233240788986, -118.11593318957405">COB - College of Business</option>
                             <option value="CORP">CORP - Corporation Yard</option>
                             <option value="CPAC">CPAC - Carpenter Performance Art Center</option>
                             <option value="CPIE">CPIE - College of Professional & International Education</option>
                             <option value="DC">DC - Dance Center</option>
                             <option value="DESN">DESN - Design</option>
-                            <option value="ECS">ECS - Engineering & Computer Science</option>
+                            <option value="33.783386537699705, -118.11014219165916">ECS - Engineering & Computer Science</option>
                             <option value="ED2">ED2 - Education 2</option>
                             <option value="EED">EED - Bob & Brabara Ellis Education Building</option>
                             <option value="EN2">EN2 - Engineering 2</option>
-                            <option value="EN3">EN3 - Engineering 2</option>
-                            <option value="EN4">EN4 - Engineering 2</option>
+                            <option value="EN3">EN3 - Engineering 3</option>
+                            <option value="EN4">EN4 - Engineering 4</option>
                             <option value="ET">ET - Engineering Technology</option>
                             <option value="FA1">FA1 - Fine Arts 1</option>
                             <option value="FA2">FA2 - Fine Arts 2</option>
@@ -147,14 +147,14 @@ export const ScheduleAddClass = () => {
                             <option value="MIC">MIC - Microbiology</option>
                             <option value="MLCS">MLCS - Molecular & Life Science Center</option>
                             <option value="NUR">NUR - Nursing</option>
-                            <option value="PH1">PH1 - Peterson Hall 1</option>
+                            <option value="33.778856037632266, -118.11211372390811">PH1 - Peterson Hall 1</option>
                             <option value="PSY">PSY - Psychology</option>
                             <option value="REPR">REPR - Reprographics</option>
                             <option value="SSPA">SSPA - Social Science/Public Affairs</option>
                             <option value="TA">TA - Theatre Arts</option>
                             <option value="UMC">UMC - University Music Center</option>
                             <option value="UT">UT - University Theatre</option>
-                            <option value="VEC">VEC - Vivian Engineering Center</option>
+                            <option value="33.78301158414412, -118.11045075430798">VEC - Vivian Engineering Center</option>
                         </select>
                     </div>
                     <p>{classValuesErrors.building}</p>

@@ -14,11 +14,12 @@ namespace Front_End.Controllers
             return "default get";
         }
         [HttpPost]
-        public string Add(List<ScheduleModel> schedule)
+        public string AddClass(StudentClassModel studentclass)
         {
-            var returnString = "";
+            ScheduleManager scheduleManager = new ScheduleManager();
+            //var result = scheduleManager.AddClass(studentclass);
 
-            return returnString;
+            return "";
         }
     }
 }

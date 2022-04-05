@@ -8,54 +8,60 @@ using System.Threading.Tasks;
 
 namespace LongHorn.ArrowNav.DAL
 {
-    public class ScheduleRepository : IRepository<ScheduleModel>
+    public class ScheduleRepository : IRepository<StudentClassModel>
     {
-        public string Create(ScheduleModel schedule)
+        public string Create(StudentClassModel studentclass)
         {
             try
             {
                 var sqlConnectionString = getConnection();
+
+
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    //List<StudentClassModel> studentClassModels = new List<StudentClassModel>();
-                    var checkScheduleExistence = string.Format("exec GetScheduleByUser '{0}' ", schedule._username);
-                    using (var checkSchedule = new SqlCommand(checkScheduleExistence, connection))
+                    //checks if the class already exists
+                    var checkClassExistence = string.Format("exec GetClassByPK '{0}', '{1}', '{2}', '{3} ", studentclass._Username, studentclass._subject, studentclass._course, studentclass._section);
+                    using (var checkClass = new SqlCommand(checkClassExistence, connection))
                     {
-                        SqlDataReader rdr = checkSchedule.ExecuteReader();
-                        if (rdr.HasRows)
+                        SqlDataReader reader = checkClass.ExecuteReader();
+                        if (reader.HasRows)
                         {
-                            rdr.Close();
+                            reader.Close();
                             connection.Close();
-                            return "Schedule already exists";
+                            return "Student class already exists in the schedule";
                         }
                         else
                         {
-                            rdr.Close();
-                            var addSchedule = string.Format("exec AddSchedule '{0}', '{1}'", schedule._username ,schedule._studentclasslist);
-                            using (var addCommand = new SqlCommand(addSchedule, connection))
+                            reader.Close();
+                            var addStudentClass = string.Format("exec AddStudentClass '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}'", studentclass._Username, studentclass._subject, studentclass._course, studentclass._section, studentclass._coursetype, studentclass._buildinglat, studentclass._buildinglong,studentclass._room, studentclass._day, studentclass._secondDay, studentclass._startTime, studentclass._endTime);
+                            using (var addCommand = new SqlCommand(addStudentClass, connection))
                             {
                                 addCommand.ExecuteNonQuery();
                             }
-                            var savedSqlStatement = string.Format("exec GetScheduleByUsername '{0}' ", schedule._username);
+                            
+
+                            var savedSqlStatement = string.Format("exec GetClassByPK '{0}', '{1}', '{2}', '{3} ", studentclass._Username, studentclass._subject, studentclass._course, studentclass._section);
                             using (var checkSave = new SqlCommand(savedSqlStatement, connection))
                             {
-                                SqlDataReader scheduleReader = checkSave.ExecuteReader();
+                                SqlDataReader userReader = checkSave.ExecuteReader();
 
-                                if (scheduleReader.HasRows)
+                                if (userReader.HasRows)
                                 {
-                                    scheduleReader.Close();
+                                    userReader.Close();
                                     connection.Close();
-                                    return "Successful Schedule Creation";
+                                    return "Class Added successfully to schedule";
                                 }
                                 else
                                 {
-                                    scheduleReader.Close();
+                                    userReader.Close();
                                     connection.Close();
-                                    return "Schedule was not saved onto the data store";
+                                    return "Class was not saved onto the data store";
                                 }
                             }
+
                         }
+
                     }
                 }
 
@@ -66,32 +72,90 @@ namespace LongHorn.ArrowNav.DAL
             }
         }
 
-        public string Delete(ScheduleModel schedule)
+        public string Delete(StudentClassModel studentclass)
+        {
+            try
+            {
+                var sqlConnectionString = getConnection();
+
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    var sqlStatement = string.Format("exec deleteStudentClass '{0}', '{1}', '{2}', '{3} ", studentclass._Username, studentclass._subject, studentclass._course, studentclass._section);
+                    using (var command = new SqlCommand(sqlStatement, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    var savedSqlStatement = string.Format("exec GetClassByPK '{0}', '{1}', '{2}', '{3} ", studentclass._Username, studentclass._subject, studentclass._course, studentclass._section);
+                    using (var checkSave = new SqlCommand(savedSqlStatement, connection))
+                    {
+                        SqlDataReader reader = checkSave.ExecuteReader();
+
+                        if (reader.HasRows)
+                        {
+                            connection.Close();
+                            return "Unsuccessful Class Deletion from schedule";
+                        }
+                        else
+                        {
+                            connection.Close();
+                            return "Class was deleted successfully from the schedule";
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                return "Data Access Layer error.";
+            }
+
+        }
+
+        public List<string> Read(StudentClassModel studentclass)
         {
             throw new NotImplementedException();
         }
 
-        public List<string> Read(ScheduleModel schedule)
+        public string Update(StudentClassModel studentclass)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                var sqlConnectionString = getConnection();
 
-        public string Update(ScheduleModel schedule)
-        {
-            throw new NotImplementedException();
-        }
 
-        public string AddStudentClass (StudentClassModel studentclass)
-        {
-            throw new NotImplementedException();
-        }
-        public string DeleteStudentClass(StudentClassModel studentclass)
-        {
-            throw new NotImplementedException();
-        }
-        public string EditStudentClass(StudentClassModel studentclass)
-        {
-            throw new NotImplementedException();
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    //checks if the class already exists
+                    var checkClassExistence = string.Format("exec GetClassByPK '{0}', '{1}', '{2}', '{3} ", studentclass._Username, studentclass._subject, studentclass._course, studentclass._section);
+                    using (var checkClass = new SqlCommand(checkClassExistence, connection))
+                    {
+                        SqlDataReader reader = checkClass.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            reader.Close();
+                            var editStudentClass = string.Format("exec EditStudentClass '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}'", studentclass._Username, studentclass._subject, studentclass._course, studentclass._section, studentclass._coursetype, studentclass._buildinglat, studentclass._buildinglong, studentclass._room, studentclass._day, studentclass._secondDay, studentclass._startTime, studentclass._endTime);
+                            using (var editClass = new SqlCommand(editStudentClass, connection))
+                            {
+                                editClass.ExecuteNonQuery();
+                                return "Class has been edited";
+                            }
+                        }
+                        else
+                        {
+                            reader.Close();
+                            connection.Close();
+                            return "Class does not exist. Class must be created before classes can be edited.";
+                        }
+
+                    }
+                }
+
+            }
+            catch (SqlException e)
+            {
+                return e.ToString();
+            }
         }
         public string getConnection()
         {

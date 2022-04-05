@@ -109,7 +109,7 @@ namespace LongHorn.ArrowNav.DAL
                     }
                     var addTotalSurveys = 0;
                     var checkTotalSurveys = string.Format("exec GetTotalSurveys '{0}', '{1}','{2}'", model._WeekdayName, model._ZoneName, model._TimeSlot);
-                    using (var checkSurveys = new SqlCommand(checkTotalValues, connection))
+                    using (var checkSurveys = new SqlCommand(checkTotalSurveys, connection))
                     {
                         int totalSurveys = 0;
                         SqlDataReader rdr = checkSurveys.ExecuteReader();

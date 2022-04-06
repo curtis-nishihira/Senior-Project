@@ -31,7 +31,8 @@ export const Login = (props) => {
 
     const loginHandler = (e) => {
         e.preventDefault();
-        fetch('https://arrownav.azurewebsites.net/login', {
+        //https://arrownav.azurewebsites.net
+        fetch('https://localhost:44465/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -45,7 +46,7 @@ export const Login = (props) => {
             .then(response => response.json())
             .then(data => {
                 if (data == "Account is authenticated") {
-                    fetch('https://arrownav.azurewebsites.net/login/createcookie', {
+                    fetch('https://localhost:44465/login/createcookie', {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',

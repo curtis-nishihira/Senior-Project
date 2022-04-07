@@ -1,0 +1,10 @@
+﻿
+
+.form-inputs {
+    padding: 5px;
+    align-items: center;
+}
+
+.input-errors{
+    text-decoration-color: red;
+}

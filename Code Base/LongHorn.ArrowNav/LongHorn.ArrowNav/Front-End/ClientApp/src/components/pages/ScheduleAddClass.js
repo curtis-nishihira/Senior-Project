@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect } from "react"
 import { useLocation, useNavigate } from 'react-router-dom';
+import "./ScheduleAddClass.css"
 
 export const ScheduleAddClass = () => {
     const initialFormValues = { username: "", course: "", coursetype: "", building: "", room: "", days: "", starttime:"", endtime:"" };
@@ -23,6 +24,7 @@ export const ScheduleAddClass = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
+                _username: classValues.username,
                 _course: classValues.course,
                 _coursetype: classValues.coursetype,
                 _building: classValues.building,
@@ -74,6 +76,7 @@ export const ScheduleAddClass = () => {
         if (!values.days) {
             errors.days = "Class Days are Required";
         }
+        
 
         if (!values.starttime) {
             errors.starttime = "Class Start time is required";
@@ -115,24 +118,31 @@ export const ScheduleAddClass = () => {
                         <label>Email</label>
                         <input type="email" name="username" placeholder="Enter email Here" value={classValues.username} onChange={handleChange}></input>
                     </div>
-                    <p>{classValuesErrors.username}</p>
-
-                    <div className='form-inputs'>
-                        <label>Course</label>
-                            <input type="text" name="subject" placeholder="Enter Course Here" value={classValues.course} onChange={ handleChange}></input>
+                    <div className = 'input-errors'>
+                        <p>{classValuesErrors.username}</p>
                     </div>
-                    <p>{classValuesErrors.course}</p>
 
                     <div className='form-inputs'>
                         <label>Course</label>
+                        <input type="text" name="course" placeholder="Enter Course Here" value={classValues.course} onChange={handleChange}></input>
+                    </div>
+                    <div className='input-errors'>
+                        <p>{classValuesErrors.course}</p>
+                    </div>
+
+                    <div className='form-inputs'>
+                        <label>Course Type</label>
                         <input type="text" name="coursetype" placeholder="Enter Course Type Here" value={classValues.coursetype} onChange={handleChange}></input>
                     </div>
-                    <p>{classValuesErrors.coursetype}</p>
+                    <div className='input-errors'>
+                        <p>{classValuesErrors.coursetype}</p>
+                    </div>
 
                     
                     <div className='form-inputs'>
                         <label>Select Building</label>
                         <select name="building" value={classValues.building} onChange={handleChange}>
+                            <option value=""></option>
                             <option value= "CDC">CDC - Child Development Center</option>
                             <option value="COB">COB - College of Business</option>
                             <option value="CORP">CORP - Corporation Yard</option>
@@ -178,20 +188,26 @@ export const ScheduleAddClass = () => {
                             <option value="VEC">VEC - Vivian Engineering Center</option>
                         </select>
                     </div>
-                    <p>{classValuesErrors.building}</p>
+                    <div className='input-errors'>
+                        <p>{classValuesErrors.building}</p>
+                    </div>
 
                     <div className='form-inputs'>
                         <label>Room</label>
                         <input type="text" name="room" placeholder="Enter Class Room Number Here" value={classValues.room} onChange={handleChange}></input>
                     </div>
-                    <p>{classValuesErrors.room}</p>
+                    <div className='input-errors'>
+                        <p>{classValuesErrors.room}</p>
+                    </div>
 
                     
                     <div className='form-inputs'>
                         <label>Days</label>
-                        <input type="text" name="days" placeholder="Type Days Here (Ex. MW for Monday Wednesday)" value={classValues.days} onChange={handleChange}></input>
+                        <input type="text" name="days" placeholder="M=Monday T=Tuesday W=Wednesday TH=Thursday F=Friday S=Saturday S=Sunday" value={classValues.days} onChange={handleChange}></input>
                     </div>
-                    <p>{classValuesErrors.days}</p>
+                    <div className='input-errors'>
+                        <p>{classValuesErrors.days}</p>
+                    </div>
                     
                 
                 <button type="submit">SUBMIT</button>

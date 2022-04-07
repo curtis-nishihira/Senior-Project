@@ -14,5 +14,11 @@ namespace LongHorn.ArrowNav.Services
             var result = umRepository.Delete(info);
             return result;
         }
+        public string DeleteStudentClass(StudentClassModel studentclass)
+        {
+            IRepository<StudentClassModel> schedulerepository = new ScheduleRepository();
+            var result = schedulerepository.Delete(studentclass);
+            return result;
+        }
     }
 }

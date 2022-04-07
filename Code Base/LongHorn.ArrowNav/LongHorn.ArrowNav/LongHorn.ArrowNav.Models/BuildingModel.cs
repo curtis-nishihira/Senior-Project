@@ -10,8 +10,8 @@ namespace LongHorn.ArrowNav.Models
     {
         public string acronym { get; set; } = "";
         public string buildingName { get; set; } = "";
-        public float longitude { get; set; } = float.MinValue;
-        public float latitude { get; set; } = float.MaxValue;
+        public double longitude { get; set; } = float.MinValue;
+        public double latitude { get; set; } = float.MaxValue;
 
     }
 }

@@ -566,8 +566,15 @@ export const Map = () => {
                     <p id="second-route-info" className="second-route-container">Red Route = Time:{secondRouteDuration} min | Distance: {secondRouteDistance} mi</p>
                 </div>
             </div>
-
+            <div className="search-div">
+                <datalist id="buildings">
+                    <option>Choose a building</option>
+                </datalist>
+                <input className="search-bar" autoComplete="on" list="buildings" />
+                <button type="button"> search </button>
+            </div>
             <div className='map-container' ref={mapContainerRef} />
+            
         </div>
     );
 }

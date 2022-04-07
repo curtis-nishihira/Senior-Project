@@ -24,6 +24,12 @@ namespace LongHorn.ArrowNav.Managers
             return response;
         }
 
+        public List<string> getBuildings()
+        {
+            TrafficService trafficService = new TrafficService();
+            var result = trafficService.GetBuildings();
+            return result;
+        }
 
     }
 }

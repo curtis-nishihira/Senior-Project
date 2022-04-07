@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-
+using System.Data;
 
 namespace LongHorn.ArrowNav.DAL
 {
@@ -80,6 +80,36 @@ namespace LongHorn.ArrowNav.DAL
             return retrievedValues;
         }
 
+        public List<string> GetAllBuildings()
+        {
+            try
+            {
+                var connectionString = getConnection();
+                List<string> buildings = new List<string>();
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    var getAllBuildingStrings = string.Format("exec GetBuildings");
+                    using(var command = new SqlCommand(getAllBuildingStrings, connection))
+                    {
+                        DataTable dataTable = new DataTable();
+                        SqlDataAdapter adapter = new SqlDataAdapter(command);
+                        adapter.Fill(dataTable);
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                           buildings.Add(row["BuildingName"].ToString());
+                        }
+                    }
+                    connection.Close();
+                }
+                return buildings;
+            }
+            catch(Exception ex)
+            {
+                List<string> ls = new List<string>() { ex.ToString()};
+                return ls;
+            }
+        }
+
         public string Update(TrafficModel model)
         {
             try
@@ -143,9 +173,9 @@ namespace LongHorn.ArrowNav.DAL
         public string getConnection()
         {
             //var SQLConnectionString = ConfigurationManager.AppSettings.Get("UMsqlConnectionString");
-            //return @"Server=localhost\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
-            var AzureConnectionString = ConfigurationManager.AppSettings.Get("ArrowNavSqlConnectionString");
-            return AzureConnectionString;
+            return @"Server=localhost\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
+            //var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            //return AzureConnectionString;
         }
     }
 }

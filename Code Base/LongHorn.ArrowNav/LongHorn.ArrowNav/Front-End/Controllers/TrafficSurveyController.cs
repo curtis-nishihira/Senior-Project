@@ -45,5 +45,15 @@ namespace Front_End.Controllers
             return returnString;
         }
 
+        [HttpGet]
+        [Route("buildings")]
+
+        public List<string> GetBuildings()
+        {
+            TrafficManager trafficManager = new TrafficManager();
+            var listOfBuildings = trafficManager.getBuildings();
+            return listOfBuildings;
+        }
+
     }
 }

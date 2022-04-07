@@ -387,8 +387,10 @@ namespace LongHorn.ArrowNav.DAL
         }
         public string getConnection()
         {
-            var AzureConnectionString = ConfigurationManager.AppSettings.Get("StringHI");
-            return AzureConnectionString;
+            return @"Server=localhost\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
+
+            //var AzureConnectionString = ConfigurationManager.AppSettings.Get("StringHI");
+            //return AzureConnectionString;
         }
     }
 }

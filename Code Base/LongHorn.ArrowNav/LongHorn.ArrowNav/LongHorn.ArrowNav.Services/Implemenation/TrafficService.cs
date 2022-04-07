@@ -37,5 +37,12 @@ namespace LongHorn.ArrowNav.Services
             }
             return keyValuePairs;
         }
+
+        public List<string> GetBuildings()
+        {
+            TrafficRepository trafficRepo = new TrafficRepository();
+            List<String> value = trafficRepo.GetAllBuildings();
+            return value;
+        }
     }
 }

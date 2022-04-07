@@ -28,6 +28,7 @@ export const Login = (props) => {
      * 
      * */
 
+    //best guess a to why it wouldn't connect to this would be cors
 
     const loginHandler = (e) => {
         e.preventDefault();

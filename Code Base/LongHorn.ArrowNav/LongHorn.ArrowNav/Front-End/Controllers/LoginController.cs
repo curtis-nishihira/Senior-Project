@@ -37,7 +37,7 @@ namespace Front_End.Controllers
             {
                 _Username = model._Username
             };
-
+            
             CookieOptions cookieOptions = new CookieOptions
             {
                 Expires = DateTime.Now.AddDays(2)

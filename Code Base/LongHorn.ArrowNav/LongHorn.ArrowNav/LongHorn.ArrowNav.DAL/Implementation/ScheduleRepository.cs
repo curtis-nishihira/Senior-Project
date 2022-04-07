@@ -21,7 +21,7 @@ namespace LongHorn.ArrowNav.DAL
                 {
                     connection.Open();
                     //checks if the class already exists
-                    var checkClassExistence = string.Format("exec GetClassByPK '{0}', '{1}', '{2}', '{3} ", studentclass._Username, studentclass._subject, studentclass._course, studentclass._section);
+                    var checkClassExistence = string.Format("exec GetClassByPK '{0}', '{1}', '{2}' ", studentclass._Username, studentclass._course, studentclass._coursetype);
                     using (var checkClass = new SqlCommand(checkClassExistence, connection))
                     {
                         SqlDataReader reader = checkClass.ExecuteReader();
@@ -34,14 +34,14 @@ namespace LongHorn.ArrowNav.DAL
                         else
                         {
                             reader.Close();
-                            var addStudentClass = string.Format("exec AddStudentClass '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}'", studentclass._Username, studentclass._subject, studentclass._course, studentclass._section, studentclass._coursetype, studentclass._buildinglat, studentclass._buildinglong,studentclass._room, studentclass._day, studentclass._secondDay, studentclass._startTime, studentclass._endTime);
+                            var addStudentClass = string.Format("exec AddStudentClass '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}'", studentclass._Username, studentclass._course, studentclass._coursetype, studentclass._building,studentclass._room, studentclass._days, studentclass._startTime, studentclass._endTime);
                             using (var addCommand = new SqlCommand(addStudentClass, connection))
                             {
                                 addCommand.ExecuteNonQuery();
                             }
                             
 
-                            var savedSqlStatement = string.Format("exec GetClassByPK '{0}', '{1}', '{2}', '{3} ", studentclass._Username, studentclass._subject, studentclass._course, studentclass._section);
+                            var savedSqlStatement = string.Format("exec GetClassByPK '{0}', '{1}', '{2}' ", studentclass._Username, studentclass._course, studentclass._coursetype);
                             using (var checkSave = new SqlCommand(savedSqlStatement, connection))
                             {
                                 SqlDataReader userReader = checkSave.ExecuteReader();
@@ -81,12 +81,12 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    var sqlStatement = string.Format("exec deleteStudentClass '{0}', '{1}', '{2}', '{3} ", studentclass._Username, studentclass._subject, studentclass._course, studentclass._section);
+                    var sqlStatement = string.Format("exec deleteStudentClass '{0}', '{1}', '{2}' ", studentclass._Username, studentclass._course, studentclass._coursetype);
                     using (var command = new SqlCommand(sqlStatement, connection))
                     {
                         command.ExecuteNonQuery();
                     }
-                    var savedSqlStatement = string.Format("exec GetClassByPK '{0}', '{1}', '{2}', '{3} ", studentclass._Username, studentclass._subject, studentclass._course, studentclass._section);
+                    var savedSqlStatement = string.Format("exec GetClassByPK '{0}', '{1}', '{2}' ", studentclass._Username, studentclass._course, studentclass._coursetype);
                     using (var checkSave = new SqlCommand(savedSqlStatement, connection))
                     {
                         SqlDataReader reader = checkSave.ExecuteReader();
@@ -127,14 +127,14 @@ namespace LongHorn.ArrowNav.DAL
                 {
                     connection.Open();
                     //checks if the class already exists
-                    var checkClassExistence = string.Format("exec GetClassByPK '{0}', '{1}', '{2}', '{3} ", studentclass._Username, studentclass._subject, studentclass._course, studentclass._section);
+                    var checkClassExistence = string.Format("exec GetClassByPK '{0}', '{1}', '{2}' ", studentclass._Username, studentclass._course, studentclass._coursetype);
                     using (var checkClass = new SqlCommand(checkClassExistence, connection))
                     {
                         SqlDataReader reader = checkClass.ExecuteReader();
                         if (reader.HasRows)
                         {
                             reader.Close();
-                            var editStudentClass = string.Format("exec EditStudentClass '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}'", studentclass._Username, studentclass._subject, studentclass._course, studentclass._section, studentclass._coursetype, studentclass._buildinglat, studentclass._buildinglong, studentclass._room, studentclass._day, studentclass._secondDay, studentclass._startTime, studentclass._endTime);
+                            var editStudentClass = string.Format("exec EditStudentClass '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}'", studentclass._Username, studentclass._course, studentclass._coursetype, studentclass._building, studentclass._room, studentclass._days, studentclass._startTime, studentclass._endTime);
                             using (var editClass = new SqlCommand(editStudentClass, connection))
                             {
                                 editClass.ExecuteNonQuery();

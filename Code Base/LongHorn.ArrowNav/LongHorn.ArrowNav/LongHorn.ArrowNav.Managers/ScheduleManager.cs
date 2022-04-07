@@ -10,6 +10,19 @@ namespace LongHorn.ArrowNav.Managers
 {
     public class ScheduleManager
     {
-        
+        public ScheduleManager()
+        {
+
+        }
+        public string Create(StudentClassModel studentclass)
+        {
+            CreateService createService = new CreateService();
+            var result = createService.CreateStudentClass(studentclass);
+            Log entry = new Log(result, "Info", "Data Layer", studentclass._Username);
+            LogManager logManager = new LogManager();
+            logManager.Log(entry);
+            return result;
+        }
+
     }
 }

@@ -1,10 +1,12 @@
 ﻿import React, { useState, useEffect } from "react"
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const ScheduleAddClass = () => {
-    const initialFormValues = { subject: "", course: "", section: "", building: "CDC", room: "", day: "", secondday:"", starttime:"", endtime:"" };
+    const initialFormValues = { username: "", course: "", coursetype: "", building: "", room: "", days: "", starttime:"", endtime:"" };
     const [classValues, setClassValues] = useState(initialFormValues);
     const [classValuesErrors, setClassValuesErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
+    const navigate = useNavigate();
 
 
 
@@ -14,6 +16,31 @@ export const ScheduleAddClass = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
+        fetch('https://localhost:44465/schedule/scheduleadd', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                _course: classValues.course,
+                _coursetype: classValues.coursetype,
+                _building: classValues.building,
+                _room: classValues.room,
+                _days: classValues.days,
+                _starttime: classValues.starttime,
+                _endtime: classValues.endtime
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data == "Class has been added to schedule") {
+                    navigate("/account/userhome");
+                }
+            })
+            .catch((error) => {
+                console.error('Error', error);
+            });
         setClassValuesErrors(validate(classValues));
         setIsSubmit(true);
     }
@@ -25,22 +52,15 @@ export const ScheduleAddClass = () => {
     }, [classValuesErrors])
     const validate = (values) => {
         const errors = {}
-        if (!values.subject.trim()) {
-            errors.subject = "Class Subject is Required";
+        if (!values.username) {
+            errors.username = "Email is Required"
         }
-        else if (values.subject.length < 2) {
-            errors.subject = 'Class Subject Abbreviation needs to be 2 characters or more';
-        }
-        else if (values.subject.length > 5) {
-            errors.subject = 'Class Subject Abbreviation can not exceed 5 characters';
-        }
-
         if (!values.course) {
-            errors.course = "Class Course Number is Required";
+            errors.course = "Course is Required";
         }
 
-        if (!values.section) {
-            errors.section = "Class Section Number is Required";
+        if (!values.coursetype) {
+            errors.coursetype = "Course Type is Required";
         }
 
         if (!values.building) {
@@ -51,8 +71,8 @@ export const ScheduleAddClass = () => {
             errors.room = "Class Room Number is Required";
         }
 
-        if (values.secondday === values.day) {
-            errors.secondday = "Class Days must be different. Second Day must be a different day or empty.";
+        if (!values.days) {
+            errors.days = "Class Days are Required";
         }
 
         if (!values.starttime) {
@@ -92,34 +112,35 @@ export const ScheduleAddClass = () => {
                 <h1>ENTER CLASS INFORMATION</h1>
                 <div className='addclass-form'>
                     <div className='form-inputs'>
-                        <label>Subject</label>
-                            <input type="text" name="subject" placeholder="Enter Class Subject Here" value={classValues.subject} onChange={ handleChange}></input>
+                        <label>Email</label>
+                        <input type="email" name="username" placeholder="Enter email Here" value={classValues.username} onChange={handleChange}></input>
                     </div>
-                    <p>{classValuesErrors.subject}</p>
+                    <p>{classValuesErrors.username}</p>
 
                     <div className='form-inputs'>
                         <label>Course</label>
-                        <input type="text" name="course" placeholder="Enter Class Course Number Here" value={classValues.course} onChange={handleChange}></input>
+                            <input type="text" name="subject" placeholder="Enter Course Here" value={classValues.course} onChange={ handleChange}></input>
                     </div>
                     <p>{classValuesErrors.course}</p>
 
                     <div className='form-inputs'>
-                        <label>Section</label>
-                        <input type="number" name="section" placeholder="Enter Class Section Number Here" value={classValues.section} onChange={handleChange}></input>
+                        <label>Course</label>
+                        <input type="text" name="coursetype" placeholder="Enter Course Type Here" value={classValues.coursetype} onChange={handleChange}></input>
                     </div>
-                    <p>{classValuesErrors.section}</p>
-                    //lat long
+                    <p>{classValuesErrors.coursetype}</p>
+
+                    
                     <div className='form-inputs'>
                         <label>Select Building</label>
                         <select name="building" value={classValues.building} onChange={handleChange}>
-                            <option value="33.78840102644194, -118.12053225184958">CDC - Child Development Center</option>
-                            <option value="33.784233240788986, -118.11593318957405">COB - College of Business</option>
+                            <option value= "CDC">CDC - Child Development Center</option>
+                            <option value="COB">COB - College of Business</option>
                             <option value="CORP">CORP - Corporation Yard</option>
                             <option value="CPAC">CPAC - Carpenter Performance Art Center</option>
                             <option value="CPIE">CPIE - College of Professional & International Education</option>
                             <option value="DC">DC - Dance Center</option>
                             <option value="DESN">DESN - Design</option>
-                            <option value="33.783386537699705, -118.11014219165916">ECS - Engineering & Computer Science</option>
+                            <option value="ECS">ECS - Engineering & Computer Science</option>
                             <option value="ED2">ED2 - Education 2</option>
                             <option value="EED">EED - Bob & Brabara Ellis Education Building</option>
                             <option value="EN2">EN2 - Engineering 2</option>
@@ -147,14 +168,14 @@ export const ScheduleAddClass = () => {
                             <option value="MIC">MIC - Microbiology</option>
                             <option value="MLCS">MLCS - Molecular & Life Science Center</option>
                             <option value="NUR">NUR - Nursing</option>
-                            <option value="33.778856037632266, -118.11211372390811">PH1 - Peterson Hall 1</option>
+                            <option value="PH1">PH1 - Peterson Hall 1</option>
                             <option value="PSY">PSY - Psychology</option>
                             <option value="REPR">REPR - Reprographics</option>
                             <option value="SSPA">SSPA - Social Science/Public Affairs</option>
                             <option value="TA">TA - Theatre Arts</option>
                             <option value="UMC">UMC - University Music Center</option>
                             <option value="UT">UT - University Theatre</option>
-                            <option value="33.78301158414412, -118.11045075430798">VEC - Vivian Engineering Center</option>
+                            <option value="VEC">VEC - Vivian Engineering Center</option>
                         </select>
                     </div>
                     <p>{classValuesErrors.building}</p>
@@ -167,40 +188,10 @@ export const ScheduleAddClass = () => {
 
                     
                     <div className='form-inputs'>
-                        <label>Select Class Days</label>
-                        <select name="day" value={classValues.day} onChange={handleChange}>
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
-                            <option value="Sunday">Sunday</option>
-                        </select>
- 
-                        <select name="secondday" value={classValues.secondday} onChange={handleChange}>
-                            <option value="">None</option>
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                            <option value="Saturday">Saturday</option>
-                            <option value="Sunday">Sunday</option>
-                        </select>
+                        <label>Days</label>
+                        <input type="text" name="days" placeholder="Type Days Here (Ex. MW for Monday Wednesday)" value={classValues.days} onChange={handleChange}></input>
                     </div>
-                    <p>{classValuesErrors.secondday}</p>
-                    
-                    <label>Select Time</label>
-                    <div className='form-inputs'>
-                        <label>Start Time</label>
-                        <input type="time" name="starttime" value={classValues.starttime} onChange={handleChange}></input>
-                        <p>{classValuesErrors.starttime}</p>
-                        
-                        <label>End Time</label>
-                        <input type="time" name="endtime" value={classValues.endtime} onChange={handleChange}></input>
-                        <p>{classValuesErrors.endtime}</p>
-                    </div>
+                    <p>{classValuesErrors.days}</p>
                     
                 
                 <button type="submit">SUBMIT</button>

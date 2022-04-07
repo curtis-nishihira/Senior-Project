@@ -51,12 +51,6 @@ export const NavBar = () => {
                                 Home
                             </NavLink>
                         </li>
-                        {/*<li className="nav-item">*/}
-                        {/*    <NavLink to="/schedule" className={(navData) => navData.isActive ? "active" : "nav-links"}*/}
-                        {/*        onClick={handleClick}>*/}
-                        {/*        Schedule*/}
-                        {/*    </NavLink>*/}
-                        {/*</li>*/}
                         <li className="nav-item">
                             <NavLink to={doesCookieExist()} className={(navData) => navData.isActive ? "active" : "nav-links"}
                                 onClick={handleClick}>

@@ -57,7 +57,9 @@ export const Login = (props) => {
                         }),
                     })
                         .then(response => response.json())
-                        .then(cookieResponse=> {
+                        .then(cookieResponse => {
+                            console.log(cookieResponse);
+
                             navigate("/account/userhome");
                            
                         })

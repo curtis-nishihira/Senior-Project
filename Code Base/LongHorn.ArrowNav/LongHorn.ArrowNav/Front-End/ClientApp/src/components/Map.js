@@ -4,7 +4,7 @@ import mapboxgl from '!mapbox-gl';
 import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import './Map.css';
 
-mapboxgl.accessToken = "pk.eyJ1IjoiYnJheWFuLWZ1ZW50ZXMyMSIsImEiOiJja3hxdW5ycWo0ZjRmMzBvNHM5ODdxZ2poIn0.MoTF9LUSyOlwGx7L-pCCjw";
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
 export const Map = () => {
     const mapContainerRef = useRef(null);

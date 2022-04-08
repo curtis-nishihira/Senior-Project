@@ -1,11 +1,17 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./UserHome.css";
+import Popup from './Popup';
+import ScheduleAddClass from './ScheduleAddClass'
 
 
 export function UserHome() {
     const userName = getCookies();
     const navigate = useNavigate();
+    const [isOpen, setIsOpen] = useState(false);
+    const togglePopup = () => {
+        setIsOpen(!isOpen);
+    }
     //function fillList() {
     //    fetch('https://arrownav.azurewebsites.net', {
 
@@ -53,6 +59,19 @@ export function UserHome() {
                     <th>Country</th>
                 </tr>
             </table>
+            <div>
+                <input id="button"
+                    type="button"
+                    value="ADD CLASS"
+                    onClick={togglePopup}
+                />
+                {isOpen && <Popup
+                    content={<>
+                        <ScheduleAddClass handleCloser={togglePopup} />
+                    </>}
+                    handleClose={togglePopup}
+                />}
+            </div>
         </>
     );
 }

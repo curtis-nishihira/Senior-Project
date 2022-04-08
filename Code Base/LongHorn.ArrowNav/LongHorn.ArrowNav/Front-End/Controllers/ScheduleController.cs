@@ -20,7 +20,7 @@ namespace Front_End.Controllers
             ScheduleManager scheduleManager = new ScheduleManager();
             var result = scheduleManager.Create(studentclass);
 
-            return "";
+            return result;
         }
     }
 }

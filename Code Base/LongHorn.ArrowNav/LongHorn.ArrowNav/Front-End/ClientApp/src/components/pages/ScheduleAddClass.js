@@ -24,7 +24,7 @@ export const ScheduleAddClass = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                _username: classValues.username,
+                _Username: classValues.username,
                 _course: classValues.course,
                 _coursetype: classValues.coursetype,
                 _building: classValues.building,
@@ -36,7 +36,8 @@ export const ScheduleAddClass = () => {
         })
             .then(response => response.json())
             .then(data => {
-                if (data == "Class has been added to schedule") {
+                console.log(data);
+                if (data == "Class Added successfully to schedule") {
                     navigate("/account/userhome");
                 }
             })
@@ -208,7 +209,22 @@ export const ScheduleAddClass = () => {
                     <div className='input-errors'>
                         <p>{classValuesErrors.days}</p>
                     </div>
-                    
+
+                    <div className='form-inputs'>
+                        <label>Select Start Time</label>
+                        <input type="time" name="starttime" value={classValues.starttime} onChange={handleChange}></input>
+                    </div>
+                    <div className='input-errors'>
+                        <p>{classValuesErrors.starttime}</p>
+                    </div>
+
+                    <div className='form-inputs'>
+                        <label>Select End Time</label>
+                        <input type="time" name="endtime" value={classValues.endtime} onChange={handleChange}></input>
+                    </div>
+                    <div className='input-errors'>
+                        <p>{classValuesErrors.endtime}</p>
+                    </div>
                 
                 <button type="submit">SUBMIT</button>
                 </div>

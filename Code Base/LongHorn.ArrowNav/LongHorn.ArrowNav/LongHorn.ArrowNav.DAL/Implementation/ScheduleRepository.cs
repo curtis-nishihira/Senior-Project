@@ -157,6 +157,7 @@ namespace LongHorn.ArrowNav.DAL
                 return e.ToString();
             }
         }
+        
         public string getConnection()
         {
             //var SQLConnectionString = Get("UMsqlConnectionString");

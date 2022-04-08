@@ -93,8 +93,10 @@ namespace LongHorn.ArrowNav.DAL.Implementation
 
         public string getConnection()
         {
-            var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            return AzureConnectionString;
+            return @"Server=localhost\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
+            //var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            //return AzureConnectionString;
+
         }
 
         public List<string> Read(BuildingModel model)

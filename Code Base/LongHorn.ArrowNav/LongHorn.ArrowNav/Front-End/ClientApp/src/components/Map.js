@@ -11,6 +11,10 @@ export const Map = () => {
     const [lng, setLng] = useState(-118.112437);
     const [lat, setLat] = useState(33.782105);
     const [zoom, setZoom] = useState(14.75);
+    const buildingName = useRef("");
+    const buildingLat = useRef(0.0);
+    const buildingLong = useRef(0.0);
+
     //lat,long or y,z
     const Zone1 = [33.781604, -118.114287, 33.782103, -118.112431];
     const Zone2 = [33.779446, -118.113831, 33.780275, -118.112984];
@@ -21,8 +25,33 @@ export const Map = () => {
     const [firstRouteDistance, setFirstRouteDistance] = useState(0);
     const [secondRouteDistance, setSecondRouteDistance] = useState(0);
 
+
+
+    function fillComboBox() {
+        fetch('https://localhost:44465/building/getAllBuildings')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                var listOfBuildings = data;
+                var sel = document.getElementById('buildings');
+                for (var i = 0; i < listOfBuildings.length; i++) {
+                    var opt = document.createElement('option');
+                    opt.innerHTML = listOfBuildings[i];
+                    opt.textContent = listOfBuildings[i];
+                    opt.value = listOfBuildings[i];
+                    sel.appendChild(opt);
+                }
+            })
+            .catch((error) => {
+                console.error('Error', error);
+            });
+
+    }
+
+
     // Initialize map when component mounts
     useEffect(() => {
+        fillComboBox();
 
         function drivingRoute() {
             if (map.getSource('route')) {
@@ -306,26 +335,19 @@ export const Map = () => {
 
         function zonesPassed(listOfCoordinates) {
             const listofPassedZones = []
-            for (let x = 0; x < listOfCoordinates.length; x++)
-            {
-                if ((listOfCoordinates[x][0] >= Zone1[1] && listOfCoordinates[x][0] <= Zone1[3]) && (listOfCoordinates[x][1] >= Zone1[0] && listOfCoordinates[x][1] <= Zone1[2]))
-                {
-                    if (!listofPassedZones.includes("Zone1"))
-                    {
+            for (let x = 0; x < listOfCoordinates.length; x++) {
+                if ((listOfCoordinates[x][0] >= Zone1[1] && listOfCoordinates[x][0] <= Zone1[3]) && (listOfCoordinates[x][1] >= Zone1[0] && listOfCoordinates[x][1] <= Zone1[2])) {
+                    if (!listofPassedZones.includes("Zone1")) {
                         listofPassedZones.push("Zone1");
                     }
                 }
-                else if ((listOfCoordinates[x][0] >= Zone2[1] && listOfCoordinates[x][0] <= Zone2[3]) && (listOfCoordinates[x][1] >= Zone2[0] && listOfCoordinates[x][1] <= Zone2[2]))
-                {
-                    if (!listofPassedZones.includes("Zone1"))
-                    {
+                else if ((listOfCoordinates[x][0] >= Zone2[1] && listOfCoordinates[x][0] <= Zone2[3]) && (listOfCoordinates[x][1] >= Zone2[0] && listOfCoordinates[x][1] <= Zone2[2])) {
+                    if (!listofPassedZones.includes("Zone1")) {
                         listofPassedZones.push("Zone1");
                     }
                 }
-                else if ((listOfCoordinates[x][0] >= Zone3[1] && listOfCoordinates[x][0] <= Zone3[3]) && (listOfCoordinates[x][1] >= Zone3[0] && listOfCoordinates[x][1] <= Zone3[2]))
-                {
-                    if (!listofPassedZones.includes("Zone1"))
-                    {
+                else if ((listOfCoordinates[x][0] >= Zone3[1] && listOfCoordinates[x][0] <= Zone3[3]) && (listOfCoordinates[x][1] >= Zone3[0] && listOfCoordinates[x][1] <= Zone3[2])) {
+                    if (!listofPassedZones.includes("Zone1")) {
                         listofPassedZones.push("Zone1");
                     }
                 }
@@ -344,12 +366,13 @@ export const Map = () => {
             positionOptions: { enableHighAccuracy: true },
             showUserHeading: true
         })
-        const geocoder = new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken,
-            mapboxgl: mapboxgl
-        });
+        //this is the search bar that is no longer needed. I think
+        //const geocoder = new MapboxGeocoder({
+        //    accessToken: mapboxgl.accessToken,
+        //    mapboxgl: mapboxgl
+        //});
         map.addControl(geolocateControl, 'bottom-right');
-        map.addControl(geocoder,"bottom-left")
+        //map.addControl(geocoder, "bottom-left")
 
         const endPoint = new mapboxgl.Marker();
 
@@ -403,7 +426,7 @@ export const Map = () => {
                                     const zones = zonesPassed(coordinates);
                                     var timeAddedForRoute1 = 0;
                                     if (zones.includes("Zone1")) {
-                                        timeAddedForRoute1 = timeAddedForRoute1  + TimeAdditions[0][1];
+                                        timeAddedForRoute1 = timeAddedForRoute1 + TimeAdditions[0][1];
 
                                     }
                                     if (zones.includes("Zone2")) {
@@ -481,8 +504,7 @@ export const Map = () => {
                                     }
                                     const zones = zonesPassed(coords);
                                     var timeAddedForRoute2 = 0;
-                                    if (zones.includes("Zone1"))
-                                    {
+                                    if (zones.includes("Zone1")) {
                                         timeAddedForRoute2 = timeAddedForRoute2 + TimeAdditions[0][1];
 
                                     }
@@ -500,7 +522,7 @@ export const Map = () => {
                                 .catch((error) => {
                                     console.error('Error', error);
                                 });
-                            
+
                             map.addLayer({
                                 "id": "route2",
                                 "type": "line",
@@ -537,6 +559,37 @@ export const Map = () => {
                 console.log("can't obtain user location");
             }
         })
+
+        const searchBtn = document.getElementById("search-btn");
+        searchBtn.addEventListener("click", () => {
+            putPin();
+        })
+        //from now on we are using useRef when updating variables as it doesnt re render thus losing the saved value and it will result to the default value of an empty string
+        //current problem is that the the building controller doesn't like the payload and idk how it should be formatted.
+        function putPin() {
+            console.log(buildingName.current);
+            fetch("https://localhost:44465/building/getLatLong?BuildingName=" + buildingName.current , {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    buildingLat.current = data.latitude;
+                    buildingLong.current = data.longitude;
+                })
+                .catch((error) => {
+                    console.error('Error', error);
+                });
+            console.log(buildingLat.current + " lat");
+            console.log(buildingLong.current + " long");
+            endPoint.setLngLat([buildingLong.current, buildingLat.current]);
+            endPoint.addTo(map);
+            document.getElementById('button-container').style.visibility = 'visible';
+        }
+
         const drivingBtn = document.getElementById("driving-btn");
         drivingBtn.addEventListener('click', () => {
             drivingRoute();
@@ -551,11 +604,7 @@ export const Map = () => {
             setLat(map.getCenter().lat.toFixed(4));
             setZoom(map.getZoom().toFixed(2));
         });
-        map.on('click', (event) => {
-            endPoint.setLngLat(event.lngLat);
-            endPoint.addTo(map);
-            document.getElementById('button-container').style.visibility = 'visible';
-        })
+
 
         // Clean up on unmount
         return () => map.remove();
@@ -572,7 +621,12 @@ export const Map = () => {
                     <p id="second-route-info" className="second-route-container">Red Route = Time:{secondRouteDuration} min | Distance: {secondRouteDistance} mi</p>
                 </div>
             </div>
-
+            <div className="search-div">
+                <datalist id="buildings">
+                </datalist>
+                <input placeholder="Enter Building Name" autoComplete="on" list="buildings" onSelect={(e) => buildingName.current = e.target.value} />
+                <button type="button" id="search-btn" > search</button>
+            </div>
             <div className='map-container' ref={mapContainerRef} />
         </div>
     );

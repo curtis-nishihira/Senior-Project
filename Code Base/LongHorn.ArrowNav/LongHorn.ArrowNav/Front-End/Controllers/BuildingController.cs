@@ -21,7 +21,7 @@ namespace Front_End.Controllers
 
         [HttpPost]
         [Route("getLatLong")]
-        public BuildingModel GetLatLong(String BuildingName)
+        public BuildingModel GetLatLong(string BuildingName)
         {
             BuildingRepository repo = new BuildingRepository();
             BuildingModel model = repo.Read(BuildingName);

@@ -49,13 +49,12 @@ namespace Front_End.Controllers
 
 
 
-
-        public void RemoveCookie()
+        [HttpGet]
+        [Route("removecookie")]
+        public string RemoveCookie()
         {
-            if (Request.Cookies[key] != null)
-            {
-                Response.Cookies.Delete(key);
-            }
+            Response.Cookies.Delete(key);
+            return "cookie removed";
         }
 
 

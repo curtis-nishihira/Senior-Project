@@ -1,10 +1,11 @@
 ﻿import React, { useEffect, useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
+import "./UserHome.css";
 
 
 export function UserHome() {
     const userName = getCookies();
-
+    const navigate = useNavigate();
     //function fillList() {
     //    fetch('https://arrownav.azurewebsites.net', {
 
@@ -25,15 +26,33 @@ export function UserHome() {
         }
 
     }
+    //unsure of its functionality
+    function logout() {
+        fetch('https://localhost:44465/login/removecookie')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data == "cookie removed")
+                {
+                    navigate("https://localhost:44465/account");
+                }
+            })
+            .catch((error) => {
+                console.error('Error', error);
+            });
+    }
 
     return (
         <>
-            <div> {userName}</div>
-            <div>
-                <datalist id="suggestions">
-                </datalist>
-                <input autoComplete="on" list="suggestions" />
-            </div>
+            <div> User : {userName}</div>
+            <button type="button" onClick={logout}> Log out </button>
+            <table className= "schedule-table">
+                <tr>
+                    <th>Company</th>
+                    <th>Contact</th>
+                    <th>Country</th>
+                </tr>
+            </table>
         </>
     );
 }

@@ -12,5 +12,11 @@ namespace LongHorn.ArrowNav.Services
             var result = loggingRepository.Create(info);
             return result;
         }
+        public string CreateStudentClass(StudentClassModel studentclass)
+        {
+            IRepository<StudentClassModel> scheduleRepository = new ScheduleRepository();
+            var result = scheduleRepository.Create(studentclass);
+            return result;
+        }
     }
 }

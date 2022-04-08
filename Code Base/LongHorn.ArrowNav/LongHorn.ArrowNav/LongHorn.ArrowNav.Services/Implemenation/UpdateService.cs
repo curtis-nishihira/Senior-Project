@@ -14,5 +14,11 @@ namespace LongHorn.ArrowNav.Services
             var result = umRepository.Update(info);
             return result;
         }
+        public string EditStudentClass(StudentClassModel studentclass)
+        {
+            IRepository<StudentClassModel> schedulerepository = new ScheduleRepository();
+            var result = schedulerepository.Update(studentclass);
+            return result;
+        }
     }
 }

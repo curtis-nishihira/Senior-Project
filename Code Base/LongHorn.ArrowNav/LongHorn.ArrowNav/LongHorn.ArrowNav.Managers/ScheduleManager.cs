@@ -34,5 +34,14 @@ namespace LongHorn.ArrowNav.Managers
             return result;
         }
 
+        public string Edit(StudentClassModel studentclass)
+        {
+            UpdateService updateService = new UpdateService();
+            var result = updateService.EditStudentClass(studentclass);
+            Log entry = new Log(result, "Info", "Data Layer", studentclass._Username);
+            LogManager logManager = new LogManager();
+            logManager.Log(entry);
+            return result;
+        }
     }
 }

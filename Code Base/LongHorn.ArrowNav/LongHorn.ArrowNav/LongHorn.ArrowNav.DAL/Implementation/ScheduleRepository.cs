@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LongHorn.ArrowNav.DAL
+namespace LongHorn.ArrowNav.DAL.Implementation
 {
     public class ScheduleRepository : IRepository<StudentClassModel>
     {
@@ -111,11 +111,50 @@ namespace LongHorn.ArrowNav.DAL
 
         }
 
-        public List<string> Read(StudentClassModel studentclass)
+        public List<StudentClassModel> Read(String name)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var connectionString = getConnection();
+                List<StudentClassModel> list = new List<StudentClassModel>();
+                StudentClassModel model = new StudentClassModel();
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    
+                    var sqlStatement = string.Format("exec GetScheduleByUsername '{0}'", name);
+                    using (var checkValue = new SqlCommand(sqlStatement, connection))
+                    {
+                        SqlDataReader rdr = checkValue.ExecuteReader();
+                        
+                        while (rdr.Read())
+                        {
+                            model._course = (string)rdr["course"];
+                            model._coursetype = (string)rdr["coursetype"];
+                            model._building = (string)rdr["building"];
+                            model._room = (string)rdr["room"]; 
+                            model._days = (string)rdr["days"]; 
+                            model._startTime = (string)rdr["starttime"]; 
+                            model._endTime = (string)rdr["endtime"]; 
+                            list.Add(model);
+                        }
+                        rdr.Close();
+                    }
+                    connection.Close();
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                StudentClassModel model = new StudentClassModel();
+                model._Username = ex.ToString();
+                List<StudentClassModel> list = new List<StudentClassModel>();
+                list.Add(model);
+                return list;
+            }
         }
 
+      
         public string Update(StudentClassModel studentclass)
         {
             try
@@ -164,6 +203,11 @@ namespace LongHorn.ArrowNav.DAL
             return @"Server=LAPTOP-KI9GTVUJ\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
             //var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             //return AzureConnectionString;
+        }
+
+        public List<string> Read(StudentClassModel model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

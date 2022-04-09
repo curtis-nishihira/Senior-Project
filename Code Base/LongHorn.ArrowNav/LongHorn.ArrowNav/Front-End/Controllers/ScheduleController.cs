@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using LongHorn.ArrowNav.Models;
 using LongHorn.ArrowNav.Managers;
+using LongHorn.ArrowNav.DAL.Implementation;
 
 namespace Front_End.Controllers
 {
@@ -9,10 +10,14 @@ namespace Front_End.Controllers
     public class ScheduleController : ControllerBase
     {
         [HttpGet]
-        public string get()
+        [Route("getschedule")]
+        public List<StudentClassModel> GetScheduleByUsername(string email)
         {
-            return "default get";
+            ScheduleRepository repo = new ScheduleRepository();
+            List<StudentClassModel> classes = repo.Read(email);
+            return classes;
         }
+
         [HttpPost]
         [Route("scheduleadd")]
         public string AddClass(StudentClassModel studentclass)
@@ -28,6 +33,14 @@ namespace Front_End.Controllers
         {
             ScheduleManager scheduleManager = new ScheduleManager();
             var result = scheduleManager.Delete(studentclass);
+            return result;
+        }
+        [HttpPost]
+        [Route("scheduleedit")]
+        public string EditClass(StudentClassModel studentclass)
+        {
+            ScheduleManager scheduleManager= new ScheduleManager();
+            var result = scheduleManager.Edit(studentclass);
             return result;
         }
     }

@@ -79,10 +79,10 @@ export const Login = (props) => {
                         });
                 }
                 else if (data == "Incorrect Password") {
-                    setMessage(data);
+                    alert(data);
                 }
                 else if (data == "Account not found.") {
-                    setMessage(data);;
+                    alert(data);;
                 }
             })
             .catch((error) => {

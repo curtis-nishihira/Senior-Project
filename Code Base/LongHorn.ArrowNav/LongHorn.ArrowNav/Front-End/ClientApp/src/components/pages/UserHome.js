@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./UserHome.css";
 import Popup from './Popup';
@@ -10,7 +10,6 @@ export function UserHome() {
     const userEmail = getEmailFromCookies();
     const [userFirstName, setFirstName] = useState("");
     const [userLastName, setLastName] = useState("");
-    const [rowAmount, setRowAmount] = useState(0);
     const [selectedCourse, setCourse] = useState("");
     const [selectedCourseType, setCourseType] = useState("");
     const [selectedBuilding, setBuilding] = useState("");
@@ -19,17 +18,21 @@ export function UserHome() {
     const [selectedStartTime, setStartTime] = useState("");
     const [selectedEndTime, setEndTime] = useState("");
     const navigate = useNavigate();
-    const [isOpen, setIsOpen] = useState(false);
+    const [isAddOpen, setIsAddOpen] = useState(false);
+    const [isEditOpen, setIsEditOpen] = useState(false);
     const [isSelected, setIsSelected] = useState(false);
-    const togglePopup = () => {
-        setIsOpen(!isOpen);
+    const toggleAddPopup = () => {
+        setIsAddOpen(!isAddOpen);
+    }
+    const toggleEditPopup = () => {
+        setIsEditOpen(!isEditOpen);
     }
     const toggleIsSelected = () => {
         setIsSelected(!isSelected);
     }
 
     function fillTable() {
-        if (isOpen == false) {
+        if (isAddOpen == false && isEditOpen == false) {
             fetch('https://arrownav.azurewebsites.net/schedule/getschedule?email=' + userEmail, {
                 method: 'GET',
                 headers: {
@@ -41,7 +44,6 @@ export function UserHome() {
                 .then(data => {
                     var classes = data;
                     var tbody = document.getElementById("schedule-body");
-                    setRowAmount(classes.length);
                     for (var i = 0; i < classes.length; i++) {
                         var trString = "myTr" + i.toString();
                         var tr = document.createElement('tr');
@@ -53,7 +55,7 @@ export function UserHome() {
                         input.setAttribute("id", buttonIdString)
                         input.setAttribute("type", "radio");
                         input.setAttribute("name", "rowSelected");
-                        input.setAttribute("value", i+1);
+                        input.setAttribute("value", i + 1);
                         td.appendChild(input);
                         document.getElementById(trString).appendChild(td);
                         var td1 = document.createElement('td');
@@ -143,37 +145,50 @@ export function UserHome() {
         })
     }, [])
 
-
+    function setToDefaultValues() {
+        setCourse("");
+        setCourseType("");
+        setBuilding("");
+        setRoom("");
+        setDays("");
+        setStartTime("");
+        setEndTime("");
+    }
 
     useEffect(() => {
         fillTable();
+        setToDefaultValues();
         return function cleanup() {
             var body = document.getElementById('schedule-body');
             if (body != null) {
                 body.innerHTML = '';
-            }      
+            }
         }
-    }, [isOpen,isSelected])
+    }, [isAddOpen, isEditOpen, isSelected])
 
     function logout() {
-        fetch('https://arrownav.azurewebsites.net/login/removecookie')
+        fetch('https://arrownav.azurewebsites.net/login/removecookie', {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
             .then(response => response.json())
             .then(data => {
                 console.log(data);
                 if (data == "cookie removed") {
-                    console.log(data);
                     //should go one page backwards
-                    navigate("/" );
+                    navigate("/account");
                 }
             })
             .catch((error) => {
-                console.error('Error', error);
+                alert(error);
             });
     }
 
     function deleteCourse() {
-        if (selectedCourse != '')
-        {
+        if (selectedCourse != '') {
             fetch('https://arrownav.azurewebsites.net/schedule/scheduledelete', {
                 method: 'POST',
                 headers: {
@@ -198,16 +213,12 @@ export function UserHome() {
                     console.error('Error', error);
                 });
             toggleIsSelected();
-
         }
-        else
-        {
+        else {
             alert("You didn't choose an option");
         }
     }
-    function editCourse() {
 
-    }
     function findOnMap() {
         if (selectedCourse != '') {
             fetch('https://arrownav.azurewebsites.net/building/getBuildingbyAcronym?acronym=' + selectedBuilding, {
@@ -229,8 +240,14 @@ export function UserHome() {
         else {
             alert("You didn't choose an option");
         }
-        
-        
+    }
+    function validate() {
+        if (selectedCourse != '') {
+            toggleEditPopup();
+        }
+        else {
+            alert("You didn't choose an option");
+        }
     }
     return (
         <>
@@ -258,13 +275,13 @@ export function UserHome() {
                 <input id="button"
                     type="button"
                     value="ADD CLASS"
-                    onClick={togglePopup}
+                    onClick={toggleAddPopup}
                 />
-                {isOpen && <Popup
+                {isAddOpen && <Popup
                     content={<>
-                        <ScheduleAddClass handleCloser={togglePopup} />
+                        <ScheduleAddClass handleCloser={toggleAddPopup} />
                     </>}
-                    handleClose={togglePopup}
+                    handleClose={toggleAddPopup}
                 />}
 
                 <input id="button"
@@ -275,9 +292,9 @@ export function UserHome() {
                 <input id="button"
                     type="button"
                     value="EDIT CLASS"
-                    onClick={togglePopup}
+                    onClick={validate}
                 />
-                {isOpen && <Popup
+                {isEditOpen && <Popup
                     content={<>
                         <ScheduleEditClass
                             username={userEmail}
@@ -288,9 +305,9 @@ export function UserHome() {
                             days={selectedDays}
                             startTime={selectedStartTime}
                             endTime={selectedEndTime}
-                            handleCloser={togglePopup} />
+                            handleCloser={toggleEditPopup} />
                     </>}
-                    handleClose={togglePopup}
+                    handleClose={toggleEditPopup}
                 />}
                 <input id="button"
                     type="button"

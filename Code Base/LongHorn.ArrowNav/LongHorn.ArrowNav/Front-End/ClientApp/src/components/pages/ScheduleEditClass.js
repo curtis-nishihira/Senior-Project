@@ -1,13 +1,12 @@
 ﻿import React, { useState, useEffect } from "react"
-import { useLocation, useNavigate } from 'react-router-dom';
-import "./ScheduleAddClass.css"
+//import "./ScheduleAddClass.css"
 
 export const ScheduleEditClass = (props) => {
     const initialFormValues = { username: props.username, course: props.course, coursetype: props.courseType, building: props.building, room: props.room, days: props.days, starttime: props.startTime, endtime: props.endTime };
     const [classValues, setClassValues] = useState(initialFormValues);
     const [classValuesErrors, setClassValuesErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
-    const navigate = useNavigate();
+
 
 
 

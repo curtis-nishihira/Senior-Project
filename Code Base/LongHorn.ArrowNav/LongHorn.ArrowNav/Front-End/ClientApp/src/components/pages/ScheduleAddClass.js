@@ -1,5 +1,4 @@
 ﻿import React, { useState, useEffect } from "react"
-import { useLocation, useNavigate } from 'react-router-dom';
 import "./ScheduleAddClass.css"
 
 export const ScheduleAddClass = () => {
@@ -7,8 +6,6 @@ export const ScheduleAddClass = () => {
     const [classValues, setClassValues] = useState(initialFormValues);
     const [classValuesErrors, setClassValuesErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
-    const navigate = useNavigate();
-
 
 
     const handleChange = (e) => {

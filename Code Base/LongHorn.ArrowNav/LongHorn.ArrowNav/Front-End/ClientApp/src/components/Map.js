@@ -566,6 +566,7 @@ export const Map = () => {
 
         const searchBtn = document.getElementById("search-btn");
         searchBtn.addEventListener("click", () => {
+            console.log(buildingName.current);
             putPin(buildingName.current);
         })
         //from now on we are using useRef when updating variables as it doesnt re render thus losing the saved value and it will result to the default value of an empty string

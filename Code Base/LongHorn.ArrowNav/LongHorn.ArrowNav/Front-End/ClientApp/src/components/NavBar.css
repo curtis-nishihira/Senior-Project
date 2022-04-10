@@ -75,8 +75,13 @@
 .nav-icon {
     display: none;
 }
-
+.navbar-toggler-icon {
+    width: 70px;
+    height: 30px;
+}
 .navbar-toggler {
+    width: 70px;
+    height: 30px;
     background-color: white;
 }
 

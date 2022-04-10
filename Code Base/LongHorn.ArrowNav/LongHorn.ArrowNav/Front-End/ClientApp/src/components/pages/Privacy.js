@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 
 export const Privacy = (props) => {
-	const navigate = useNavigate();
 
 	const surveyHandler = (e) => {
-		navigate("/account");
+		props.handleCloser();
 	};
 
 	return (

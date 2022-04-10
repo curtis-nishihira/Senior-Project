@@ -8,13 +8,25 @@ import { Register } from "./components/pages/Register";
 import { WellnessHub } from "./components/pages/WellnessHub";
 import { ConfirmationPage } from "./components/pages/ConfirmationPage";
 import { UserHome } from "./components/pages/UserHome";
+import  Popup  from "./components/pages/Popup";
+import  Privacy  from "./components/pages/Privacy";
 import './custom.css'
 
 export default class App extends Component {
     static displayName = App.name;
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen: true
+        };
+    }
+    togglePopup = () => {
+        this.setState({isOpen:!this.state.isOpen})
+    }
 
     render() {
         return (
+            <>
             <div>
                 <Router>
                     <NavBar />
@@ -29,6 +41,15 @@ export default class App extends Component {
 
                 </Router>
             </div>
+             <div>
+                {this.state.isOpen && <Popup
+                    content={<>
+                        <Privacy handleCloser={this.togglePopup} />
+                    </>}
+                    handleClose={this.togglePopup}
+                />}
+            </div>
+            </>
         );
     }
 }

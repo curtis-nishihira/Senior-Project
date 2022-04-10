@@ -11,6 +11,14 @@ namespace Front_End.Controllers
     public class BuildingController : ControllerBase
     {
         [HttpGet]
+        [Route("getBuildingbyAcronym")]
+        public string GetBuildingByAcronym(string acronym)
+        {
+            BuildingRepository repo = new BuildingRepository();
+            var buildings = repo.BuildingByAcryonm(acronym);
+            return buildings;
+        }
+        [HttpGet]
         [Route("getAllBuildings")]
         public List<string> GetAllBuidlings()
         {

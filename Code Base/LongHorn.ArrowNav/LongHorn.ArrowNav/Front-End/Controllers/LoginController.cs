@@ -29,6 +29,17 @@ namespace Front_End.Controllers
 
         public string key = "arrownav";
 
+
+        [HttpPost]
+        [Route("getProfile")]
+        public AccountInfo getProfile(string email)
+        {
+            UMManager umManager = new UMManager();
+            var result = umManager.getProfile(email);
+            return result;
+        }
+
+
         [HttpPost]
         [Route("createcookie")]
         public string CreateCookie(LoginModel model)

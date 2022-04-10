@@ -8,7 +8,8 @@ const context =  [
     "/login",
     "/trafficsurvey",
     "/register",
-    "/building", 
+    "/building",
+    "/schedule",
 ];
 
 module.exports = function(app) {

@@ -385,12 +385,46 @@ namespace LongHorn.ArrowNav.DAL
             }
 
         }
+
+        public AccountInfo getProfile(string email)
+        {
+            try
+            {
+                AccountInfo accountInfo = new AccountInfo();
+                var sqlConnectionString = getConnection();
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    var findEmail = string.Format("exec getProfileByEmail '{0}'", email);
+                    using (var getProfile = new SqlCommand(findEmail, connection))
+                    {
+                        SqlDataReader rdr = getProfile.ExecuteReader();
+                        while (rdr.Read())
+                        {
+                            accountInfo._email = email;
+                            accountInfo._firstName = (string)rdr["firstName"];
+                            accountInfo._lastName = (string)rdr["lastName"];
+                        }
+                        rdr.Close();
+                        
+                    }
+                    connection.Close();
+                }
+                return accountInfo;
+            }
+            catch (SqlException e)
+            {
+                AccountInfo error = new AccountInfo();
+                error._email = "error";
+                return error;
+            }
+        }
         public string getConnection()
         {
             //var SQLConnectionString = ConfigurationManager.AppSettings.Get("UMsqlConnectionString");
-            return @"Server=localhost\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
-            //var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            //return AzureConnectionString;
+            //return @"Server=localhost\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
+            var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            return AzureConnectionString;
         }
     }
 }

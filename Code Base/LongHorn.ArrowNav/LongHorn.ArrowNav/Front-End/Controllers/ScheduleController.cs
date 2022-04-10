@@ -9,12 +9,13 @@ namespace Front_End.Controllers
     [Route("[controller]")]
     public class ScheduleController : ControllerBase
     {
+
         [HttpGet]
         [Route("getschedule")]
         public List<StudentClassModel> GetScheduleByUsername(string email)
         {
             ScheduleRepository repo = new ScheduleRepository();
-            List<StudentClassModel> classes = repo.Read(email);
+            var classes = repo.Read(email);
             return classes;
         }
 

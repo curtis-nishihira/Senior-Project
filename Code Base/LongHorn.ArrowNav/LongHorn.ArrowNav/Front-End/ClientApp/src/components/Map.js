@@ -1,7 +1,7 @@
 ﻿import React, { useRef, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import mapboxgl from '!mapbox-gl';
-import * as MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import './Map.css';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
@@ -14,6 +14,7 @@ export const Map = () => {
     const buildingName = useRef("");
     const buildingLat = useRef(0.0);
     const buildingLong = useRef(0.0);
+    const location = useLocation();
 
     //lat,long or y,z
     const Zone1 = [33.781604, -118.114287, 33.782103, -118.112431];
@@ -28,10 +29,9 @@ export const Map = () => {
 
 
     function fillComboBox() {
-        fetch('https://localhost:44465/building/getAllBuildings')
+        fetch('https://arrownav.azurewebsites.net/building/getAllBuildings')
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 var listOfBuildings = data;
                 var sel = document.getElementById('buildings');
                 for (var i = 0; i < listOfBuildings.length; i++) {
@@ -51,6 +51,19 @@ export const Map = () => {
 
     // Initialize map when component mounts
     useEffect(() => {
+        const map = new mapboxgl.Map({
+            container: mapContainerRef.current,
+            style: 'mapbox://styles/brayan-fuentes21/cky54exmf1uvl14qcvixitiqo',
+            center: [lng, lat],
+            zoom: zoom
+        });
+        const endPoint = new mapboxgl.Marker();
+
+        if (location.state != undefined) {
+            putPin(location.state.building);
+        }
+
+
         fillComboBox();
 
         function drivingRoute() {
@@ -355,13 +368,6 @@ export const Map = () => {
             return listofPassedZones;
         }
 
-        const map = new mapboxgl.Map({
-            container: mapContainerRef.current,
-            style: 'mapbox://styles/brayan-fuentes21/cky54exmf1uvl14qcvixitiqo',
-            center: [lng, lat],
-            zoom: zoom
-        });
-
         const geolocateControl = new mapboxgl.GeolocateControl({
             positionOptions: { enableHighAccuracy: true },
             showUserHeading: true
@@ -373,8 +379,6 @@ export const Map = () => {
         //});
         map.addControl(geolocateControl, 'bottom-right');
         //map.addControl(geocoder, "bottom-left")
-
-        const endPoint = new mapboxgl.Marker();
 
         const walkingBtn = document.getElementById("walking-btn");
 
@@ -562,13 +566,12 @@ export const Map = () => {
 
         const searchBtn = document.getElementById("search-btn");
         searchBtn.addEventListener("click", () => {
-            putPin();
+            putPin(buildingName.current);
         })
         //from now on we are using useRef when updating variables as it doesnt re render thus losing the saved value and it will result to the default value of an empty string
         //current problem is that the the building controller doesn't like the payload and idk how it should be formatted.
-        function putPin() {
-            console.log(buildingName.current);
-            fetch("https://localhost:44465/building/getLatLong?BuildingName=" + buildingName.current , {
+        function putPin(building) {
+            fetch("https://arrownav.azurewebsites.net/building/getLatLong?BuildingName=" + building , {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -578,16 +581,17 @@ export const Map = () => {
                 .then(response => response.json())
                 .then(data => {
                     buildingLat.current = data.latitude;
+                    console.log(buildingLat.current)
                     buildingLong.current = data.longitude;
+                    console.log(buildingLong.current)
+                    endPoint.setLngLat([buildingLong.current, buildingLat.current]);
+                    endPoint.addTo(map);
+                    document.getElementById('button-container').style.visibility = 'visible';
                 })
                 .catch((error) => {
                     console.error('Error', error);
                 });
-            console.log(buildingLat.current + " lat");
-            console.log(buildingLong.current + " long");
-            endPoint.setLngLat([buildingLong.current, buildingLat.current]);
-            endPoint.addTo(map);
-            document.getElementById('button-container').style.visibility = 'visible';
+            
         }
 
         const drivingBtn = document.getElementById("driving-btn");

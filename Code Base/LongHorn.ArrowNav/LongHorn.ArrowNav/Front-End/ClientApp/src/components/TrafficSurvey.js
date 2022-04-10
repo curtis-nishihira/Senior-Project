@@ -37,7 +37,7 @@ export const TrafficSurvey = (props) => {
 	const surveyHandler = (e) => {
 		e.preventDefault();
 		console.log(parseInt(zone1));
-		fetch('https://localhost:44465/trafficsurvey', {
+		fetch('https://arrownav.azurewebsites.net/trafficsurvey', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',

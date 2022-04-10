@@ -85,6 +85,13 @@ namespace LongHorn.ArrowNav.Managers
             return result;
         }
 
+        public AccountInfo getProfile(string email)
+        {
+            EnableService enableService = new EnableService();
+            var result = enableService.getProfileByEmail(email);
+            return result;
+        }
+
         public string sendConfirmationEmail(string email)
         {
             SmtpClient client = new SmtpClient()
@@ -119,5 +126,6 @@ namespace LongHorn.ArrowNav.Managers
 
             }
         }
+
     }
 }

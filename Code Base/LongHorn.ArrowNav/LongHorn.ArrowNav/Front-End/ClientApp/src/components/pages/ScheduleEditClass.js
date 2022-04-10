@@ -2,8 +2,8 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import "./ScheduleAddClass.css"
 
-export const ScheduleAddClass = () => {
-    const initialFormValues = { username: "", course: "", coursetype: "", building: "", room: "", days: "", starttime: "", endtime: "" };
+export const ScheduleEditClass = (props) => {
+    const initialFormValues = { username: props.username, course: props.course, coursetype: props.courseType, building: props.building, room: props.room, days: props.days, starttime: props.startTime, endtime: props.endTime };
     const [classValues, setClassValues] = useState(initialFormValues);
     const [classValuesErrors, setClassValuesErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
@@ -17,7 +17,7 @@ export const ScheduleAddClass = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('https://arrownav.azurewebsites.net/schedule/scheduleadd', {
+        fetch('https://arrownav.azurewebsites.net/schedule/scheduleedit', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -106,7 +106,7 @@ export const ScheduleAddClass = () => {
 
     return (
         <div className="addclass-container">
-            {Object.keys(classValuesErrors).length === 0 && isSubmit ? (<div className="addclass-message-success"> Class Added Successfully </div>) : (<div className="addclass-message-fail">Fill Out the Required Fields to Add Class to Schedule</div>)}
+            {Object.keys(classValuesErrors).length === 0 && isSubmit ? (<div className="addclass-message-success"> Class Edited Successfully </div>) : (<div className="addclass-message-fail">Edit Class</div>)}
             {/*<pre>{JSON.stringify(classValues, undefined, 2)}</pre>*/}
 
             <form onSubmit={handleSubmit}>
@@ -234,4 +234,4 @@ export const ScheduleAddClass = () => {
     );
 }
 
-export default ScheduleAddClass
+export default ScheduleEditClass

@@ -1,24 +1,115 @@
-﻿import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./UserHome.css";
 import Popup from './Popup';
-import ScheduleAddClass from './ScheduleAddClass'
+import ScheduleAddClass from './ScheduleAddClass';
+import ScheduleEditClass from './ScheduleEditClass';
 
 
 export function UserHome() {
-    const userName = getCookies();
+    const userEmail = getEmailFromCookies();
+    const [userFirstName, setFirstName] = useState("");
+    const [userLastName, setLastName] = useState("");
+    const [rowAmount, setRowAmount] = useState(0);
+    const [selectedCourse, setCourse] = useState("");
+    const [selectedCourseType, setCourseType] = useState("");
+    const [selectedBuilding, setBuilding] = useState("");
+    const [selectedRoom, setRoom] = useState("");
+    const [selectedDays, setDays] = useState("");
+    const [selectedStartTime, setStartTime] = useState("");
+    const [selectedEndTime, setEndTime] = useState("");
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
+    const [isSelected, setIsSelected] = useState(false);
     const togglePopup = () => {
         setIsOpen(!isOpen);
     }
-    //function fillList() {
-    //    fetch('https://arrownav.azurewebsites.net', {
+    const toggleIsSelected = () => {
+        setIsSelected(!isSelected);
+    }
 
-    //    })
-    //}
+    function fillTable() {
+        if (isOpen == false) {
+            fetch('https://arrownav.azurewebsites.net/schedule/getschedule?email=' + userEmail, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    var classes = data;
+                    var tbody = document.getElementById("schedule-body");
+                    setRowAmount(classes.length);
+                    for (var i = 0; i < classes.length; i++) {
+                        var trString = "myTr" + i.toString();
+                        var tr = document.createElement('tr');
+                        tr.setAttribute("id", trString);
+                        tbody.appendChild(tr);
+                        var td = document.createElement('td');
+                        var input = document.createElement('input');
+                        var buttonIdString = "btn" + i.toString();
+                        input.setAttribute("id", buttonIdString)
+                        input.setAttribute("type", "radio");
+                        input.setAttribute("name", "rowSelected");
+                        input.setAttribute("value", i+1);
+                        td.appendChild(input);
+                        document.getElementById(trString).appendChild(td);
+                        var td1 = document.createElement('td');
+                        var course = document.createTextNode(classes[i]._course);
+                        td1.appendChild(course);
+                        document.getElementById(trString).appendChild(td1);
+                        var td2 = document.createElement('td');
+                        var courseType = document.createTextNode(classes[i]._coursetype);
+                        td2.appendChild(courseType);
+                        document.getElementById(trString).appendChild(td2);
+                        var td3 = document.createElement('td');
+                        var building = document.createTextNode(classes[i]._building);
+                        td3.appendChild(building);
+                        document.getElementById(trString).appendChild(td3);
+                        var td4 = document.createElement('td');
+                        var room = document.createTextNode(classes[i]._room);
+                        td4.appendChild(room);
+                        document.getElementById(trString).appendChild(td4);
+                        var td5 = document.createElement('td');
+                        var days = document.createTextNode(classes[i]._days);
+                        td5.appendChild(days);
+                        document.getElementById(trString).appendChild(td5);
+                        var td6 = document.createElement('td');
+                        var startTime = document.createTextNode(classes[i]._startTime);
+                        td6.appendChild(startTime);
+                        document.getElementById(trString).appendChild(td6);
+                        var td7 = document.createElement('td');
+                        var endTime = document.createTextNode(classes[i]._endTime);
+                        td7.appendChild(endTime);
+                        document.getElementById(trString).appendChild(td7);
+                    }
+                })
+                .catch((error) => {
+                    console.log('Error', error);
+                })
+        }
+    }
 
-    function getCookies() {
+    function getProfile() {
+        fetch("https://arrownav.azurewebsites.net/login/getProfile?email=" + userEmail, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                setFirstName(data._firstName);
+                setLastName(data._lastName);
+            })
+            .catch((error) => {
+                console.error('Error', error);
+            });
+    }
+    function getEmailFromCookies() {
         var decodedCookies = decodeURIComponent(document.cookie);
         var listOfCookies = decodedCookies.split("; ");
         for (var i = 0; i < listOfCookies.length; i++) {
@@ -30,17 +121,49 @@ export function UserHome() {
                 return newName;
             }
         }
-
     }
-    //unsure of its functionality
+
+    useEffect(() => {
+        getProfile();
+        const wrapper = document.getElementById('schedule-table');
+
+        wrapper.addEventListener('click', (event) => {
+            const isButton = event.target.nodeName === 'INPUT';
+            if (!isButton) {
+                return;
+            }
+            var table = document.getElementById("schedule-table");
+            setCourse(table.rows[event.target.value].cells[1].innerHTML);
+            setCourseType(table.rows[event.target.value].cells[2].innerHTML);
+            setBuilding(table.rows[event.target.value].cells[3].innerHTML);
+            setRoom(table.rows[event.target.value].cells[4].innerHTML);
+            setDays(table.rows[event.target.value].cells[5].innerHTML);
+            setStartTime(table.rows[event.target.value].cells[6].innerHTML);
+            setEndTime(table.rows[event.target.value].cells[7].innerHTML);
+        })
+    }, [])
+
+
+
+    useEffect(() => {
+        fillTable();
+        return function cleanup() {
+            var body = document.getElementById('schedule-body');
+            if (body != null) {
+                body.innerHTML = '';
+            }      
+        }
+    }, [isOpen,isSelected])
+
     function logout() {
-        fetch('https://localhost:44465/login/removecookie')
+        fetch('https://arrownav.azurewebsites.net/login/removecookie')
             .then(response => response.json())
             .then(data => {
                 console.log(data);
-                if (data == "cookie removed")
-                {
-                    navigate("https://localhost:44465/account");
+                if (data == "cookie removed") {
+                    console.log(data);
+                    //should go one page backwards
+                    navigate("/" );
                 }
             })
             .catch((error) => {
@@ -48,17 +171,89 @@ export function UserHome() {
             });
     }
 
+    function deleteCourse() {
+        if (selectedCourse != '')
+        {
+            fetch('https://arrownav.azurewebsites.net/schedule/scheduledelete', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    _Username: userEmail,
+                    _course: selectedCourse,
+                    _coursetype: selectedCourseType,
+                    _building: selectedBuilding,
+                    _room: selectedRoom,
+                    _days: selectedDays,
+                    _starttime: selectedStartTime,
+                    _endtime: selectedEndTime
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                })
+                .catch((error) => {
+                    console.error('Error', error);
+                });
+            toggleIsSelected();
+
+        }
+        else
+        {
+            alert("You didn't choose an option");
+        }
+    }
+    function editCourse() {
+
+    }
+    function findOnMap() {
+        if (selectedCourse != '') {
+            fetch('https://arrownav.azurewebsites.net/building/getBuildingbyAcronym?acronym=' + selectedBuilding, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    navigate("/", { state: { building: data } });
+                })
+                .catch((error) => {
+                    console.error('Error', error);
+                });
+        }
+        else {
+            alert("You didn't choose an option");
+        }
+        
+        
+    }
     return (
         <>
-            <div> User : {userName}</div>
+            <div>Names: {userFirstName} {userLastName}</div>
+            <div> Email : {userEmail} </div>
             <button type="button" onClick={logout}> Log out </button>
-            <table className= "schedule-table">
-                <tr>
-                    <th>Company</th>
-                    <th>Contact</th>
-                    <th>Country</th>
-                </tr>
+            <table id="schedule-table" className="schedule-table">
+                <thead >
+                    <tr>
+                        <th></th>
+                        <th>Course</th>
+                        <th>Course Type</th>
+                        <th>Building</th>
+                        <th>Room Number</th>
+                        <th>Days</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                    </tr>
+                </thead>
+                <tbody id="schedule-body">
+                </tbody>
             </table>
+
             <div>
                 <input id="button"
                     type="button"
@@ -71,6 +266,37 @@ export function UserHome() {
                     </>}
                     handleClose={togglePopup}
                 />}
+
+                <input id="button"
+                    type="button"
+                    value="DELETE CLASS"
+                    onClick={deleteCourse}
+                />
+                <input id="button"
+                    type="button"
+                    value="EDIT CLASS"
+                    onClick={togglePopup}
+                />
+                {isOpen && <Popup
+                    content={<>
+                        <ScheduleEditClass
+                            username={userEmail}
+                            course={selectedCourse}
+                            courseType={selectedCourseType}
+                            building={selectedBuilding}
+                            room={selectedRoom}
+                            days={selectedDays}
+                            startTime={selectedStartTime}
+                            endTime={selectedEndTime}
+                            handleCloser={togglePopup} />
+                    </>}
+                    handleClose={togglePopup}
+                />}
+                <input id="button"
+                    type="button"
+                    value="FIND CLASS"
+                    onClick={findOnMap}
+                />
             </div>
         </>
     );

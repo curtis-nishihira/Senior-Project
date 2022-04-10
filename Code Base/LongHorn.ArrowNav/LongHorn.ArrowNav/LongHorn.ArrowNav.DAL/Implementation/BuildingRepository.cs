@@ -53,7 +53,39 @@ namespace LongHorn.ArrowNav.DAL.Implementation
                 return model;
             }
         }
+        public string BuildingByAcryonm(string acronym)
+        {
+            try
+            {
+                var sqlConnectionString = getConnection();
+                
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    string temp = "";
+                    var sqlStatement = string.Format("exec GetBuildingNameByAcronym '{0}'", acronym);
+                    using (var command = new SqlCommand(sqlStatement, connection))
+                    {
+                        command.Connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+                        
+                        while (reader.Read())
+                        {
+                            temp = string.Format("{0}", reader["BuildingName"]);
+                        }
+                        reader.Close();
+                    }
+                    connection.Close();
+                    return temp;
+                }
+               
 
+
+            }
+            catch(Exception e)
+            {
+                return "Error";
+            }
+        }
         public List<string> ReadAllBuildings()
         {
             List<string> retrievedValues = new List<string>();
@@ -93,9 +125,9 @@ namespace LongHorn.ArrowNav.DAL.Implementation
 
         public string getConnection()
         {
-            return @"Server=localhost\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
-            //var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            //return AzureConnectionString;
+            //return @"Server=localhost\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
+            var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            return AzureConnectionString;
 
         }
 

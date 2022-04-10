@@ -117,7 +117,6 @@ namespace LongHorn.ArrowNav.DAL.Implementation
             {
                 var connectionString = getConnection();
                 List<StudentClassModel> list = new List<StudentClassModel>();
-                StudentClassModel model = new StudentClassModel();
                 using (var connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -126,17 +125,25 @@ namespace LongHorn.ArrowNav.DAL.Implementation
                     using (var checkValue = new SqlCommand(sqlStatement, connection))
                     {
                         SqlDataReader rdr = checkValue.ExecuteReader();
-                        
-                        while (rdr.Read())
+
+                        if (rdr.HasRows)
                         {
-                            model._course = (string)rdr["course"];
-                            model._coursetype = (string)rdr["coursetype"];
-                            model._building = (string)rdr["building"];
-                            model._room = (string)rdr["room"]; 
-                            model._days = (string)rdr["days"]; 
-                            model._startTime = (string)rdr["starttime"]; 
-                            model._endTime = (string)rdr["endtime"]; 
-                            list.Add(model);
+                            while (rdr.Read())
+                            {
+                                StudentClassModel model = new StudentClassModel();
+                                model._course = (string)rdr["course"];
+                                model._coursetype = (string)rdr["coursetype"];
+                                model._building = (string)rdr["building"];
+                                model._room = (string)rdr["room"];
+                                model._days = (string)rdr["days"];
+                                model._startTime = (string)rdr["starttime"];
+                                model._endTime = (string)rdr["endtime"];
+                                list.Add(model);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("No rows found.");
                         }
                         rdr.Close();
                     }
@@ -200,9 +207,10 @@ namespace LongHorn.ArrowNav.DAL.Implementation
         public string getConnection()
         {
             //var SQLConnectionString = Get("UMsqlConnectionString");
-            return @"Server=LAPTOP-KI9GTVUJ\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
-            //var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            //return AzureConnectionString;
+            //return @"Server=LAPTOP-KI9GTVUJ\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
+            //return @"Server=localhost\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
+            var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            return AzureConnectionString;
         }
 
         public List<string> Read(StudentClassModel model)

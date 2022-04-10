@@ -8,7 +8,6 @@ import { Register } from "./components/pages/Register";
 import { WellnessHub } from "./components/pages/WellnessHub";
 import { ConfirmationPage } from "./components/pages/ConfirmationPage";
 import { UserHome } from "./components/pages/UserHome";
-import { TrafficSurvey } from "./components/pages/TrafficSurvey";
 import './custom.css'
 
 export default class App extends Component {

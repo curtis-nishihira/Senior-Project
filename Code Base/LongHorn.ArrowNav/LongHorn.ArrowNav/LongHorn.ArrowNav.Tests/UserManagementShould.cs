@@ -1,3 +1,5 @@
+using LongHorn.ArrowNav.DAL.Implementation;
+using LongHorn.ArrowNav.Managers;
 using LongHorn.ArrowNav.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
@@ -47,6 +49,22 @@ namespace LongHorn.ArrowNav.Tests
         //    Trace.WriteLine(actual);
         //    Assert.IsTrue(actual == expected);
         //}
+
+        //[TestMethod]
+        //public void DisableUserValid()
+        //{
+        //    UMManager manager = new UMManager();
+        //    var actual = manager.getProfile("spencergravel@gmail.com");
+        //    string expected = "Account was disabled";
+        //    Trace.WriteLine(actual);
+        //}
+        [TestMethod]
+        public void testRepo()
+        {
+            ScheduleRepository repo = new ScheduleRepository();
+            var result = repo.Read("spencergravel@gmail.com");
+
+        }   
 
     }
 }

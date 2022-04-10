@@ -18,10 +18,20 @@ export const Login = (props) => {
                 document.getElementById('notification').style.visibility = 'hidden';
             }, 7000);
         }
+        else {
+            if (message != '')
+            {
+                document.getElementById('notification').style.visibility = 'visible'
+                setTimeout(() => {
+                    document.getElementById('notification').style.visibility = 'hidden';
+                }, 7000);
+            }
+            
+        }
 
         // Update the document title using the browser API
 
-    });
+    },[message]);
 
     /* Nonfunctional loginHandler 
      * The fetch does not work. Would suggest making a model for the login info or research another way.
@@ -32,7 +42,7 @@ export const Login = (props) => {
 
     const loginHandler = (e) => {
         e.preventDefault();
-        fetch('https://localhost:44465/login', {
+        fetch('https://arrownav.azurewebsites.net/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -46,7 +56,7 @@ export const Login = (props) => {
             .then(response => response.json())
             .then(data => {
                 if (data == "Account is authenticated") {
-                    fetch('https://localhost:44465/login/createcookie', {
+                    fetch('https://arrownav.azurewebsites.net/login/createcookie', {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',
@@ -69,10 +79,10 @@ export const Login = (props) => {
                         });
                 }
                 else if (data == "Incorrect Password") {
-                    navigate("/account", { state: { message: data } });
+                    setMessage(data);
                 }
                 else if (data == "Account not found.") {
-                    navigate("/account", { state: { message: data } });
+                    setMessage(data);;
                 }
             })
             .catch((error) => {

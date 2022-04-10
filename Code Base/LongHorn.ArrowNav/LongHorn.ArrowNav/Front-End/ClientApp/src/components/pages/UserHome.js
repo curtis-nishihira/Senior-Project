@@ -279,7 +279,7 @@ export function UserHome() {
                 />
                 {isAddOpen && <Popup
                     content={<>
-                        <ScheduleAddClass handleCloser={toggleAddPopup} />
+                        <ScheduleAddClass username={userEmail} handleCloser={toggleAddPopup} />
                     </>}
                     handleClose={toggleAddPopup}
                 />}

@@ -42,6 +42,7 @@ export const ScheduleEditClass = (props) => {
             });
         setClassValuesErrors(validate(classValues));
         setIsSubmit(true);
+        props.handleCloser();
     }
     useEffect(() => {
         console.log(classValuesErrors);
@@ -113,7 +114,7 @@ export const ScheduleEditClass = (props) => {
                 <div className='addclass-form'>
                     <div className='form-inputs'>
                         <label>Email</label>
-                        <input type="email" name="username" placeholder="Enter email Here" value={classValues.username} onChange={handleChange}></input>
+                        <input type="email" disabled = "disabled" name="username" placeholder="Enter email Here" value={classValues.username} onChange={handleChange}></input>
                     </div>
                     <div className='input-errors'>
                         <p>{classValuesErrors.username}</p>

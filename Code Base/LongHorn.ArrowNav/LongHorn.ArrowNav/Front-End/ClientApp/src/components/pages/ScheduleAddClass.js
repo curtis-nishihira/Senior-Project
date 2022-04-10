@@ -1,8 +1,8 @@
 ﻿import React, { useState, useEffect } from "react"
 import "./ScheduleAddClass.css"
 
-export const ScheduleAddClass = () => {
-    const initialFormValues = { username: "", course: "", coursetype: "", building: "", room: "", days: "", starttime: "", endtime: "" };
+export const ScheduleAddClass = (props) => {
+    const initialFormValues = { username: props.username, course: "", coursetype: "", building: "", room: "", days: "", starttime: "", endtime: "" };
     const [classValues, setClassValues] = useState(initialFormValues);
     const [classValuesErrors, setClassValuesErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
@@ -40,6 +40,7 @@ export const ScheduleAddClass = () => {
             });
         setClassValuesErrors(validate(classValues));
         setIsSubmit(true);
+        props.handleCloser();
     }
     useEffect(() => {
         console.log(classValuesErrors);
@@ -111,7 +112,7 @@ export const ScheduleAddClass = () => {
                 <div className='addclass-form'>
                     <div className='form-inputs'>
                         <label>Email</label>
-                        <input type="email" name="username" placeholder="Enter email Here" value={classValues.username} onChange={handleChange}></input>
+                        <input type="email" disabled="disabled" name="username" placeholder="Enter email Here" value={classValues.username} onChange={handleChange}></input>
                     </div>
                     <div className='input-errors'>
                         <p>{classValuesErrors.username}</p>

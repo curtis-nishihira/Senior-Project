@@ -8,8 +8,10 @@ import { Register } from "./components/pages/Register";
 import { WellnessHub } from "./components/pages/WellnessHub";
 import { ConfirmationPage } from "./components/pages/ConfirmationPage";
 import { UserHome } from "./components/pages/UserHome";
-import  Popup  from "./components/pages/Popup";
-import  Privacy  from "./components/pages/Privacy";
+import Popup from "./components/pages/Popup";
+import Privacy from "./components/pages/Privacy";
+import { ProtectedRoutes } from "./components/ProtectedRoutes";
+
 import './custom.css'
 
 export default class App extends Component {
@@ -21,34 +23,37 @@ export default class App extends Component {
         };
     }
     togglePopup = () => {
-        this.setState({isOpen:!this.state.isOpen})
+        this.setState({ isOpen: !this.state.isOpen })
     }
 
     render() {
         return (
             <>
-            <div>
-                <Router>
-                    <NavBar />
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/account" element={<Login />} />
-                        <Route path="/wellnesshub" element={<WellnessHub />} />
-                        <Route path="/account/register" element={<Register />} />
-                        <Route path="/account/confirmationpage" element={<ConfirmationPage />} />
-                        <Route path="/account/userhome" element={<UserHome />}/>
-                    </Routes>
+                <div>
+                    <Router>
+                        <NavBar />
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/account" element={<Login />} />
+                            <Route path="/wellnesshub" element={<WellnessHub />} />
+                            <Route path="/account/register" element={<Register />} />
+                            <Route path="/account/confirmationpage" element={<ConfirmationPage />} />
 
-                </Router>
-            </div>
-             <div>
-                {this.state.isOpen && <Popup
-                    content={<>
-                        <Privacy handleCloser={this.togglePopup} />
-                    </>}
-                    handleClose={this.togglePopup}
-                />}
-            </div>
+                            <Route element={<ProtectedRoutes />}>
+                                <Route path="/account/userhome" element={<UserHome />} />
+                            </Route>
+                        </Routes>
+
+                    </Router>
+                </div>
+                <div>
+                    {this.state.isOpen && <Popup
+                        content={<>
+                            <Privacy handleCloser={this.togglePopup} />
+                        </>}
+                        handleClose={this.togglePopup}
+                    />}
+                </div>
             </>
         );
     }

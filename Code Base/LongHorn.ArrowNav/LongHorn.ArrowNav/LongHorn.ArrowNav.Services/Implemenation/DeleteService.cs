@@ -15,6 +15,12 @@ namespace LongHorn.ArrowNav.Services
             var result = umRepository.Delete(email);
             return result;
         }
+
+        public string DeleteAccount(AccountInfo info)
+        {
+            throw new NotImplementedException();
+        }
+
         public string DeleteStudentClass(StudentClassModel studentclass)
         {
             IRepository<StudentClassModel> schedulerepository = new ScheduleRepository();

@@ -241,6 +241,27 @@ export function UserHome() {
             alert("You didn't choose an option");
         }
     }
+
+    function deleteAccount() {
+        console.log(userEmail);
+        fetch("https://arrownav.azurewebsites.net/login/deleteAccount?email=" + userEmail, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data == "account deleted") {
+                    navigate("/account");
+                }
+            })
+            .catch((error) => {
+                console.error('Error', error);
+            });
+    }
+
     function validate() {
         if (selectedCourse != '') {
             toggleEditPopup();
@@ -254,6 +275,7 @@ export function UserHome() {
             <div>Names: {userFirstName} {userLastName}</div>
             <div> Email : {userEmail} </div>
             <button type="button" onClick={logout}> Log out </button>
+            <button type="button" onClick={deleteAccount}> delete account</button>
             <table id="schedule-table" className="schedule-table">
                 <thead >
                     <tr>

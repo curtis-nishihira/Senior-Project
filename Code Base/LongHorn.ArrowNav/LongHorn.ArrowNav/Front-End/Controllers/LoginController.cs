@@ -58,6 +58,14 @@ namespace Front_End.Controllers
 
         }
 
+        [HttpPost]
+        [Route("deleteAccount")]
+        public string deleteAccount(string email)
+        {
+            UMManager umManager = new UMManager();
+            var result = umManager.Delete(email);
+            return result;
+        }
 
 
         [HttpGet]
@@ -67,6 +75,8 @@ namespace Front_End.Controllers
             Response.Cookies.Delete(key);
             return "cookie removed";
         }
+
+
 
 
     }

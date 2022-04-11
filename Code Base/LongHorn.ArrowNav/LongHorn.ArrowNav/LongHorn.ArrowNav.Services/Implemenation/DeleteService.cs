@@ -9,10 +9,10 @@ namespace LongHorn.ArrowNav.Services
 {
     public class DeleteService : IDeleteService
     {
-        public string DeleteAccount(AccountInfo info)
+        public string DeleteAccount(string email)
         {
-            IRepository<AccountInfo> umRepository = new UMRepository();
-            var result = umRepository.Delete(info);
+            UMRepository umRepository = new UMRepository();
+            var result = umRepository.Delete(email);
             return result;
         }
         public string DeleteStudentClass(StudentClassModel studentclass)

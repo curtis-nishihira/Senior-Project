@@ -114,7 +114,7 @@ export const ScheduleEditClass = (props) => {
                 <div className='addclass-form'>
                     <div className='form-inputs'>
                         <label>Email</label>
-                        <input type="email" disabled = "disabled" name="username" placeholder="Enter email Here" value={classValues.username} onChange={handleChange}></input>
+                        <input type="email" disabled = "disabled" name="username" placeholder="Enter email Here" required value={classValues.username} onChange={handleChange}></input>
                     </div>
                     <div className='input-errors'>
                         <p>{classValuesErrors.username}</p>
@@ -122,7 +122,7 @@ export const ScheduleEditClass = (props) => {
 
                     <div className='form-inputs'>
                         <label>Course</label>
-                        <input type="text" name="course" placeholder="Enter Course Here" value={classValues.course} onChange={handleChange}></input>
+                        <input type="text" name="course" placeholder="Enter Course Here" required value={classValues.course} onChange={handleChange}></input>
                     </div>
                     <div className='input-errors'>
                         <p>{classValuesErrors.course}</p>
@@ -130,7 +130,7 @@ export const ScheduleEditClass = (props) => {
 
                     <div className='form-inputs'>
                         <label>Course Type</label>
-                        <select name="coursetype" value={classValues.coursetype} onChange={handleChange}>
+                        <select name="coursetype" required value={classValues.coursetype} onChange={handleChange}>
                             <option value=""></option>
                             <option value="Seminar">SEMINAR</option>
                             <option value="Lab">LAB</option>
@@ -143,7 +143,7 @@ export const ScheduleEditClass = (props) => {
 
                     <div className='form-inputs'>
                         <label>Select Building</label>
-                        <select name="building" value={classValues.building} onChange={handleChange}>
+                        <select name="building" required value={classValues.building} onChange={handleChange}>
                             <option value=""></option>
                             <option value="CDC">CDC - Child Development Center</option>
                             <option value="COB">COB - College of Business</option>
@@ -196,7 +196,7 @@ export const ScheduleEditClass = (props) => {
 
                     <div className='form-inputs'>
                         <label>Room</label>
-                        <input type="text" name="room" placeholder="Enter Class Room Number Here" value={classValues.room} onChange={handleChange}></input>
+                        <input type="text" name="room" placeholder="Enter Class Room Number Here" required value={classValues.room} onChange={handleChange}></input>
                     </div>
                     <div className='input-errors'>
                         <p>{classValuesErrors.room}</p>
@@ -205,7 +205,7 @@ export const ScheduleEditClass = (props) => {
 
                     <div className='form-inputs'>
                         <label>Days</label>
-                        <input type="text" name="days" placeholder="M=Monday T=Tuesday W=Wednesday TH=Thursday F=Friday S=Saturday S=Sunday" value={classValues.days} onChange={handleChange}></input>
+                        <input type="text" name="days" placeholder="M=Monday T=Tuesday W=Wednesday TH=Thursday F=Friday S=Saturday S=Sunday" required value={classValues.days} onChange={handleChange}></input>
                     </div>
                     <div className='input-errors'>
                         <p>{classValuesErrors.days}</p>
@@ -213,7 +213,7 @@ export const ScheduleEditClass = (props) => {
 
                     <div className='form-inputs'>
                         <label>Select Start Time</label>
-                        <input type="time" name="starttime" value={classValues.starttime} onChange={handleChange}></input>
+                        <input type="time" name="starttime" required value={classValues.starttime} onChange={handleChange}></input>
                     </div>
                     <div className='input-errors'>
                         <p>{classValuesErrors.starttime}</p>
@@ -221,7 +221,7 @@ export const ScheduleEditClass = (props) => {
 
                     <div className='form-inputs'>
                         <label>Select End Time</label>
-                        <input type="time" name="endtime" value={classValues.endtime} onChange={handleChange}></input>
+                        <input type="time" name="endtime" required value={classValues.endtime} onChange={handleChange}></input>
                     </div>
                     <div className='input-errors'>
                         <p>{classValuesErrors.endtime}</p>

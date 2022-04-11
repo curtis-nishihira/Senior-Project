@@ -420,12 +420,13 @@ export const Map = () => {
                                         var zoneValue = value["item1"];
                                         var surveyCount = value["item2"];
                                         var timeAdded = zoneValue / surveyCount;
-                                        if (isNaN(timeAdded)) {
-                                            TimeAdditions.push([key, 0]);
-                                        }
-                                        else {
+                                        if (isFinite(timeAdded)) {
                                             TimeAdditions.push([key, Math.ceil(timeAdded)]);
                                         }
+                                        else {
+                                            TimeAdditions.push([key, 0]);
+                                        }
+                                        
                                     }
                                     const zones = zonesPassed(coordinates);
                                     var timeAddedForRoute1 = 0;
@@ -497,30 +498,38 @@ export const Map = () => {
                                     //loop through the keys and save them to the list which will be used later to update the duration of the route 
                                     for (const [key, value] of Object.entries(data2)) {
                                         var zoneValue = value["item1"];
+                                        console.log("zonevalue", zoneValue);
                                         var surveyCount = value["item2"];
+                                        console.log("surveycount", surveyCount);
                                         var timeAdded = zoneValue / surveyCount;
-                                        if (isNaN(timeAdded)) {
-                                            TimeAdditions.push([key, 0]);
-                                        }
-                                        else {
+                                        console.log("time added", timeAdded)
+                                        if (isFinite(timeAdded)) {
                                             TimeAdditions.push([key, Math.ceil(timeAdded)]);
                                         }
+                                        else {
+                                            TimeAdditions.push([key, 0]);
+                                        }
+
                                     }
                                     const zones = zonesPassed(coords);
                                     var timeAddedForRoute2 = 0;
                                     if (zones.includes("Zone1")) {
                                         timeAddedForRoute2 = timeAddedForRoute2 + TimeAdditions[0][1];
+                                        console.log(timeAddedForRoute2);
 
                                     }
                                     if (zones.includes("Zone2")) {
                                         timeAddedForRoute2 = timeAddedForRoute2 + TimeAdditions[1][1];
+                                        console.log(timeAddedForRoute2);
 
                                     }
                                     if (zones.includes("Zone3")) {
                                         timeAddedForRoute2 = timeAddedForRoute2 + TimeAdditions[2][1];
+                                        console.log(timeAddedForRoute2);
                                     }
                                     let distance = data.routes[0].distance / 1609;
                                     setSecondRouteDistance(distance.toFixed(2));
+                                    console.log(data.routes[0].duration);
                                     setSecondRouteDuration(Math.round((data.routes[0].duration) / 60) + timeAddedForRoute2);
                                 })
                                 .catch((error) => {

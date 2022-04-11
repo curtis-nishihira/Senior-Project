@@ -36,13 +36,13 @@ export const ScheduleEditClass = (props) => {
             .then(response => response.json())
             .then(data => {
                 console.log(data);
+                props.handleCloser();
             })
             .catch((error) => {
                 console.error('Error', error);
             });
         setClassValuesErrors(validate(classValues));
         setIsSubmit(true);
-        props.handleCloser();
     }
     useEffect(() => {
         console.log(classValuesErrors);

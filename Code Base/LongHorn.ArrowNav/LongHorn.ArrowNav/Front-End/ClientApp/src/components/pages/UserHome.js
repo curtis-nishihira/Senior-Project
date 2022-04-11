@@ -157,8 +157,8 @@ export function UserHome() {
 
     useEffect(() => {
         fillTable();
-        setToDefaultValues();
         return function cleanup() {
+            setToDefaultValues();
             var body = document.getElementById('schedule-body');
             if (body != null) {
                 body.innerHTML = '';

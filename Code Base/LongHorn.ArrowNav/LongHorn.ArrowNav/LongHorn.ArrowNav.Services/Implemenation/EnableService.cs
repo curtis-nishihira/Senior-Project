@@ -14,5 +14,12 @@ namespace LongHorn.ArrowNav.Services
             var result = umRepository.Enable(info);
             return result;
         }
+
+        public AccountInfo getProfileByEmail(string email)
+        {
+            UMRepository umRepository = new UMRepository();
+            var result = umRepository.getProfile(email);
+            return result;
+        }
     }
 }

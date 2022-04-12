@@ -18,16 +18,27 @@ export const Login = (props) => {
                 document.getElementById('notification').style.visibility = 'hidden';
             }, 7000);
         }
+        else {
+            if (message != '')
+            {
+                document.getElementById('notification').style.visibility = 'visible'
+                setTimeout(() => {
+                    document.getElementById('notification').style.visibility = 'hidden';
+                }, 7000);
+            }
+            
+        }
 
         // Update the document title using the browser API
 
-    });
+    },[message]);
 
     /* Nonfunctional loginHandler 
      * The fetch does not work. Would suggest making a model for the login info or research another way.
      * 
      * */
 
+    //best guess a to why it wouldn't connect to this would be cors
 
     const loginHandler = (e) => {
         e.preventDefault();
@@ -57,7 +68,9 @@ export const Login = (props) => {
                         }),
                     })
                         .then(response => response.json())
-                        .then(cookieResponse=> {
+                        .then(cookieResponse => {
+                            console.log(cookieResponse);
+
                             navigate("/account/userhome");
                            
                         })
@@ -66,10 +79,10 @@ export const Login = (props) => {
                         });
                 }
                 else if (data == "Incorrect Password") {
-                    navigate("/account", { state: { message: data } });
+                    alert(data);
                 }
                 else if (data == "Account not found.") {
-                    navigate("/account", { state: { message: data } });
+                    alert(data);;
                 }
             })
             .catch((error) => {

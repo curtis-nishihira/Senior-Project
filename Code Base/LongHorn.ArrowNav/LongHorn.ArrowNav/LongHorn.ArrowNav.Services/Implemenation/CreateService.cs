@@ -1,6 +1,7 @@
 ﻿using LongHorn.ArrowNav.DAL;
 using LongHorn.ArrowNav.Models;
 using System;
+using LongHorn.ArrowNav.DAL.Implementation;
 
 namespace LongHorn.ArrowNav.Services
 {
@@ -10,6 +11,12 @@ namespace LongHorn.ArrowNav.Services
         {
             IRepository<AccountInfo> loggingRepository = new UMRepository();
             var result = loggingRepository.Create(info);
+            return result;
+        }
+        public string CreateStudentClass(StudentClassModel studentclass)
+        {
+            IRepository<StudentClassModel> scheduleRepository = new ScheduleRepository();
+            var result = scheduleRepository.Create(studentclass);
             return result;
         }
     }

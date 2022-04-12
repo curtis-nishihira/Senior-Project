@@ -29,6 +29,17 @@ namespace Front_End.Controllers
 
         public string key = "arrownav";
 
+
+        [HttpPost]
+        [Route("getProfile")]
+        public AccountInfo getProfile(string email)
+        {
+            UMManager umManager = new UMManager();
+            var result = umManager.getProfile(email);
+            return result;
+        }
+
+
         [HttpPost]
         [Route("createcookie")]
         public string CreateCookie(LoginModel model)
@@ -37,7 +48,7 @@ namespace Front_End.Controllers
             {
                 _Username = model._Username
             };
-
+            
             CookieOptions cookieOptions = new CookieOptions
             {
                 Expires = DateTime.Now.AddDays(2)
@@ -47,16 +58,25 @@ namespace Front_End.Controllers
 
         }
 
-
-
-
-        public void RemoveCookie()
+        [HttpPost]
+        [Route("deleteAccount")]
+        public string deleteAccount(string email)
         {
-            if (Request.Cookies[key] != null)
-            {
-                Response.Cookies.Delete(key);
-            }
+            UMManager umManager = new UMManager();
+            var result = umManager.Delete(email);
+            return result;
         }
+
+
+        [HttpGet]
+        [Route("removecookie")]
+        public string RemoveCookie()
+        {
+            Response.Cookies.Delete(key);
+            return "cookie removed";
+        }
+
+
 
 
     }

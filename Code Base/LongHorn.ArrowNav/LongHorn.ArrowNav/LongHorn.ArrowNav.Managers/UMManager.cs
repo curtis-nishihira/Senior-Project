@@ -28,12 +28,12 @@ namespace LongHorn.ArrowNav.Managers
             return result;
         }
 
-        public string Delete(AccountInfo account)
+        public string Delete(string email)
         {
             DeleteService createService = new DeleteService();
-            var result = createService.DeleteAccount(account);
+            var result = createService.DeleteAccount(email);
             LogManager logManager = new LogManager();
-            Log entry = new Log(result, "Info", "Data Layer", account._email);
+            Log entry = new Log(result, "Info", "Data Layer", email);
             logManager.Log(entry);
             return result;
         }
@@ -85,6 +85,13 @@ namespace LongHorn.ArrowNav.Managers
             return result;
         }
 
+        public AccountInfo getProfile(string email)
+        {
+            EnableService enableService = new EnableService();
+            var result = enableService.getProfileByEmail(email);
+            return result;
+        }
+
         public string sendConfirmationEmail(string email)
         {
             SmtpClient client = new SmtpClient()
@@ -119,5 +126,6 @@ namespace LongHorn.ArrowNav.Managers
 
             }
         }
+
     }
 }

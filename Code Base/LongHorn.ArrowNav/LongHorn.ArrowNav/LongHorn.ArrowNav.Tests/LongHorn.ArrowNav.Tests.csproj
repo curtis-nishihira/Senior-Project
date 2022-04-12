@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LongHorn.ArrowNav.Managers\LongHorn.ArrowNav.Managers.csproj" />
     <ProjectReference Include="..\LongHorn.ArrowNav.Models\LongHorn.ArrowNav.Models.csproj" />
   </ItemGroup>
 

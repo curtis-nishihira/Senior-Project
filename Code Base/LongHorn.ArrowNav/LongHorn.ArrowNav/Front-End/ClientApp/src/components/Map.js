@@ -127,7 +127,7 @@ export const Map = () => {
         }
 
         async function fillComboBox() {
-            var fillBoxUrl = 'https://localhost:44465/building/getAllBuildings';
+            var fillBoxUrl = 'https://arrownav.azurewebsites.net/building/getAllBuildings';
             var x = await fetchData(fillBoxUrl,"GET",[]);
             console.log(x);
             var listOfBuildings = x;
@@ -289,7 +289,7 @@ export const Map = () => {
                     const lngLat = endPoint.getLngLat();
                     let locationLat = lngLat.lat;
                     let locationLng = lngLat.lng;
-                    const zoneUrl = "https://localhost:44465/trafficsurvey";
+                    const zoneUrl = "https://arrownav.azurewebsites.net/trafficsurvey";
                     const walkingUrl = "https://api.mapbox.com/directions/v5/mapbox/walking/" + userLng + "," + userLat + ";" + locationLng + "," + locationLat + "?waypoints=0;1&walkway_bias=1&alternatives=true&steps=true&access_token=" + mapboxgl.accessToken;
                     fetchWalkingData(walkingUrl, zoneUrl, "route", "#0096FF");
                     const walkingUrl2 = "https://api.mapbox.com/directions/v5/mapbox/walking/" + userLng + "," + userLat + ";" + locationLng + "," + locationLat + "?waypoints=0;1&walkway_bias=-1&alternatives=true&steps=true&access_token=" + mapboxgl.accessToken;
@@ -310,7 +310,7 @@ export const Map = () => {
         })
         
         async function putPin(building) {
-            var data = await fetchData("https://localhost:44465/building/getLatLong?BuildingName=" + building, "POST", []);
+            var data = await fetchData("https://arrownav.azurewebsites.net/building/getLatLong?BuildingName=" + building, "POST", []);
             console.log(data);
             buildingLat.current = data.latitude;
             console.log(buildingLat.current)

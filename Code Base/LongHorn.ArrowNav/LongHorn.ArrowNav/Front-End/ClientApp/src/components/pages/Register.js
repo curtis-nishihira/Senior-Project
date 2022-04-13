@@ -32,7 +32,8 @@ export const Register = () => {
                 if (data == "Successful Account Creation") {
                     //use this to register to a new page that says something about the confirmation email 
                     //being sent.
-                    navigate("/account", { state: { message: "Check your email for a confirmation link to complete your registration" } });
+                    //navigate("/account", { state: { message: "Check your email for a confirmation link to complete your registration" } });
+                    navigate("/account");
                 }
                 else {
                     console.log("Something went wrong");

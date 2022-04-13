@@ -6,6 +6,8 @@ import './Map.css';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
 
+//Run a few walking options and possibly updated the survey values to check if the time is being added
+
 export const Map = () => {
     const mapContainerRef = useRef(null);
     const [lng, setLng] = useState(-118.112437);
@@ -16,9 +18,11 @@ export const Map = () => {
     const buildingLong = useRef(0.0);
     const location = useLocation();
 
-    //lat,long or y,z
+    //USU
     const Zone1 = [33.781604, -118.114287, 33.782103, -118.112431];
+    //Bookstore
     const Zone2 = [33.779446, -118.113831, 33.780275, -118.112984];
+    //Library
     const Zone3 = [33.783709, -118.110060, 33.784859, -118.108612];
 
     const [firstRouteDuration, setFirstRouteDuration] = useState(0);
@@ -28,29 +32,153 @@ export const Map = () => {
 
 
 
-    function fillComboBox() {
-        fetch('https://arrownav.azurewebsites.net/building/getAllBuildings')
-            .then(response => response.json())
-            .then(data => {
-                var listOfBuildings = data;
-                var sel = document.getElementById('buildings');
-                for (var i = 0; i < listOfBuildings.length; i++) {
-                    var opt = document.createElement('option');
-                    opt.innerHTML = listOfBuildings[i];
-                    opt.textContent = listOfBuildings[i];
-                    opt.value = listOfBuildings[i];
-                    sel.appendChild(opt);
-                }
-            })
-            .catch((error) => {
-                console.error('Error', error);
-            });
-
-    }
-
-
     // Initialize map when component mounts
     useEffect(() => {
+        async function fetchData(url, methodType, bodyData) {
+            if (methodType === "GET") {
+                const response = await fetch(url);
+                const data = await response.json();
+                return data;
+            }
+            else if (methodType === "POST")
+            {
+                const response = await fetch(url, { method: methodType })
+                const data = await response.json();
+                return data;
+            }
+
+        }
+
+        async function fetchWalkingData(url, zoneUrl,routeID,RouteColor) {
+            const coordinates = [];
+            var TimeAdditions = [];
+            var data = await fetchData(url, "GET", [])
+            for (let i = 0; i < data.routes[0].legs[0].steps.length; i++) {
+                coordinates.push(data.routes[0].legs[0].steps[i].maneuver.location);
+            }
+            var zoneData = await fetchData(zoneUrl, "GET", []);
+            console.log(zoneData)
+            for (const [key, value] of Object.entries(zoneData)) {
+                var zoneValue = value["item1"];
+                console.log(zoneValue);
+                var surveyCount = value["item2"];
+                console.log(surveyCount);
+                var timeAdded = zoneValue / surveyCount;
+                if (isFinite(timeAdded)) {
+                    TimeAdditions.push([key, Math.ceil(timeAdded)]);
+                }
+                else {
+                    TimeAdditions.push([key, 0]);
+                }
+            }
+            const timeAddedForRoute = zonesPassed(coordinates, TimeAdditions);
+            let distance = data.routes[0].distance / 1609;
+            if (routeID === "route") {
+                setFirstRouteDistance(distance.toFixed(2));
+                setFirstRouteDuration(Math.round((data.routes[0].duration) / 60) + timeAddedForRoute);
+            }
+            else
+            {
+                setSecondRouteDistance(distance.toFixed(2));
+                setSecondRouteDuration(Math.round((data.routes[0].duration) / 60) + timeAddedForRoute);
+            }
+            
+            
+
+            addLayer(coordinates, RouteColor, routeID);
+        }
+
+        function addLayer(route,routeColor,routeID) {
+            map.addLayer({
+                "id": routeID,
+                "type": "line",
+                "source": {
+                    "type": "geojson",
+                    "data": {
+                        "type": "Feature",
+                        "properties": {},
+                        "geometry": {
+                            "type": 'LineString',
+                            'coordinates': route
+                        }
+                    }
+                },
+                "layout": {
+                    "line-join": "round",
+                    "line-cap": "round"
+                },
+                "paint": {
+                    "line-color": routeColor,
+                    "line-width": 12,
+                    "line-opacity": 0.8
+                }
+            });
+        }
+        function removeAllRoutes()
+        {
+            if (map.getSource('route')) {
+                map.removeLayer('route')
+                map.removeSource('route')
+            }
+            if (map.getSource('route2')) {
+                map.removeLayer('route2')
+                map.removeSource('route2')
+            }
+        }
+
+        async function fillComboBox() {
+            var fillBoxUrl = 'https://localhost:44465/building/getAllBuildings';
+            var x = await fetchData(fillBoxUrl,"GET",[]);
+            console.log(x);
+            var listOfBuildings = x;
+            var sel = document.getElementById('buildings');
+            for (var i = 0; i < listOfBuildings.length; i++) {
+                var opt = document.createElement('option');
+                opt.innerHTML = listOfBuildings[i];
+                opt.textContent = listOfBuildings[i];
+                opt.value = listOfBuildings[i];
+                sel.appendChild(opt);
+            }
+            
+        }
+
+        function calculateRouteInfo(data,route,secondRoute) {
+            if (data.routes.length >= 2) {
+                let distance = data.routes[0].distance / 1609;
+                setFirstRouteDistance(distance.toFixed(2));
+                setFirstRouteDuration(Math.round((data.routes[0].duration) / 60));
+
+                for (let i = 0; i < data.routes[0].legs[0].steps.length; i++) {
+                    route.push(data.routes[0].legs[0].steps[i].maneuver.location);
+                }
+                let secondRouteDistance = data.routes[1].distance / 1609;
+                setSecondRouteDistance(secondRouteDistance.toFixed(2));
+                setSecondRouteDuration(Math.round((data.routes[1].duration) / 60));
+
+                for (let i = 0; i < data.routes[1].legs[0].steps.length; i++) {
+                    secondRoute.push(data.routes[1].legs[0].steps[i].maneuver.location);
+                }
+                addLayer(route, "#0096FF", "route");
+                addLayer(secondRoute, "#ff0000", "route2");
+
+                document.getElementById("first-route-info").style.visibility = "visible";
+                document.getElementById("second-route-info").style.visibility = "visible";
+            }
+            else {
+                let distance = data.routes[0].distance / 1609;
+                setFirstRouteDistance(distance.toFixed(2));
+                setFirstRouteDuration(Math.round((data.routes[0].duration) / 60));
+
+                for (let i = 0; i < data.routes[0].legs[0].steps.length; i++) {
+                    route.push(data.routes[0].legs[0].steps[i].maneuver.location);
+                }
+                addLayer(route, "#0096FF", "route");
+
+                document.getElementById("first-route-info").style.visibility = "visible";
+                document.getElementById("second-route-info").style.visibility = "hidden";
+            }
+        }
+
         const map = new mapboxgl.Map({
             container: mapContainerRef.current,
             style: 'mapbox://styles/brayan-fuentes21/cky54exmf1uvl14qcvixitiqo',
@@ -63,21 +191,13 @@ export const Map = () => {
             putPin(location.state.building);
         }
 
-
         fillComboBox();
 
-        function drivingRoute() {
-            if (map.getSource('route')) {
-                map.removeLayer('route')
-                map.removeSource('route')
-            }
-            if (map.getSource('route2')) {
-                map.removeLayer('route2')
-                map.removeSource('route2')
-            }
+        async function drivingRoute() {
+            removeAllRoutes()
             document.getElementById("information").style.visibility = "visible";
             if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(position => {
+                navigator.geolocation.getCurrentPosition(async (position) => {
                     var userLat = position.coords.latitude;
                     var userLng = position.coords.longitude;
                     const lngLat = endPoint.getLngLat();
@@ -86,116 +206,8 @@ export const Map = () => {
                     const url = "https://api.mapbox.com/directions/v5/mapbox/driving-traffic/" + userLng + "," + userLat + ";" + locationLng + "," + locationLat + "?waypoints=0;1&alternatives=true&steps=true&access_token=" + mapboxgl.accessToken;
                     const route = [];
                     const secondRoute = [];
-                    fetch(url, {
-                        method: 'GET'
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.routes.length >= 2) {
-                                let distance = data.routes[0].distance / 1609;
-                                setFirstRouteDistance(distance.toFixed(2));
-                                setFirstRouteDuration(Math.round((data.routes[0].duration) / 60));
-
-                                for (let i = 0; i < data.routes[0].legs[0].steps.length; i++) {
-                                    route.push(data.routes[0].legs[0].steps[i].maneuver.location);
-                                }
-                                let secondRouteDistance = data.routes[1].distance / 1609;
-                                setSecondRouteDistance(secondRouteDistance.toFixed(2));
-                                setSecondRouteDuration(Math.round((data.routes[1].duration) / 60));
-
-                                for (let i = 0; i < data.routes[1].legs[0].steps.length; i++) {
-                                    secondRoute.push(data.routes[1].legs[0].steps[i].maneuver.location);
-                                }
-                                map.addLayer({
-                                    "id": "route",
-                                    "type": "line",
-                                    "source": {
-                                        "type": "geojson",
-                                        "data": {
-                                            "type": "Feature",
-                                            "properties": {},
-                                            "geometry": {
-                                                "type": 'LineString',
-                                                'coordinates': route
-                                            }
-                                        }
-                                    },
-                                    "layout": {
-                                        "line-join": "round",
-                                        "line-cap": "round"
-                                    },
-                                    "paint": {
-                                        "line-color": "#0096FF",
-                                        "line-width": 12,
-                                        "line-opacity": 0.8
-                                    }
-                                });
-                                map.addLayer({
-                                    "id": "route2",
-                                    "type": "line",
-                                    "source": {
-                                        "type": "geojson",
-                                        "data": {
-                                            "type": "Feature",
-                                            "properties": {},
-                                            "geometry": {
-                                                "type": 'LineString',
-                                                'coordinates': secondRoute
-                                            }
-                                        }
-                                    },
-                                    "layout": {
-                                        "line-join": "round",
-                                        "line-cap": "round"
-                                    },
-                                    "paint": {
-                                        "line-color": "#ff0000",
-                                        "line-width": 12,
-                                        "line-opacity": 0.8
-                                    }
-                                });
-                                document.getElementById("first-route-info").style.visibility = "visible";
-                                document.getElementById("second-route-info").style.visibility = "visible";
-                            }
-                            else {
-                                let distance = data.routes[0].distance / 1609;
-                                setFirstRouteDistance(distance.toFixed(2));
-                                setFirstRouteDuration(Math.round((data.routes[0].duration) / 60));
-
-                                for (let i = 0; i < data.routes[0].legs[0].steps.length; i++) {
-                                    route.push(data.routes[0].legs[0].steps[i].maneuver.location);
-                                }
-                                map.addLayer({
-                                    "id": "route",
-                                    "type": "line",
-                                    "source": {
-                                        "type": "geojson",
-                                        "data": {
-                                            "type": "Feature",
-                                            "properties": {},
-                                            "geometry": {
-                                                "type": 'LineString',
-                                                'coordinates': route
-                                            }
-                                        }
-                                    },
-                                    "layout": {
-                                        "line-join": "round",
-                                        "line-cap": "round"
-                                    },
-                                    "paint": {
-                                        "line-color": "#0096FF",
-                                        "line-width": 12,
-                                        "line-opacity": 0.8
-                                    }
-                                });
-                                document.getElementById("first-route-info").style.visibility = "visible";
-                                document.getElementById("second-route-info").style.visibility = "hidden";
-                            }
-                        })
-                        .catch((error) => {
-                            console.error('Error:', error);
-                        });
+                    var apiData = await fetchData(url,"GET", []);
+                    calculateRouteInfo(apiData,route,secondRoute);
                 });
             }
             else {
@@ -204,16 +216,10 @@ export const Map = () => {
 
         };
         function cyclingRoute() {
-            if (map.getSource('route')) {
-                map.removeLayer('route')
-                map.removeSource('route')
-            } if (map.getSource('route2')) {
-                map.removeLayer('route2')
-                map.removeSource('route2')
-            }
+            removeAllRoutes()
             document.getElementById("information").style.visibility = "visible";
             if ("geolocation" in navigator) {
-                navigator.geolocation.getCurrentPosition(position => {
+                navigator.geolocation.getCurrentPosition(async (position) => {
                     var userLat = position.coords.latitude;
                     var userLng = position.coords.longitude;
                     const lngLat = endPoint.getLngLat();
@@ -222,123 +228,8 @@ export const Map = () => {
                     const url = "https://api.mapbox.com/directions/v5/mapbox/cycling/" + userLng + "," + userLat + ";" + locationLng + "," + locationLat + "?waypoints=0;1&alternatives=true&steps=true&access_token=" + mapboxgl.accessToken;
                     const route = [];
                     const secondRoute = [];
-                    fetch(url, {
-                        method: 'GET'
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.routes.length >= 2) {
-                                let distance = data.routes[0].distance / 1609;
-                                setFirstRouteDistance(distance.toFixed(2));
-                                setFirstRouteDuration(Math.round((data.routes[0].duration) / 60));
-
-                                for (let i = 0; i < data.routes[0].legs[0].steps.length; i++) {
-                                    route.push(data.routes[0].legs[0].steps[i].maneuver.location);
-                                }
-                                let secondRouteDistance = data.routes[1].distance / 1609;
-                                setSecondRouteDistance(secondRouteDistance.toFixed(2));
-                                setSecondRouteDuration(Math.round((data.routes[1].duration) / 60));
-
-                                for (let i = 0; i < data.routes[1].legs[0].steps.length; i++) {
-                                    secondRoute.push(data.routes[1].legs[0].steps[i].maneuver.location);
-                                }
-                                map.addLayer({
-                                    "id": "route",
-                                    "type": "line",
-                                    "source": {
-                                        "type": "geojson",
-                                        "data": {
-                                            "type": "Feature",
-                                            "properties": {},
-                                            "geometry": {
-                                                "type": 'LineString',
-                                                'coordinates': route
-                                            }
-                                        }
-                                    },
-                                    "layout": {
-                                        "line-join": "round",
-                                        "line-cap": "round"
-                                    },
-                                    "paint": {
-                                        "line-color": "#0096FF",
-                                        "line-width": 12,
-                                        "line-opacity": 0.8
-                                    }
-                                });
-
-                                map.addLayer({
-                                    "id": "route2",
-                                    "type": "line",
-                                    "source": {
-                                        "type": "geojson",
-                                        "data": {
-                                            "type": "Feature",
-                                            "properties": {},
-                                            "geometry": {
-                                                "type": 'LineString',
-                                                'coordinates': secondRoute
-                                            }
-                                        }
-                                    },
-                                    "layout": {
-                                        "line-join": "round",
-                                        "line-cap": "round"
-                                    },
-                                    "paint": {
-                                        "line-color": "#ff0000",
-                                        "line-width": 12,
-                                        "line-opacity": 0.8
-                                    }
-                                });
-                                document.getElementById("first-route-info").style.visibility = "visible";
-                                document.getElementById("second-route-info").style.visibility = "visible";
-
-                            }
-                            else {
-                                let distance = data.routes[0].distance / 1609;
-                                setFirstRouteDistance(distance.toFixed(2));
-                                setFirstRouteDuration(Math.round((data.routes[0].duration) / 60));
-                                for (let i = 0; i < data.routes[0].legs[0].steps.length; i++) {
-                                    route.push(data.routes[0].legs[0].steps[i].maneuver.location);
-                                }
-                                if (map.getSource('route')) {
-                                    map.removeLayer('route')
-                                    map.removeSource('route')
-                                } else {
-                                    map.addLayer({
-                                        "id": "route",
-                                        "type": "line",
-                                        "source": {
-                                            "type": "geojson",
-                                            "data": {
-                                                "type": "Feature",
-                                                "properties": {},
-                                                "geometry": {
-                                                    "type": 'LineString',
-                                                    'coordinates': route
-                                                }
-                                            }
-                                        },
-                                        "layout": {
-                                            "line-join": "round",
-                                            "line-cap": "round"
-                                        },
-                                        "paint": {
-                                            "line-color": "#0096FF",
-                                            "line-width": 12,
-                                            "line-opacity": 0.8
-                                        }
-                                    });
-                                };
-
-                                document.getElementById("first-route-info").style.visibility = "visible";
-                                document.getElementById("second-route-info").style.visibility = "hidden";
-                            }
-                        })
-                        .catch((error) => {
-                            console.error('Error:', error);
-                        });
+                    var apiData = await fetchData(url, "GET", []);
+                    calculateRouteInfo(apiData, route, secondRoute);
                 });
             }
             else {
@@ -346,8 +237,9 @@ export const Map = () => {
             }
         };
 
-        function zonesPassed(listOfCoordinates) {
+        function zonesPassed(listOfCoordinates,TimeAdditions) {
             const listofPassedZones = []
+            var addedTime = 0;
             for (let x = 0; x < listOfCoordinates.length; x++) {
                 if ((listOfCoordinates[x][0] >= Zone1[1] && listOfCoordinates[x][0] <= Zone1[3]) && (listOfCoordinates[x][1] >= Zone1[0] && listOfCoordinates[x][1] <= Zone1[2])) {
                     if (!listofPassedZones.includes("Zone1")) {
@@ -355,42 +247,41 @@ export const Map = () => {
                     }
                 }
                 else if ((listOfCoordinates[x][0] >= Zone2[1] && listOfCoordinates[x][0] <= Zone2[3]) && (listOfCoordinates[x][1] >= Zone2[0] && listOfCoordinates[x][1] <= Zone2[2])) {
-                    if (!listofPassedZones.includes("Zone1")) {
-                        listofPassedZones.push("Zone1");
+                    if (!listofPassedZones.includes("Zone2")) {
+                        listofPassedZones.push("Zone2");
                     }
                 }
                 else if ((listOfCoordinates[x][0] >= Zone3[1] && listOfCoordinates[x][0] <= Zone3[3]) && (listOfCoordinates[x][1] >= Zone3[0] && listOfCoordinates[x][1] <= Zone3[2])) {
-                    if (!listofPassedZones.includes("Zone1")) {
-                        listofPassedZones.push("Zone1");
+                    if (!listofPassedZones.includes("Zone3")) {
+                        listofPassedZones.push("Zone3");
                     }
                 }
             }
-            return listofPassedZones;
+            if (listofPassedZones.includes("Zone1")) {
+                addedTime = addedTime + TimeAdditions[0][1];
+
+            }
+            if (listofPassedZones.includes("Zone2")) {
+                addedTime = addedTime + TimeAdditions[1][1];
+
+            }
+            if (listofPassedZones.includes("Zone3")) {
+                addedTime = addedTime + TimeAdditions[2][1];
+            }
+            return addedTime;
         }
 
         const geolocateControl = new mapboxgl.GeolocateControl({
             positionOptions: { enableHighAccuracy: true },
             showUserHeading: true
         })
-        //this is the search bar that is no longer needed. I think
-        //const geocoder = new MapboxGeocoder({
-        //    accessToken: mapboxgl.accessToken,
-        //    mapboxgl: mapboxgl
-        //});
+
         map.addControl(geolocateControl, 'bottom-right');
-        //map.addControl(geocoder, "bottom-left")
 
         const walkingBtn = document.getElementById("walking-btn");
 
         walkingBtn.addEventListener("click", () => {
-            if (map.getSource('route')) {
-                map.removeLayer('route')
-                map.removeSource('route')
-            }
-            if (map.getSource('route2')) {
-                map.removeLayer('route2')
-                map.removeSource('route2')
-            }
+            removeAllRoutes()
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(position => {
                     var userLat = position.coords.latitude;
@@ -398,172 +289,11 @@ export const Map = () => {
                     const lngLat = endPoint.getLngLat();
                     let locationLat = lngLat.lat;
                     let locationLng = lngLat.lng;
-                    const url = "https://api.mapbox.com/directions/v5/mapbox/walking/" + userLng + "," + userLat + ";" + locationLng + "," + locationLat + "?waypoints=0;1&walkway_bias=1&alternatives=true&steps=true&access_token=" + mapboxgl.accessToken;
-                    const coordinates = [];
-                    fetch(url, {
-                        method: 'GET'
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            const zoneUrl = "https://arrownav.azurewebsites.net/trafficsurvey";
-                            var TimeAdditions = [];
-                            for (let i = 0; i < data.routes[0].legs[0].steps.length; i++) {
-                                coordinates.push(data.routes[0].legs[0].steps[i].maneuver.location);
-                            }
-                            fetch(zoneUrl, {
-                                method: 'GET',
-                            })
-                                .then(response => response.json())
-                                .then(data2 => {
-                                    //loop through the keys and save them to the list which will be used later to update the duration of the route 
-                                    for (const [key, value] of Object.entries(data2)) {
-                                        var zoneValue = value["item1"];
-                                        var surveyCount = value["item2"];
-                                        var timeAdded = zoneValue / surveyCount;
-                                        if (isFinite(timeAdded)) {
-                                            TimeAdditions.push([key, Math.ceil(timeAdded)]);
-                                        }
-                                        else {
-                                            TimeAdditions.push([key, 0]);
-                                        }
-                                        
-                                    }
-                                    const zones = zonesPassed(coordinates);
-                                    var timeAddedForRoute1 = 0;
-                                    if (zones.includes("Zone1")) {
-                                        timeAddedForRoute1 = timeAddedForRoute1 + TimeAdditions[0][1];
-
-                                    }
-                                    if (zones.includes("Zone2")) {
-                                        timeAddedForRoute1 = timeAddedForRoute1 + TimeAdditions[1][1];
-
-                                    }
-                                    if (zones.includes("Zone3")) {
-                                        timeAddedForRoute1 = timeAddedForRoute1 + TimeAdditions[2][1];
-                                    }
-
-                                    let distance = data.routes[0].distance / 1609;
-                                    setFirstRouteDistance(distance.toFixed(2));
-                                    setFirstRouteDuration(Math.round((data.routes[0].duration) / 60) + timeAddedForRoute1);
-                                })
-                                .catch((error) => {
-                                    console.error('Error', error);
-                                });
-
-                            map.addLayer({
-                                "id": "route",
-                                "type": "line",
-                                "source": {
-                                    "type": "geojson",
-                                    "data": {
-                                        "type": "Feature",
-                                        "properties": {},
-                                        "geometry": {
-                                            "type": 'LineString',
-                                            'coordinates': coordinates
-                                        }
-                                    }
-                                },
-                                "layout": {
-                                    "line-join": "round",
-                                    "line-cap": "round"
-                                },
-                                "paint": {
-                                    "line-color": "#0096FF",
-                                    "line-width": 12,
-                                    "line-opacity": 0.8
-                                }
-                            });
-                        })
-                        .catch((error) => {
-                            console.error('Error:', error);
-                        });
-                    const coords = [];
-                    const url2 = "https://api.mapbox.com/directions/v5/mapbox/walking/" + userLng + "," + userLat + ";" + locationLng + "," + locationLat + "?waypoints=0;1&walkway_bias=-1&alternatives=true&steps=true&access_token=" + mapboxgl.accessToken;
-                    fetch(url2, {
-                        method: 'GET'
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            const zoneUrl = "https://arrownav.azurewebsites.net/trafficsurvey";
-                            var TimeAdditions = [];
-                            for (let i = 0; i < data.routes[0].legs[0].steps.length; i++) {
-                                coords.push(data.routes[0].legs[0].steps[i].maneuver.location);
-                            }
-                            fetch(zoneUrl, {
-                                method: 'GET',
-                            })
-                                .then(response => response.json())
-                                .then(data2 => {
-                                    //loop through the keys and save them to the list which will be used later to update the duration of the route 
-                                    for (const [key, value] of Object.entries(data2)) {
-                                        var zoneValue = value["item1"];
-                                        console.log("zonevalue", zoneValue);
-                                        var surveyCount = value["item2"];
-                                        console.log("surveycount", surveyCount);
-                                        var timeAdded = zoneValue / surveyCount;
-                                        console.log("time added", timeAdded)
-                                        if (isFinite(timeAdded)) {
-                                            TimeAdditions.push([key, Math.ceil(timeAdded)]);
-                                        }
-                                        else {
-                                            TimeAdditions.push([key, 0]);
-                                        }
-
-                                    }
-                                    const zones = zonesPassed(coords);
-                                    var timeAddedForRoute2 = 0;
-                                    if (zones.includes("Zone1")) {
-                                        timeAddedForRoute2 = timeAddedForRoute2 + TimeAdditions[0][1];
-                                        console.log(timeAddedForRoute2);
-
-                                    }
-                                    if (zones.includes("Zone2")) {
-                                        timeAddedForRoute2 = timeAddedForRoute2 + TimeAdditions[1][1];
-                                        console.log(timeAddedForRoute2);
-
-                                    }
-                                    if (zones.includes("Zone3")) {
-                                        timeAddedForRoute2 = timeAddedForRoute2 + TimeAdditions[2][1];
-                                        console.log(timeAddedForRoute2);
-                                    }
-                                    let distance = data.routes[0].distance / 1609;
-                                    setSecondRouteDistance(distance.toFixed(2));
-                                    console.log(data.routes[0].duration);
-                                    setSecondRouteDuration(Math.round((data.routes[0].duration) / 60) + timeAddedForRoute2);
-                                })
-                                .catch((error) => {
-                                    console.error('Error', error);
-                                });
-
-                            map.addLayer({
-                                "id": "route2",
-                                "type": "line",
-                                "source": {
-                                    "type": "geojson",
-                                    "data": {
-                                        "type": "Feature",
-                                        "properties": {},
-                                        "geometry": {
-                                            "type": 'LineString',
-                                            'coordinates': coords
-                                        }
-                                    }
-                                },
-                                "layout": {
-                                    "line-join": "round",
-                                    "line-cap": "round"
-                                },
-                                "paint": {
-                                    "line-color": "#ff0000",
-                                    "line-width": 8,
-                                    "line-opacity": 0.8
-                                }
-                            });
-                        })
-                        .catch((error) => {
-                            console.error('Error:', error);
-                        });
+                    const zoneUrl = "https://localhost:44465/trafficsurvey";
+                    const walkingUrl = "https://api.mapbox.com/directions/v5/mapbox/walking/" + userLng + "," + userLat + ";" + locationLng + "," + locationLat + "?waypoints=0;1&walkway_bias=1&alternatives=true&steps=true&access_token=" + mapboxgl.accessToken;
+                    fetchWalkingData(walkingUrl, zoneUrl, "route", "#0096FF");
+                    const walkingUrl2 = "https://api.mapbox.com/directions/v5/mapbox/walking/" + userLng + "," + userLat + ";" + locationLng + "," + locationLat + "?waypoints=0;1&walkway_bias=-1&alternatives=true&steps=true&access_token=" + mapboxgl.accessToken;
+                    fetchWalkingData(walkingUrl2, zoneUrl, "route2", "#ff0000");
                     document.getElementById("information").style.visibility = "visible";
                     document.getElementById("first-route-info").style.visibility = "visible";
                     document.getElementById("second-route-info").style.visibility = "visible";
@@ -578,29 +308,17 @@ export const Map = () => {
             console.log(buildingName.current);
             putPin(buildingName.current);
         })
-        //from now on we are using useRef when updating variables as it doesnt re render thus losing the saved value and it will result to the default value of an empty string
-        //current problem is that the the building controller doesn't like the payload and idk how it should be formatted.
-        function putPin(building) {
-            fetch("https://arrownav.azurewebsites.net/building/getLatLong?BuildingName=" + building , {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-            })
-                .then(response => response.json())
-                .then(data => {
-                    buildingLat.current = data.latitude;
-                    console.log(buildingLat.current)
-                    buildingLong.current = data.longitude;
-                    console.log(buildingLong.current)
-                    endPoint.setLngLat([buildingLong.current, buildingLat.current]);
-                    endPoint.addTo(map);
-                    document.getElementById('button-container').style.visibility = 'visible';
-                })
-                .catch((error) => {
-                    console.error('Error', error);
-                });
+        
+        async function putPin(building) {
+            var data = await fetchData("https://localhost:44465/building/getLatLong?BuildingName=" + building, "POST", []);
+            console.log(data);
+            buildingLat.current = data.latitude;
+            console.log(buildingLat.current)
+            buildingLong.current = data.longitude;
+            console.log(buildingLong.current)
+            endPoint.setLngLat([buildingLong.current, buildingLat.current]);
+            endPoint.addTo(map);
+            document.getElementById('button-container').style.visibility = 'visible';
             
         }
 
@@ -618,7 +336,6 @@ export const Map = () => {
             setLat(map.getCenter().lat.toFixed(4));
             setZoom(map.getZoom().toFixed(2));
         });
-
 
         // Clean up on unmount
         return () => map.remove();

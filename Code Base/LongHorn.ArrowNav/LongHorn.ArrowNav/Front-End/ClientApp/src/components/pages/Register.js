@@ -13,7 +13,7 @@ export const Register = () => {
         e.preventDefault();
         //will have to change when it gets published so that it will actually communicate with the
         //live website
-        fetch('https://arrownav.azurewebsites.net/register/createaccount', {
+        fetch(process.env.REACT_APP_FETCH +'/register/createaccount', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

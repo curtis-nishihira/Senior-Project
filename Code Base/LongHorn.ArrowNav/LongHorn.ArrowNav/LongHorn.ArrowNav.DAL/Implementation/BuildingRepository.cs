@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LongHorn.ArrowNav.Models;
 
-namespace LongHorn.ArrowNav.DAL.Implementation
+namespace LongHorn.ArrowNav.DAL
 {
     public class BuildingRepository : IRepository<BuildingModel>
     {

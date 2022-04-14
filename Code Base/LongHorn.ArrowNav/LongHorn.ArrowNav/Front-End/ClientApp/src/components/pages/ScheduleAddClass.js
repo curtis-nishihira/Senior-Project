@@ -14,7 +14,7 @@ export const ScheduleAddClass = (props) => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('https://arrownav.azurewebsites.net/schedule/scheduleadd', {
+        fetch(process.env.REACT_APP_FETCH + '/schedule/scheduleadd', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

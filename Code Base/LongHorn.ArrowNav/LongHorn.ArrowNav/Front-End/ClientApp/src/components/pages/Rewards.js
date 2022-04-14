@@ -17,20 +17,6 @@ export const Rewards = () => {
         setFormValues({ ...formValues, [name]: value });
         //console.log(formValues);
     };
-
-    /*
-    constructor(credits) {
-        super(props);
-        this.state = { currentCredits: 0 };
-        this.incrementCredits = this.incrementCredits.bind(this);
-    }
-
-    incrementCredits(){
-        this.setState({
-            currentCredits: this.state.currentCredits + 50
-        });
-    }
-    */
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -57,14 +43,12 @@ export const Rewards = () => {
         return errors;
     };
 
-    //<button onClick={() => setCredit((isCredit + 50))}>Claim Credits</button>
+    function buttonPressed() {
+        setCount(isCount + 1);
+        setCredit(isCredit + 50);
+    }
 
-    //onClick={() => setCredit((isCredit + 50))}
-    //onClick={() => setCount((isCount + 1))}
-    //disabled = { isCount == 1}
-    //onClick={() => setCount((isCount + 1))}>Claim Credits</button>
-
-
+    //display
     return (
         <div className="container">
             <form onSubmit={handleSubmit}>
@@ -85,8 +69,7 @@ export const Rewards = () => {
                     (<div>
                         <p>Correct Answer!</p>
                         <button
-                            //onClick={() => setCredit((isCredit + 50))}
-                            onClick={() => setCount((isCount + 1))}
+                            onClick={buttonPressed}
                             disabled = { isCount == 1}>Claim Credits</button>
                             
                     </div>) : (<div className="ui message success"></div>)}
@@ -95,7 +78,7 @@ export const Rewards = () => {
             </form>
 
             <p></p>
-
+            
             <label>Coupons:</label>
             <select>
                 <option value="coupon1">10% off @ Sbarro</option>

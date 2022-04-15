@@ -12,23 +12,23 @@ namespace Front_End.Controllers
         
         [HttpPost]
         [Route("InsertReward")]
-        public string CreateReward(Rewards reward)
+        public string CreateRewardClass(Rewards reward)
         {
             RewardsManager scheduleManager = new RewardsManager();
             var result = scheduleManager.Create(reward);
             return result;
         }
         [HttpPost]
-        [Route("scheduledelete")]
-        public string DeleteClass(Rewards reward)
+        [Route("DeleteReward")]
+        public string DeleteRewardClass(Rewards reward)
         {
             RewardsManager scheduleManager = new RewardsManager();
             var result = scheduleManager.Delete(reward);
             return result;
         }
         [HttpPost]
-        [Route("scheduleedit")]
-        public string EditClass(Rewards reward)
+        [Route("UpdateRewards")]
+        public string EditRewardClass(Rewards reward)
         {
             RewardsManager scheduleManager = new RewardsManager();
             var result = scheduleManager.Edit(reward);

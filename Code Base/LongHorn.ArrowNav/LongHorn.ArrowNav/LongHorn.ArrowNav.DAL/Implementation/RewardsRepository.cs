@@ -68,7 +68,27 @@ namespace LongHorn.ArrowNav.DAL.Implementation
 
         public string Update(Rewards model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var sqlConnectionString = getConnection();
+
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    var sqlStatement = string.Format("exec UpdateRewards '{0}', '{1}','{2}'", model._Email, model._Credits, model._Counter);
+                    using (var command = new SqlCommand(sqlStatement, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                }
+
+                return "Rewards Updated";
+            }
+
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
         }
 
         public string getConnection()

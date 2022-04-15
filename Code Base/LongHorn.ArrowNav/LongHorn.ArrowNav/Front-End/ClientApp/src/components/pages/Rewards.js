@@ -70,7 +70,8 @@ export const Rewards = () => {
                         <p>Correct Answer!</p>
                         <button
                             onClick={buttonPressed}
-                            disabled = { isCount == 1}>Claim Credits</button>
+                            disabled={isCount == 1}>Claim Credits
+                        </button>
                             
                     </div>) : (<div className="ui message success"></div>)}
                 

@@ -355,7 +355,7 @@ export const Map = () => {
             <div className="search-div">
                 <datalist id="buildings">
                 </datalist>
-                <input placeholder="Enter Building Name" autoComplete="on" list="buildings" onSelect={(e) => buildingName.current = e.target.value} />
+                <input className = "search-bar" placeholder="Enter Building Name" autoComplete="on" list="buildings" onSelect={(e) => buildingName.current = e.target.value} />
                 <button type="button" id="search-btn" > search</button>
             </div>
             <div className='map-container' ref={mapContainerRef} />

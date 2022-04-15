@@ -3,7 +3,7 @@ using LongHorn.ArrowNav.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using LongHorn.ArrowNav.DAL.Implementation;
+using LongHorn.ArrowNav.DAL;
 
 namespace LongHorn.ArrowNav.Services
 {

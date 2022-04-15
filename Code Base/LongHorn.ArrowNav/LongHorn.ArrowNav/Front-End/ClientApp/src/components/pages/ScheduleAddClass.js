@@ -7,14 +7,56 @@ export const ScheduleAddClass = (props) => {
     const [classValuesErrors, setClassValuesErrors] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
 
+    async function fetchData(url, methodType, bodyData) {
+        if (methodType === "GET") {
+            const response = await fetch(url);
+            const data = await response.json();
+            return data;
+        }
+        else if (methodType === "POST") {
+            const response = await fetch(url, { method: methodType })
+            const data = await response.json();
+            return data;
+        }
 
+    }
+
+
+    async function fillBuildingsOption() {
+        var fillBoxUrl = process.env.REACT_APP_FETCH + '/building/getAllBuildings';
+        var x = await fetchData(fillBoxUrl, "GET", []);
+        var listOfBuildings = x;
+        var sel = document.getElementById('buildings');
+        for (var i = 0; i < listOfBuildings.length; i++) {
+            var opt = document.createElement('option');
+            opt.innerHTML = listOfBuildings[i];
+            opt.textContent = listOfBuildings[i];
+            opt.value = listOfBuildings[i];
+            sel.appendChild(opt);
+        }
+
+    }
+    useEffect(() => {
+        fillBuildingsOption();
+    })
     const handleChange = (e) => {
         const { name, value } = e.target;
         setClassValues({ ...classValues, [name]: value })
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        fetch('https://arrownav.azurewebsites.net/schedule/scheduleadd', {
+        var buildingAcronym;
+        var buildingcontrollerurl = process.env.REACT_APP_FETCH + '/building/getAcronymbyBuildingName?BuildingName=' + classValues.building;
+
+        try {
+            buildingAcronym = await fetchData(buildingcontrollerurl, 'GET', []);
+        }
+        catch
+        {
+            buildingAcronym = "NVM";
+        }
+        
+        fetch(process.env.REACT_APP_FETCH + '/schedule/scheduleadd', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -24,7 +66,7 @@ export const ScheduleAddClass = (props) => {
                 _Username: classValues.username,
                 _course: classValues.course,
                 _coursetype: classValues.coursetype,
-                _building: classValues.building,
+                _building: buildingAcronym,
                 _room: classValues.room,
                 _days: classValues.days,
                 _starttime: classValues.starttime,
@@ -105,7 +147,7 @@ export const ScheduleAddClass = (props) => {
     return (
         <div className="addclass-container">
             {Object.keys(classValuesErrors).length === 0 && isSubmit ? (<div className="addclass-message-success"> Class Added Successfully </div>) : (<div className="addclass-message-fail">Fill Out the Required Fields to Add Class to Schedule</div>)}
-            {/*<pre>{JSON.stringify(classValues, undefined, 2)}</pre>*/}
+            <pre>{JSON.stringify(classValues, undefined, 2)}</pre>
 
             <form onSubmit={handleSubmit}>
                 <h1>ENTER CLASS INFORMATION</h1>
@@ -141,51 +183,8 @@ export const ScheduleAddClass = (props) => {
 
                     <div className='form-inputs'>
                         <label>Select Building</label>
-                        <select name="building" required value={classValues.building} onChange={handleChange}>
-                            <option value=""></option>
-                            <option value="CDC">CDC - Child Development Center</option>
-                            <option value="COB">COB - College of Business</option>
-                            <option value="CORP">CORP - Corporation Yard</option>
-                            <option value="CPAC">CPAC - Carpenter Performance Art Center</option>
-                            <option value="CPIE">CPIE - College of Professional & International Education</option>
-                            <option value="DC">DC - Dance Center</option>
-                            <option value="DESN">DESN - Design</option>
-                            <option value="ECS">ECS - Engineering & Computer Science</option>
-                            <option value="ED2">ED2 - Education 2</option>
-                            <option value="EED">EED - Bob & Brabara Ellis Education Building</option>
-                            <option value="EN2">EN2 - Engineering 2</option>
-                            <option value="EN3">EN3 - Engineering 3</option>
-                            <option value="EN4">EN4 - Engineering 4</option>
-                            <option value="ET">ET - Engineering Technology</option>
-                            <option value="FA1">FA1 - Fine Arts 1</option>
-                            <option value="FA2">FA2 - Fine Arts 2</option>
-                            <option value="FA3">FA3 - Fine Arts 3</option>
-                            <option value="FA4">FA4 - Fine Arts 4</option>
-                            <option value="FCS">FCS - Family & Consumer Sciences</option>
-                            <option value="FND">FND - Foundation</option>
-                            <option value="HC">HC - Horn Center</option>
-                            <option value="HSCI">HSCI - Hall of Science</option>
-                            <option value="HSD">HSD - Human Services and Design</option>
-                            <option value="KIN">KIN - Kinesiology</option>
-                            <option value="LA1">LA1 - Liberal Arts 1</option>
-                            <option value="LA2">LA2 - Liberal Arts 2</option>
-                            <option value="LA3">LA3 - Liberal Arts 3</option>
-                            <option value="LA4">LA4 - Liberal Arts 4</option>
-                            <option value="LA5">LA5 - Liberal Arts 5</option>
-                            <option value="LAB">LAB - Language Arts</option>
-                            <option value="LH">LH - Lecture Hall</option>
-                            <option value="MCIB">MCIB - Macintosh Humanities Building</option>
-                            <option value="MIC">MIC - Microbiology</option>
-                            <option value="MLCS">MLCS - Molecular & Life Science Center</option>
-                            <option value="NUR">NUR - Nursing</option>
-                            <option value="PH1">PH1 - Peterson Hall 1</option>
-                            <option value="PSY">PSY - Psychology</option>
-                            <option value="REPR">REPR - Reprographics</option>
-                            <option value="SSPA">SSPA - Social Science/Public Affairs</option>
-                            <option value="TA">TA - Theatre Arts</option>
-                            <option value="UMC">UMC - University Music Center</option>
-                            <option value="UT">UT - University Theatre</option>
-                            <option value="VEC">VEC - Vivian Engineering Center</option>
+                        <select name="building" required value={classValues.building} onChange={handleChange} id='buildings'>
+                            
                         </select>
                     </div>
                     <div className='input-errors'>
@@ -203,7 +202,21 @@ export const ScheduleAddClass = (props) => {
 
                     <div className='form-inputs'>
                         <label>Days</label>
-                        <input type="text" name="days" placeholder="M=Monday T=Tuesday W=Wednesday TH=Thursday F=Friday S=Saturday S=Sunday" required value={classValues.days} onChange={handleChange}></input>
+                        <select name="days" required value={classValues.days} onChange={handleChange}>
+                            <option value=""></option>
+                            <option value="M W">MONDAY + WEDNESDAY</option>
+                            <option value="T H">TUESDAY + THURSDAY</option>
+                            <option value="M W F">MONDAY + WEDNESDAY + FRIDAY</option>
+                            <option value="M">MONDAY</option>
+                            <option value="T">TUESDAY</option>
+                            <option value="W">WEDNESDAY</option>
+                            <option value="H">THURSDAY</option>
+                            <option value="F">FRIDAY</option>
+                            <option value="S">SATURDAY</option>
+                            <option value="U">SUNDAY</option>
+                            <option value="M T W H F">WEEKDAYS</option>
+                            <option value="M T W H F S U">EVERYDAY</option>
+                        </select>
                     </div>
                     <div className='input-errors'>
                         <p>{classValuesErrors.days}</p>

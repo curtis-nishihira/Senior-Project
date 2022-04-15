@@ -33,7 +33,7 @@ export function UserHome() {
 
     function fillTable() {
         if (isAddOpen == false && isEditOpen == false) {
-            fetch('https://arrownav.azurewebsites.net/schedule/getschedule?email=' + userEmail, {
+            fetch(process.env.REACT_APP_FETCH + '/schedule/getschedule?email=' + userEmail, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -95,7 +95,7 @@ export function UserHome() {
     }
 
     function getProfile() {
-        fetch("https://arrownav.azurewebsites.net/login/getProfile?email=" + userEmail, {
+        fetch(process.env.REACT_APP_FETCH + "/login/getProfile?email=" + userEmail, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -167,7 +167,7 @@ export function UserHome() {
     }, [isAddOpen, isEditOpen, isSelected])
 
     function logout() {
-        fetch('https://arrownav.azurewebsites.net/login/removecookie', {
+        fetch(process.env.REACT_APP_FETCH + '/login/removecookie', {
             method: "GET",
             headers: {
                 'Accept': 'application/json',
@@ -189,7 +189,7 @@ export function UserHome() {
 
     function deleteCourse() {
         if (selectedCourse != '') {
-            fetch('https://arrownav.azurewebsites.net/schedule/scheduledelete', {
+            fetch(process.env.REACT_APP_FETCH +'/schedule/scheduledelete', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -221,7 +221,7 @@ export function UserHome() {
 
     function findOnMap() {
         if (selectedCourse != '') {
-            fetch('https://arrownav.azurewebsites.net/building/getBuildingbyAcronym?acronym=' + selectedBuilding, {
+            fetch(process.env.REACT_APP_FETCH + '/building/getBuildingbyAcronym?acronym=' + selectedBuilding, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -244,7 +244,7 @@ export function UserHome() {
 
     function deleteAccount() {
         console.log(userEmail);
-        fetch("https://arrownav.azurewebsites.net/login/deleteAccount?email=" + userEmail, {
+        fetch(process.env.REACT_APP_FETCH +"/login/deleteAccount?email=" + userEmail, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

@@ -42,7 +42,7 @@ export const Login = (props) => {
 
     const loginHandler = (e) => {
         e.preventDefault();
-        fetch('https://arrownav.azurewebsites.net/login', {
+        fetch(process.env.REACT_APP_FETCH +'/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -56,7 +56,7 @@ export const Login = (props) => {
             .then(response => response.json())
             .then(data => {
                 if (data == "Account is authenticated") {
-                    fetch('https://arrownav.azurewebsites.net/login/createcookie', {
+                    fetch(process.env.REACT_APP_FETCH +'/login/createcookie', {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',

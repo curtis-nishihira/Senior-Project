@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LongHorn.ArrowNav.DAL.Implementation
+namespace LongHorn.ArrowNav.DAL
 {
     public class ScheduleRepository : IRepository<StudentClassModel>
     {

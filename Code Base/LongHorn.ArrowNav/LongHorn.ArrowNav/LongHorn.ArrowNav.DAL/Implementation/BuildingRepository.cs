@@ -86,6 +86,40 @@ namespace LongHorn.ArrowNav.DAL
                 return "Error";
             }
         }
+
+        public string AcryonmByBuilding(string buildingname)
+        {
+            try
+            {
+                var sqlConnectionString = getConnection();
+
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    string temp = "";
+                    var sqlStatement = string.Format("exec GetAcronymsbyBuildingNames '{0}'", buildingname);
+                    using (var command = new SqlCommand(sqlStatement, connection))
+                    {
+                        command.Connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            temp = string.Format("{0}", reader["Acronym"]);
+                        }
+                        reader.Close();
+                    }
+                    connection.Close();
+                    return temp;
+                }
+
+
+
+            }
+            catch (Exception e)
+            {
+                return "Error";
+            }
+        }
         public List<string> ReadAllBuildings()
         {
             List<string> retrievedValues = new List<string>();

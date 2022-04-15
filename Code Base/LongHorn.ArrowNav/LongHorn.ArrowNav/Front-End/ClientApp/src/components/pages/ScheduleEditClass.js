@@ -148,7 +148,7 @@ export const ScheduleEditClass = (props) => {
     return (
         <div className="addclass-container">
             {Object.keys(classValuesErrors).length === 0 && isSubmit ? (<div className="addclass-message-success"> Class Edited Successfully </div>) : (<div className="addclass-message-fail">Edit Class</div>)}
-            {/*<pre>{JSON.stringify(classValues, undefined, 2)}</pre>*/}
+            
 
             <form onSubmit={handleSubmit}>
                 <h1>ENTER CLASS INFORMATION</h1>

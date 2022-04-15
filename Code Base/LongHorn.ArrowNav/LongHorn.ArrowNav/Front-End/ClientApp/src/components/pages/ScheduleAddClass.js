@@ -147,7 +147,7 @@ export const ScheduleAddClass = (props) => {
     return (
         <div className="addclass-container">
             {Object.keys(classValuesErrors).length === 0 && isSubmit ? (<div className="addclass-message-success"> Class Added Successfully </div>) : (<div className="addclass-message-fail">Fill Out the Required Fields to Add Class to Schedule</div>)}
-            <pre>{JSON.stringify(classValues, undefined, 2)}</pre>
+            
 
             <form onSubmit={handleSubmit}>
                 <h1>ENTER CLASS INFORMATION</h1>

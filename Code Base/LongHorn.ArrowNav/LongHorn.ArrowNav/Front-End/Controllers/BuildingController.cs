@@ -26,6 +26,17 @@ namespace Front_End.Controllers
             List<string> buildings = repo.ReadAllBuildings();
             return buildings;
         }
+
+        [HttpGet]
+        [Route("getAllBuildingAcronyms")]
+        public List<string> GetAllBuildingAcronyms()
+        {
+            BuildingRepository repo = new BuildingRepository();
+            List<string> buildings = repo.ReadAllAcronyms();
+            return buildings;
+        }
+
+
         [HttpGet]
         [Route("getAcronymbyBuildingName")]
         public string GetAcronymbyBuilding(string BuildingName)

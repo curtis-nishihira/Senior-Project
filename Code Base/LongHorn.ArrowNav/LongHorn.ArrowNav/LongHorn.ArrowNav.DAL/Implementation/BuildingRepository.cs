@@ -152,6 +152,38 @@ namespace LongHorn.ArrowNav.DAL
             return retrievedValues;
         }
 
+        public List<string> ReadAllAcronyms()
+        {
+            List<string> retrievedValues = new List<string>();
+            var sqlConnectionString = getConnection();
+            using (var connection = new SqlConnection(sqlConnectionString))
+            {
+                var sqlStatement = string.Format("exec GetBuildingAcronyms");
+                using (var command = new SqlCommand(sqlStatement, connection))
+                {
+                    command.Connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            var entry = string.Format("{0}", reader["Acronym"]);
+                            retrievedValues.Add(entry);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No rows found.");
+                    }
+                    reader.Close();
+                    command.Connection.Close();
+                }
+            }
+
+            return retrievedValues;
+        }
+
         public string Update(BuildingModel model)
         {
             throw new NotImplementedException();

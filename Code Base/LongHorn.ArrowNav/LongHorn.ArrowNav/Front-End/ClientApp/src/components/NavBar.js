@@ -64,7 +64,7 @@ export const NavBar = () => {
                             </NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to="/rewards" className={(navData) => navData.isActive ? "active" : "nav-links"}
+                            <NavLink to="/reward" className={(navData) => navData.isActive ? "active" : "nav-links"}
                                 onClick={handleClick} >
                                 Rewards
                             </NavLink>

@@ -91,11 +91,128 @@ namespace LongHorn.ArrowNav.DAL
             }
         }
 
+        public int GetCredits(string email)
+        {
+            try
+            {
+                var credits = 0;
+                var sqlConnectionString = getConnection();
+
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    var sqlStatement = string.Format("exec GetCredits '{0}'", email);
+                    using (var command = new SqlCommand(sqlStatement, connection))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            credits = ((int)reader["credits"]);
+                        }
+                        reader.Close();
+                    }
+                }
+
+                return credits;
+            }
+
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        public int GetCounter(string email)
+        {
+            try
+            {
+                var counter = 0;
+                var sqlConnectionString = getConnection();
+
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    var sqlStatement = string.Format("exec GetCounter '{0}'", email);
+                    using (var command = new SqlCommand(sqlStatement, connection))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            counter = ((int)reader["counter"]);
+                        }
+                        reader.Close();
+                    }
+                }
+
+                return counter;
+            }
+
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        public string SetCredits(Rewards email)
+        {
+            try
+            {
+                var sqlConnectionString = getConnection();
+
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    var sqlStatement = string.Format("exec SetCredit '{0}', {1}", email._Email, email._Credits);
+                    using (var command = new SqlCommand(sqlStatement, connection))
+                    {
+                        command.ExecuteReader();
+                    }
+                }
+
+                return "Credits updated";
+            }
+
+            catch (Exception ex)
+            {
+                return "error";
+            }
+        }
+
+
+        public string SetCounter(Rewards email)
+        {
+            try
+            {
+                var counter = 0;
+                var sqlConnectionString = getConnection();
+
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    var sqlStatement = string.Format("exec SetCounter '{0}', {1}", email._Email, email._Counter);
+                    using (var command = new SqlCommand(sqlStatement, connection))
+                    {
+                        command.ExecuteReader();
+                    }
+                }
+
+                return "counter updated";
+            }
+
+            catch (Exception ex)
+            {
+                return "error";
+            }
+        }
+
+
         public string getConnection()
         {
+            return @"Server=localhost\SQLEXPRESS;Database=ArrowNav;Trusted_Connection=True";
             //var SQLConnectionString = ConfigurationManager.AppSettings.Get("LogsqlConnectionString");
-            var SQLConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            return SQLConnectionString;
+            //var SQLConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            //return SQLConnectionString;
+            
         }
 
     }

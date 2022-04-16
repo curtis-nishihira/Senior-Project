@@ -10,6 +10,42 @@ export const Rewards = () => {
     const [isSubmit, setIsSubmit] = useState(false);
     const [isCredit, setCredit] = useState(0);
     const [isCount, setCount] = useState(0);
+    const email = "spencergravel@gmail.com";
+
+
+    async function fetchData(url, methodType, bodyData) {
+        if (methodType === "GET") {
+            const response = await fetch(url);
+            const data = await response.json();
+            return data;
+        }
+        else if (methodType === "POST") {
+            const response = await fetch(url, { method: methodType })
+            const data = await response.json();
+            return data;
+        }
+
+    }
+
+
+    useEffect(async () => {
+        setCredit(await getCredits());
+        setCount(await getCounter());
+    }, [isCount])
+
+
+    async function getCredits() {
+        var url = "https://localhost:44465/rewards/GetCredits?email=" + email;
+        var credits = await fetchData(url, "GET", []);
+        console.log("credits", credits);
+        return credits;
+    }
+
+    async function getCounter() {
+        var url = "https://localhost:44465/rewards/GetCounter?email=" + email;
+        var counter = await fetchData(url, "GET", []);
+        return counter;
+    }
 
     const handleChange = (e) => {
         //console.log(e.target);
@@ -43,10 +79,52 @@ export const Rewards = () => {
         return errors;
     };
 
-    function buttonPressed() {
-        setCount(isCount + 1);
-        setCredit(isCredit + 50);
+    async function buttonPressed() {
+        fetch("https://localhost:44465/rewards/SetCredits", {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                _Email: email,
+                _Credits: (isCredit + 50),
+                _Counter: 0
+            })
+
+        })
+            .then(response => response.json())
+            .then(data2 => {
+                console.log(data2)
+            })
+            .catch((error) => {
+                console.error('Error', error);
+            });
+
+        fetch("https://localhost:44465/rewards/SetCounter", {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                _Email: email,
+                _Credits: 0,
+                _Counter: (isCount + 1)
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+            .catch((error) => {
+                console.error('Error', error);
+            });
+        //setCount(isCount + 1);
+        //setCredit(isCredit + 50);
     }
+
+
 
     //display
     return (

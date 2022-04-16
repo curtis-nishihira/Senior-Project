@@ -42,7 +42,8 @@ export const Login = (props) => {
 
     const loginHandler = (e) => {
         e.preventDefault();
-        fetch(process.env.REACT_APP_FETCH +'/login', {
+        //process.env.REACT_APP_FETCH +
+        fetch(process.env.REACT_APP_FETCH + '/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

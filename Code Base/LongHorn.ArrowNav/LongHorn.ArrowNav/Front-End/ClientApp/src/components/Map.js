@@ -129,7 +129,6 @@ export const Map = () => {
         async function fillComboBox() {
             var fillBoxUrl = process.env.REACT_APP_FETCH + '/building/getAllBuildings';
             var x = await fetchData(fillBoxUrl,"GET",[]);
-            console.log(x);
             var listOfBuildings = x;
             var sel = document.getElementById('buildings');
             for (var i = 0; i < listOfBuildings.length; i++) {
@@ -337,8 +336,14 @@ export const Map = () => {
             setZoom(map.getZoom().toFixed(2));
         });
 
-        // Clean up on unmount
-        return () => map.remove();
+        // Clean up on unmount      
+        return function cleanup() {
+            map.remove();
+            var body = document.getElementById('buildings');
+            if (body != null) {
+                body.innerHTML = '';
+            }
+        }
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (

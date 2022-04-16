@@ -1,4 +1,5 @@
-﻿import React, { useState, useEffect } from "react"
+﻿import { error } from "jquery";
+import React, { useState, useEffect } from "react"
 import "./ScheduleAddClass.css"
 
 export const ScheduleAddClass = (props) => {
@@ -9,12 +10,24 @@ export const ScheduleAddClass = (props) => {
 
     async function fetchData(url, methodType, bodyData) {
         if (methodType === "GET") {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                }
+            })
             const data = await response.json();
             return data;
         }
-        else if (methodType === "POST") {
-            const response = await fetch(url, { method: methodType })
+        else if (methodType === "POST" && bodyData.length != 0) {
+            const response = await fetch(url, {
+                method: methodType,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(bodyData),
+            })
             const data = await response.json();
             return data;
         }
@@ -26,7 +39,7 @@ export const ScheduleAddClass = (props) => {
         var fillBoxUrl = process.env.REACT_APP_FETCH + '/building/getAllBuildings';
         var x = await fetchData(fillBoxUrl, "GET", []);
         var listOfBuildings = x;
-        var sel = document.getElementById('buildings');
+        var sel = document.getElementById('buildings-list');
         for (var i = 0; i < listOfBuildings.length; i++) {
             var opt = document.createElement('option');
             opt.innerHTML = listOfBuildings[i];
@@ -38,7 +51,13 @@ export const ScheduleAddClass = (props) => {
     }
     useEffect(() => {
         fillBuildingsOption();
-    })
+        return function cleanup() {
+            var select = document.getElementById('buildings-list');
+            if (select != null) {
+                select.innerHTML = '';
+            }
+        }
+    },[])
     const handleChange = (e) => {
         const { name, value } = e.target;
         setClassValues({ ...classValues, [name]: value })
@@ -46,46 +65,32 @@ export const ScheduleAddClass = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         var buildingAcronym;
-        var buildingcontrollerurl = process.env.REACT_APP_FETCH + '/building/getAcronymbyBuildingName?BuildingName=' + classValues.building;
-
-        try {
-            buildingAcronym = await fetchData(buildingcontrollerurl, 'GET', []);
-        }
-        catch
-        {
-            buildingAcronym = "NVM";
-        }
+        var url = process.env.REACT_APP_FETCH + '/building/getAcronymbyBuildingName?BuildingName=' + classValues.building;
         
-        fetch(process.env.REACT_APP_FETCH + '/schedule/scheduleadd', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                _Username: classValues.username,
-                _course: classValues.course,
-                _coursetype: classValues.coursetype,
-                _building: buildingAcronym,
-                _room: classValues.room,
-                _days: classValues.days,
-                _starttime: classValues.starttime,
-                _endtime: classValues.endtime
-            }),
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                props.handleCloser();
-            })
-            .catch((error) => {
-                console.error('Error', error);
-            });
+        try {
+            buildingAcronym = await fetchData(url, "GET", []);
+        }
+        catch(e)
+        {
+            console.log(e);
+        }
+        console.log(buildingAcronym);
+        var payload = {
+            _Username: classValues.username,
+            _course: classValues.course,
+            _coursetype: classValues.coursetype,
+            _building: buildingAcronym,
+            _room: classValues.room,
+            _days: classValues.days,
+            _starttime: classValues.starttime,
+            _endtime: classValues.endtime
+        };
+        var sentData = await fetchData(process.env.REACT_APP_FETCH + '/schedule/scheduleadd', "POST", payload)
+        props.handleCloser();
         setClassValuesErrors(validate(classValues));
         setIsSubmit(true);
     }
     useEffect(() => {
-        console.log(classValuesErrors);
         if (Object.keys(classValuesErrors).length === 0 && isSubmit) {
             console.log(classValues);
         }
@@ -183,7 +188,7 @@ export const ScheduleAddClass = (props) => {
 
                     <div className='form-inputs'>
                         <label>Select Building</label>
-                        <select name="building" required value={classValues.building} onChange={handleChange} id='buildings'>
+                        <select name="building" required value={classValues.building} onChange={handleChange} id='buildings-list'>
                             
                         </select>
                     </div>

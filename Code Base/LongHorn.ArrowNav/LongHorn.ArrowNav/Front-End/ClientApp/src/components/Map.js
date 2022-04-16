@@ -34,6 +34,9 @@ export const Map = () => {
 
     // Initialize map when component mounts
     useEffect(() => {
+
+        //this function is async which means it will return a promise if it isn't already.
+        //when calling this function you'll have to unwrap it using await or .then
         async function fetchData(url, methodType, bodyData) {
             if (methodType === "GET") {
                 const response = await fetch(url);
@@ -48,7 +51,7 @@ export const Map = () => {
             }
 
         }
-
+        
         async function fetchWalkingData(url, zoneUrl,routeID,RouteColor) {
             const coordinates = [];
             var TimeAdditions = [];
@@ -87,7 +90,7 @@ export const Map = () => {
 
             addLayer(coordinates, RouteColor, routeID);
         }
-
+        //adds the route onto the map
         function addLayer(route,routeColor,routeID) {
             map.addLayer({
                 "id": routeID,
@@ -114,6 +117,10 @@ export const Map = () => {
                 }
             });
         }
+        /*
+         * removes any of the routes that are currently displayed on the map. This is used when we are creating new routes.
+         * To avoid overlapping routes or multiple routes for different destinations.
+         */ 
         function removeAllRoutes()
         {
             if (map.getSource('route')) {
@@ -125,7 +132,7 @@ export const Map = () => {
                 map.removeSource('route2')
             }
         }
-
+        //this function is filling in the datalist that is used for the search bar
         async function fillComboBox() {
             var fillBoxUrl = process.env.REACT_APP_FETCH + '/building/getAllBuildings';
             var x = await fetchData(fillBoxUrl,"GET",[]);
@@ -177,13 +184,13 @@ export const Map = () => {
                 document.getElementById("second-route-info").style.visibility = "hidden";
             }
         }
-
         const map = new mapboxgl.Map({
             container: mapContainerRef.current,
             style: 'mapbox://styles/brayan-fuentes21/cky54exmf1uvl14qcvixitiqo',
             center: [lng, lat],
             zoom: zoom
         });
+
         const endPoint = new mapboxgl.Marker();
 
         if (location.state != undefined) {
@@ -192,6 +199,7 @@ export const Map = () => {
 
         fillComboBox();
 
+        //calls the mapbox api for the routes and route info which are then added to their respective placeholders
         async function drivingRoute() {
             removeAllRoutes()
             document.getElementById("information").style.visibility = "visible";
@@ -214,6 +222,7 @@ export const Map = () => {
             }
 
         };
+        //calls the mapbox api for the routes and route info which are then added to their respective placeholders
         function cyclingRoute() {
             removeAllRoutes()
             document.getElementById("information").style.visibility = "visible";

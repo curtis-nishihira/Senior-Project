@@ -74,7 +74,6 @@ export const ScheduleAddClass = (props) => {
         {
             console.log(e);
         }
-        console.log(buildingAcronym);
         var payload = {
             _Username: classValues.username,
             _course: classValues.course,

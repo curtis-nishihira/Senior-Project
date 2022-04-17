@@ -4,6 +4,7 @@ import "./UserHome.css";
 import Popup from './Popup';
 import ScheduleAddClass from './ScheduleAddClass';
 import ScheduleEditClass from './ScheduleEditClass';
+import CapacitySurvey from './CapacitySurvey';
 
 
 export function UserHome() {
@@ -20,12 +21,17 @@ export function UserHome() {
     const navigate = useNavigate();
     const [isAddOpen, setIsAddOpen] = useState(false);
     const [isEditOpen, setIsEditOpen] = useState(false);
+    const [isCapacityOpen, setCapacityOpen] = useState(false);
     const [isSelected, setIsSelected] = useState(false);
+
     const toggleAddPopup = () => {
         setIsAddOpen(!isAddOpen);
     }
     const toggleEditPopup = () => {
         setIsEditOpen(!isEditOpen);
+    }
+    const toggleCapacityPopup = () => {
+        setCapacityOpen(!isCapacityOpen);
     }
     const toggleIsSelected = () => {
         setIsSelected(!isSelected);
@@ -336,6 +342,19 @@ export function UserHome() {
                     value="FIND CLASS"
                     onClick={findOnMap}
                 />
+            </div>
+            <div>
+                <input id="button"
+                    type="button"
+                    value="Optional Building Survey"
+                    onClick={toggleCapacityPopup}
+                />
+                {isCapacityOpen && <Popup
+                    content={<>
+                        <CapacitySurvey handleCloser={toggleCapacityPopup} />
+                    </>}
+                    handleClose={toggleCapacityPopup}
+                />}
             </div>
         </>
     );

@@ -4,12 +4,13 @@ const { env } = require('process');
 const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_HTTPS_PORT}` :
   env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'http://localhost:43546';
 
-const context =  [
+const context = [
     "/login",
     "/trafficsurvey",
     "/register",
     "/building",
     "/schedule",
+    "/capacity",
 ];
 
 module.exports = function(app) {

@@ -34,6 +34,9 @@ export const Map = () => {
 
     // Initialize map when component mounts
     useEffect(() => {
+
+        //this function is async which means it will return a promise if it isn't already.
+        //when calling this function you'll have to unwrap it using await or .then
         async function fetchData(url, methodType, bodyData) {
             if (methodType === "GET") {
                 const response = await fetch(url);
@@ -48,7 +51,7 @@ export const Map = () => {
             }
 
         }
-
+        
         async function fetchWalkingData(url, zoneUrl,routeID,RouteColor) {
             const coordinates = [];
             var TimeAdditions = [];
@@ -87,7 +90,7 @@ export const Map = () => {
 
             addLayer(coordinates, RouteColor, routeID);
         }
-
+        //adds the route onto the map
         function addLayer(route,routeColor,routeID) {
             map.addLayer({
                 "id": routeID,
@@ -114,6 +117,10 @@ export const Map = () => {
                 }
             });
         }
+        /*
+         * removes any of the routes that are currently displayed on the map. This is used when we are creating new routes.
+         * To avoid overlapping routes or multiple routes for different destinations.
+         */ 
         function removeAllRoutes()
         {
             if (map.getSource('route')) {
@@ -125,11 +132,10 @@ export const Map = () => {
                 map.removeSource('route2')
             }
         }
-
+        //this function is filling in the datalist that is used for the search bar
         async function fillComboBox() {
             var fillBoxUrl = process.env.REACT_APP_FETCH + '/building/getAllBuildings';
             var x = await fetchData(fillBoxUrl,"GET",[]);
-            console.log(x);
             var listOfBuildings = x;
             var sel = document.getElementById('buildings');
             for (var i = 0; i < listOfBuildings.length; i++) {
@@ -178,13 +184,13 @@ export const Map = () => {
                 document.getElementById("second-route-info").style.visibility = "hidden";
             }
         }
-
         const map = new mapboxgl.Map({
             container: mapContainerRef.current,
             style: 'mapbox://styles/brayan-fuentes21/cky54exmf1uvl14qcvixitiqo',
             center: [lng, lat],
             zoom: zoom
         });
+
         const endPoint = new mapboxgl.Marker();
 
         if (location.state != undefined) {
@@ -193,6 +199,7 @@ export const Map = () => {
 
         fillComboBox();
 
+        //calls the mapbox api for the routes and route info which are then added to their respective placeholders
         async function drivingRoute() {
             removeAllRoutes()
             document.getElementById("information").style.visibility = "visible";
@@ -215,6 +222,7 @@ export const Map = () => {
             }
 
         };
+        //calls the mapbox api for the routes and route info which are then added to their respective placeholders
         function cyclingRoute() {
             removeAllRoutes()
             document.getElementById("information").style.visibility = "visible";
@@ -271,6 +279,52 @@ export const Map = () => {
             return addedTime;
         }
 
+        async function putPin(building) {
+            var data = await fetchData(process.env.REACT_APP_FETCH + "/building/getLatLong?BuildingName=" + building, "POST", []);
+            buildingLat.current = data.latitude;
+            buildingLong.current = data.longitude;
+            console.log(buildingLong.current)
+            endPoint.setLngLat([buildingLong.current, buildingLat.current]);
+            endPoint.addTo(map);
+            document.getElementById('button-container').style.visibility = 'visible';
+
+        }
+
+        // Called when building icon is clicked and creates popup
+        function getCapacity(building, coordinates) {
+            fetch(process.env.REACT_APP_FETCH + "/capacity/getCapacity?BuildingName=" + building, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    new mapboxgl.Popup()
+                        .setLngLat(coordinates)
+                        .setHTML('<strong>'+ building +' Capacity</strong><p>Hours: ' + data._Time + '</p><p>Website: <a href=' + data._WebLink + '>' + data._WebLink + '</a></p><p>Busy Level: ' + data._CapacityValue + '</p>')
+                        .addTo(map);
+                    return data;
+                })
+                .catch((error) => {
+                    console.error('Error', error);
+                });
+        }
+
+        // all images to be used as icons with mapbox must loaded using this function
+        function loadImage(filename) {
+            map.loadImage(
+                process.env.REACT_APP_IMAGES + filename,
+                (error, image) => {
+                    if (error) throw error;
+                    // remove file ending and front slash
+                    console.log(filename.substring(1, filename.length - 4));
+                    map.addImage(filename.substring(1, filename.length - 4), image);
+                }
+            );
+        }
+
         const geolocateControl = new mapboxgl.GeolocateControl({
             positionOptions: { enableHighAccuracy: true },
             showUserHeading: true
@@ -308,19 +362,6 @@ export const Map = () => {
             console.log(buildingName.current);
             putPin(buildingName.current);
         })
-        
-        async function putPin(building) {
-            var data = await fetchData(process.env.REACT_APP_FETCH + "/building/getLatLong?BuildingName=" + building, "POST", []);
-            console.log(data);
-            buildingLat.current = data.latitude;
-            console.log(buildingLat.current)
-            buildingLong.current = data.longitude;
-            console.log(buildingLong.current)
-            endPoint.setLngLat([buildingLong.current, buildingLat.current]);
-            endPoint.addTo(map);
-            document.getElementById('button-container').style.visibility = 'visible';
-            
-        }
 
         const drivingBtn = document.getElementById("driving-btn");
         drivingBtn.addEventListener('click', () => {
@@ -331,15 +372,98 @@ export const Map = () => {
             cyclingRoute();
         })
 
+        // json values representing the three capacity feature buildings
+        const capacityBuildingsGeojson = {
+            'type': 'FeatureCollection',
+            'features': [
+                {
+                    'type': 'Feature',
+                    'properties': {
+                        'description': "LIB",
+                        'icon': 'LibraryIcon',
+                        'iconSize': [50, 50]
+
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [-118.114428601179, 33.7772435747339]
+                    }
+                },
+                {
+                    'type': 'Feature',
+                    'properties': {
+                        'description': "USU",
+                        'icon': 'UsuIcon',
+                        'iconSize': [50, 50]
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [-118.113444706599, 33.7816514218059]
+                    }
+                },
+                {
+                    'type': 'Feature',
+                    'properties': {
+                        'description': "SRWC",
+                        'icon': 'GymIcon',
+                        'iconSize': [50, 50]
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [-118.109251028879, 33.785059019334]
+                    }
+                }
+            ]
+        };
+
         map.on('move', () => {
             setLng(map.getCenter().lng.toFixed(4));
             setLat(map.getCenter().lat.toFixed(4));
             setZoom(map.getZoom().toFixed(2));
         });
 
-        // Clean up on unmount
-        return () => map.remove();
+        // places icons on the map and programs them to call method for creating popups
+        map.on('load', () => {
+            // Load an image from an internal URL.
+            loadImage("/LibraryIcon.png");
+            loadImage("/GymIcon.png");
+            loadImage("/UsuIcon.png");
+
+            map.addSource('points', {
+                'type': 'geojson',
+                'data': capacityBuildingsGeojson
+            });
+
+            // Add a layer to use the image to represent the data.
+            map.addLayer({
+                'id': 'points',
+                'type': 'symbol',
+                'source': 'points',
+                'layout': {
+                    'icon-image': '{icon}',
+                    'icon-allow-overlap': true,
+                    'icon-size': 0.1
+                }
+            });
+
+            map.on('click', 'points', (e) => {
+                const coordinates = e.features[0].geometry.coordinates.slice();
+                const description = e.features[0].properties.description;
+
+                getCapacity(description, coordinates);
+                
+            });
+        });
+        // Clean up on unmount      
+        return function cleanup() {
+            map.remove();
+            var body = document.getElementById('buildings');
+            if (body != null) {
+                body.innerHTML = '';
+            }
+        }
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
 
     return (
         <div>
@@ -355,7 +479,7 @@ export const Map = () => {
             <div className="search-div">
                 <datalist id="buildings">
                 </datalist>
-                <input placeholder="Enter Building Name" autoComplete="on" list="buildings" onSelect={(e) => buildingName.current = e.target.value} />
+                <input className = "search-bar" placeholder="Enter Building Name" autoComplete="on" list="buildings" onSelect={(e) => buildingName.current = e.target.value} />
                 <button type="button" id="search-btn" > search</button>
             </div>
             <div className='map-container' ref={mapContainerRef} />

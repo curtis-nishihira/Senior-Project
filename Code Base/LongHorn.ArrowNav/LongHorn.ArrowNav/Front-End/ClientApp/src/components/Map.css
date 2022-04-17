@@ -5,6 +5,15 @@
     bottom: 0;
     width: 100%;
 }
+
+.search-bar{
+    background-color: white;
+    background-image: url('images/resized-search-icon-png-2.png');
+    background-position: 5px 5px;
+    background-size: 8% 55%;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+}
 .search-div {
     background-color: rgba(35, 55, 75, 0.9);
     color: #fff;

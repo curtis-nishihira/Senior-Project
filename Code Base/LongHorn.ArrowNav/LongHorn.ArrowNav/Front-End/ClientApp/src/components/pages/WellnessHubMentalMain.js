@@ -15,7 +15,7 @@ function WellnessHubMentalMain() {
                 <button
                     onClick={() => { navigate("/wellnesshub/wellnesshubmentalmain/wellnessmentalcaps") }}> CAPS services </button>
                 <button
-                    onClick={() => { navigate("/wellnesshub/wellnesshubbmac") }}> BMAC for Mental Imparement </button>
+                    onClick={() => { navigate("/wellnesshub/wellnesshubbmac") }}> BMAC for Impairment Services </button>
             </div>
             <div className="footer">
                 <button onClick={() => { navigate("/wellnesshub") }}>Return</button>

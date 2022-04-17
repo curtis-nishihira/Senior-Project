@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v6.0": {
       "LongHorn.ArrowNav.Services/1.0.0": {
         "dependencies": {
-          "LongHorn.ArrowNav.DAL": "1.0.0"
+          "LongHorn.ArrowNav.DAL": "1.0.0",
+          "LongHorn.ArrowNav.Models": "1.0.0"
         },
         "runtime": {
           "LongHorn.ArrowNav.Services.dll": {}

@@ -1,0 +1,11 @@
+﻿.information-wrapper-ment-caps {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 17px;
+    margin: auto;
+}

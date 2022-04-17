@@ -44,7 +44,7 @@ export default class App extends Component {
                             <Route path="/wellnesshub" element={<WellnessHub />} />
                               <Route path="/wellnesshub/wellnesshubphysicalmain" element={<WellnessHubPhysicalMain />} />
                            <Route path="/wellnesshub/wellnesshubmentalmain" element={<WellnessHubMentalMain />} />
-                           <Route path="/wellnesshub/wellnesshydrationreminder" element={<WellnessHydrationReminder />} />
+                           <Route path="/wellnesshydrationreminder" element={<WellnessHydrationReminder />} />
                             <Route path="/wellnesshub/wellnesshubmentalmain/wellnessmentalcaps" element={<WellnessMentalCAPS />} />
                             <Route path="/wellnesshub/wellnesshubphysicalmain/wellnessphysicalrecreation" element={<WellnessPhysicalRecreation />} />
                           <Route path="/wellnesshub/wellnesshubphysicalmain/wellnessphysicalmedical" element={<WellnessPhysicalMedical />} />

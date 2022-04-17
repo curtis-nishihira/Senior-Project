@@ -15,8 +15,6 @@ namespace LongHorn.ArrowNav.DAL.Implementation
             try
             {
                 var sqlConnectionString = getConnection();
-
-
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();

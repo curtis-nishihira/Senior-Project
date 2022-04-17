@@ -484,23 +484,24 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "LongHorn.ArrowNav.DAL >= 1.0.0"
+      "LongHorn.ArrowNav.DAL >= 1.0.0",
+      "LongHorn.ArrowNav.Models >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\curti\\.nuget\\packages\\": {}
+    "C:\\Users\\Chris\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\LongHorn.ArrowNav.Services.csproj",
+      "projectUniqueName": "C:\\Users\\Chris\\Documents\\GitHub\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\LongHorn.ArrowNav.Services.csproj",
       "projectName": "LongHorn.ArrowNav.Services",
-      "projectPath": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\LongHorn.ArrowNav.Services.csproj",
-      "packagesPath": "C:\\Users\\curti\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\obj\\",
+      "projectPath": "C:\\Users\\Chris\\Documents\\GitHub\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\LongHorn.ArrowNav.Services.csproj",
+      "packagesPath": "C:\\Users\\Chris\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Chris\\Documents\\GitHub\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Services\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\curti\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -514,8 +515,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\curti\\source\\repos\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj": {
-              "projectPath": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj"
+            "C:\\Users\\Chris\\Documents\\GitHub\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj": {
+              "projectPath": "C:\\Users\\Chris\\Documents\\GitHub\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.DAL\\LongHorn.ArrowNav.DAL.csproj"
+            },
+            "C:\\Users\\Chris\\Documents\\GitHub\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Models\\LongHorn.ArrowNav.Models.csproj": {
+              "projectPath": "C:\\Users\\Chris\\Documents\\GitHub\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Models\\LongHorn.ArrowNav.Models.csproj"
             }
           }
         }
@@ -544,7 +548,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

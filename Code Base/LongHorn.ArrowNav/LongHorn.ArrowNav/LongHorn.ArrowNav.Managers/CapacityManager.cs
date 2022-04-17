@@ -64,7 +64,7 @@ namespace LongHorn.ArrowNav.Managers
             returnModel._WebLink = webLink;
 
             // If the objects comes back empty it means there are no hours 
-            if (response._Building == "")
+            if (hours == "Closed")
             {
                 returnModel._CapacityValue = "Closed";
             }

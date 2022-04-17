@@ -9,12 +9,24 @@ export const ScheduleEditClass = (props) => {
 
     async function fetchData(url, methodType, bodyData) {
         if (methodType === "GET") {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                }
+            })
             const data = await response.json();
             return data;
         }
-        else if (methodType === "POST") {
-            const response = await fetch(url, { method: methodType })
+        else if (methodType === "POST" && bodyData.length != 0) {
+            const response = await fetch(url, {
+                method: methodType,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(bodyData),
+            })
             const data = await response.json();
             return data;
         }
@@ -26,7 +38,7 @@ export const ScheduleEditClass = (props) => {
         var fillBoxUrl = process.env.REACT_APP_FETCH + '/building/getAllBuildings';
         var x = await fetchData(fillBoxUrl, "GET", []);
         var listOfBuildings = x;
-        var sel = document.getElementById('buildings');
+        var sel = document.getElementById('buildings-list');
         for (var i = 0; i < listOfBuildings.length; i++) {
             var opt = document.createElement('option');
             opt.innerHTML = listOfBuildings[i];
@@ -38,55 +50,46 @@ export const ScheduleEditClass = (props) => {
     }
     useEffect(() => {
         fillBuildingsOption();
-    })
+        return function cleanup() {
+            var select = document.getElementById('buildings-list');
+            if (select != null) {
+                select.innerHTML = '';
+            }
+        }
+    }, [])
 
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setClassValues({ ...classValues, [name]: value })
     }
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         var buildingAcronym;
-        var buildingcontrollerurl = process.env.REACT_APP_FETCH + '/building/getAcronymbyBuildingName?BuildingName=' + classValues.building;
+        var url = process.env.REACT_APP_FETCH + '/building/getAcronymbyBuildingName?BuildingName=' + classValues.building;
 
         try {
-            buildingAcronym = await fetchData(buildingcontrollerurl, 'GET', []);
+            buildingAcronym = await fetchData(url, "GET", []);
         }
-        catch
-        {
-            buildingAcronym = "NVM";
+        catch (e) {
+            console.log(e);
         }
-        fetch(process.env.REACT_APP_FETCH +'/schedule/scheduleedit', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                _Username: classValues.username,
-                _course: classValues.course,
-                _coursetype: classValues.coursetype,
-                _building: classValues.building,
-                _room: classValues.room,
-                _days: classValues.days,
-                _starttime: classValues.starttime,
-                _endtime: classValues.endtime
-            }),
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                props.handleCloser();
-            })
-            .catch((error) => {
-                console.error('Error', error);
-            });
+        var payload = {
+            _Username: classValues.username,
+            _course: classValues.course,
+            _coursetype: classValues.coursetype,
+            _building: buildingAcronym,
+            _room: classValues.room,
+            _days: classValues.days,
+            _starttime: classValues.starttime,
+            _endtime: classValues.endtime
+        };
+        var sentData = await fetchData(process.env.REACT_APP_FETCH + '/schedule/scheduleedit', "POST", payload)
+        props.handleCloser();
         setClassValuesErrors(validate(classValues));
         setIsSubmit(true);
     }
     useEffect(() => {
-        console.log(classValuesErrors);
         if (Object.keys(classValuesErrors).length === 0 && isSubmit) {
             console.log(classValues);
         }
@@ -184,8 +187,8 @@ export const ScheduleEditClass = (props) => {
 
                     <div className='form-inputs'>
                         <label>Select Building</label>
-                        <select name="building" required value={classValues.building} onChange={handleChange} id='buildings'>
-
+                        <select name="building" required value={classValues.building} onChange={handleChange} id='buildings-list'>
+                            <option value=""></option>
                         </select>
                     </div>
                     <div className='input-errors'>
@@ -206,17 +209,17 @@ export const ScheduleEditClass = (props) => {
                         <select name="days" required value={classValues.days} onChange={handleChange}>
                             <option value=""></option>
                             <option value="M W">MONDAY + WEDNESDAY</option>
-                            <option value="T H">TUESDAY + THURSDAY</option>
+                            <option value="T TH">TUESDAY + THURSDAY</option>
                             <option value="M W F">MONDAY + WEDNESDAY + FRIDAY</option>
                             <option value="M">MONDAY</option>
                             <option value="T">TUESDAY</option>
                             <option value="W">WEDNESDAY</option>
-                            <option value="H">THURSDAY</option>
+                            <option value="TH">THURSDAY</option>
                             <option value="F">FRIDAY</option>
                             <option value="S">SATURDAY</option>
-                            <option value="U">SUNDAY</option>
-                            <option value="M T W H F">WEEKDAYS</option>
-                            <option value="M T W H F S U">EVERYDAY</option>
+                            <option value="SU">SUNDAY</option>
+                            <option value="M T W TH F">WEEKDAYS</option>
+                            <option value="M T W TH F S SU">EVERYDAY</option>
                         </select>
                     </div>
                     <div className='input-errors'>

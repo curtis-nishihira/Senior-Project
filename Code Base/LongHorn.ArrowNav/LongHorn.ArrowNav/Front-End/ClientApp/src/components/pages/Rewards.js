@@ -64,14 +64,14 @@ export const Rewards = () => {
 
 
     async function getCredits() {
-        var url = REACT_APP_FETCH + "/rewards/GetCredits?email=" + email;
+        var url = process.env.REACT_APP_FETCH + "/rewards/GetCredits?email=" + email;
         var credits = await fetchData(url, "GET", []);
         console.log("credits", credits);
         setCredit(credits);
     }
 
     async function getCounter() {
-        var url = REACT_APP_FETCH +"/rewards/GetCounter?email=" + email;
+        var url = process.env.REACT_APP_FETCH +"/rewards/GetCounter?email=" + email;
         var counter = await fetchData(url, "GET", []);
         setCount(counter);
     }
@@ -100,7 +100,7 @@ export const Rewards = () => {
     };
 
     async function buttonPressed() {
-        fetch(REACT_APP_FETCH +"/rewards/SetCredits", {
+        fetch(process.env.REACT_APP_FETCH +"/rewards/SetCredits", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -121,7 +121,7 @@ export const Rewards = () => {
                 console.error('Error', error);
             });
 
-        fetch(REACT_APP_FETCH + "/rewards/SetCounter", {
+        fetch(process.env.REACT_APP_FETCH + "/rewards/SetCounter", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -169,7 +169,7 @@ export const Rewards = () => {
 
     async function buttonPressed2() {
         alert("ArrowNav Coupon: 10% off Sbarro order!")
-        fetch(REACT_APP_FETCH +"/rewards/SetCredits", {
+        fetch(process.env.REACT_APP_FETCH +"/rewards/SetCredits", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',

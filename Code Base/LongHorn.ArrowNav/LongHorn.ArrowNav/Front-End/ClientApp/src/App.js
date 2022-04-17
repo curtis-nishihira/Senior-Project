@@ -11,6 +11,7 @@ import { UserHome } from "./components/pages/UserHome";
 import Popup from "./components/pages/Popup";
 import Privacy from "./components/pages/Privacy";
 import { ProtectedRoutes } from "./components/ProtectedRoutes";
+import { Rewards } from "./components/pages/Rewards";
 
 import './custom.css'
 
@@ -38,9 +39,10 @@ export default class App extends Component {
                             <Route path="/wellnesshub" element={<WellnessHub />} />
                             <Route path="/account/register" element={<Register />} />
                             <Route path="/account/confirmationpage" element={<ConfirmationPage />} />
-
+                            
                             <Route element={<ProtectedRoutes />}>
                                 <Route path="/account/userhome" element={<UserHome />} />
+                                <Route path="/reward" element={<Rewards />} />
                             </Route>
                         </Routes>
 

@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 
 export const Rewards = () => {
+    //credit and counter states
     const initialValues = { answer: "" };
     const [formValues, setFormValues] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({});
@@ -12,7 +13,13 @@ export const Rewards = () => {
     const [isCount, setCount] = useState(0);
     const email = "spencergravel@gmail.com";
 
+    //coupon states
+    const initVal = { coupon: "" };
+    const [formVal, setFormVal] = useState(initVal);
+    const [formErr, setFormErr] = useState({});
+    const [isSub, setIsSub] = useState(false);
 
+    //fetchData for GET and POST
     async function fetchData(url, methodType, bodyData) {
         if (methodType === "GET") {
             const response = await fetch(url);
@@ -27,7 +34,7 @@ export const Rewards = () => {
 
     }
 
-
+    //Credit and Counter
     useEffect(async () => {
         setCredit(await getCredits());
         setCount(await getCounter());
@@ -48,10 +55,8 @@ export const Rewards = () => {
     }
 
     const handleChange = (e) => {
-        //console.log(e.target);
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
-        //console.log(formValues);
     };
 
     const handleSubmit = (e) => {
@@ -90,7 +95,7 @@ export const Rewards = () => {
                 _Email: email,
                 _Credits: (isCredit + 50),
                 _Counter: 0
-            })
+            }),
 
         })
             .then(response => response.json())
@@ -120,13 +125,45 @@ export const Rewards = () => {
             .catch((error) => {
                 console.error('Error', error);
             });
-        //setCount(isCount + 1);
-        //setCredit(isCredit + 50);
     }
 
+    //Coupon
+    const couponChange = (e) => {
+        const { name, value } = e.target;
+        setFormVal({ ...formVal, [name]: value });
+    };
 
+    const couponSubmit = (e) => {
+        e.preventDefault();
+        setFormErr(validation(formVal));
+        setIsSub(true);
+    };
 
-    //display
+    const validation = (values) => {
+        const err = {}
+        var regex = "SBARRO"
+
+        if (!values.coupon) {
+            err.coupon = "Answer is required!";
+        } else if (regex != values.coupon.toUpperCase()) {
+            err.coupon = "Not a valid coupon entry";
+        }
+        return err;
+    };
+
+    useEffect(() => {
+        console.log(formErr);
+        if (Object.keys(formErr).length === 0 && isSub) {
+            console.log(formVal);
+        }
+    }, [formErr]);
+
+    function buttonPressed2() {
+        alert("ArrowNav Coupon: 10% off Sbarro order!")
+        setCredit(isCredit - 50)
+    }
+
+    //DISPLAY
     return (
         <div className="container">
             <form onSubmit={handleSubmit}>
@@ -152,18 +189,30 @@ export const Rewards = () => {
                         </button>
 
                     </div>) : (<div className="ui message success"></div>)}
-
                 <button className="fluid ui button blue">Submit</button>
             </form>
 
             <p></p>
 
-            <label>Coupons:</label>
-            <select>
-                <option value="coupon1">10% off @ Sbarro</option>
-                <option value="coupon2">10% off @ Outpost</option>
-            </select>
+            <form onSubmit={couponSubmit}>
+                <div className="field">
+                    <label>Coupons (cost 50 credits):</label>
+                    <label>Type the following for coupon:</label>
+                    <label>"Sbarro" for 10% off Sbarro order</label>
+                    <input type="text" name="coupon" placeholder="Answer" value={formVal.coupon} onChange={couponChange} />
+                </div>
 
+                <p>{formErr.coupon}</p>
+
+                {Object.keys(formErr).length === 0 && isSub && isCredit >= 50 ?
+                    (<div>
+                        <p>Warning! This coupon, when claimed, is for one-time use at time of purchasing order</p>
+                        <button onClick={buttonPressed2}>Claim Coupon
+
+                        </button>
+                    </div>) : (<p></p>)
+                }
+            </form>
         </div>
 
     );

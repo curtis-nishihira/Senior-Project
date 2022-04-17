@@ -311,9 +311,7 @@ export const Map = () => {
         
         async function putPin(building) {
             var data = await fetchData(process.env.REACT_APP_FETCH + "/building/getLatLong?BuildingName=" + building, "POST", []);
-            console.log(data);
             buildingLat.current = data.latitude;
-            console.log(buildingLat.current)
             buildingLong.current = data.longitude;
             console.log(buildingLong.current)
             endPoint.setLngLat([buildingLong.current, buildingLat.current]);
@@ -336,6 +334,143 @@ export const Map = () => {
             setLat(map.getCenter().lat.toFixed(4));
             setZoom(map.getZoom().toFixed(2));
         });
+
+        
+
+        function getCapacityHtml(building) {
+            var test = '<strong>Building Capacity</strong><p>Hours: ';
+            test += '</p>';
+            return test;
+        }
+
+        // Consider adding hours and website links to that data
+        function getCapacity(building, coordinates) {
+            fetch(process.env.REACT_APP_FETCH + "/capacity/getCapacity?BuildingName=" + building, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    var apiData = await fetchData(url,"GET", []);
+                    new mapboxgl.Popup()
+                        .setLngLat(coordinates)
+                        .setHTML(getCapacityHtml(building) + '<p>Busy Level: ' + data + '</p>')
+                        .addTo(map);
+                    return data;
+                })
+                .catch((error) => {
+                    console.error('Error', error);
+                });
+        }
+
+        const capacityBuildingsGeojson = {
+            'type': 'FeatureCollection',
+            'features': [
+                {
+                    'type': 'Feature',
+                    'properties': {
+                        'description': "LIB",
+                        'icon': 'LibraryIcon',
+                        'iconSize': [60, 60]
+
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [-118.114428601179, 33.7772435747339]
+                    }
+                },
+                {
+                    'type': 'Feature',
+                    'properties': {
+                        'description': "USU",
+                        'icon' : 'UsuIcon',
+                        'iconSize': [50, 50]
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [-118.113444706599, 33.7816514218059]
+                    }
+                },
+                {
+                    'type': 'Feature',
+                    'properties': {
+                        'description': "SRWC",
+                        'icon' : 'GymIcon',
+                        'iconSize': [40, 40]
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [-118.109251028879, 33.785059019334]
+                    }
+                }
+            ]
+        };
+
+        function loadImage(filename) {
+            map.loadImage(
+                process.env.REACT_APP_IMAGES + filename,
+                (error, image) => {
+                    if (error) throw error;
+                    // remove file ending and front slash
+                    console.log(filename.substring(1, filename.length - 4));
+                    map.addImage(filename.substring(1,filename.length - 4), image);
+                }
+            );
+        }
+
+        map.on('load', () => {
+            // Load an image from an external URL.
+            loadImage("/LibraryIcon.png");
+            loadImage("/GymIcon.png");
+            loadImage("/UsuIcon.png");
+
+            map.addSource('points', {
+                'type': 'geojson',
+                'data': capacityBuildingsGeojson
+            });
+
+            // Add a layer to use the image to represent the data.
+            map.addLayer({
+                'id': 'points',
+                'type': 'symbol',
+                'source': 'points',
+                'layout': {
+                    'icon-image': '{icon}',
+                    'icon-allow-overlap': true,
+                    'icon-size': 0.1
+                }
+            });
+
+            map.on('click', 'points', (e) => {
+                // Copy coordinates array.
+                const coordinates = e.features[0].geometry.coordinates.slice();
+                const description = e.features[0].properties.description;
+
+                // Ensure that if the map is zoomed out such that multiple
+                // copies of the feature are visible, the popup appears
+                // over the copy being pointed to.
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+                getCapacity(description, coordinates);
+                
+            });
+
+            // Change the cursor to a pointer when the mouse is over the places layer.
+            map.on('mouseenter', 'places', () => {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+
+            // Change it back to a pointer when it leaves.
+            map.on('mouseleave', 'places', () => {
+                map.getCanvas().style.cursor = '';
+            });
+        });
+        
 
         // Clean up on unmount
         return () => map.remove();

@@ -1,27 +1,16 @@
 ﻿import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-const RadioInput = ({ label, value, checked, setter }) => {
-	return (
-		<label>
-			<input type="radio" checked={checked == value}
-				onChange={() => setter(value)} />
-			<span>{label}</span>
-		</label>
-	);
-};
 
 export const CapacitySurvey = (props) => {
-	const [lib, setLib] = React.useState();
-	const [usu, setUsu] = React.useState();
-	const [srwc, setSrwc] = React.useState();
-	const navigate = useNavigate();
-	const handleSubmit = e => {
-		e.preventDefault();
-		const data = { lib, usu, srwc };
-		const json = JSON.stringify(data);
-		console.clear();
-		console.log(json);
-	};
+	const defaultValues = { usu: "", lib: "", srwc: "", usuTime: "", libTime: "", srwcTime: "" };
+	const [buildingValues, setBuildingValues] = useState(defaultValues);
+
+
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setBuildingValues({ ...buildingValues, [name]: value })
+	}
+
+
 
 	const surveyHandler = (e) => {
 		e.preventDefault();
@@ -34,28 +23,28 @@ export const CapacitySurvey = (props) => {
 			body: JSON.stringify([
 				{
 					_WeekdayName: 'string',
-					_TimeSlot: 'string',
+					_TimeSlot: buildingValues.libTime,
 					_Building: 'LIB',
-					_AddValue: lib
+					_AddValue: buildingValues.lib
 				},
 				{
-					_WeekdayName: 'string',
-					_TimeSlot: 'string',
+					_WeekdayName: 'Monday',
+					_TimeSlot: buildingValues.usuTime,
 					_Building: 'USU',
-					_AddValue: usu
+					_AddValue: buildingValues.usu
 				},
 				{
-					_WeekdayName: 'string',
-					_TimeSlot: 'string',
+					_WeekdayName: 'Monday',
+					_TimeSlot: buildingValues.srwcTime,
 					_Building: 'SRWC',
-					_AddValue: srwc
+					_AddValue: buildingValues.srwc
 				}
 			]),
 		})
 			.then(response => response.json())
 			.then(data => {
 				console.log(data);
-				navigate("/account", { state: { message: "Survey Completed" } });
+				props.handleCloser();
 			})
 			.catch((error) => {
 				console.error('Error', error);
@@ -64,34 +53,61 @@ export const CapacitySurvey = (props) => {
 
 	return (
 		<form onSubmit={surveyHandler}>
-			<h3>Capacity</h3>
+			<h3>Capacity Survey</h3>
 			<p>This optional survey is to improve user experience and more
 				accurately model the traffic of campus</p>
 			<p>Please rate the following the traffic of locations on campus
-				from a scale of 1-5, based on the following criteria...</p>
-			<div>
-				<label>Library:</label>
-				<RadioInput label="1" value="1" checked={lib} setter={setLib} />
-				<RadioInput label="2" value="2" checked={lib} setter={setLib} />
-				<RadioInput label="3" value="3" checked={lib} setter={setLib} />
-				<RadioInput label="4" value="4" checked={lib} setter={setLib} />
-				<RadioInput label="5" value="5" checked={lib} setter={setLib} />
+				from a scale of 1-5, based on the following criteria</p>
+			<ul>
+				<li>Ability to obtain a table, seat, or exercise equipment</li>
+				<li>Ability to walk about without having to maneuvre around people</li>
+				<li>Access to and helpfulness of building employees</li>
+				<li>Any lines or services waited on or in</li>
+			</ul>
+			<div className='form-inputs'>
+				<label>Library</label>
+				<select name="lib" required value={buildingValues.lib} onChange={handleChange}>
+					<option value="0">n/a</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
 			</div>
-			<div>
-				<label>University Student Union:</label>
-				<RadioInput label="1" value="1" checked={usu} setter={setUsu} />
-				<RadioInput label="2" value="2" checked={usu} setter={setUsu} />
-				<RadioInput label="3" value="3" checked={usu} setter={setUsu} />
-				<RadioInput label="4" value="4" checked={usu} setter={setUsu} />
-				<RadioInput label="5" value="5" checked={usu} setter={setUsu} />
+			<div className='form-inputs'>
+				<label>Time Arrived at Building</label>
+				<input type="time" name="libTime" required value={buildingValues.libTime} onChange={handleChange} ></input>
 			</div>
-			<div>
-				<label>Student Recreation & Wellness Center:</label>
-				<RadioInput label="1" value="1" checked={srwc} setter={setSrwc} />
-				<RadioInput label="2" value="2" checked={srwc} setter={setSrwc} />
-				<RadioInput label="3" value="3" checked={srwc} setter={setSrwc} />
-				<RadioInput label="4" value="4" checked={srwc} setter={setSrwc} />
-				<RadioInput label="5" value="5" checked={srwc} setter={setSrwc} />
+			<div className='form-inputs'>
+				<label>University Student Union</label>
+				<select name="usu" required value={buildingValues.usu} onChange={handleChange}>
+					<option value="0">n/a</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div className='form-inputs'>
+				<label>Time Arrived at Building</label>
+				<input type="time" name="usuTime" required value={buildingValues.usuTime} onChange={handleChange} ></input>
+			</div>
+			<div className='form-inputs'>
+				<label>Student Recreation & Wellness Center</label>
+				<select name="srwc" required value={buildingValues.srwc} onChange={handleChange}>
+					<option value="0">n/a</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+			</div>
+			<div className='form-inputs'>
+				<label>Time Arrived at Building</label>
+				<input type="time" name="srwcTime" required value={buildingValues.srwcTime} onChange={handleChange}></input>
 			</div>
 			<button type="submit">Submit</button>
 		</form>

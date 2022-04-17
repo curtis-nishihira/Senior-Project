@@ -271,6 +271,52 @@ export const Map = () => {
             return addedTime;
         }
 
+        async function putPin(building) {
+            var data = await fetchData(process.env.REACT_APP_FETCH + "/building/getLatLong?BuildingName=" + building, "POST", []);
+            buildingLat.current = data.latitude;
+            buildingLong.current = data.longitude;
+            console.log(buildingLong.current)
+            endPoint.setLngLat([buildingLong.current, buildingLat.current]);
+            endPoint.addTo(map);
+            document.getElementById('button-container').style.visibility = 'visible';
+
+        }
+
+        // Called when building icon is clicked and creates popup
+        function getCapacity(building, coordinates) {
+            fetch(process.env.REACT_APP_FETCH + "/capacity/getCapacity?BuildingName=" + building, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+                    new mapboxgl.Popup()
+                        .setLngLat(coordinates)
+                        .setHTML('<strong>'+ building +' Capacity</strong><p>Hours: ' + data._Time + '</p><p>Website: <a href=' + data._WebLink + '>' + data._WebLink + '</a></p><p>Busy Level: ' + data._CapacityValue + '</p>')
+                        .addTo(map);
+                    return data;
+                })
+                .catch((error) => {
+                    console.error('Error', error);
+                });
+        }
+
+        // all images to be used as icons with mapbox must loaded using this function
+        function loadImage(filename) {
+            map.loadImage(
+                process.env.REACT_APP_IMAGES + filename,
+                (error, image) => {
+                    if (error) throw error;
+                    // remove file ending and front slash
+                    console.log(filename.substring(1, filename.length - 4));
+                    map.addImage(filename.substring(1, filename.length - 4), image);
+                }
+            );
+        }
+
         const geolocateControl = new mapboxgl.GeolocateControl({
             positionOptions: { enableHighAccuracy: true },
             showUserHeading: true
@@ -308,17 +354,6 @@ export const Map = () => {
             console.log(buildingName.current);
             putPin(buildingName.current);
         })
-        
-        async function putPin(building) {
-            var data = await fetchData(process.env.REACT_APP_FETCH + "/building/getLatLong?BuildingName=" + building, "POST", []);
-            buildingLat.current = data.latitude;
-            buildingLong.current = data.longitude;
-            console.log(buildingLong.current)
-            endPoint.setLngLat([buildingLong.current, buildingLat.current]);
-            endPoint.addTo(map);
-            document.getElementById('button-container').style.visibility = 'visible';
-            
-        }
 
         const drivingBtn = document.getElementById("driving-btn");
         drivingBtn.addEventListener('click', () => {
@@ -329,44 +364,7 @@ export const Map = () => {
             cyclingRoute();
         })
 
-        map.on('move', () => {
-            setLng(map.getCenter().lng.toFixed(4));
-            setLat(map.getCenter().lat.toFixed(4));
-            setZoom(map.getZoom().toFixed(2));
-        });
-
-        
-
-        function getCapacityHtml(building) {
-            var test = '<strong>Building Capacity</strong><p>Hours: ';
-            test += '</p>';
-            return test;
-        }
-
-        // Consider adding hours and website links to that data
-        function getCapacity(building, coordinates) {
-            fetch(process.env.REACT_APP_FETCH + "/capacity/getCapacity?BuildingName=" + building, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                    var apiData = await fetchData(url,"GET", []);
-                    new mapboxgl.Popup()
-                        .setLngLat(coordinates)
-                        .setHTML(getCapacityHtml(building) + '<p>Busy Level: ' + data + '</p>')
-                        .addTo(map);
-                    return data;
-                })
-                .catch((error) => {
-                    console.error('Error', error);
-                });
-        }
-
+        // json values representing the three capacity feature buildings
         const capacityBuildingsGeojson = {
             'type': 'FeatureCollection',
             'features': [
@@ -375,7 +373,7 @@ export const Map = () => {
                     'properties': {
                         'description': "LIB",
                         'icon': 'LibraryIcon',
-                        'iconSize': [60, 60]
+                        'iconSize': [50, 50]
 
                     },
                     'geometry': {
@@ -387,7 +385,7 @@ export const Map = () => {
                     'type': 'Feature',
                     'properties': {
                         'description': "USU",
-                        'icon' : 'UsuIcon',
+                        'icon': 'UsuIcon',
                         'iconSize': [50, 50]
                     },
                     'geometry': {
@@ -399,8 +397,8 @@ export const Map = () => {
                     'type': 'Feature',
                     'properties': {
                         'description': "SRWC",
-                        'icon' : 'GymIcon',
-                        'iconSize': [40, 40]
+                        'icon': 'GymIcon',
+                        'iconSize': [50, 50]
                     },
                     'geometry': {
                         'type': 'Point',
@@ -410,20 +408,15 @@ export const Map = () => {
             ]
         };
 
-        function loadImage(filename) {
-            map.loadImage(
-                process.env.REACT_APP_IMAGES + filename,
-                (error, image) => {
-                    if (error) throw error;
-                    // remove file ending and front slash
-                    console.log(filename.substring(1, filename.length - 4));
-                    map.addImage(filename.substring(1,filename.length - 4), image);
-                }
-            );
-        }
+        map.on('move', () => {
+            setLng(map.getCenter().lng.toFixed(4));
+            setLat(map.getCenter().lat.toFixed(4));
+            setZoom(map.getZoom().toFixed(2));
+        });
 
+        // places icons on the map and programs them to call method for creating popups
         map.on('load', () => {
-            // Load an image from an external URL.
+            // Load an image from an internal URL.
             loadImage("/LibraryIcon.png");
             loadImage("/GymIcon.png");
             loadImage("/UsuIcon.png");
@@ -446,35 +439,17 @@ export const Map = () => {
             });
 
             map.on('click', 'points', (e) => {
-                // Copy coordinates array.
                 const coordinates = e.features[0].geometry.coordinates.slice();
                 const description = e.features[0].properties.description;
 
-                // Ensure that if the map is zoomed out such that multiple
-                // copies of the feature are visible, the popup appears
-                // over the copy being pointed to.
-                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                }
                 getCapacity(description, coordinates);
                 
             });
-
-            // Change the cursor to a pointer when the mouse is over the places layer.
-            map.on('mouseenter', 'places', () => {
-                map.getCanvas().style.cursor = 'pointer';
-            });
-
-            // Change it back to a pointer when it leaves.
-            map.on('mouseleave', 'places', () => {
-                map.getCanvas().style.cursor = '';
-            });
         });
-        
 
         // Clean up on unmount
         return () => map.remove();
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    }, []); 
 
     return (
         <div>

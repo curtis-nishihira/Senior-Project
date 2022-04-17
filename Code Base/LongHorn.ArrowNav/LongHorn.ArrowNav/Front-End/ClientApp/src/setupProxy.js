@@ -10,6 +10,7 @@ const context =  [
     "/register",
     "/building",
     "/schedule",
+    "/wellness",
 ];
 
 module.exports = function(app) {

@@ -9,3 +9,10 @@
     font-size: 17px;
     margin: auto;
 }
+
+.WellnessMentalCAPS button {
+    width: 150px;
+    height: 40px;
+    border-radius: 6px;
+    cursor: pointer;
+}

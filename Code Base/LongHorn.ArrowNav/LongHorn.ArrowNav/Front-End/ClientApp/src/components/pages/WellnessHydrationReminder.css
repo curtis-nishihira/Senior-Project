@@ -23,3 +23,10 @@ span {
 input{
     background: #f2f2f2
 }
+
+.WellnessHydrationReminder button {
+    width: 150px;
+    height: 40px;
+    border-radius: 6px;
+    cursor: pointer;
+}

@@ -19,7 +19,7 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    var sqlStatement = string.Format("exec InsertRewards '{0}', '{1}','{2}'", model._Email, model._Credits, model._Counter);
+                    var sqlStatement = string.Format("exec InsertRewards '{0}'", model._Email);
                     using (var command = new SqlCommand(sqlStatement, connection))
                     {
                         command.ExecuteNonQuery();
@@ -44,7 +44,7 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    var sqlStatement = string.Format("exec DeleteRewards '{0}', '{1}','{2}'", model._Email, model._Credits, model._Counter);
+                    var sqlStatement = string.Format("exec DeleteRewards '{0}'", model._Email);
                     using (var command = new SqlCommand(sqlStatement, connection))
                     {
                         command.ExecuteNonQuery();
@@ -209,9 +209,6 @@ namespace LongHorn.ArrowNav.DAL
         public string getConnection()
         {
             return @"Server=localhost\SQLEXPRESS;Database=ArrowNav;Trusted_Connection=True";
-            //var SQLConnectionString = ConfigurationManager.AppSettings.Get("LogsqlConnectionString");
-            //var SQLConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            //return SQLConnectionString;
             
         }
 

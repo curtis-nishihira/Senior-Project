@@ -39,9 +39,10 @@ export default class App extends Component {
                             <Route path="/wellnesshub" element={<WellnessHub />} />
                             <Route path="/account/register" element={<Register />} />
                             <Route path="/account/confirmationpage" element={<ConfirmationPage />} />
-                            <Route path="/reward" element={<Rewards />} />
+                            
                             <Route element={<ProtectedRoutes />}>
                                 <Route path="/account/userhome" element={<UserHome />} />
+                                <Route path="/reward" element={<Rewards />} />
                             </Route>
                         </Routes>
 

@@ -11,13 +11,30 @@ export const Rewards = () => {
     const [isSubmit, setIsSubmit] = useState(false);
     const [isCredit, setCredit] = useState(0);
     const [isCount, setCount] = useState(0);
-    const email = "spencergravel@gmail.com";
+    const email = getEmailFromCookies();
+
+    const [isClicked, setClick] = useState(false);
 
     //coupon states
     const initVal = { coupon: "" };
     const [formVal, setFormVal] = useState(initVal);
     const [formErr, setFormErr] = useState({});
     const [isSub, setIsSub] = useState(false);
+
+    //getting cookies
+    function getEmailFromCookies() {
+        var decodedCookies = decodeURIComponent(document.cookie);
+        var listOfCookies = decodedCookies.split("; ");
+        for (var i = 0; i < listOfCookies.length; i++) {
+            let temp = listOfCookies[i].split("=");
+            if (temp[0] == process.env.REACT_APP_COOKIE_KEY) {
+                let cookieSplit = listOfCookies[i].split('"');
+                let name = cookieSplit[3];
+                let newName = name.replace("'", "");
+                return newName;
+            }
+        }
+    }
 
     //fetchData for GET and POST
     async function fetchData(url, methodType, bodyData) {
@@ -34,24 +51,29 @@ export const Rewards = () => {
 
     }
 
+    //toggle the value for "Claim Credits" is clicked
+    const toggleClickListener = () => {
+        setClick(!isClicked);
+    }
+
     //Credit and Counter
-    useEffect(async () => {
-        setCredit(await getCredits());
-        setCount(await getCounter());
-    }, [isCount])
+    useEffect( () => {
+        getCredits();
+        getCounter();
+    }, [isClicked])
 
 
     async function getCredits() {
         var url = "https://localhost:44465/rewards/GetCredits?email=" + email;
         var credits = await fetchData(url, "GET", []);
         console.log("credits", credits);
-        return credits;
+        setCredit(credits);
     }
 
     async function getCounter() {
         var url = "https://localhost:44465/rewards/GetCounter?email=" + email;
         var counter = await fetchData(url, "GET", []);
-        return counter;
+        setCount(counter);
     }
 
     const handleChange = (e) => {
@@ -65,16 +87,9 @@ export const Rewards = () => {
         setIsSubmit(true);
     };
 
-    useEffect(() => {
-        console.log(formErrors);
-        if (Object.keys(formErrors).length === 0 && isSubmit) {
-            console.log(formValues);
-        }
-    }, [formErrors]);
-
     const validate = (values) => {
         const errors = {}
-        var regex = "THE PYRAMID"
+        var regex = "ARROWNAV"
 
         if (!values.answer) {
             errors.answer = "Answer is required!";
@@ -125,6 +140,7 @@ export const Rewards = () => {
             .catch((error) => {
                 console.error('Error', error);
             });
+        toggleClickListener();
     }
 
     //Coupon
@@ -151,17 +167,31 @@ export const Rewards = () => {
         return err;
     };
 
-    useEffect(() => {
-        console.log(formErr);
-        if (Object.keys(formErr).length === 0 && isSub) {
-            console.log(formVal);
-        }
-    }, [formErr]);
-
-    function buttonPressed2() {
+    async function buttonPressed2() {
         alert("ArrowNav Coupon: 10% off Sbarro order!")
-        setCredit(isCredit - 50)
+        fetch("https://localhost:44465/rewards/SetCredits", {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                _Email: email,
+                _Credits: (isCredit - 50),
+                _Counter: 0
+            }),
+
+        })
+            .then(response => response.json())
+            .then(data2 => {
+                console.log(data2)
+            })
+            .catch((error) => {
+                console.error('Error', error);
+            });
+        toggleClickListener();
     }
+
 
     //DISPLAY
     return (

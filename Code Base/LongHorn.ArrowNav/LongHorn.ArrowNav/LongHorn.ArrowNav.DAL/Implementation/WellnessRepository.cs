@@ -182,6 +182,34 @@ namespace LongHorn.ArrowNav.DAL
                 return "error";
             }
         }
+
+        public double GetWaterIntake(string Username)
+        {
+            try
+            {
+                double waterIntake = 0.0;
+                var sqlConnectionString = getConnection();
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    var sqlStatement = string.Format("exec getWaterIntake '{0}'", Username);
+                    using (var command = new SqlCommand(sqlStatement, connection))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            waterIntake = (double)reader["waterIntake"];
+                        }
+                        reader.Close();
+                    }
+                }
+                return waterIntake;
+            }
+            catch (Exception e)
+            {
+                return 0.0;
+            }
+        }
         public string SetEndTime(StudentWellnessModel Username)
         {
             try

@@ -17,6 +17,15 @@ namespace Front_End.Controllers
             var result = repo.Create(form);
             return result;
         }
+        
+        [HttpGet]
+        [Route("getWaterIntake")]
+        public double getWaterIntake(string Username)
+        {
+            WellnessRepository repo = new WellnessRepository();
+            var bodyWeight = repo.GetWaterIntake(Username);
+            return bodyWeight;
+        }
 
         [HttpGet]
         [Route("getBodyWeight")]

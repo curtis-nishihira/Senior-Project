@@ -12,5 +12,6 @@ namespace LongHorn.ArrowNav.Models
         public int _bodyWeight { get; set; } = 0;
         public string _startTime { get; set; } = "";
         public string _endTime { get; set; } = "";
+        public double _waterIntake { get; set; } = 0.0;
     }
 }

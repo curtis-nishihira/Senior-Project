@@ -18,7 +18,7 @@ namespace LongHorn.ArrowNav.DAL.Implementation
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    var sqlStatement = string.Format("exec insertReminder '{0}', '{1}', '{2}','{3}'", studentWellness._Username, studentWellness._bodyWeight, studentWellness._startTime, studentWellness._endTime);
+                    var sqlStatement = string.Format("exec insertReminder '{0}', {1}, '{2}','{3}', {4}", studentWellness._Username, studentWellness._bodyWeight, studentWellness._startTime, studentWellness._endTime,studentWellness._waterIntake);
                     using (var command = new SqlCommand(sqlStatement, connection))
                     {
                         command.ExecuteNonQuery();
@@ -233,8 +233,9 @@ namespace LongHorn.ArrowNav.DAL.Implementation
         public string getConnection()
         {
             //var SQLConnectionString = ConfigurationManager.AppSettings.Get("LogsqlConnectionString");
-            var SQLConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            return SQLConnectionString;
+            return @"Server=localhost;Database=WellnessDatabase;Trusted_Connection=True";
+            //var SQLConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            //return SQLConnectionString;
         }
     }
 }

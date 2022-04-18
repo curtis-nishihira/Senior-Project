@@ -36,7 +36,7 @@ export const Register = () => {
                     navigate("/account");
                 }
                 else {
-                    console.log("Something went wrong");
+                    alert(data);
 
                 }
             })

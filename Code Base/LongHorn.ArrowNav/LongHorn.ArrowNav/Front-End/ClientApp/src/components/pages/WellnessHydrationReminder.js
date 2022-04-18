@@ -1,13 +1,13 @@
 ﻿import { get } from 'jquery';
-import React, {useEffect,useState} from 'react';
+import React, {useEffect,useRef,useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './WellnessHydrationReminder.css'
 
 function WellnessHydrationReminder() {
     const [varTracker, setTracker] = useState(false);
-    const [beginTime, setBeginTimer] = useState("");
-    const [finalTime, setFinalTimer] = useState("");
-    const [totalReminders, setTotalReminders] = useState(0);
+    const beginTime = useRef("");
+    const finalTime = useRef("");
+    const totalReminders = useRef(0);
     const email = getEmailFromCookies();
 
     async function fetchData(url, methodType, bodyData) {
@@ -48,7 +48,7 @@ function WellnessHydrationReminder() {
     const defaultValues = {
         startTime: "",
         endTime: "",
-        bodyWeight: "",
+        bodyWeight: 0,
     };
     const [userValues, setUserValues] = useState(defaultValues);
 
@@ -62,14 +62,13 @@ function WellnessHydrationReminder() {
 
     useEffect(() => {
         updateReminderBox();
-        console.log(beginTime);
     }, [varTracker])
 
     async function updateReminderBox() {
         var startTime = await fetchData('https://localhost:44465/wellness/getStartTime?Username=' + email, 'GET', []);
         var endTime = await fetchData('https://localhost:44465/wellness/getEndTime?Username=' + email, 'GET', []);
-        setBeginTimer(beginTime);
-        setFinalTimer(finalTime);
+        beginTime.current = startTime;
+        finalTime.current = endTime;
         console.log(startTime, endTime);
     };
 
@@ -149,7 +148,7 @@ function WellnessHydrationReminder() {
                     <h2>Reminders</h2>
                 </div>
                 <div className="box">
-                    Reminder for hydration at: {beginTime} {finalTime} { totalReminders}
+                    Reminder for hydration at: {beginTime.current} {finalTime.current} {totalReminders.current}
                 </div>
             </div>
 

@@ -36,7 +36,7 @@ namespace LongHorn.ArrowNav.Services
             CapacityRepository capacityRepo = new CapacityRepository();
             model._TimeSlot = DateTime.Now.ToString("HH:00");
             model._WeekdayName = DateTime.Now.DayOfWeek.ToString();
-            CapacityModel response = capacityRepo.getSingleCapacity(model);
+            CapacityModel response = capacityRepo.GetSingleCapacity(model);
             Log entry;
 
             if (response == null)
@@ -58,7 +58,7 @@ namespace LongHorn.ArrowNav.Services
         {
             CapacityRepository capacityRepo = new CapacityRepository();
             model._WeekdayName = DateTime.Now.DayOfWeek.ToString();
-            var response = capacityRepo.getBuildingHours(model);
+            var response = capacityRepo.GetBuildingHours(model);
 
             // the string wont come back empty because of time dash but essentially looking for empty strings
             if (response != "-")
@@ -86,20 +86,21 @@ namespace LongHorn.ArrowNav.Services
             return response;
         }
 
-        // need to decide later what i want to do with these could be file
+        // only 3 values could be moved to database later but for now will be on txt file for more optimal storage
         public string GetWebLink(CapacitySurveyModel model)
         {
+            string [] text = System.IO.File.ReadAllText("./pages/weblinks.txt").Split("\r\n");
             if (model._Building == "SRWC")
             {
-                return "https://www.asirecreation.org/";
+                return text[0];
             }
             else if (model._Building == "LIB")
             {
-                return "https://www.csulb.edu/university-library";
+                return text[1];
             }
             else if (model._Building == "USU")
             {
-                return "https://asicsulb.org/corporate/resources/usu-directory";
+                return text[2];
             }
             else return "";
         }

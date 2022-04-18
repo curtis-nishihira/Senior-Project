@@ -319,7 +319,6 @@ export const Map = () => {
                 (error, image) => {
                     if (error) throw error;
                     // remove file ending and front slash
-                    console.log(filename.substring(1, filename.length - 4));
                     map.addImage(filename.substring(1, filename.length - 4), image);
                 }
             );

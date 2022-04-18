@@ -31,6 +31,7 @@ namespace LongHorn.ArrowNav.Managers
             return response;
         }
 
+        // Building name is the acronym for the building
         public CapacityPopupModel GetCapacityValues(string buildingName)
         {
             CapacityService CapacityService = new CapacityService();

@@ -4,14 +4,13 @@ export const CapacitySurvey = (props) => {
 	const defaultValues = { usu: "", lib: "", srwc: "", usuTime: "", libTime: "", srwcTime: "" };
 	const [buildingValues, setBuildingValues] = useState(defaultValues);
 
-
+	// sets the value when input fields are changed
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setBuildingValues({ ...buildingValues, [name]: value })
 	}
 
-
-
+	// sends form information to controller
 	const surveyHandler = (e) => {
 		e.preventDefault();
 		fetch(process.env.REACT_APP_FETCH + '/capacity/updateCapacity', {

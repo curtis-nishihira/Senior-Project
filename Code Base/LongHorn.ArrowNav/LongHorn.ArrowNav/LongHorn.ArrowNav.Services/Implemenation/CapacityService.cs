@@ -95,8 +95,8 @@ namespace LongHorn.ArrowNav.Services
             var weblinks = ConfigurationManager.AppSettings.Get("CapacityWebLinks");
             using (WebClient client = new WebClient())
             {
-                string s = client.DownloadString(weblinks);
-                string[] text = System.IO.File.ReadAllText(weblinks).Split("\r\n");
+                string weblinkString = client.DownloadString(weblinks);
+                string[] text = weblinkString.Split("\r\n");
                 if (model._Building == "SRWC")
                 {
                     return text[0];

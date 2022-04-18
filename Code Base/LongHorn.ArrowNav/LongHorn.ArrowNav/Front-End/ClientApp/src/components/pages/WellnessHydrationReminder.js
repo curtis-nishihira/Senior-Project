@@ -66,7 +66,7 @@ function WellnessHydrationReminder() {
     async function updateReminderBox() {
         var startTime = await fetchData(process.env.REACT_APP_FETCH + '/wellness/getStartTime?Username=' + email, 'GET', []);
         var endTime = await fetchData(process.env.REACT_APP_FETCH + '/wellness/getEndTime?Username=' + email, 'GET', []);
-        var waterIntake = await fetchData(process.env.REACT_APP_FETCH + '/wellness/getWaterIntake=' +  email, 'GET', []);
+        var waterIntake = await fetchData(process.env.REACT_APP_FETCH + '/wellness/getWaterIntake?Username=' +  email, 'GET', []);
         totalReminders.current = waterIntake;
         beginTime.current = startTime;
         finalTime.current = endTime;

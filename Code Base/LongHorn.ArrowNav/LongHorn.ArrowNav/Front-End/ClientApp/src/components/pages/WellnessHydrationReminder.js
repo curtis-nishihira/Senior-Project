@@ -1,5 +1,4 @@
-﻿import { get } from 'jquery';
-import React, {useEffect,useRef,useState} from 'react';
+﻿import React, {useEffect,useRef,useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './WellnessHydrationReminder.css'
 
@@ -65,8 +64,8 @@ function WellnessHydrationReminder() {
     }, [varTracker])
 
     async function updateReminderBox() {
-        var startTime = await fetchData('https://localhost:44465/wellness/getStartTime?Username=' + email, 'GET', []);
-        var endTime = await fetchData('https://localhost:44465/wellness/getEndTime?Username=' + email, 'GET', []);
+        var startTime = await fetchData(process.env.REACT_APP_FETCH + '/wellness/getStartTime?Username=' + email, 'GET', []);
+        var endTime = await fetchData(process.env.REACT_APP_FETCH + '/wellness/getEndTime?Username=' + email, 'GET', []);
         beginTime.current = startTime;
         finalTime.current = endTime;
         console.log(startTime, endTime);
@@ -77,7 +76,7 @@ function WellnessHydrationReminder() {
         if (userValues.bodyWeight && userValues.startTime && userValues.endTime) {
             setValid(true);
             var waterIntake = userValues.bodyWeight * 0.60;
-            fetch('https://localhost:44465/wellness/setForm', {
+            fetch(process.env.REACT_APP_FETCH + '/wellness/setForm', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

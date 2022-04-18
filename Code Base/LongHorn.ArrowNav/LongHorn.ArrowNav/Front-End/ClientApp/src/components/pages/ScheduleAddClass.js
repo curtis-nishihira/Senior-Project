@@ -1,5 +1,4 @@
-﻿import { error } from "jquery";
-import React, { useState, useEffect } from "react"
+﻿import React, { useState, useEffect } from "react"
 import "./ScheduleAddClass.css"
 
 export const ScheduleAddClass = (props) => {

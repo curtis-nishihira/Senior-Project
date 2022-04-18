@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
-namespace LongHorn.ArrowNav.DAL.Implementation
+namespace LongHorn.ArrowNav.DAL
 {
     public class WellnessRepository : IRepository<StudentWellnessModel>
     {
@@ -232,10 +233,8 @@ namespace LongHorn.ArrowNav.DAL.Implementation
         }
         public string getConnection()
         {
-            //var SQLConnectionString = ConfigurationManager.AppSettings.Get("LogsqlConnectionString");
-            return @"Server=localhost;Database=WellnessDatabase;Trusted_Connection=True";
-            //var SQLConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            //return SQLConnectionString;
+            var AzureConnectionString = ConfigurationManager.AppSettings.Get("DatabaseString");
+            return AzureConnectionString;
         }
     }
 }

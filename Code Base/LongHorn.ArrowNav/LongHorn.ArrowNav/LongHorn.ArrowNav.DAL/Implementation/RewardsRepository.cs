@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace LongHorn.ArrowNav.DAL
 {
@@ -208,8 +209,7 @@ namespace LongHorn.ArrowNav.DAL
 
         public string getConnection()
         {
-            //return @"Server=localhost\SQLEXPRESS;Database=ArrowNav;Trusted_Connection=True";
-            var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            var AzureConnectionString = ConfigurationManager.AppSettings.Get("DatabaseString");
             return AzureConnectionString;
         }
 

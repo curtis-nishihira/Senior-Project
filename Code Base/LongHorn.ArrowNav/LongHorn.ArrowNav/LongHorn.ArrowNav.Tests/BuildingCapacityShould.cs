@@ -104,38 +104,37 @@ namespace LongHorn.ArrowNav.Tests
             }
         }
 
-        // method works in production but file path is augmented by test runner
-        //[TestMethod]
-        //public void CapacityServiceGetWebLinkShould()
-        //{
-        //    CapacityService capacityService = new CapacityService();
-        //    CapacitySurveyModel model = new CapacitySurveyModel();
-        //    model._Building = "SRWC";
-        //    var test = capacityService.GetWebLink(model);
-        //    if (test.Contains("Error"))
-        //    {
-        //        Assert.IsTrue(false);
-        //    }
-        //    else
-        //    {
-        //        Assert.IsTrue(true);
-        //    }
-        //}
-        //[TestMethod]
-        //public void CapacityManagerGetCapacityValuesShould()
-        //{
-        //    CapacityManager capacityManager = new CapacityManager();
-        //    var test = capacityManager.GetCapacityValues("SRWC");
-        //    if (test._CapacityValue.Contains("Error"))
-        //    {
-        //        Assert.IsTrue(true);
-        //    }
-        //    else
-        //    {
-        //        Assert.IsTrue(false);
-        //    }
+        [TestMethod]
+        public void CapacityServiceGetWebLinkShould()
+        {
+            CapacityService capacityService = new CapacityService();
+            CapacitySurveyModel model = new CapacitySurveyModel();
+            model._Building = "SRWC";
+            var test = capacityService.GetWebLink(model);
+            if (test.Contains("Error"))
+            {
+                Assert.IsTrue(false);
+            }
+            else
+            {
+                Assert.IsTrue(true);
+            }
+        }
+        [TestMethod]
+        public void CapacityManagerGetCapacityValuesShould()
+        {
+            CapacityManager capacityManager = new CapacityManager();
+            var test = capacityManager.GetCapacityValues("SRWC");
+            if (test._CapacityValue.Contains("Error"))
+            {
+                Assert.IsTrue(true);
+            }
+            else
+            {
+                Assert.IsTrue(false);
+            }
 
-        //}
+        }
 
 
         [TestMethod]

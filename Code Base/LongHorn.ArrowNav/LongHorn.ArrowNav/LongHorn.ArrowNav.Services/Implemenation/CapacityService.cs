@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LongHorn.ArrowNav.DAL;
 using LongHorn.ArrowNav.Logging;
 using LongHorn.ArrowNav.Models;
+
 
 namespace LongHorn.ArrowNav.Services
 {
@@ -89,7 +91,28 @@ namespace LongHorn.ArrowNav.Services
         // only 3 values could be moved to database later but for now will be on txt file for more optimal storage
         public string GetWebLink(CapacitySurveyModel model)
         {
-            string [] text = System.IO.File.ReadAllText("./pages/weblinks.txt").Split("\r\n");
+            try
+            {
+                var appSettings = System.Configuration.ConfigurationManager.AppSettings;
+
+                if (appSettings.Count == 0)
+                {
+                    Console.WriteLine("AppSettings is empty.");
+                }
+                else
+                {
+                    foreach (var key in appSettings.AllKeys)
+                    {
+                        Console.WriteLine("Key: {0} Value: {1}", key, appSettings[key]);
+                    }
+                }
+            }
+            catch (ConfigurationErrorsException)
+            {
+                Console.WriteLine("Error reading app settings");
+            }
+            var weblinks = ConfigurationManager.AppSettings.Get("CapacityWebLinks");
+            string[] text = System.IO.File.ReadAllText(weblinks).Split("\r\n");
             if (model._Building == "SRWC")
             {
                 return text[0];

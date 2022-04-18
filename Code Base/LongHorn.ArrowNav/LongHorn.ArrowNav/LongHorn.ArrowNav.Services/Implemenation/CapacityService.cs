@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using LongHorn.ArrowNav.DAL;
@@ -91,41 +92,26 @@ namespace LongHorn.ArrowNav.Services
         // only 3 values could be moved to database later but for now will be on txt file for more optimal storage
         public string GetWebLink(CapacitySurveyModel model)
         {
-            try
-            {
-                var appSettings = System.Configuration.ConfigurationManager.AppSettings;
-
-                if (appSettings.Count == 0)
-                {
-                    Console.WriteLine("AppSettings is empty.");
-                }
-                else
-                {
-                    foreach (var key in appSettings.AllKeys)
-                    {
-                        Console.WriteLine("Key: {0} Value: {1}", key, appSettings[key]);
-                    }
-                }
-            }
-            catch (ConfigurationErrorsException)
-            {
-                Console.WriteLine("Error reading app settings");
-            }
             var weblinks = ConfigurationManager.AppSettings.Get("CapacityWebLinks");
-            string[] text = System.IO.File.ReadAllText(weblinks).Split("\r\n");
-            if (model._Building == "SRWC")
+            using (WebClient client = new WebClient())
             {
-                return text[0];
+                string s = client.DownloadString(weblinks);
+                string[] text = System.IO.File.ReadAllText(weblinks).Split("\r\n");
+                if (model._Building == "SRWC")
+                {
+                    return text[0];
+                }
+                else if (model._Building == "LIB")
+                {
+                    return text[1];
+                }
+                else if (model._Building == "USU")
+                {
+                    return text[2];
+                }
+                else return "";
             }
-            else if (model._Building == "LIB")
-            {
-                return text[1];
-            }
-            else if (model._Building == "USU")
-            {
-                return text[2];
-            }
-            else return "";
+            
         }
     }
 }

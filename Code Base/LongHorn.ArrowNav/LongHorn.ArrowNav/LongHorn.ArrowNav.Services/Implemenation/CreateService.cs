@@ -19,6 +19,12 @@ namespace LongHorn.ArrowNav.Services
             var result = scheduleRepository.Create(studentclass);
             return result;
         }
+        public string CreateWellnessReminder(StudentWellnessModel studentWellnessModel)
+        {
+            IRepository<StudentWellnessModel> wellnessRepository = new WellnessRepository();
+            var result = wellnessRepository.Create(studentWellnessModel);
+            return result;
+        }
 
         public string CreateRewardClass(Rewards reward)
         {
@@ -26,6 +32,5 @@ namespace LongHorn.ArrowNav.Services
             var result = rewardRepository.Create(reward);
             return result;
         }
-
     }
 }

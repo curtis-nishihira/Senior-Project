@@ -27,6 +27,12 @@ namespace LongHorn.ArrowNav.Services
             var result = schedulerepository.Delete(studentclass);
             return result;
         }
+        public string DeleteWellnessReminder(StudentWellnessModel studentWellnessModel)
+        {
+            IRepository<StudentWellnessModel> wellnessRepository = new WellnessRepository();
+            var result = wellnessRepository.Delete(studentWellnessModel);
+            return result;
+        }
 
         public string DeleteRewardClass(Rewards reward)
         {

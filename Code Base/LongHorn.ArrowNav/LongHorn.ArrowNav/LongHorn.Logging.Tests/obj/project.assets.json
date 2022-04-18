@@ -1828,6 +1828,7 @@
         "dependencies": {
           "LongHorn.ArrowNav.Archiving": "1.0.0",
           "LongHorn.ArrowNav.Logging": "1.0.0",
+          "LongHorn.ArrowNav.Models": "1.0.0",
           "LongHorn.ArrowNav.Services": "1.0.0"
         },
         "compile": {
@@ -1851,7 +1852,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "LongHorn.ArrowNav.DAL": "1.0.0"
+          "LongHorn.ArrowNav.DAL": "1.0.0",
+          "LongHorn.ArrowNav.Models": "1.0.0"
         },
         "compile": {
           "bin/placeholder/LongHorn.ArrowNav.Services.dll": {}
@@ -6733,19 +6735,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\curti\\.nuget\\packages\\": {}
+    "C:\\Users\\Chris\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Logging.Tests\\LongHorn.Logging.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Chris\\Documents\\GitHub\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Logging.Tests\\LongHorn.Logging.Tests.csproj",
       "projectName": "LongHorn.Logging.Tests",
-      "projectPath": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Logging.Tests\\LongHorn.Logging.Tests.csproj",
-      "packagesPath": "C:\\Users\\curti\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Logging.Tests\\obj\\",
+      "projectPath": "C:\\Users\\Chris\\Documents\\GitHub\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Logging.Tests\\LongHorn.Logging.Tests.csproj",
+      "packagesPath": "C:\\Users\\Chris\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Chris\\Documents\\GitHub\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.Logging.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\curti\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6759,11 +6761,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\curti\\source\\repos\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Managers\\LongHorn.ArrowNav.Managers.csproj": {
-              "projectPath": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Managers\\LongHorn.ArrowNav.Managers.csproj"
+            "C:\\Users\\Chris\\Documents\\GitHub\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Managers\\LongHorn.ArrowNav.Managers.csproj": {
+              "projectPath": "C:\\Users\\Chris\\Documents\\GitHub\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Managers\\LongHorn.ArrowNav.Managers.csproj"
             },
-            "C:\\Users\\curti\\source\\repos\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Models\\LongHorn.ArrowNav.Models.csproj": {
-              "projectPath": "C:\\Users\\curti\\source\\repos\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Models\\LongHorn.ArrowNav.Models.csproj"
+            "C:\\Users\\Chris\\Documents\\GitHub\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Models\\LongHorn.ArrowNav.Models.csproj": {
+              "projectPath": "C:\\Users\\Chris\\Documents\\GitHub\\Senior-Project\\Code Base\\LongHorn.ArrowNav\\LongHorn.ArrowNav\\LongHorn.ArrowNav.Models\\LongHorn.ArrowNav.Models.csproj"
             }
           }
         }
@@ -6810,7 +6812,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

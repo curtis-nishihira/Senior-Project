@@ -21,6 +21,13 @@ namespace LongHorn.ArrowNav.Services
             var result = schedulerepository.Update(studentclass);
             return result;
         }
+        public string EditWellnessReminder(StudentWellnessModel studentWellnessModel)
+        {
+            IRepository<StudentWellnessModel> wellnessRepository = new WellnessRepository();
+            var result = wellnessRepository.Update(studentWellnessModel);
+            return result;
+        }
+
 
         public string EditRewardClass(Rewards reward)
         {

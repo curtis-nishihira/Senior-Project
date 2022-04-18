@@ -1,0 +1,18 @@
+﻿.information-wrapper-ment-caps {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 17px;
+    margin: auto;
+}
+
+.WellnessMentalCAPS button {
+    width: 150px;
+    height: 40px;
+    border-radius: 6px;
+    cursor: pointer;
+}

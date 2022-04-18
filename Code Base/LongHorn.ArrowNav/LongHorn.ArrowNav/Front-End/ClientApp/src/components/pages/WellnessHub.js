@@ -1,55 +1,49 @@
-import React, { useState,useEffect } from 'react';
-import Popup from './Popup';
-import TrafficSurvey from './TrafficSurvey';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./WellnessHub.css";
 
 export const WellnessHub = (props) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [message, setMessage] = useState('');
-    const location = useLocation();
 
-    const togglePopup = () => {
-        setIsOpen(!isOpen);
-    }
+    let navigate = useNavigate();
 
-    useEffect(() => {
-        if (location.state == undefined) {
-            console.log("nothing");
+    function checkEmailFromCookies() {
+        var bool = false;
+        var decodedCookies = decodeURIComponent(document.cookie);
+        var listOfCookies = decodedCookies.split("; ");
+        for (var i = 0; i < listOfCookies.length; i++) {
+            let temp = listOfCookies[i].split("=");
+            if (temp[0] == process.env.REACT_APP_COOKIE_KEY) {
+                bool = true;
+                break;
+            }
+        }
+        if (bool === true) {
+            navigate("/wellnesshydrationreminder");
         }
         else {
-            document.getElementById('notification').style.visibility = 'visible';
-            setMessage(location.state.message);
-            console.log(message);
-            setTimeout(() => {
-                document.getElementById('notification').style.visibility = 'hidden';
-            }, 7000);
+            navigate("/account");
         }
-
-
-    });
+    }
 
     return (
-        <>
-            <div id='notification' className='notification-container' >
-                {message}
-
-            </div >
-            <div>
-                <input id = "button"
-                    type="button"
-                    value="Click to Open Popup"
-                    onClick={togglePopup}
-                />
-                {isOpen && <Popup
-                    content={<>
-                        <TrafficSurvey handleCloser={togglePopup} />
-                    </>}
-                    handleClose={togglePopup}
-                />}
+        <div className="WellnessHub">
+            <div className="wellness-container">
+                <div className="header">
+                    <h1>Welcome to the Wellness Hub!</h1>
+                </div>
+                <div className="body">
+                    <button
+                        onClick={() => { navigate("/wellnesshub/wellnesshubphysicalmain") }}>Physical Health</button>
+                    <button
+                        onClick={() => { navigate("/wellnesshub/wellnesshubmentalmain") }}>Mental Health</button>
+                    <button
+                        onClick={checkEmailFromCookies}> Setup Hydration Reminder </button>
+                </div>
+                <div className="footer">
+                </div>
             </div>
-        </>
-        );
+        </div>
+    );
     
 
 }

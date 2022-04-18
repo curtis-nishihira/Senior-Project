@@ -21,5 +21,6 @@ namespace LongHorn.ArrowNav.Services
             var result = umRepository.getProfile(email);
             return result;
         }
+
     }
 }

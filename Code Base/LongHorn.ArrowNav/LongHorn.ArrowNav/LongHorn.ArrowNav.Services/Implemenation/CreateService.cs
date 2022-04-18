@@ -19,5 +19,13 @@ namespace LongHorn.ArrowNav.Services
             var result = scheduleRepository.Create(studentclass);
             return result;
         }
+
+        public string CreateRewardClass(Rewards reward)
+        {
+            IRepository<Rewards> rewardRepository = new RewardsRepository();
+            var result = rewardRepository.Create(reward);
+            return result;
+        }
+
     }
 }

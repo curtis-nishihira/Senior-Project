@@ -44,6 +44,12 @@ namespace LongHorn.ArrowNav.DAL
                                 addProfileCommand.ExecuteNonQuery();
                             }
 
+                            var createRewards = string.Format("exec InsertRewards '{0}'", account._email);
+                            using (var command = new SqlCommand(createRewards, connection))
+                            {
+                                command.ExecuteNonQuery();
+                            }
+
                             var savedSqlStatement = string.Format("exec GetUserByEmail '{0}' ", account._email);
                             using (var checkSave = new SqlCommand(savedSqlStatement, connection))
                             {

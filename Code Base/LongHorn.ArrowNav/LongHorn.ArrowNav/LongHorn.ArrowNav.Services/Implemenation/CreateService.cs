@@ -1,7 +1,7 @@
 ﻿using LongHorn.ArrowNav.DAL;
 using LongHorn.ArrowNav.Models;
 using System;
-using LongHorn.ArrowNav.DAL.Implementation;
+using LongHorn.ArrowNav.DAL;
 
 namespace LongHorn.ArrowNav.Services
 {
@@ -19,11 +19,17 @@ namespace LongHorn.ArrowNav.Services
             var result = scheduleRepository.Create(studentclass);
             return result;
         }
-
         public string CreateWellnessReminder(StudentWellnessModel studentWellnessModel)
         {
             IRepository<StudentWellnessModel> wellnessRepository = new WellnessRepository();
             var result = wellnessRepository.Create(studentWellnessModel);
+            return result;
+        }
+
+        public string CreateRewardClass(Rewards reward)
+        {
+            IRepository<Rewards> rewardRepository = new RewardsRepository();
+            var result = rewardRepository.Create(reward);
             return result;
         }
     }

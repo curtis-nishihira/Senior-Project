@@ -13,7 +13,7 @@ export const Register = () => {
         e.preventDefault();
         //will have to change when it gets published so that it will actually communicate with the
         //live website
-        fetch('https://arrownav.azurewebsites.net/register/createaccount', {
+        fetch(process.env.REACT_APP_FETCH +'/register/createaccount', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -32,7 +32,8 @@ export const Register = () => {
                 if (data == "Successful Account Creation") {
                     //use this to register to a new page that says something about the confirmation email 
                     //being sent.
-                    navigate("/account", { state: { message: "Check your email for a confirmation link to complete your registration" } });
+                    //navigate("/account", { state: { message: "Check your email for a confirmation link to complete your registration" } });
+                    navigate("/account");
                 }
                 else {
                     console.log("Something went wrong");

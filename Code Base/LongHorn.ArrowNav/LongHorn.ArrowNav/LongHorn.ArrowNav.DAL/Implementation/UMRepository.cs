@@ -44,6 +44,12 @@ namespace LongHorn.ArrowNav.DAL
                                 addProfileCommand.ExecuteNonQuery();
                             }
 
+                            var createRewards = string.Format("exec InsertRewards '{0}'", account._email);
+                            using (var command = new SqlCommand(createRewards, connection))
+                            {
+                                command.ExecuteNonQuery();
+                            }
+
                             var savedSqlStatement = string.Format("exec GetUserByEmail '{0}' ", account._email);
                             using (var checkSave = new SqlCommand(savedSqlStatement, connection))
                             {
@@ -421,9 +427,7 @@ namespace LongHorn.ArrowNav.DAL
         }
         public string getConnection()
         {
-            //var SQLConnectionString = ConfigurationManager.AppSettings.Get("UMsqlConnectionString");
-            //return @"Server=localhost\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
-            var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            var AzureConnectionString = ConfigurationManager.AppSettings.Get("DatabaseString");
             return AzureConnectionString;
         }
 

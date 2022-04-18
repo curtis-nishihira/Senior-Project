@@ -4,6 +4,7 @@ import "./UserHome.css";
 import Popup from './Popup';
 import ScheduleAddClass from './ScheduleAddClass';
 import ScheduleEditClass from './ScheduleEditClass';
+import CapacitySurvey from './CapacitySurvey';
 
 
 export function UserHome() {
@@ -20,12 +21,17 @@ export function UserHome() {
     const navigate = useNavigate();
     const [isAddOpen, setIsAddOpen] = useState(false);
     const [isEditOpen, setIsEditOpen] = useState(false);
+    const [isCapacityOpen, setCapacityOpen] = useState(false);
     const [isSelected, setIsSelected] = useState(false);
+
     const toggleAddPopup = () => {
         setIsAddOpen(!isAddOpen);
     }
     const toggleEditPopup = () => {
         setIsEditOpen(!isEditOpen);
+    }
+    const toggleCapacityPopup = () => {
+        setCapacityOpen(!isCapacityOpen);
     }
     const toggleIsSelected = () => {
         setIsSelected(!isSelected);
@@ -33,7 +39,7 @@ export function UserHome() {
 
     function fillTable() {
         if (isAddOpen == false && isEditOpen == false) {
-            fetch('https://arrownav.azurewebsites.net/schedule/getschedule?email=' + userEmail, {
+            fetch(process.env.REACT_APP_FETCH + '/schedule/getschedule?email=' + userEmail, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -95,7 +101,7 @@ export function UserHome() {
     }
 
     function getProfile() {
-        fetch("https://arrownav.azurewebsites.net/login/getProfile?email=" + userEmail, {
+        fetch(process.env.REACT_APP_FETCH + "/login/getProfile?email=" + userEmail, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -167,7 +173,7 @@ export function UserHome() {
     }, [isAddOpen, isEditOpen, isSelected])
 
     function logout() {
-        fetch('https://arrownav.azurewebsites.net/login/removecookie', {
+        fetch(process.env.REACT_APP_FETCH + '/login/removecookie', {
             method: "GET",
             headers: {
                 'Accept': 'application/json',
@@ -189,7 +195,7 @@ export function UserHome() {
 
     function deleteCourse() {
         if (selectedCourse != '') {
-            fetch('https://arrownav.azurewebsites.net/schedule/scheduledelete', {
+            fetch(process.env.REACT_APP_FETCH +'/schedule/scheduledelete', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -221,7 +227,7 @@ export function UserHome() {
 
     function findOnMap() {
         if (selectedCourse != '') {
-            fetch('https://arrownav.azurewebsites.net/building/getBuildingbyAcronym?acronym=' + selectedBuilding, {
+            fetch(process.env.REACT_APP_FETCH + '/building/getBuildingbyAcronym?acronym=' + selectedBuilding, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -244,7 +250,7 @@ export function UserHome() {
 
     function deleteAccount() {
         console.log(userEmail);
-        fetch("https://arrownav.azurewebsites.net/login/deleteAccount?email=" + userEmail, {
+        fetch(process.env.REACT_APP_FETCH +"/login/deleteAccount?email=" + userEmail, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -336,6 +342,19 @@ export function UserHome() {
                     value="FIND CLASS"
                     onClick={findOnMap}
                 />
+            </div>
+            <div>
+                <input id="button"
+                    type="button"
+                    value="Optional Building Survey"
+                    onClick={toggleCapacityPopup}
+                />
+                {isCapacityOpen && <Popup
+                    content={<>
+                        <CapacitySurvey handleCloser={toggleCapacityPopup} />
+                    </>}
+                    handleClose={toggleCapacityPopup}
+                />}
             </div>
         </>
     );

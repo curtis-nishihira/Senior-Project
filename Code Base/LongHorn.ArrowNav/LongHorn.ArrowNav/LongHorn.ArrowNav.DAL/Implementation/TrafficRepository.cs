@@ -84,6 +84,8 @@ namespace LongHorn.ArrowNav.DAL
         {
             try
             {
+                var addTotalSurveys = 0;
+                int totalSurveys = 0;
                 var addToTotalValues = 0;
                 var connectionString = getConnection();
                 using (var connection = new SqlConnection(connectionString))
@@ -107,16 +109,16 @@ namespace LongHorn.ArrowNav.DAL
                     {
                         updateValues.ExecuteNonQuery();
                     }
-                    var addTotalSurveys = 0;
+                    
                     var checkTotalSurveys = string.Format("exec GetTotalSurveys '{0}', '{1}','{2}'", model._WeekdayName, model._ZoneName, model._TimeSlot);
                     using (var checkSurveys = new SqlCommand(checkTotalSurveys, connection))
                     {
-                        int totalSurveys = 0;
+                        
                         SqlDataReader rdr = checkSurveys.ExecuteReader();
                         while (rdr.Read())
                         {
                             int temp = (int)rdr["TotalSurveys"];
-                            totalSurveys = totalSurveys + temp;
+                            totalSurveys = temp;
                         }
                         if (model._TotalValue > 0)
                         {
@@ -125,13 +127,13 @@ namespace LongHorn.ArrowNav.DAL
                         rdr.Close();
                     }
                     var updatingSurveysString = string.Format("exec UpdateTrafficSurveys {0},'{1}','{2}','{3}'", addTotalSurveys, model._WeekdayName, model._ZoneName, model._TimeSlot);
-                    using (var updateSurveys = new SqlCommand(updatingValuesString, connection))
+                    using (var updateSurveys = new SqlCommand(updatingSurveysString, connection))
                     {
                         updateSurveys.ExecuteNonQuery();
                     }
                     connection.Close();
                 }
-                return "values updated " + " " +addToTotalValues;
+                return "surveys updated " + " " + addTotalSurveys;
             }
             catch (Exception ex)
             {
@@ -142,9 +144,7 @@ namespace LongHorn.ArrowNav.DAL
         }
         public string getConnection()
         {
-            //var SQLConnectionString = ConfigurationManager.AppSettings.Get("UMsqlConnectionString");
-            //return @"Server=localhost\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
-            var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            var AzureConnectionString = ConfigurationManager.AppSettings["DatabaseString"];
             return AzureConnectionString;
         }
     }

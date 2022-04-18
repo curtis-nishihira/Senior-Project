@@ -30,6 +30,10 @@
     <ProjectReference Include="..\LongHorn.ArrowNav.Models\LongHorn.ArrowNav.Models.csproj" />
   </ItemGroup>
 
+	<Target Name="CopyCustomContent" AfterTargets="AfterBuild">
+		<Copy SourceFiles="App.config" DestinationFiles="$(OutDir)\testhost.dll.config" />
+	</Target>
+
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

@@ -3,7 +3,7 @@ using LongHorn.ArrowNav.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using LongHorn.ArrowNav.DAL.Implementation;
+using LongHorn.ArrowNav.DAL;
 
 namespace LongHorn.ArrowNav.Services
 {
@@ -27,5 +27,14 @@ namespace LongHorn.ArrowNav.Services
             var result = wellnessRepository.Update(studentWellnessModel);
             return result;
         }
+
+
+        public string EditRewardClass(Rewards reward)
+        {
+            IRepository<Rewards> rewardsrepository = new RewardsRepository();
+            var result = rewardsrepository.Update(reward);
+            return result;
+        }
+
     }
 }

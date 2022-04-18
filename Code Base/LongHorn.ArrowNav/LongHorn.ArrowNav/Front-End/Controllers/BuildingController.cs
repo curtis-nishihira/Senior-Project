@@ -2,7 +2,7 @@
 using LongHorn.ArrowNav.Models;
 using LongHorn.ArrowNav.Managers;
 using System.Text.Json;
-using LongHorn.ArrowNav.DAL.Implementation;
+using LongHorn.ArrowNav.DAL;
 
 namespace Front_End.Controllers
 {
@@ -25,6 +25,14 @@ namespace Front_End.Controllers
             BuildingRepository repo = new BuildingRepository();
             List<string> buildings = repo.ReadAllBuildings();
             return buildings;
+        }
+        [HttpGet]
+        [Route("getAcronymbyBuildingName")]
+        public string GetAcronymbyBuilding(string BuildingName)
+        {
+            BuildingRepository repo = new BuildingRepository();
+            string acronym = repo.AcryonmByBuilding(BuildingName);
+            return acronym;
         }
 
         [HttpPost]

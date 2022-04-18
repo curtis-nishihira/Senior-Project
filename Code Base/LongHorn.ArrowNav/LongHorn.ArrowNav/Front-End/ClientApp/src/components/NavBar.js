@@ -63,6 +63,12 @@ export const NavBar = () => {
                                 Wellness Hub
                             </NavLink>
                         </li>
+                        <li className="nav-item">
+                            <NavLink to="/reward" className={(navData) => navData.isActive ? "active" : "nav-links"}
+                                onClick={handleClick} >
+                                Rewards
+                            </NavLink>
+                        </li>
                     </ul>
                     <div className="nav-icon" onClick={handleClick}>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">

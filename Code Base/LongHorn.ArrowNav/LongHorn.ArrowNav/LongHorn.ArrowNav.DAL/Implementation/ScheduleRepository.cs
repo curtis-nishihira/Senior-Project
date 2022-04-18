@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
-namespace LongHorn.ArrowNav.DAL.Implementation
+namespace LongHorn.ArrowNav.DAL
 {
     public class ScheduleRepository : IRepository<StudentClassModel>
     {
@@ -204,10 +205,7 @@ namespace LongHorn.ArrowNav.DAL.Implementation
 
         public string getConnection()
         {
-            //var SQLConnectionString = Get("UMsqlConnectionString");
-            //return @"Server=LAPTOP-KI9GTVUJ\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
-            //return @"Server=localhost\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
-            var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            var AzureConnectionString = ConfigurationManager.AppSettings.Get("DatabaseString");
             return AzureConnectionString;
         }
 

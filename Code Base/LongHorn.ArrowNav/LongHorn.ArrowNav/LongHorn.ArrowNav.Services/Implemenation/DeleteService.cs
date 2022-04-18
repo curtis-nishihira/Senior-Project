@@ -3,7 +3,7 @@ using LongHorn.ArrowNav.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using LongHorn.ArrowNav.DAL.Implementation;
+using LongHorn.ArrowNav.DAL;
 
 namespace LongHorn.ArrowNav.Services
 {
@@ -33,5 +33,13 @@ namespace LongHorn.ArrowNav.Services
             var result = wellnessRepository.Delete(studentWellnessModel);
             return result;
         }
+
+        public string DeleteRewardClass(Rewards reward)
+        {
+            IRepository<Rewards> rewardrepository = new RewardsRepository();
+            var result = rewardrepository.Delete(reward);
+            return result;
+        }
+
     }
 }

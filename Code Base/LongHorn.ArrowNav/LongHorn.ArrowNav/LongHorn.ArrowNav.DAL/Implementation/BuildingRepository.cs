@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LongHorn.ArrowNav.Models;
 
-namespace LongHorn.ArrowNav.DAL.Implementation
+namespace LongHorn.ArrowNav.DAL
 {
     public class BuildingRepository : IRepository<BuildingModel>
     {
@@ -86,6 +87,40 @@ namespace LongHorn.ArrowNav.DAL.Implementation
                 return "Error";
             }
         }
+
+        public string AcryonmByBuilding(string buildingname)
+        {
+            try
+            {
+                var sqlConnectionString = getConnection();
+
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    string temp = "";
+                    var sqlStatement = string.Format("exec GetAcronymsbyBuildingNames '{0}'", buildingname);
+                    using (var command = new SqlCommand(sqlStatement, connection))
+                    {
+                        command.Connection.Open();
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            temp = string.Format("{0}", reader["Acronym"]);
+                        }
+                        reader.Close();
+                    }
+                    connection.Close();
+                    return temp;
+                }
+
+
+
+            }
+            catch (Exception e)
+            {
+                return "Error";
+            }
+        }
         public List<string> ReadAllBuildings()
         {
             List<string> retrievedValues = new List<string>();
@@ -126,7 +161,7 @@ namespace LongHorn.ArrowNav.DAL.Implementation
         public string getConnection()
         {
             //return @"Server=localhost\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
-            var AzureConnectionString = @"Server=tcp:arrownav-db.database.windows.net,1433;Initial Catalog=ArrowNavDB;Persist Security Info=False;User ID=brayan_admin;Password=Bf040800;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            var AzureConnectionString = ConfigurationManager.AppSettings.Get("DatabaseString");
             return AzureConnectionString;
 
         }

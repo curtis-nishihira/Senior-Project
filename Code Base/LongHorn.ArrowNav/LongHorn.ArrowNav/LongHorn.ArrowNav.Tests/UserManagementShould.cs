@@ -1,6 +1,5 @@
-using LongHorn.ArrowNav.DAL.Implementation;
 using LongHorn.ArrowNav.Managers;
-using LongHorn.ArrowNav.Models;
+using LongHorn.ArrowNav.DAL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
 

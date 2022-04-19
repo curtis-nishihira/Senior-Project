@@ -37,8 +37,9 @@ namespace LongHorn.ArrowNav.Services
         public CapacityModel GetSingleCapacity(CapacitySurveyModel model)
         {
             CapacityRepository capacityRepo = new CapacityRepository();
-            model._TimeSlot = DateTime.Now.ToString("HH:00");
-            model._WeekdayName = DateTime.Now.DayOfWeek.ToString();
+            DateTime temp = DateTime.UtcNow.AddHours(-7);
+            model._TimeSlot =  temp.ToString("HH:00");
+            model._WeekdayName = temp.DayOfWeek.ToString();
             CapacityModel response = capacityRepo.GetSingleCapacity(model);
             Log entry;
 

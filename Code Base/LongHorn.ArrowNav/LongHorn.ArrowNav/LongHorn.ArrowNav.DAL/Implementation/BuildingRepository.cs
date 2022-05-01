@@ -1,174 +1,301 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LongHorn.ArrowNav.Models;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LongHorn.ArrowNav.Models;
 
 namespace LongHorn.ArrowNav.DAL
 {
-    public class BuildingRepository : IRepository<BuildingModel>
+    public class BuildingRepository : IBuildingRepository
     {
-        public string Create(BuildingModel model)
-        {
-            throw new NotImplementedException();
-        }
+        LoggingRepository logRepository = new LoggingRepository();
 
-        public string Delete(BuildingModel model)
-        {
-            throw new NotImplementedException();
-        }
+        Log? logEntry;
 
-        public BuildingModel Read(String name)
+        // Returns all the information of the building based off of the building name.
+        public BuildingModel? RetrieveBuildingInfo(string name)
         {
             try
             {
-                var connectionString = getConnection();
+                var connectionString = GetConnection();
                 BuildingModel model = new BuildingModel();
                 using (var connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    var sqlStatement = string.Format("exec GetBuilding '{0}'", name);
-                    using (var checkValue = new SqlCommand(sqlStatement, connection))
+
+                    SqlCommand getBuildingCmd = new SqlCommand("GetBuilding", connection);
+
+                    // Lets the SqlCommand Object know that its a store procedure type
+                    getBuildingCmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    // Adding the necessay parameters for the stored procedure
+                    getBuildingCmd.Parameters.Add(new SqlParameter("@NAME", name));
+
+                    using (SqlDataReader reader = getBuildingCmd.ExecuteReader())
                     {
-                        SqlDataReader rdr = checkValue.ExecuteReader();
-                        while (rdr.Read())
+
+                        while (reader.Read())
                         {
-                            model.acronym = (string)rdr["Acronym"];
-                            model.latitude = (double)rdr["Latitude"];
-                            model.longitude = (double)rdr["Longitude"];
+                            model.acronym = (string)reader["Acronym"];
+
+                            model.latitude = (double)reader["Latitude"];
+
+                            model.longitude = (double)reader["Longitude"];
+
                             model.buildingName = name;
                         }
-                        rdr.Close();
+
                     }
+
                     connection.Close();
                 }
-                return model;
-            }
-            catch (Exception ex)
-            {
-                BuildingModel model = new BuildingModel();
-                model.buildingName = ex.ToString();
-                return model;
-            }
-        }
-        public string BuildingByAcryonm(string acronym)
-        {
-            try
-            {
-                var sqlConnectionString = getConnection();
+                try
+                {
+                    logEntry = new Log("Read Method Successfully Called", "DAL", "Info", "User");
+
+                    logRepository.Create(logEntry);
+                }
+                catch 
+                {
+
+                    // Ignoring exceptions being thrown that might prevent business functionality from working
                 
-                using (var connection = new SqlConnection(sqlConnectionString))
-                {
-                    string temp = "";
-                    var sqlStatement = string.Format("exec GetBuildingNameByAcronym '{0}'", acronym);
-                    using (var command = new SqlCommand(sqlStatement, connection))
-                    {
-                        command.Connection.Open();
-                        SqlDataReader reader = command.ExecuteReader();
-                        
-                        while (reader.Read())
-                        {
-                            temp = string.Format("{0}", reader["BuildingName"]);
-                        }
-                        reader.Close();
-                    }
-                    connection.Close();
-                    return temp;
                 }
-               
 
-
+                return model;
             }
-            catch(Exception e)
+
+            // Logging the possible execptions.
+            catch (SqlException ex)
             {
-                return "Error";
+                logEntry = new Log(ex.Message, "DAL: " + ex.StackTrace, "Error", "User");
+                logRepository.Create(logEntry);
+                return null;
             }
+            catch (IndexOutOfRangeException ex)
+            {
+                logEntry = new Log(ex.Message, "DAL: " + ex.StackTrace, "Error", "User");
+                logRepository.Create(logEntry);
+                return null;
+            }
+            catch (NullReferenceException ex)
+            {
+                logEntry = new Log(ex.Message, "DAL: " + ex.StackTrace, "Error", "User");
+                logRepository.Create(logEntry);
+                return null;
+            }
+
         }
 
-        public string AcryonmByBuilding(string buildingname)
+        // Searches for a building using the acronym 
+        public string? BuildingByAcronym(string acronym)
         {
             try
             {
-                var sqlConnectionString = getConnection();
+                var sqlConnectionString = GetConnection();
 
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
-                    string temp = "";
-                    var sqlStatement = string.Format("exec GetAcronymsbyBuildingNames '{0}'", buildingname);
-                    using (var command = new SqlCommand(sqlStatement, connection))
-                    {
-                        command.Connection.Open();
-                        SqlDataReader reader = command.ExecuteReader();
+                    connection.Open();
+                    string buildingName = "";
 
-                        while (reader.Read())
+                    SqlCommand getBuildingByAcronymCmd = new SqlCommand("GetBuildingNameByAcronym", connection);
+
+                    // Lets the SqlCommand Object know that its a store procedure type
+                    getBuildingByAcronymCmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    // Adding the necessay parameters for the stored procedure
+                    getBuildingByAcronymCmd.Parameters.Add(new SqlParameter("@ACRONYM", acronym));
+                    using (SqlDataReader reader = getBuildingByAcronymCmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
                         {
-                            temp = string.Format("{0}", reader["Acronym"]);
+                            while (reader.Read())
+                            {
+                                buildingName = string.Format("{0}", reader["BuildingName"]);
+                            }
                         }
-                        reader.Close();
+                        else
+                        {
+                            buildingName = "Building not Found in Database";
+                        }
+
                     }
-                    connection.Close();
-                    return temp;
+                    logEntry = new Log("Building By Acronym Successfully Called", "DAL", "Info", "User");
+
+                    logRepository.Create(logEntry);
+
+                   return buildingName;
+
                 }
 
-
-
             }
-            catch (Exception e)
+            // Logging the possible execptions.
+            catch (SqlException ex)
             {
-                return "Error";
+                logEntry = new Log(ex.Message, "DAL: " + ex.StackTrace, "Error", "User");
+
+                logRepository.Create(logEntry);
+
+                return null;
             }
+            catch (IndexOutOfRangeException ex)
+            {
+                logEntry = new Log(ex.Message, "DAL: " + ex.StackTrace, "Error", "User");
+
+                logRepository.Create(logEntry);
+
+                return null;
+            }
+            catch (NullReferenceException ex)
+            {
+                logEntry = new Log(ex.Message, "DAL: " + ex.StackTrace, "Error", "User");
+
+                logRepository.Create(logEntry);
+
+                return null;
+            }
+
         }
-        public List<string> ReadAllBuildings()
+
+        // Searches for the acronym of a building by using their respective building name
+        public string? AcryonmByBuilding(string buildingname)
         {
-            List<string> retrievedValues = new List<string>();
-            var sqlConnectionString = getConnection();
-            using (var connection = new SqlConnection(sqlConnectionString))
+            try
             {
-                var sqlStatement = string.Format("exec GetAllBuildings");
-                using (var command = new SqlCommand(sqlStatement, connection))
+                var sqlConnectionString = GetConnection();
+
+                using (var connection = new SqlConnection(sqlConnectionString))
                 {
-                    command.Connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
+                    connection.Open();
+                    string acronym = "";
 
-                    if (reader.HasRows)
+                    SqlCommand getAcronymByBuildingCmd = new SqlCommand("GetAcronymsbyBuildingNames", connection);
+
+                    //lets the SqlCommand Object know that its a store procedure type
+                    getAcronymByBuildingCmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    //adding the necessay parameters for the stored procedure
+                    getAcronymByBuildingCmd.Parameters.Add(new SqlParameter("@BuildingName", buildingname));
+
+                    using (SqlDataReader reader = getAcronymByBuildingCmd.ExecuteReader())
                     {
+
                         while (reader.Read())
                         {
-                            var entry = string.Format("{0}", reader["BuildingName"]);
-                            retrievedValues.Add(entry);
+                            acronym = string.Format("{0}", reader["Acronym"]);
                         }
+
                     }
-                    else
-                    {
-                        Console.WriteLine("No rows found.");
-                    }
-                    reader.Close();
-                    command.Connection.Close();
+                    logEntry = new Log("Acronym By Building Successfully Called", "DAL", "Info", "User");
+
+                    logRepository.Create(logEntry);
+
+                    return acronym;
                 }
+
             }
 
-            return retrievedValues;
+            //Logging the possible execptions.
+            catch (SqlException ex)
+            {
+                logEntry = new Log(ex.Message, "DAL: " + ex.StackTrace, "Error", "User");
+
+                logRepository.Create(logEntry);
+
+                return null;
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                logEntry = new Log(ex.Message, "DAL: " + ex.StackTrace, "Error", "User");
+
+                logRepository.Create(logEntry);
+
+                return null;
+
+            }
+            catch (NullReferenceException ex)
+            {
+                logEntry = new Log(ex.Message, "DAL: " + ex.StackTrace, "Error", "User");
+
+                logRepository.Create(logEntry);
+
+                return null;
+
+            }
         }
 
-        public string Update(BuildingModel model)
+        // Returns all of the buildings we have in our database.
+        public List<string>? RetrieveAllBuildings()
         {
-            throw new NotImplementedException();
+            List<string> buildingsList = new List<string>();
+
+            try
+            {
+                var sqlConnectionString = GetConnection();
+
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    SqlCommand getAllBuildingsCmd = new SqlCommand("GetAllBuildings", connection);
+
+                    // Lets the SqlCommand Object know that its a store procedure type
+                    getAllBuildingsCmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    using (SqlDataReader reader = getAllBuildingsCmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+
+                            while (reader.Read())
+                            {
+                                var entry = string.Format("{0}", reader["BuildingName"]);
+                                buildingsList.Add(entry);
+                            }
+
+                        }
+                    }
+                }
+                logEntry = new Log("Read All Buildings Successfully Called", "DAL", "Info", "User");
+
+                logRepository.Create(logEntry);
+
+                return buildingsList;
+            }
+            catch (SqlException ex)
+            {
+                logEntry = new Log(ex.Message, "DAL: " + ex.StackTrace, "Error", "User");
+
+                logRepository.Create(logEntry);
+
+                return null;
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                logEntry = new Log(ex.Message, "DAL: " + ex.StackTrace, "Error", "User");
+
+                logRepository.Create(logEntry);
+
+                return null;
+
+            }
+            catch (NullReferenceException ex)
+            {
+                logEntry = new Log(ex.Message, "DAL: " + ex.StackTrace, "Error", "User");
+
+                logRepository.Create(logEntry);
+
+                return null;
+
+            }
+
+
         }
 
-        public string getConnection()
+        private string? GetConnection()
         {
-            //return @"Server=localhost\SQLEXPRESS01;Database=ArrowNav;Trusted_Connection=True";
             var AzureConnectionString = ConfigurationManager.AppSettings.Get("DatabaseString");
             return AzureConnectionString;
 
         }
 
-        public List<string> Read(BuildingModel model)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

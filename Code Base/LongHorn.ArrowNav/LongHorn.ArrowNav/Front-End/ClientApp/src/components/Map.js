@@ -43,16 +43,15 @@ export const Map = () => {
                 const data = await response.json();
                 return data;
             }
-            else if (methodType === "POST")
-            {
+            else if (methodType === "POST") {
                 const response = await fetch(url, { method: methodType })
                 const data = await response.json();
                 return data;
             }
 
         }
-        
-        async function fetchWalkingData(url, zoneUrl,routeID,RouteColor) {
+
+        async function fetchWalkingData(url, zoneUrl, routeID, RouteColor) {
             const coordinates = [];
             var TimeAdditions = [];
             var data = await fetchData(url, "GET", [])
@@ -80,18 +79,18 @@ export const Map = () => {
                 setFirstRouteDistance(distance.toFixed(2));
                 setFirstRouteDuration(Math.round((data.routes[0].duration) / 60) + timeAddedForRoute);
             }
-            else
-            {
+            else {
                 setSecondRouteDistance(distance.toFixed(2));
                 setSecondRouteDuration(Math.round((data.routes[0].duration) / 60) + timeAddedForRoute);
             }
-            
-            
+
+
 
             addLayer(coordinates, RouteColor, routeID);
         }
         //adds the route onto the map
-        function addLayer(route,routeColor,routeID) {
+        function addLayer(route, routeColor, routeID) {
+
             map.addLayer({
                 "id": routeID,
                 "type": "line",
@@ -120,9 +119,8 @@ export const Map = () => {
         /*
          * removes any of the routes that are currently displayed on the map. This is used when we are creating new routes.
          * To avoid overlapping routes or multiple routes for different destinations.
-         */ 
-        function removeAllRoutes()
-        {
+         */
+        function removeAllRoutes() {
             if (map.getSource('route')) {
                 map.removeLayer('route')
                 map.removeSource('route')
@@ -134,21 +132,38 @@ export const Map = () => {
         }
         //this function is filling in the datalist that is used for the search bar
         async function fillComboBox() {
+
             var fillBoxUrl = process.env.REACT_APP_FETCH + '/building/getAllBuildings';
-            var x = await fetchData(fillBoxUrl,"GET",[]);
+
+            var x = await fetchData(fillBoxUrl, "GET", []);
+
             var listOfBuildings = x;
-            var sel = document.getElementById('buildings');
-            for (var i = 0; i < listOfBuildings.length; i++) {
-                var opt = document.createElement('option');
-                opt.innerHTML = listOfBuildings[i];
-                opt.textContent = listOfBuildings[i];
-                opt.value = listOfBuildings[i];
-                sel.appendChild(opt);
+
+            if (listOfBuildings.length != 0) {
+
+                var sel = document.getElementById('buildings');
+
+                for (var i = 0; i < listOfBuildings.length; i++) {
+
+                    var opt = document.createElement('option');
+
+                    opt.innerHTML = listOfBuildings[i];
+
+                    opt.textContent = listOfBuildings[i];
+
+                    opt.value = listOfBuildings[i];
+
+                    sel.appendChild(opt);
+                }
             }
-            
+            else {
+                alert("Server error in retrieving data set");
+            }
+
         }
 
-        function calculateRouteInfo(data,route,secondRoute) {
+        function calculateRouteInfo(data, route, secondRoute) {
+
             if (data.routes.length >= 2) {
                 let distance = data.routes[0].distance / 1609;
                 setFirstRouteDistance(distance.toFixed(2));
@@ -194,6 +209,7 @@ export const Map = () => {
         const endPoint = new mapboxgl.Marker();
 
         if (location.state != undefined) {
+
             putPin(location.state.building);
         }
 
@@ -202,7 +218,9 @@ export const Map = () => {
         //calls the mapbox api for the routes and route info which are then added to their respective placeholders
         async function drivingRoute() {
             removeAllRoutes()
+
             document.getElementById("information").style.visibility = "visible";
+
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(async (position) => {
                     var userLat = position.coords.latitude;
@@ -213,8 +231,8 @@ export const Map = () => {
                     const url = "https://api.mapbox.com/directions/v5/mapbox/driving-traffic/" + userLng + "," + userLat + ";" + locationLng + "," + locationLat + "?waypoints=0;1&alternatives=true&steps=true&access_token=" + mapboxgl.accessToken;
                     const route = [];
                     const secondRoute = [];
-                    var apiData = await fetchData(url,"GET", []);
-                    calculateRouteInfo(apiData,route,secondRoute);
+                    var apiData = await fetchData(url, "GET", []);
+                    calculateRouteInfo(apiData, route, secondRoute);
                 });
             }
             else {
@@ -226,6 +244,7 @@ export const Map = () => {
         function cyclingRoute() {
             removeAllRoutes()
             document.getElementById("information").style.visibility = "visible";
+
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition(async (position) => {
                     var userLat = position.coords.latitude;
@@ -245,10 +264,11 @@ export const Map = () => {
             }
         };
 
-        function zonesPassed(listOfCoordinates,TimeAdditions) {
+        function zonesPassed(listOfCoordinates, TimeAdditions) {
             const listofPassedZones = []
             var addedTime = 0;
             for (let x = 0; x < listOfCoordinates.length; x++) {
+
                 if ((listOfCoordinates[x][0] >= Zone1[1] && listOfCoordinates[x][0] <= Zone1[3]) && (listOfCoordinates[x][1] >= Zone1[0] && listOfCoordinates[x][1] <= Zone1[2])) {
                     if (!listofPassedZones.includes("Zone1")) {
                         listofPassedZones.push("Zone1");
@@ -278,15 +298,34 @@ export const Map = () => {
             }
             return addedTime;
         }
-
+        //puts a marker where the specific building is located at on the map
         async function putPin(building) {
+
             var data = await fetchData(process.env.REACT_APP_FETCH + "/building/getLatLong?BuildingName=" + building, "POST", []);
-            buildingLat.current = data.latitude;
-            buildingLong.current = data.longitude;
-            console.log(buildingLong.current)
-            endPoint.setLngLat([buildingLong.current, buildingLat.current]);
-            endPoint.addTo(map);
-            document.getElementById('button-container').style.visibility = 'visible';
+
+            if (data.buildingName == "Server Error") {
+
+                alert(data.buildingName)
+
+            }
+            else if (data.buildingName == "Not Found") {
+
+                var message = data.buildingName + ". Please try again. Please select an option";
+
+                alert(message);
+
+            }
+            else {
+                buildingLat.current = data.latitude;
+
+                buildingLong.current = data.longitude;
+
+                endPoint.setLngLat([buildingLong.current, buildingLat.current]);
+
+                endPoint.addTo(map);
+
+                document.getElementById('button-container').style.visibility = 'visible';
+            }
 
         }
 
@@ -303,7 +342,7 @@ export const Map = () => {
                 .then(data => {
                     new mapboxgl.Popup()
                         .setLngLat(coordinates)
-                        .setHTML('<strong>'+ building +' Capacity</strong><p>Hours: ' + data._Time + '</p><p>Website: <a href=' + data._WebLink + '>' + data._WebLink + '</a></p><p>Busy Level: ' + data._CapacityValue + '</p>')
+                        .setHTML('<strong>' + building + ' Capacity</strong><p>Hours: ' + data._Time + '</p><p>Website: <a href=' + data._WebLink + '>' + data._WebLink + '</a></p><p>Busy Level: ' + data._CapacityValue + '</p>')
                         .addTo(map);
                     return data;
                 })
@@ -335,20 +374,34 @@ export const Map = () => {
 
         walkingBtn.addEventListener("click", () => {
             removeAllRoutes()
+
             if ("geolocation" in navigator) {
+
                 navigator.geolocation.getCurrentPosition(position => {
                     var userLat = position.coords.latitude;
+
                     var userLng = position.coords.longitude;
+
                     const lngLat = endPoint.getLngLat();
+
                     let locationLat = lngLat.lat;
+
                     let locationLng = lngLat.lng;
+
                     const zoneUrl = process.env.REACT_APP_FETCH + "/trafficsurvey";
+
                     const walkingUrl = "https://api.mapbox.com/directions/v5/mapbox/walking/" + userLng + "," + userLat + ";" + locationLng + "," + locationLat + "?waypoints=0;1&walkway_bias=1&alternatives=true&steps=true&access_token=" + mapboxgl.accessToken;
+
                     fetchWalkingData(walkingUrl, zoneUrl, "route", "#0096FF");
+
                     const walkingUrl2 = "https://api.mapbox.com/directions/v5/mapbox/walking/" + userLng + "," + userLat + ";" + locationLng + "," + locationLat + "?waypoints=0;1&walkway_bias=-1&alternatives=true&steps=true&access_token=" + mapboxgl.accessToken;
+
                     fetchWalkingData(walkingUrl2, zoneUrl, "route2", "#ff0000");
+
                     document.getElementById("information").style.visibility = "visible";
+
                     document.getElementById("first-route-info").style.visibility = "visible";
+
                     document.getElementById("second-route-info").style.visibility = "visible";
                 });
             } else {
@@ -356,16 +409,52 @@ export const Map = () => {
             }
         })
 
+        function inputValidation(userInput) {
+
+            var listOfInvalidChars = process.env.REACT_APP_INVALID_CHARACTERS;
+
+            var isValid = true;
+
+            if (userInput === "") {
+
+                alert("Nothing was selected. Please try again");
+
+                isValid = false;
+            }
+            else {
+                for (var i = 0; i < listOfInvalidChars.length; i++) {
+
+                    if (userInput.includes(listOfInvalidChars[i])) {
+
+                        alert("Invalid Charcters were inputted. Please try again.");
+
+                        isValid = false;
+
+                        break;
+                    }
+                }
+            }
+
+            return isValid;
+
+        }
+
+        //listens to when the search button is clicked 
         const searchBtn = document.getElementById("search-btn");
         searchBtn.addEventListener("click", () => {
-            console.log(buildingName.current);
-            putPin(buildingName.current);
+
+            if (inputValidation(buildingName.current)) {
+
+                putPin(buildingName.current);
+
+            }
         })
 
         const drivingBtn = document.getElementById("driving-btn");
         drivingBtn.addEventListener('click', () => {
             drivingRoute();
         })
+
         const cyclingBtn = document.getElementById("cycling-btn");
         cyclingBtn.addEventListener('click', () => {
             cyclingRoute();
@@ -450,7 +539,7 @@ export const Map = () => {
                 const description = e.features[0].properties.description;
 
                 getCapacity(description, coordinates);
-                
+
             });
         });
         // Clean up on unmount      
@@ -478,7 +567,7 @@ export const Map = () => {
             <div className="search-div">
                 <datalist id="buildings">
                 </datalist>
-                <input className = "search-bar" placeholder="Enter Building Name" autoComplete="on" list="buildings" onSelect={(e) => buildingName.current = e.target.value} />
+                <input className="search-bar" placeholder="Enter Building Name" autoComplete="on" list="buildings" onSelect={(e) => buildingName.current = e.target.value} />
                 <button type="button" id="search-btn" > search</button>
             </div>
             <div className='map-container' ref={mapContainerRef} />

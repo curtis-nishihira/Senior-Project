@@ -31,8 +31,8 @@ export const Privacy = (props) => {
 				and agree to abide by said policy.<br></br>
 				
 			</p>
-			<button type="submit">Accept</button>
-			<button type="submit">Don't Allow</button>
+			<button id = "accept-btn" type="submit">Accept</button>
+			<button id = "decline-btn" type="submit">Don't Allow</button>
 		</form>
 	);
 };

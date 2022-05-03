@@ -36,6 +36,7 @@ namespace LongHorn.ArrowNav.Managers
                     {
                         building.buildingName = "Not Found";
                     }
+
                     //try catch ignore on the log call
                     try
                     {

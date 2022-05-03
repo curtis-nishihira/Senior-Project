@@ -49,7 +49,7 @@ namespace LongHorn.ArrowNav.DAL
                 }
                 try
                 {
-                    logEntry = new Log("Read Method Successfully Called", "DAL", "Info", "User");
+                    logEntry = new Log("RetieveBuildingInfo Successfully Called", "DAL", "Info", "User");
 
                     logRepository.Create(logEntry);
                 }

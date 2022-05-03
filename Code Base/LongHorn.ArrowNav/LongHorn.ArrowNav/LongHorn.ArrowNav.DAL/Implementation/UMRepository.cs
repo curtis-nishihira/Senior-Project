@@ -125,7 +125,42 @@ namespace LongHorn.ArrowNav.DAL
             throw new NotImplementedException();
         }
 
-        public string Update(AccountInfo account)
+        public List<User> getAllUsers()
+        {
+            List<User> retrievedValues = new List<User>();
+            var sqlConnectionString = getConnection();
+            using (var connection = new SqlConnection(sqlConnectionString))
+            {
+                var sqlStatement = string.Format("exec GetAllUsers");
+                using (var command = new SqlCommand(sqlStatement, connection))
+                {
+                    command.Connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            User user = new User();
+                            user.email = (string)reader["email"];
+                            user.accessLevel = (string)reader["accessLevel"];
+                            user.accountStatus = (string)reader["accountStatus"];
+                            retrievedValues.Add(user);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No rows found.");
+                    }
+                    reader.Close();
+                    command.Connection.Close();
+                }
+            }
+
+            return retrievedValues;
+        }
+
+        public string Update(User account)
         {
             try
             {
@@ -134,12 +169,12 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    var sqlStatement = string.Format("exec UpdateUser '{0}','{1}'", account._passphrase, "", account._email);
+                    var sqlStatement = string.Format("exec UpdateAccount '{0}','{1}','{2}'", account.accessLevel, account.accountStatus,account.email);
                     using (var command = new SqlCommand(sqlStatement, connection))
                     {
                         command.ExecuteNonQuery();
                     }
-                    var savedSqlStatement = string.Format("exec GetUserByEmail '{0}'", account._email);
+                    var savedSqlStatement = string.Format("exec GetUserByEmail '{0}'", account.email);
                     using (var checkSave = new SqlCommand(savedSqlStatement, connection))
                     {
                         SqlDataReader reader = checkSave.ExecuteReader();
@@ -432,6 +467,11 @@ namespace LongHorn.ArrowNav.DAL
         }
 
         public string Delete(AccountInfo model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string Update(AccountInfo model)
         {
             throw new NotImplementedException();
         }

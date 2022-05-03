@@ -76,8 +76,31 @@ namespace Front_End.Controllers
             return "cookie removed";
         }
 
+        [HttpGet]
+        [Route("getAllUsers")]
+        public List<User> getAllUsers()
+        {
+            UMManager umManager = new UMManager();
+            var result = umManager.getAllUsers();
+            return result;
+        }
 
+        [HttpPost]
+        [Route("deleteUser")]
+        public string deleteUser(string email)
+        {
+            UMManager umManager = new UMManager();
+            var result = umManager.Delete(email);
+            return result;
+        }
 
-
+        [HttpPost]
+        [Route("updateUser")]
+        public string updateUser(User user)
+        {
+            UMManager umManager = new UMManager();
+            var result = umManager.Update(user);
+            return result;
+        }
     }
 }

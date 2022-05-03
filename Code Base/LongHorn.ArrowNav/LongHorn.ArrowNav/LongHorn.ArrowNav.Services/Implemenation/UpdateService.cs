@@ -9,9 +9,9 @@ namespace LongHorn.ArrowNav.Services
 {
     public class UpdateService : IUpdateService
     {
-        public string UpdateAccount(AccountInfo info)
+        public string UpdateAccount(User info)
         {
-            IRepository<AccountInfo> umRepository = new UMRepository();
+            UMRepository umRepository = new UMRepository();
             var result = umRepository.Update(info);
             return result;
         }
@@ -36,5 +36,17 @@ namespace LongHorn.ArrowNav.Services
             return result;
         }
 
+        public List<User> getAllUsers()
+        {
+            UMRepository umRepository = new UMRepository();
+            var result = umRepository.getAllUsers();
+            return result;
+
+        }
+
+        public string UpdateAccount(AccountInfo info)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

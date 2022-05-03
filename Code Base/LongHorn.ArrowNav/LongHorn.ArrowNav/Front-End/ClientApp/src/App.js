@@ -8,6 +8,7 @@ import { Register } from "./components/pages/Register";
 import { WellnessHub } from "./components/pages/WellnessHub";
 import { ConfirmationPage } from "./components/pages/ConfirmationPage";
 import { UserHome } from "./components/pages/UserHome";
+import { AdminHome } from "./components/pages/AdminHome";
 import Popup from "./components/pages/Popup";
 import Privacy from "./components/pages/Privacy";
 import { ProtectedRoutes } from "./components/ProtectedRoutes";
@@ -52,6 +53,7 @@ export default class App extends Component {
                           <Route path="/wellnesshub/wellnesshubphysicalmain/wellnessphysicalmedical" element={<WellnessPhysicalMedical />} />
                           <Route path="/wellnesshub/wellnesshubbmac" element={<WellnessHubBMAC />} />
                             <Route path="/account/register" element={<Register />} />
+                            <Route path="/account/adminhome" element={<AdminHome />} />
                             <Route path="/account/confirmationpage" element={<ConfirmationPage />} />
                             
                             <Route element={<ProtectedRoutes />}>

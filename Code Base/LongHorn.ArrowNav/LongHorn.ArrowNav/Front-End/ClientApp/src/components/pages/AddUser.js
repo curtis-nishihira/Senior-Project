@@ -1,19 +1,19 @@
-﻿import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+﻿import React, { useState, useEffect } from "react"
 
-export const Register = () => {
+export const AddUser = (props) => {
+    const [isSubmit, setIsSubmit] = useState(false);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassphrase] = useState('');
-    const navigate = useNavigate();
+
 
     const submitHandler = (e) => {
         //prevents the browser from refreshing
         e.preventDefault();
         //will have to change when it gets published so that it will actually communicate with the
         //live website
-        fetch(process.env.REACT_APP_FETCH +'/register/createaccount', {
+        fetch(process.env.REACT_APP_FETCH + '/register/createaccount', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -30,10 +30,8 @@ export const Register = () => {
             .then(response => response.json())
             .then(data => {
                 if (data == "Successful Account Creation") {
-                    //use this to register to a new page that says something about the confirmation email 
-                    //being sent.
-                    //navigate("/account", { state: { message: "Check your email for a confirmation link to complete your registration" } });
-                    navigate("/account");
+                    props.handleCloser();
+                    setIsSubmit(true);
                 }
                 else {
                     alert(data);
@@ -46,21 +44,11 @@ export const Register = () => {
 
     };
 
-    const validate = (e) => {
-        // change if to regex
-        if ('' != '') {
-            submitHandler();
-        }
-        else {
-            alert("Password must follow criteria..");
-        }
-    }
 
     return (
-        <div className='form-container'>
-            <form onSubmit={validate}>
-                <h2>Register</h2>
-
+        <div className="addclass-container">
+            <form onSubmit={submitHandler}>
+                <h1>Enter User Information</h1>
                 <div className="form-group">
                     <label>First name</label>
                     <input type="text" required value={firstName} onChange={(e) => setFirstName(e.target.value)}
@@ -81,15 +69,15 @@ export const Register = () => {
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" required value={password} onChange={(e) => setPassphrase(e.target.value)}
+                    <input type="text" required value={password} onChange={(e) => setPassphrase(e.target.value)}
                         className="form-control" placeholder="Enter password" />
                 </div>
-
-                <button type="submit" className="btn btn-dark btn-lg btn-block">Register</button>
-                <p className="forgot-password text-right">
-                    Already registered? <a href="/account">log in</a>
-                </p>
+                <div>
+                    <button type="submit">SUBMIT</button>
+                </div>
             </form>
         </div>
     );
 }
+
+export default AddUser

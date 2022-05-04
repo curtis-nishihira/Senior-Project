@@ -10,7 +10,7 @@ namespace Front_End.Controllers
     [Route("[controller]")]
     public class RegisterController : ControllerBase
     {
-        //registerform/confirmemail?email=whateverstring
+        //register/confirmemail?email=whateverstring
         [HttpGet("confirmEmail")]
         public void ConfirmEmail(string email)
         {
@@ -18,7 +18,7 @@ namespace Front_End.Controllers
             var result = manager.confirmEmail(email);
             if (result == "confirmed")
             {
-                Response.Redirect("https://arrownav.azurewebsites.net/account/confirmationpage");
+                Response.Redirect("https://arrownav2.azurewebsites.net/account/confirmationpage");
             }
             else
             {
@@ -35,7 +35,22 @@ namespace Front_End.Controllers
         {
             UMManager manager = new UMManager();
             var result = manager.Create(newAccount);
-            return result;
+            if (result == "Successful Account Creation")
+            {
+                var response = manager.sendConfirmationEmailAsync(newAccount._email).Result;
+                if(response == true)
+                {
+                    return result;
+                }
+                else
+                {
+                    return "Invalid Email";
+                }
+            }
+            else
+            {
+                return result;
+            }
 
         }
 

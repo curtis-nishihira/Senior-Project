@@ -39,6 +39,15 @@ namespace Front_End.Controllers
             return result;
         }
 
+        [HttpGet]
+        [Route("getOTP")]
+        public string getOTP(string email)
+        {
+            UMManager umManager = new UMManager();
+            var result = umManager.OtpRequestAsync(email).Result;
+            return result;
+        }
+
 
         [HttpPost]
         [Route("createcookie")]

@@ -11,37 +11,19 @@ export const Login = (props) => {
 
     useEffect(() => {
         if (location.state != undefined) {
-            document.getElementById('notification').style.visibility = 'visible';
+            alert(location.state.message);
             setMessage(location.state.message);
-            console.log(message);
-            setTimeout(() => {
-                document.getElementById('notification').style.visibility = 'hidden';
-            }, 7000);
-        }
-        else {
-            if (message != '')
-            {
-                document.getElementById('notification').style.visibility = 'visible'
-                setTimeout(() => {
-                    document.getElementById('notification').style.visibility = 'hidden';
-                }, 7000);
-            }
             
         }
+        
 
         // Update the document title using the browser API
 
-    },[message]);
-
-    /* Nonfunctional loginHandler 
-     * The fetch does not work. Would suggest making a model for the login info or research another way.
-     * 
-     * */
-
-    //best guess a to why it wouldn't connect to this would be cors
+    },[]);
 
     const loginHandler = (e) => {
         e.preventDefault();
+        
         fetch(process.env.REACT_APP_FETCH + '/login', {
             method: 'POST',
             headers: {
@@ -56,33 +38,16 @@ export const Login = (props) => {
             .then(response => response.json())
             .then(data => {
                 if (data == "Account is authenticated") {
-                    fetch(process.env.REACT_APP_FETCH +'/login/createcookie', {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            _Username: email,
-                            _Password: password
-                        }),
-                    })
-                        .then(response => response.json())
-                        .then(cookieResponse => {
-                            console.log(cookieResponse);
-
-                            navigate("/account/userhome");
-                           
-                        })
-                        .catch((error) => {
-                            console.error('Error', error);
-                        });
+                    navigate("/account/verification", { state: { email: email } });
                 }
                 else if (data == "Incorrect Password") {
                     alert(data);
                 }
                 else if (data == "Account not found.") {
                     alert(data);;
+                }
+                else {
+                    alert(data);
                 }
             })
             .catch((error) => {

@@ -273,23 +273,31 @@ namespace LongHorn.ArrowNav.DAL
 
                         if (reader.HasRows)
                         {
-
                             var password = "";
+                            var isConfirmed = "";
                             while (reader.Read())
                             {
-                                Console.WriteLine(reader["password"]);
                                 password = string.Format("{0}", reader["password"]);
+                                isConfirmed = (string)reader["emailConfirmed"];
 
                             }
-                            if (password.Equals(model._Password))
+                            if (isConfirmed == "true")
                             {
-                                return "Account is authenticated";
+                                if (password.Equals(model._Password))
+                                {
+                                    return "Account is authenticated";
+                                }
+                                else
+                                {
+                                    connection.Close();
+                                    return "Incorrect Password";
+                                }
                             }
                             else
                             {
-                                connection.Close();
-                                return "Incorrect Password";
+                                return "Email is not confirmed";
                             }
+                            
                         }
                         else
                         {

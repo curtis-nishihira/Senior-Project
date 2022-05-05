@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Popup from "./Popup.js";
 import "./WellnessHub.css";
 
 export const WellnessHub = (props) => {
-
+    
     let navigate = useNavigate();
 
     function checkEmailFromCookies() {
         var bool = false;
         var decodedCookies = decodeURIComponent(document.cookie);
         var listOfCookies = decodedCookies.split("; ");
+
         for (var i = 0; i < listOfCookies.length; i++) {
             let temp = listOfCookies[i].split("=");
             if (temp[0] == process.env.REACT_APP_COOKIE_KEY) {
@@ -31,6 +33,7 @@ export const WellnessHub = (props) => {
                 <div className="header">
                     <h1>Welcome to the Wellness Hub!</h1>
                 </div>
+                
                 <div className="body">
                     <button
                         onClick={() => { navigate("/wellnesshub/wellnesshubphysicalmain") }}>Physical Health</button>

@@ -5,6 +5,24 @@ import './WellnessPhysicalMedical.css';
 
 function WellnessPhysicalMedical() {
 
+    function findOnMap() {
+        fetch(process.env.REACT_APP_FETCH + '/building/getBuildingbyAcronym?acronym=SHS', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                navigate("/", { state: { building: data } });
+            })
+            .catch((error) => {
+                console.error('Error', error);
+            });
+    }
+
     let navigate = useNavigate();
 
     return (
@@ -37,6 +55,7 @@ function WellnessPhysicalMedical() {
             </div>
 
             <div className="footer">
+                <button onClick={() => { findOnMap() }}> Find SHS </button>
                 <button onClick={() => { navigate("/wellnesshub/wellnesshubphysicalmain") }}>Return</button>
             </div>
         </div>

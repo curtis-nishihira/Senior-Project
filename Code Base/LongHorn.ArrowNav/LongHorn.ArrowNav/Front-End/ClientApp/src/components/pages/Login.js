@@ -42,7 +42,7 @@ export const Login = (props) => {
 
     const loginHandler = (e) => {
         e.preventDefault();
-        fetch(process.env.REACT_APP_FETCH + '/login', {
+        fetch('https://localhost:44465/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -56,7 +56,7 @@ export const Login = (props) => {
             .then(response => response.json())
             .then(data => {
                 if (data == "Account is authenticated") {
-                    fetch(process.env.REACT_APP_FETCH +'/login/createcookie', {
+                    fetch( 'https://localhost:44465/login/createcookie', {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',

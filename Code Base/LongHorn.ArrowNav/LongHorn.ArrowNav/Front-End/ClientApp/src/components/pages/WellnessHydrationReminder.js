@@ -1,8 +1,46 @@
 ﻿import React, {useEffect,useRef,useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import Popup from "./Popup.js";
 import './WellnessHydrationReminder.css'
 
 function WellnessHydrationReminder() {
+    const [timedPopup, setTimedPopup] = useState(false);
+
+    const today = new Date();
+    const timeMins = today.getMinutes();
+    const timeHrs = today.getHours();
+    const timeRemInSecs = (60 - timeMins) * 60
+    const getStr = (60 - timeMins) + ":00";
+
+    function startTimer(duration, display, waterIntake) {
+        var timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                timer = duration;
+            }
+            if (minutes == 0 && seconds == 0) {
+                alert("Remember to drink:" + waterIntake + "oz");
+            }
+        }, 1000);
+    }
+
+
+
+    useEffect(() => {
+        setTimeout(() => {
+            alert("Hello")
+        }, 3000);
+    }, []);
+
+
     const [varTracker, setTracker] = useState(false);
     const beginTime = useRef("");
     const finalTime = useRef("");
@@ -27,6 +65,27 @@ function WellnessHydrationReminder() {
         }
 
     }
+
+    useEffect(async () => {
+        var startTime = await fetchData('https://localhost:44465/wellness/getStartTime?Username=chris', 'GET', []);
+        var endTime = await fetchData('https://localhost:44465/wellness/getEndTime?Username=chris', 'GET', []);
+        var waterIntake = await fetchData('https://localhost:44465/wellness/getWaterIntake?Username=chris', 'GET', []);
+
+        var startHour = parseInt(startTime.substring(0, 1));
+        var endHour = parseInt(endTime.substring(0, 1));
+        if (endHour < startHour) {
+            endHour += 12;
+        }
+        console.log(timeHrs);
+        console.log(startHour);
+        console.log(endHour);
+        if (startHour < timeHrs && endHour > timeHrs) {
+            document.getElementById('time').innerHTML = getStr;
+            document.getElementById("time-container").style.visibility = 'visible';
+            startTimer(timeRemInSecs, document.querySelector('#time'), waterIntake)
+        }
+
+    }, []);
 
     function toggleTracker() {
         setTracker(!varTracker);
@@ -66,10 +125,10 @@ function WellnessHydrationReminder() {
     async function updateReminderBox() {
         var startTime = await fetchData(process.env.REACT_APP_FETCH + '/wellness/getStartTime?Username=' + email, 'GET', []);
         var endTime = await fetchData(process.env.REACT_APP_FETCH + '/wellness/getEndTime?Username=' + email, 'GET', []);
-        var waterIntake = await fetchData(process.env.REACT_APP_FETCH + '/wellness/getWaterIntake?Username=' +  email, 'GET', []);
         totalReminders.current = waterIntake;
         beginTime.current = startTime;
-        finalTime.current = endTime;
+        finalTime.current = endTime;        var waterIntake = await fetchData(process.env.REACT_APP_FETCH + '/wellness/getWaterIntake?Username=' +  email, 'GET', []);
+
     };
 
     const handleSubmit = async (e) => {
@@ -147,9 +206,9 @@ function WellnessHydrationReminder() {
                 <div className="header">
                     <h2>Reminders</h2>
                 </div>
+                <div className="timerRemind" id="time-container">Next Reminder in: <span id="time"></span> minutes!</div>
                 <div className="box">
-                    Reminder for hydration from: {beginTime.current} {finalTime.current}
-                    Water Intake per day: {totalReminders.current} ozs
+                    Reminder for hydration Today from: {beginTime.current} {finalTime.current}
                 </div>
             </div>
 

@@ -60,15 +60,23 @@ namespace LongHorn.ArrowNav.Managers
             return result;
         }
 
-        public string Update(AccountInfo account)
+        public string Update(User user)
         {
             UpdateService createService = new UpdateService();
-            var result = createService.UpdateAccount(account);
+            var result = createService.UpdateAccount(user);
             LogManager logManager = new LogManager();
-            Log entry = new Log(result, "Info", "Data Layer", account._email);
+            Log entry = new Log(result, "Info", "Data Layer", user.email);
             logManager.Log(entry);
             return result;
         }
+
+        public List<User> getAllUsers()
+        {
+            UpdateService updateService = new UpdateService();
+            List<User> result = updateService.getAllUsers();
+            return result;
+        }
+
         public string AuthenAccount(LoginModel model)
         {
             AuthnService authnService = new AuthnService();
@@ -85,6 +93,13 @@ namespace LongHorn.ArrowNav.Managers
             return otp;
         }
 
+
+        public bool GetAuthorizationLevel(LoginModel model)
+        {
+            AuthnService authnService = new AuthnService();
+            var result = authnService.isAdmin(model);
+            return result;
+        }
         public string AuthzAccount(AccountInfo account)
         {
             AuthzService authzService = new AuthzService();

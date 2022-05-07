@@ -31,9 +31,10 @@ namespace LongHorn.ArrowNav.DAL
 
                     using (SqlDataReader reader = getBuildingCmd.ExecuteReader())
                     {
-
-                        while (reader.Read())
+                        if (reader.HasRows)
                         {
+                            reader.Read();
+
                             model.acronym = (string)reader["Acronym"];
 
                             model.latitude = (double)reader["Latitude"];
@@ -41,6 +42,7 @@ namespace LongHorn.ArrowNav.DAL
                             model.longitude = (double)reader["Longitude"];
 
                             model.buildingName = name;
+
                         }
 
                     }
@@ -53,11 +55,11 @@ namespace LongHorn.ArrowNav.DAL
 
                     logRepository.Create(logEntry);
                 }
-                catch 
+                catch
                 {
 
                     // Ignoring exceptions being thrown that might prevent business functionality from working
-                
+
                 }
 
                 return model;
@@ -108,10 +110,9 @@ namespace LongHorn.ArrowNav.DAL
                     {
                         if (reader.HasRows)
                         {
-                            while (reader.Read())
-                            {
-                                buildingName = string.Format("{0}", reader["BuildingName"]);
-                            }
+                            reader.Read();
+                            buildingName = string.Format("{0}", reader["BuildingName"]);
+
                         }
                         else
                         {
@@ -123,7 +124,7 @@ namespace LongHorn.ArrowNav.DAL
 
                     logRepository.Create(logEntry);
 
-                   return buildingName;
+                    return buildingName;
 
                 }
 
@@ -179,9 +180,11 @@ namespace LongHorn.ArrowNav.DAL
                     using (SqlDataReader reader = getAcronymByBuildingCmd.ExecuteReader())
                     {
 
-                        while (reader.Read())
+                        if (reader.HasRows)
                         {
+                            reader.Read();
                             acronym = string.Format("{0}", reader["Acronym"]);
+
                         }
 
                     }

@@ -8,6 +8,7 @@ import { Register } from "./components/pages/Register";
 import { WellnessHub } from "./components/pages/WellnessHub";
 import { ConfirmationPage } from "./components/pages/ConfirmationPage";
 import { UserHome } from "./components/pages/UserHome";
+import { AdminHome } from "./components/pages/AdminHome";
 import Popup from "./components/pages/Popup";
 import Privacy from "./components/pages/Privacy";
 import { ProtectedRoutes } from "./components/ProtectedRoutes";
@@ -60,6 +61,7 @@ export default class App extends Component {
                                 <Route path="/account/userhome" element={<UserHome />} />
                                 <Route path="/wellnesshydrationreminder" element={<WellnessHydrationReminder />} />
                                 <Route path="/reward" element={<Rewards />} />
+                                <Route path="/account/adminhome" element={<AdminHome />} />
                             </Route>
                         </Routes>
                     </Router>

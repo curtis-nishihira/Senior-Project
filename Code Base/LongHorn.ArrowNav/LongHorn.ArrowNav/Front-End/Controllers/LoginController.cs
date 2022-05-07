@@ -55,13 +55,19 @@ namespace Front_End.Controllers
         {
             LoginModel loginModel = new LoginModel()
             {
-                _Username = model._Username
+                Username = model.Username
             };
             
             CookieOptions cookieOptions = new CookieOptions
             {
                 Expires = DateTime.Now.AddDays(2)
             };
+
+            UMManager uMManager = new UMManager();
+            var isAdmin = uMManager.GetAuthorizationLevel(loginModel);
+
+            loginModel.IsAuthorized = isAdmin;
+
             Response.Cookies.Append(key, JsonSerializer.Serialize(loginModel), cookieOptions);
             return "cookie created";
 
@@ -85,8 +91,31 @@ namespace Front_End.Controllers
             return "cookie removed";
         }
 
+        [HttpGet]
+        [Route("getAllUsers")]
+        public List<User> getAllUsers()
+        {
+            UMManager umManager = new UMManager();
+            var result = umManager.getAllUsers();
+            return result;
+        }
 
+        [HttpPost]
+        [Route("deleteUser")]
+        public string deleteUser(string email)
+        {
+            UMManager umManager = new UMManager();
+            var result = umManager.Delete(email);
+            return result;
+        }
 
-
+        [HttpPost]
+        [Route("updateUser")]
+        public string updateUser(User user)
+        {
+            UMManager umManager = new UMManager();
+            var result = umManager.Update(user);
+            return result;
+        }
     }
 }

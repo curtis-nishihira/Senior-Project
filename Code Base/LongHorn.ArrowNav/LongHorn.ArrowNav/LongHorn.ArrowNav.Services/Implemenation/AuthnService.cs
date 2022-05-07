@@ -26,6 +26,7 @@ namespace LongHorn.ArrowNav.Services
             return result;
         }
 
+
         // this generates the otp 
         public string OTPGenerator()
         {
@@ -53,6 +54,12 @@ namespace LongHorn.ArrowNav.Services
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg);
             
+        }
+        public bool isAdmin(LoginModel model)
+        {
+            UMRepository umRepository = new UMRepository();
+            var result = umRepository.AuthorizationLevel(model);
+            return result;
         }
     }
 }

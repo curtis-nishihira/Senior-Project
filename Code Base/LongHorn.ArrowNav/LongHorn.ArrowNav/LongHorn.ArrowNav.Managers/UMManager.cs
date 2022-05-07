@@ -79,6 +79,13 @@ namespace LongHorn.ArrowNav.Managers
             var result = authnService.ApplyAuthn(model);
             return result;
         }
+
+        public bool GetAuthorizationLevel(LoginModel model)
+        {
+            AuthnService authnService = new AuthnService();
+            var result = authnService.isAdmin(model);
+            return result;
+        }
         public string AuthzAccount(AccountInfo account)
         {
             AuthzService authzService = new AuthzService();

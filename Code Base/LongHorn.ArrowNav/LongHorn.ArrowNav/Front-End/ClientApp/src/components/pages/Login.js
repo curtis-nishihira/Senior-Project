@@ -9,6 +9,26 @@ export const Login = (props) => {
     const location = useLocation();
     const navigate = useNavigate();
 
+    function getAccessLevel() {
+        var decodedCookies = decodeURIComponent(document.cookie);
+        var listOfCookies = decodedCookies.split("; ");
+        for (var i = 0; i < listOfCookies.length; i++) {
+            let temp = listOfCookies[i].split("=");
+            if (temp[0] == process.env.REACT_APP_COOKIE_KEY) {
+                let cookieSplit = listOfCookies[i].split('"');
+                let accessLevel = cookieSplit[10];
+                if (accessLevel.includes("true")) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+    }
+
+
+
     useEffect(() => {
         if (location.state != undefined) {
             document.getElementById('notification').style.visibility = 'visible';
@@ -49,31 +69,35 @@ export const Login = (props) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                _Username: email,
-                _Password: password
+                Username: email,
+                Password: password,
+                IsAuthorized: false,
             }),
         })
             .then(response => response.json())
             .then(data => {
                 if (data == "Account is authenticated") {
-                    fetch(process.env.REACT_APP_FETCH +'/login/createcookie', {
+                    fetch(process.env.REACT_APP_FETCH + '/login/createcookie', {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            _Username: email,
-                            _Password: password
+                            Username: email,
+                            Password: password,
+                            IsAuthorized: false,
                         }),
                     })
                         .then(response => response.json())
                         .then(cookieResponse => {
-                            console.log(cookieResponse);
-                            //TODO: 
-                            // if admin go to adminhome
-                            // else go to userhome
-                            navigate("/account/userhome");
+                            var userLevel = getAccessLevel();
+                            if (userLevel === true) {
+                                navigate("/account/adminhome");
+                            }
+                            else {
+                                navigate("/account/userhome");
+                            }
                            
                         })
                         .catch((error) => {

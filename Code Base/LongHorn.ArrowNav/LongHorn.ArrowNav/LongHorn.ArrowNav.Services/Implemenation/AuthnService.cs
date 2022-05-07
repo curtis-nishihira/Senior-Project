@@ -20,5 +20,12 @@ namespace LongHorn.ArrowNav.Services
             var result = umRepository.confirmUserEmail(email);
             return result;
         }
+
+        public bool isAdmin(LoginModel model)
+        {
+            UMRepository umRepository = new UMRepository();
+            var result = umRepository.AuthorizationLevel(model);
+            return result;
+        }
     }
 }

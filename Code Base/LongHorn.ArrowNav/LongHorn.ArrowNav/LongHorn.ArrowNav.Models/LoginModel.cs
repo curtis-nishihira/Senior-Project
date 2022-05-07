@@ -7,7 +7,9 @@ namespace LongHorn.ArrowNav.Models
     public class LoginModel
     {
 
-        public string _Username { get; set; } = "";
-        public string _Password { get; set; } = "";
+        public string Username { get; set; } = "";
+        public string Password { get; set; } = "";
+        public bool IsAuthorized { get; set; } = false;
+
     }
 }

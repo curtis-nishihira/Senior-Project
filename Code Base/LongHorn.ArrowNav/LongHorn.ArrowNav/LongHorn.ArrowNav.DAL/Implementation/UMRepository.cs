@@ -14,7 +14,7 @@ namespace LongHorn.ArrowNav.DAL
             try
             {
                 var sqlConnectionString = getConnection();
-                
+
 
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
@@ -38,7 +38,7 @@ namespace LongHorn.ArrowNav.DAL
                             {
                                 addCommand.ExecuteNonQuery();
                             }
-                            var addProfile = string.Format("exec CreateProfile '{0}','{1}','{2}'", account._firstName, account._lastName,account._email);
+                            var addProfile = string.Format("exec CreateProfile '{0}','{1}','{2}'", account._firstName, account._lastName, account._email);
                             using (var addProfileCommand = new SqlCommand(addProfile, connection))
                             {
                                 addProfileCommand.ExecuteNonQuery();
@@ -95,7 +95,7 @@ namespace LongHorn.ArrowNav.DAL
                     {
                         command.ExecuteNonQuery();
                     }
-                    var savedSqlStatement = string.Format("exec GetUserByEmail '{0}'",email);
+                    var savedSqlStatement = string.Format("exec GetUserByEmail '{0}'", email);
                     using (var checkSave = new SqlCommand(savedSqlStatement, connection))
                     {
                         SqlDataReader reader = checkSave.ExecuteReader();
@@ -169,7 +169,7 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    var sqlStatement = string.Format("exec UpdateAccount '{0}','{1}','{2}'", account.accessLevel, account.accountStatus,account.email);
+                    var sqlStatement = string.Format("exec UpdateAccount '{0}','{1}','{2}'", account.accessLevel, account.accountStatus, account.email);
                     using (var command = new SqlCommand(sqlStatement, connection))
                     {
                         command.ExecuteNonQuery();
@@ -292,6 +292,47 @@ namespace LongHorn.ArrowNav.DAL
                 return "Data Access Layer error.";
             }
         }
+
+        public bool AuthorizationLevel(LoginModel model)
+        {
+            try
+            {
+                var sqlConnectionString = getConnection();
+
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    var sqlStatement = string.Format("exec GetUserByEmail '{0}'", model.Username);
+                    using (var command = new SqlCommand(sqlStatement, connection))
+                    {
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.HasRows && reader.Read() == true)
+                        {
+
+                            var userStatus = (string)reader["accessLevel"];
+                            if(userStatus == "admin")
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                return false;
+            }
+        }
         public string AuthnAccount(LoginModel model)
         {
             try
@@ -301,7 +342,7 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    var sqlStatement = string.Format("exec GetUserByEmail '{0}'", model._Username);
+                    var sqlStatement = string.Format("exec GetUserByEmail '{0}'", model.Username);
                     using (var command = new SqlCommand(sqlStatement, connection))
                     {
                         SqlDataReader reader = command.ExecuteReader();
@@ -316,7 +357,7 @@ namespace LongHorn.ArrowNav.DAL
                                 password = string.Format("{0}", reader["password"]);
 
                             }
-                            if (password.Equals(model._Password))
+                            if (password.Equals(model.Password))
                             {
                                 return "Account is authenticated";
                             }
@@ -410,7 +451,7 @@ namespace LongHorn.ArrowNav.DAL
                             }
                             return "confirmed";
                         }
-                        else 
+                        else
                         {
                             reader.Close();
                             connection.Close();
@@ -447,7 +488,7 @@ namespace LongHorn.ArrowNav.DAL
                             accountInfo._lastName = (string)rdr["lastName"];
                         }
                         rdr.Close();
-                        
+
                     }
                     connection.Close();
                 }

@@ -47,13 +47,15 @@ export const Register = () => {
     };
 
     const validate = (e) => {
-        // TODO: 
-        // change if to regex
-        if ('' != '') {
+        //That white space after ! means that it will allow the string to have white space
+        let pattern = /[^a-zA-Z0-9.,@! ]/g;
+        let result = pattern.test(password);
+        if (result == false && password.length > 7) {
             submitHandler();
         }
         else {
-            alert("Password must follow criteria..");
+            alert("Password must follow criteria:\nPassword must be at minimum 8 characters and can only contain theses characters:\n"+
+                "i. blank space\n ii. a - z\n iii. A - Z\n iv. 0 - 9\n v. .,@!\n");
         }
     }
 

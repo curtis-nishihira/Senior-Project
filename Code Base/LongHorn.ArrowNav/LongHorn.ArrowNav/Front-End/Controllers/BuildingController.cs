@@ -130,11 +130,11 @@ namespace Front_End.Controllers
         
         [HttpPost]
         [Route("getLatLong")]
-        public BuildingModel GetLatLong(string BuildingName)
+        public BuildingModel GetLatLong(string buildingName)
         {
-            if (InputValidation(BuildingName))
+            if (InputValidation(buildingName))
             {
-                BuildingModel buildingInfo = buildingManager.GetLongLat(BuildingName);
+                BuildingModel buildingInfo = buildingManager.GetLongLat(buildingName);
 
                 // Try catch ignore
                 try

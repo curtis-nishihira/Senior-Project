@@ -46,13 +46,19 @@ namespace Front_End.Controllers
         {
             LoginModel loginModel = new LoginModel()
             {
-                _Username = model._Username
+                Username = model.Username
             };
             
             CookieOptions cookieOptions = new CookieOptions
             {
                 Expires = DateTime.Now.AddDays(2)
             };
+
+            UMManager uMManager = new UMManager();
+            var isAdmin = uMManager.GetAuthorizationLevel(loginModel);
+
+            loginModel.IsAuthorized = isAdmin;
+
             Response.Cookies.Append(key, JsonSerializer.Serialize(loginModel), cookieOptions);
             return "cookie created";
 

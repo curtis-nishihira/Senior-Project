@@ -47,6 +47,7 @@ export const Register = () => {
     };
 
     const validate = (e) => {
+        // TODO: 
         // change if to regex
         if ('' != '') {
             submitHandler();

@@ -70,7 +70,9 @@ export const Login = (props) => {
                         .then(response => response.json())
                         .then(cookieResponse => {
                             console.log(cookieResponse);
-
+                            //TODO: 
+                            // if admin go to adminhome
+                            // else go to userhome
                             navigate("/account/userhome");
                            
                         })

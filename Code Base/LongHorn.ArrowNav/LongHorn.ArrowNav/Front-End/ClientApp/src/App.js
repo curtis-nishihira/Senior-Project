@@ -53,13 +53,13 @@ export default class App extends Component {
                           <Route path="/wellnesshub/wellnesshubphysicalmain/wellnessphysicalmedical" element={<WellnessPhysicalMedical />} />
                           <Route path="/wellnesshub/wellnesshubbmac" element={<WellnessHubBMAC />} />
                             <Route path="/account/register" element={<Register />} />
-                            <Route path="/account/adminhome" element={<AdminHome />} />
                             <Route path="/account/confirmationpage" element={<ConfirmationPage />} />
                             
                             <Route element={<ProtectedRoutes />}>
                                 <Route path="/account/userhome" element={<UserHome />} />
                                 <Route path="/wellnesshydrationreminder" element={<WellnessHydrationReminder />} />
                                 <Route path="/reward" element={<Rewards />} />
+                                <Route path="/account/adminhome" element={<AdminHome />} />
                             </Route>
                         </Routes>
                     </Router>

@@ -1,0 +1,12 @@
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Models\bin\Release\net6.0\LongHorn.ArrowNav.Models.deps.json
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Models\bin\Release\net6.0\LongHorn.ArrowNav.Models.dll
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Models\bin\Release\net6.0\LongHorn.ArrowNav.Models.pdb
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Models\obj\Release\net6.0\LongHorn.ArrowNav.Models.csproj.AssemblyReference.cache
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Models\obj\Release\net6.0\LongHorn.ArrowNav.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Models\obj\Release\net6.0\LongHorn.ArrowNav.Models.AssemblyInfoInputs.cache
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Models\obj\Release\net6.0\LongHorn.ArrowNav.Models.AssemblyInfo.cs
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Models\obj\Release\net6.0\LongHorn.ArrowNav.Models.csproj.CoreCompileInputs.cache
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Models\obj\Release\net6.0\LongHorn.ArrowNav.Models.dll
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Models\obj\Release\net6.0\refint\LongHorn.ArrowNav.Models.dll
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Models\obj\Release\net6.0\LongHorn.ArrowNav.Models.pdb
+C:\Users\fuent\OneDrive\Desktop\Senior-Project\Code Base\LongHorn.ArrowNav\LongHorn.ArrowNav\LongHorn.ArrowNav.Models\obj\Release\net6.0\ref\LongHorn.ArrowNav.Models.dll

@@ -1,0 +1,491 @@
+﻿++Solution 'LongHorn.ArrowNav' ‎(10 of 10 projects)
+i:{00000000-0000-0000-0000-000000000000}:LongHorn.ArrowNav.sln
+++Front-End
+i:{00000000-0000-0000-0000-000000000000}:Front-End
+++Connected Services 
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:>91301
+++Dependencies
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:>91300
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:>4766
+i:{f88f6309-40e1-495a-af8f-0e8c13917e14}:>5181
+i:{d646f5e8-02b3-40c2-ae08-4cffb90ebdbc}:>4339
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:>5889
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:>5147
+i:{563510fb-7ac2-4d49-acb3-803670315a2d}:>6547
+i:{49b61ce3-56f4-4998-b3de-ec1940e7a9bf}:>11174
+i:{77477367-625f-4a83-9447-621d4ff87d49}:>11013
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:>11014
+++Properties
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\properties\
+++ClientApp
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\
+++public
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\public\
+++src
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\
+++components
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\
+++images
+++resized-search-icon-png-2.png
+++pages
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\
+++CapacitySurvey.css
+++CapacitySurvey.js
+++ConfirmationPage.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\confirmationpage.css
+++ConfirmationPage.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\confirmationpage.js
+++Home.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\home.css
+++Home.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\home.js
+++Login.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\login.css
+++Login.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\login.js
+++Popup.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\popup.css
+++Popup.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\popup.js
+++Privacy.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\privacy.js
+++Register.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\register.css
+++Register.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\register.js
+++Rewards.js
+++ScheduleAddClass.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\scheduleaddclass.css
+++ScheduleAddClass.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\scheduleaddclass.js
+++ScheduleEditClass.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\scheduleeditclass.js
+++TrafficSurvey.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\trafficsurvey.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\trafficsurvey.js
+++UserHome.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\userhome.css
+++UserHome.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\userhome.js
+++WellnessHub.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\wellnesshub.css
+++WellnessHub.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\wellnesshub.js
+++Map.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\map.css
+++Map.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\map.js
+++NavBar.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\navbar.css
+++NavBar.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\navbar.js
+++Notification.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\notification.js
+++ProtectedRoutes.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\protectedroutes.js
+++TrafficSurvey.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\trafficsurvey.css
+++App.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\app.js
+++custom.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\custom.css
+++index.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\index.js
+++service-worker.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\service-worker.js
+++serviceWorkerRegistration.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\serviceworkerregistration.js
+++setupProxy.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\setupproxy.js
+++.env
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\.env
+++.env.development
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\.env.development
+++.gitignore
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\.gitignore
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\.gitignore
+++aspnetcore-https.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\aspnetcore-https.js
+++aspnetcore-react.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\aspnetcore-react.js
+++package.json
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\package.json
+++README.md
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\readme.md
+++Controllers
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\controllers\
+++BuildingController.cs
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\controllers\buildingcontroller.cs
+++CapacityController.cs
+++LoginController.cs
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\controllers\logincontroller.cs
+++RegisterController.cs
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\controllers\registercontroller.cs
+++RewardsController.cs
+++ScheduleController.cs
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\controllers\schedulecontroller.cs
+++TrafficSurveyController.cs
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\controllers\trafficsurveycontroller.cs
+++Pages
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\pages\
+++appsettings.json
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\appsettings.json
+++Program.cs
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\program.cs
+++No service dependencies discovered
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:>91302
+++Analyzers
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:analyzers
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:analyzers
+i:{f88f6309-40e1-495a-af8f-0e8c13917e14}:analyzers
+i:{d646f5e8-02b3-40c2-ae08-4cffb90ebdbc}:analyzers
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:analyzers
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:analyzers
+i:{563510fb-7ac2-4d49-acb3-803670315a2d}:analyzers
+i:{49b61ce3-56f4-4998-b3de-ec1940e7a9bf}:analyzers
+i:{77477367-625f-4a83-9447-621d4ff87d49}:analyzers
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:analyzers
+++Frameworks
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:frameworks
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:frameworks
+i:{f88f6309-40e1-495a-af8f-0e8c13917e14}:frameworks
+i:{d646f5e8-02b3-40c2-ae08-4cffb90ebdbc}:frameworks
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:frameworks
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:frameworks
+i:{563510fb-7ac2-4d49-acb3-803670315a2d}:frameworks
+i:{49b61ce3-56f4-4998-b3de-ec1940e7a9bf}:frameworks
+i:{77477367-625f-4a83-9447-621d4ff87d49}:frameworks
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:frameworks
+++Packages
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:packages
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:packages
+i:{77477367-625f-4a83-9447-621d4ff87d49}:packages
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:packages
+i:{49b61ce3-56f4-4998-b3de-ec1940e7a9bf}:packages
+++Projects
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:projects
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:projects
+i:{f88f6309-40e1-495a-af8f-0e8c13917e14}:projects
+i:{d646f5e8-02b3-40c2-ae08-4cffb90ebdbc}:projects
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:projects
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:projects
+i:{49b61ce3-56f4-4998-b3de-ec1940e7a9bf}:projects
+i:{77477367-625f-4a83-9447-621d4ff87d49}:projects
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:projects
+++PublishProfiles
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\properties\publishprofiles\
+++launchSettings.json
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\properties\launchsettings.json
+++Images
+++favicon.ico
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\public\favicon.ico
+++index.html
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\public\index.html
+++manifest.json
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\public\manifest.json
+++App.test.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\app.test.js
+++.env.development.local
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\.env.development.local
+++package-lock.json
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\package-lock.json
+++_ViewImports.cshtml
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\pages\_viewimports.cshtml
+++Error.cshtml
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\pages\error.cshtml
+++weblinks.txt
+++appsettings.Development.json
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\appsettings.development.json
+++Microsoft.AspNetCore.Analyzers
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
+++Microsoft.AspNetCore.App.Analyzers
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\cs\microsoft.aspnetcore.app.analyzers.dll
+++Microsoft.AspNetCore.App.CodeFixes
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\cs\microsoft.aspnetcore.app.codefixes.dll
+++Microsoft.AspNetCore.Components.Analyzers
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
+++Microsoft.AspNetCore.Mvc.Analyzers
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
+++Microsoft.AspNetCore.Razor.SourceGenerator.Tooling.Internal
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\source-generators\microsoft.aspnetcore.razor.sourcegenerator.tooling.internal.dll
+++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{f88f6309-40e1-495a-af8f-0e8c13917e14}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{d646f5e8-02b3-40c2-ae08-4cffb90ebdbc}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{563510fb-7ac2-4d49-acb3-803670315a2d}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{49b61ce3-56f4-4998-b3de-ec1940e7a9bf}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{77477367-625f-4a83-9447-621d4ff87d49}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+++Microsoft.CodeAnalysis.NetAnalyzers
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{f88f6309-40e1-495a-af8f-0e8c13917e14}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{d646f5e8-02b3-40c2-ae08-4cffb90ebdbc}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{563510fb-7ac2-4d49-acb3-803670315a2d}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{49b61ce3-56f4-4998-b3de-ec1940e7a9bf}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{77477367-625f-4a83-9447-621d4ff87d49}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+++Microsoft.Extensions.Logging.Generators
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\program files\dotnet\packs\microsoft.aspnetcore.app.ref\6.0.3\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+++Microsoft.NET.Sdk.Razor.SourceGenerators
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\program files\dotnet\sdk\6.0.201\sdks\microsoft.net.sdk.razor\source-generators\microsoft.net.sdk.razor.sourcegenerators.dll
+++System.Text.Json.SourceGeneration
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{f88f6309-40e1-495a-af8f-0e8c13917e14}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{d646f5e8-02b3-40c2-ae08-4cffb90ebdbc}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{563510fb-7ac2-4d49-acb3-803670315a2d}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{49b61ce3-56f4-4998-b3de-ec1940e7a9bf}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{77477367-625f-4a83-9447-621d4ff87d49}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:c:\program files\dotnet\packs\microsoft.netcore.app.ref\6.0.3\analyzers\dotnet\cs\system.text.json.sourcegeneration.dll
+++Microsoft.AspNetCore.App
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\microsoft.aspnetcore.app
+++Microsoft.NETCore.App
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\microsoft.netcore.app
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.dal\microsoft.netcore.app
+i:{f88f6309-40e1-495a-af8f-0e8c13917e14}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.logging\microsoft.netcore.app
+i:{d646f5e8-02b3-40c2-ae08-4cffb90ebdbc}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.archiving\microsoft.netcore.app
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.managers\microsoft.netcore.app
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\microsoft.netcore.app
+i:{563510fb-7ac2-4d49-acb3-803670315a2d}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.models\microsoft.netcore.app
+i:{49b61ce3-56f4-4998-b3de-ec1940e7a9bf}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.archiving.tests\microsoft.netcore.app
+i:{77477367-625f-4a83-9447-621d4ff87d49}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.logging.tests\microsoft.netcore.app
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.tests\microsoft.netcore.app
+++Microsoft.AspNetCore.SpaProxy (6.0.1)
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:>91410
+++LongHorn.ArrowNav.Managers
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.managers\longhorn.arrownav.managers.csproj
+i:{1b9d0e78-8187-441b-90f5-5f252e5fb9ed}:LongHorn.ArrowNav.Managers
+i:{49b61ce3-56f4-4998-b3de-ec1940e7a9bf}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.managers\bin\release\net6.0\longhorn.arrownav.managers.dll
+i:{77477367-625f-4a83-9447-621d4ff87d49}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.managers\bin\release\net6.0\longhorn.arrownav.managers.dll
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.managers\bin\release\net6.0\longhorn.arrownav.managers.dll
+++LongHorn.ArrowNav.Models
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.models\longhorn.arrownav.models.csproj
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.models\bin\release\net6.0\longhorn.arrownav.models.dll
+i:{f88f6309-40e1-495a-af8f-0e8c13917e14}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.models\bin\release\net6.0\longhorn.arrownav.models.dll
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.models\bin\release\net6.0\longhorn.arrownav.models.dll
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.models\bin\release\net6.0\longhorn.arrownav.models.dll
+i:{1b9d0e78-8187-441b-90f5-5f252e5fb9ed}:LongHorn.ArrowNav.Models
+i:{77477367-625f-4a83-9447-621d4ff87d49}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.models\bin\release\net6.0\longhorn.arrownav.models.dll
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.models\bin\release\net6.0\longhorn.arrownav.models.dll
+++ArrowNav - FTP.pubxml
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\properties\publishprofiles\arrownav - ftp.pubxml
+++ArrowNav - FTP1.pubxml
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\properties\publishprofiles\arrownav - ftp1.pubxml
+++ArrowNav - Web Deploy.pubxml
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\properties\publishprofiles\arrownav - web deploy.pubxml
+++ArrowNav - Web Deploy1.pubxml
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\properties\publishprofiles\arrownav - web deploy1.pubxml
+++ArrowNav - Zip Deploy.pubxml
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\properties\publishprofiles\arrownav - zip deploy.pubxml
+++ArrowNav - Zip Deploy1.pubxml
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\properties\publishprofiles\arrownav - zip deploy1.pubxml
+++arrownav2 - FTP.pubxml
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\properties\publishprofiles\arrownav2 - ftp.pubxml
+++arrownav2 - Web Deploy.pubxml
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\properties\publishprofiles\arrownav2 - web deploy.pubxml
+++arrownav2 - Zip Deploy.pubxml
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\properties\publishprofiles\arrownav2 - zip deploy.pubxml
+++GymIcon.png
+++LibraryIcon.png
+++UsuIcon.png
+++Error.cshtml.cs
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\pages\error.cshtml.cs
+++Libraries
+i:{00000000-0000-0000-0000-000000000000}:Libraries
+++LongHorn.ArrowNav.DAL
+i:{1b9d0e78-8187-441b-90f5-5f252e5fb9ed}:LongHorn.ArrowNav.DAL
+i:{f88f6309-40e1-495a-af8f-0e8c13917e14}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.dal\bin\release\net6.0\longhorn.arrownav.dal.dll
+i:{d646f5e8-02b3-40c2-ae08-4cffb90ebdbc}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.dal\bin\release\net6.0\longhorn.arrownav.dal.dll
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.dal\bin\release\net6.0\longhorn.arrownav.dal.dll
+++Contracts
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.dal\contracts\
+i:{f88f6309-40e1-495a-af8f-0e8c13917e14}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.logging\contracts\
+i:{d646f5e8-02b3-40c2-ae08-4cffb90ebdbc}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.archiving\contracts\
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\contracts\
+++Implementation
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.dal\implementation\
+++BuildingRepository.cs
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.dal\implementation\buildingrepository.cs
+++CapacityRepository.cs
+++LoggingRepository.cs
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.dal\implementation\loggingrepository.cs
+++RewardsRepository.cs
+++ScheduleRepository.cs
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.dal\implementation\schedulerepository.cs
+++TrafficRepository.cs
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.dal\implementation\trafficrepository.cs
+++UMRepository.cs
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.dal\implementation\umrepository.cs
+++IRepository.cs
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.dal\contracts\irepository.cs
+++System.Data.SqlClient (4.8.3)
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:>93899
+++LongHorn.ArrowNav.Logging
+i:{1b9d0e78-8187-441b-90f5-5f252e5fb9ed}:LongHorn.ArrowNav.Logging
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.logging\bin\release\net6.0\longhorn.arrownav.logging.dll
+++Implementations
+i:{f88f6309-40e1-495a-af8f-0e8c13917e14}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.logging\implementations\
+i:{d646f5e8-02b3-40c2-ae08-4cffb90ebdbc}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.archiving\implementations\
+++ILogService.cs
+i:{f88f6309-40e1-495a-af8f-0e8c13917e14}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.logging\contracts\ilogservice.cs
+++DatabaseLogService.cs
+i:{f88f6309-40e1-495a-af8f-0e8c13917e14}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.logging\implementations\databaselogservice.cs
+++InMemoryLogService.cs
+i:{f88f6309-40e1-495a-af8f-0e8c13917e14}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.logging\implementations\inmemorylogservice.cs
+++LongHorn.ArrowNav.Archiving
+i:{1b9d0e78-8187-441b-90f5-5f252e5fb9ed}:LongHorn.ArrowNav.Archiving
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.archiving\bin\release\net6.0\longhorn.arrownav.archiving.dll
+++IArchiveService.cs
+i:{d646f5e8-02b3-40c2-ae08-4cffb90ebdbc}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.archiving\contracts\iarchiveservice.cs
+++FileArchiveService.cs
+i:{d646f5e8-02b3-40c2-ae08-4cffb90ebdbc}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.archiving\implementations\filearchiveservice.cs
+++ArchiveManager.cs
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.managers\archivemanager.cs
+++CapacityManager.cs
+++LogManager.cs
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.managers\logmanager.cs
+++RewardsManager.cs
+++ScheduleManager.cs
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.managers\schedulemanager.cs
+++TrafficManager.cs
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.managers\trafficmanager.cs
+++UMManager.cs
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.managers\ummanager.cs
+++LongHorn.ArrowNav.Services
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\bin\release\net6.0\longhorn.arrownav.services.dll
+i:{1b9d0e78-8187-441b-90f5-5f252e5fb9ed}:LongHorn.ArrowNav.Services
+++Implemenation
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\implemenation\
+++IAuthnServices.cs
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\contracts\iauthnservices.cs
+++IAuthzService.cs
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\contracts\iauthzservice.cs
+++ICapacityService.cs
+++ICreateService.cs
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\contracts\icreateservice.cs
+++IDeleteService.cs
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\contracts\ideleteservice.cs
+++IDisableService.cs
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\contracts\idisableservice.cs
+++IEnableService.cs
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\contracts\ienableservice.cs
+++IUpdateService.cs
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\contracts\iupdateservice.cs
+++AuthnService.cs
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\implemenation\authnservice.cs
+++AuthzService.cs
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\implemenation\authzservice.cs
+++CapacityService.cs
+++CreateService.cs
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\implemenation\createservice.cs
+++DeleteService.cs
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\implemenation\deleteservice.cs
+++DisableService.cs
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\implemenation\disableservice.cs
+++EnableService.cs
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\implemenation\enableservice.cs
+++TrafficService.cs
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\implemenation\trafficservice.cs
+++UpdateService.cs
+i:{676139e5-4258-4903-b16d-cb67f5b86e59}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.services\implemenation\updateservice.cs
+++AccountInfo.cs
+i:{563510fb-7ac2-4d49-acb3-803670315a2d}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.models\accountinfo.cs
+++BuildingModel.cs
+i:{563510fb-7ac2-4d49-acb3-803670315a2d}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.models\buildingmodel.cs
+++CapacityModel.cs
+++CapacityPopupModel.cs
+++CapacitySurveyModel.cs
+++Log.cs
+i:{563510fb-7ac2-4d49-acb3-803670315a2d}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.models\log.cs
+++LoginModel.cs
+i:{563510fb-7ac2-4d49-acb3-803670315a2d}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.models\loginmodel.cs
+++Rewards.cs
+++StudentClassModel.cs
+i:{563510fb-7ac2-4d49-acb3-803670315a2d}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.models\studentclassmodel.cs
+++TrafficModel.cs
+i:{563510fb-7ac2-4d49-acb3-803670315a2d}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.models\trafficmodel.cs
+++LongHorn.Archiving.Tests
+i:{1b9d0e78-8187-441b-90f5-5f252e5fb9ed}:LongHorn.Archiving.Tests
+++App.config
+i:{49b61ce3-56f4-4998-b3de-ec1940e7a9bf}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.archiving.tests\app.config
+i:{77477367-625f-4a83-9447-621d4ff87d49}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.logging.tests\app.config
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.tests\app.config
+++FileArchiveServiceShould.cs
+i:{49b61ce3-56f4-4998-b3de-ec1940e7a9bf}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.archiving.tests\filearchiveserviceshould.cs
+++coverlet.collector (3.1.0)
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:>93404
+i:{77477367-625f-4a83-9447-621d4ff87d49}:>93895
+i:{49b61ce3-56f4-4998-b3de-ec1940e7a9bf}:>93902
+++Microsoft.NET.Test.Sdk (16.11.0)
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:>93403
+i:{77477367-625f-4a83-9447-621d4ff87d49}:>93894
+i:{49b61ce3-56f4-4998-b3de-ec1940e7a9bf}:>93901
+++MSTest.TestAdapter (2.2.7)
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:>93405
+i:{77477367-625f-4a83-9447-621d4ff87d49}:>93896
+i:{49b61ce3-56f4-4998-b3de-ec1940e7a9bf}:>93903
+++MSTest.TestFramework (2.2.7)
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:>93406
+i:{77477367-625f-4a83-9447-621d4ff87d49}:>93897
+i:{49b61ce3-56f4-4998-b3de-ec1940e7a9bf}:>93904
+++LongHorn.Logging.Tests
+i:{1b9d0e78-8187-441b-90f5-5f252e5fb9ed}:LongHorn.Logging.Tests
+++DatabaseLogServiceShould.cs
+i:{77477367-625f-4a83-9447-621d4ff87d49}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.logging.tests\databaselogserviceshould.cs
+++InMemoryLoggingServiceShould.cs
+i:{77477367-625f-4a83-9447-621d4ff87d49}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.logging.tests\inmemoryloggingserviceshould.cs
+++LongHorn.ArrowNav.Tests
+i:{1b9d0e78-8187-441b-90f5-5f252e5fb9ed}:LongHorn.ArrowNav.Tests
+++BuildingCapacityShould.cs
+++RoutingShould.cs
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.tests\routingshould.cs
+++UserManagementShould.cs
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.tests\usermanagementshould.cs
+++Selenium.Support (4.1.0)
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:>93408
+++Selenium.WebDriver (4.1.0)
+i:{d9ff9bd7-5534-4107-9168-c148681a7bca}:>93407
+++WellnessController.cs
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\controllers\wellnesscontroller.cs
+++WellnessHubBMAC.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\wellnesshubbmac.css
+++WellnessHubBMAC.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\wellnesshubbmac.js
+++WellnessHubMentalMain.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\wellnesshubmentalmain.js
+++WellnessHubPhysicalMain.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\wellnesshubphysicalmain.js
+++WellnessHydrationReminder.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\wellnesshydrationreminder.css
+++WellnessHydrationReminder.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\wellnesshydrationreminder.js
+++WellnessMentalCAPS.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\wellnessmentalcaps.css
+++WellnessMentalCAPS.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\wellnessmentalcaps.js
+++WellnessPhysicalMedical.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\wellnessphysicalmedical.css
+++WellnessPhysicalMedical.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\wellnessphysicalmedical.js
+++WellnessPhysicalRecreation.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\wellnessphysicalrecreation.css
+++WellnessPhysicalRecreation.js
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\wellnessphysicalrecreation.js
+++WellnessRepository.cs
+i:{0b98a628-58b0-4bd6-aeb9-949dd91c1978}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.dal\implementation\wellnessrepository.cs
+++WellnessHubManager.cs
+i:{51f1d6e8-b358-4bf3-b955-7bd6b434a313}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.managers\wellnesshubmanager.cs
+++StudentWellnessModel.cs
+i:{563510fb-7ac2-4d49-acb3-803670315a2d}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\longhorn.arrownav.models\studentwellnessmodel.cs
+++WellnessHubMentalMain.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\wellnesshubmentalmain.css
+++WellnessHubPhysicalMain.css
+i:{e78d6156-8273-4d2b-a63a-b26576b68ad4}:c:\users\fuent\onedrive\desktop\senior-project\code base\longhorn.arrownav\longhorn.arrownav\front-end\clientapp\src\components\pages\wellnesshubphysicalmain.css

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="SendGrid" Version="9.27.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LongHorn.ArrowNav.Archiving\LongHorn.ArrowNav.Archiving.csproj" />
     <ProjectReference Include="..\LongHorn.ArrowNav.Logging\LongHorn.ArrowNav.Logging.csproj" />
     <ProjectReference Include="..\LongHorn.ArrowNav.Models\LongHorn.ArrowNav.Models.csproj" />

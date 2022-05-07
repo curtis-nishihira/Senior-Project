@@ -4,6 +4,7 @@ using SendGrid;
 using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -42,7 +43,8 @@ namespace LongHorn.ArrowNav.Services
         // sends email with otp to the user. Later to be implemented into the main repo
         public async Task sendEmailAsync(string email, string otp)
         {
-            var client = new SendGridClient("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");
+            var apiKey = ConfigurationManager.AppSettings.Get("SendGridApiKey");
+            var client = new SendGridClient(apiKey);
             var from = new EmailAddress("longhornarrownav@gmail.com", "ArrowNav");
             var subject = "One Time Password";
             var to = new EmailAddress(email);

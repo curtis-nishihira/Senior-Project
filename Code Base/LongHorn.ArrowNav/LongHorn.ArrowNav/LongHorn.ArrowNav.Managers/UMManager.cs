@@ -10,6 +10,7 @@ using SendGrid.Helpers.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using System.Configuration;
 
 namespace LongHorn.ArrowNav.Managers
 {
@@ -107,7 +108,8 @@ namespace LongHorn.ArrowNav.Managers
 
         public async Task<bool> sendConfirmationEmailAsync(string email)
         {
-            var client = new SendGridClient("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");
+            var apiKey = ConfigurationManager.AppSettings.Get("SendGridApiKey");
+            var client = new SendGridClient(apiKey);
             var from = new EmailAddress("longhornarrownav@gmail.com", "ArrowNav");
             var subject = "Confirmation Email";
             var to = new EmailAddress(email);

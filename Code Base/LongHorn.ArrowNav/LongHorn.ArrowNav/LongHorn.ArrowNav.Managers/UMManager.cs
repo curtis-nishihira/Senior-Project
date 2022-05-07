@@ -5,8 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
+using System.Configuration;
 
 namespace LongHorn.ArrowNav.Managers
 {
@@ -80,6 +84,16 @@ namespace LongHorn.ArrowNav.Managers
             return result;
         }
 
+        public async Task<string> OtpRequestAsync(string email)
+        {
+            AuthnService authnService = new AuthnService();
+            var otp = authnService.OTPGenerator();
+            await authnService.sendEmailAsync(email, otp);
+           
+            return otp;
+        }
+
+
         public bool GetAuthorizationLevel(LoginModel model)
         {
             AuthnService authnService = new AuthnService();
@@ -107,39 +121,20 @@ namespace LongHorn.ArrowNav.Managers
             return result;
         }
 
-        public string sendConfirmationEmail(string email)
+        public async Task<bool> sendConfirmationEmailAsync(string email)
         {
-            SmtpClient client = new SmtpClient()
-            {
-                Host = "smtp.sendgrid.net",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential()
-                {
-                    UserName = "apikey",
-                    Password = "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"
-                }
-            };
-            MailMessage mail = new MailMessage();
-            mail.To.Add(email);
-            mail.From = new MailAddress("longhornarrownav@gmail.com");
-            mail.Subject = "Confirmation Email";
-            mail.Body = string.Format("Please click the following link to confirm your email which will fully activate you account.\n" +
-                "Click <a href=\"https://longhorntest.azurewebsites.net/registerform/confirmemail?email={0}\">here</a>.", email);
-            mail.IsBodyHtml = true;
-
-            try
-            {
-                client.Send(mail);
-                return "sent";
-            }
-            catch (Exception ex)
-            {
-                return "idk";
-
-            }
+            var apiKey = ConfigurationManager.AppSettings.Get("SendGridApiKey");
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress("longhornarrownav@gmail.com", "ArrowNav");
+            var subject = "Confirmation Email";
+            var to = new EmailAddress(email);
+            var plainTextContent = "";
+            var htmlContent = string.Format("Please click the following link to confirm your email which will fully activate you account.\n" +
+                "Click <a href=\"https://arrownav2.azurewebsites.net/register/confirmemail?email={0}\">here</a>.", email);
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
+            return response.IsSuccessStatusCode;
+            
         }
 
     }

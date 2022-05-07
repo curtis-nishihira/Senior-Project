@@ -182,7 +182,6 @@ export function UserHome() {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 if (data == "cookie removed") {
                     //should go one page backwards
                     navigate("/account");
@@ -236,7 +235,6 @@ export function UserHome() {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
                     navigate("/", { state: { building: data } });
                 })
                 .catch((error) => {
@@ -260,7 +258,7 @@ export function UserHome() {
             .then(response => response.json())
             .then(data => {
                 if (data == "account deleted") {
-                    navigate("/account");
+                    logout();
                 }
             })
             .catch((error) => {

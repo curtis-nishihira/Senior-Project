@@ -240,6 +240,143 @@ namespace LongHorn.ArrowNav.DAL
                 return "Data Access Layer error.";
             }
         }
+        public string UpdateSucessfulAttempt(string email)
+        {
+
+            try
+            {
+                var sqlConnectionString = getConnection();
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    SqlCommand updateDateAndAttempt = new SqlCommand("UpdateDateAndAttempts", connection);
+
+                    //lets the SqlCommand Object know that its a store procedure type
+                    updateDateAndAttempt.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    //adding the necessay parameters for the stored procedure
+                    updateDateAndAttempt.Parameters.Add(new SqlParameter("@email", email));
+                    updateDateAndAttempt.Parameters.Add(new SqlParameter("@date", ""));
+                    updateDateAndAttempt.Parameters.Add(new SqlParameter("@attempts", 0));
+                    
+                    
+                }
+
+                return "updated";
+            }
+            catch (Exception)
+            {
+                return "DAL error"; 
+            }
+
+
+        }
+        public string UpdateFailedAttempts(string email, string date)
+        {
+
+            try
+            {
+                var sqlConnectionString= getConnection();
+
+                using( var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand getUser = new SqlCommand("GetUserByEmail", connection);
+
+                    //lets the SqlCommand Object know that its a store procedure type
+                    getUser.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    //adding the necessay parameters for the stored procedure
+                    getUser.Parameters.Add(new SqlParameter("@EMAIL", email));
+
+                    using (SqlDataReader reader = getUser.ExecuteReader())
+                    {
+
+                        if (reader.HasRows && reader.Read() == true)
+                        {
+                            var invalidAttempts = (int)reader["invalidAttempts"];
+                            var dateString = (string)reader["DateFailedAttempt"];
+
+                            if (invalidAttempts == 0)
+                            {
+                                reader.Close();
+                                var updatedAttempts = invalidAttempts + 1;
+
+                                SqlCommand updateDateAndAttempt = new SqlCommand("UpdateDateAndAttempts", connection);
+
+                                //lets the SqlCommand Object know that its a store procedure type
+                                updateDateAndAttempt.CommandType = System.Data.CommandType.StoredProcedure;
+
+                                //adding the necessay parameters for the stored procedure
+                                updateDateAndAttempt.Parameters.Add(new SqlParameter("@email", email));
+                                updateDateAndAttempt.Parameters.Add(new SqlParameter("@date", date));
+                                updateDateAndAttempt.Parameters.Add(new SqlParameter("@attempts", updatedAttempts));
+                                try
+                                {
+                                    updateDateAndAttempt.ExecuteNonQuery();
+                                    return "Failed OTP Attempt";
+                                }
+                                catch (Exception e)
+                                {
+
+                                    return e.Message;
+                                }
+                                
+                            }
+                            else if(invalidAttempts < 5)
+                            {
+                                reader.Close();
+                                var todayDate = DateTime.Parse(date);
+                                var date2 = DateTime.Parse(dateString);
+                                TimeSpan difference = todayDate.Subtract(date2);
+                                double totalHours = difference.TotalHours;
+                                if(totalHours <= 24)
+                                {
+                                    var updatedAttempts = invalidAttempts + 1;
+                                    SqlCommand updateAttempt = new SqlCommand("UpdateAttemptValue", connection);
+
+                                    //lets the SqlCommand Object know that its a store procedure type
+                                    updateAttempt.CommandType = System.Data.CommandType.StoredProcedure;
+
+                                    //adding the necessay parameters for the stored procedure
+                                    updateAttempt.Parameters.Add(new SqlParameter("@email", email));
+                                    updateAttempt.Parameters.Add(new SqlParameter("@attempts", updatedAttempts));
+                                }
+                                else
+                                {
+                                    SqlCommand updateDateAndAttempt = new SqlCommand("UpdateAttemptValue", connection);
+
+                                    //lets the SqlCommand Object know that its a store procedure type
+                                    updateDateAndAttempt.CommandType = System.Data.CommandType.StoredProcedure;
+
+                                    //adding the necessay parameters for the stored procedure
+                                    updateDateAndAttempt.Parameters.Add(new SqlParameter("@email", email));
+                                    updateDateAndAttempt.Parameters.Add(new SqlParameter("@date", date));
+                                    updateDateAndAttempt.Parameters.Add(new SqlParameter("@attempts", 1));
+                                }
+                                return "Failed OTP Attempt";
+                            }
+                            else
+                            {
+                                reader.Close();
+                                return "Too many attempts were made. Account has been disabled";
+                            }
+
+                        }
+                        else
+                        {
+                            return "Account unable to update";
+                        }
+
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                return "Server Error";
+            }
+        }
         public string Enable(AccountInfo account)
         {
             try
@@ -293,50 +430,12 @@ namespace LongHorn.ArrowNav.DAL
             }
         }
 
-        public bool AuthorizationLevel(LoginModel model)
+       
+        public LoginResponse AuthnAccount(LoginModel model)
         {
             try
             {
-                var sqlConnectionString = getConnection();
-
-                using (var connection = new SqlConnection(sqlConnectionString))
-                {
-                    connection.Open();
-                    var sqlStatement = string.Format("exec GetUserByEmail '{0}'", model.Username);
-                    using (var command = new SqlCommand(sqlStatement, connection))
-                    {
-                        SqlDataReader reader = command.ExecuteReader();
-
-                        if (reader.HasRows && reader.Read() == true)
-                        {
-
-                            var userStatus = (string)reader["accessLevel"];
-                            if(userStatus == "admin")
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                return false;
-                            }
-
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                }
-            }
-            catch (SqlException e)
-            {
-                return false;
-            }
-        }
-        public string AuthnAccount(LoginModel model)
-        {
-            try
-            {
+                LoginResponse response = new LoginResponse();
                 var sqlConnectionString = getConnection();
 
                 using (var connection = new SqlConnection(sqlConnectionString))
@@ -351,42 +450,59 @@ namespace LongHorn.ArrowNav.DAL
                         {
                             var password = "";
                             var isConfirmed = "";
+                            var accessLevel = "";
+                            var accountStatus = "";
                             while (reader.Read())
                             {
                                 password = string.Format("{0}", reader["password"]);
                                 isConfirmed = (string)reader["emailConfirmed"];
+                                accessLevel = (string)reader["accessLevel"];
+                                accountStatus = (string)reader["accountStatus"];
 
                             }
 
                             if (isConfirmed == "true")
                             {
-                                if (password.Equals(model._Password))
+                                if (password.Equals(model.Password))
                                 {
-                                    return "Account is authenticated";
+                                   if(accountStatus == "active")
+                                    {
+                                        response.Message = "Account is authenticated";
+                                        if (accessLevel.Contains("admin"))
+                                        {
+                                            response.IsAuthorized = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        response.Message = "Account Disabled";
+                                    }
                                 }
                                 else
                                 {
-                                    connection.Close();
-                                    return "Incorrect Password";
+                                    response.Message = "Incorrect Password";
                                 }
                             }
                             else
                             {
-                                return "Email is not confirmed";
+                                response.Message = "Email is not confirmed";
                             }
                             
                         }
                         else
                         {
-                            connection.Close();
-                            return "Account not found.";
+                            response.Message = "Account not found.";
                         }
+
                     }
+                    return response;
                 }
             }
             catch (SqlException e)
             {
-                return "Data Access Layer error.";
+                LoginResponse error = new LoginResponse();
+                error.Message = "Data Access Layer error.";
+                return error;
             }
         }
         public string AuthzAccount(AccountInfo account)

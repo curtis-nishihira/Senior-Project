@@ -13,7 +13,7 @@ namespace LongHorn.ArrowNav.Services
 {
     public class AuthnService : IAuthnService<LoginModel>
     {
-        public string ApplyAuthn(LoginModel model)
+        public LoginResponse ApplyAuthn(LoginModel model)
         {
             UMRepository umRepository = new UMRepository();
             var result = umRepository.AuthnAccount(model);
@@ -55,11 +55,6 @@ namespace LongHorn.ArrowNav.Services
             var response = await client.SendEmailAsync(msg);
             
         }
-        public bool isAdmin(LoginModel model)
-        {
-            UMRepository umRepository = new UMRepository();
-            var result = umRepository.AuthorizationLevel(model);
-            return result;
-        }
+        
     }
 }

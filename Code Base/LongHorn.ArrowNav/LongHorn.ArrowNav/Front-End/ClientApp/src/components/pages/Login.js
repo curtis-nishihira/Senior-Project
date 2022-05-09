@@ -9,26 +9,6 @@ export const Login = (props) => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    function getAccessLevel() {
-        var decodedCookies = decodeURIComponent(document.cookie);
-        var listOfCookies = decodedCookies.split("; ");
-        for (var i = 0; i < listOfCookies.length; i++) {
-            let temp = listOfCookies[i].split("=");
-            if (temp[0] == process.env.REACT_APP_COOKIE_KEY) {
-                let cookieSplit = listOfCookies[i].split('"');
-                let accessLevel = cookieSplit[10];
-                if (accessLevel.includes("true")) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
-        }
-    }
-
-
-
     useEffect(() => {
         if (location.state != undefined) {
             alert(location.state.message);
@@ -52,16 +32,12 @@ export const Login = (props) => {
             },
             body: JSON.stringify({
                 Username: email,
-                Password: password,
-                IsAuthorized: false,
+                Password: password
             }),
         })
             .then(response => response.json())
             .then(data => {
-                if (data == "Account is authenticated") {
-
-                    navigate("/account/verification", { state: { email: email } });
-
+                if (data.message == "Account is authenticated" && data.isAuthorized == true) {
                     fetch(process.env.REACT_APP_FETCH + '/login/createcookie', {
                         method: 'POST',
                         headers: {
@@ -69,35 +45,31 @@ export const Login = (props) => {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            Username: email,
-                            Password: password,
-                            IsAuthorized: false,
+                            Email: email,
+                            IsAuthorized: data.isAuthorized
                         }),
                     })
                         .then(response => response.json())
                         .then(cookieResponse => {
-                            var userLevel = getAccessLevel();
-                            if (userLevel === true) {
-                                navigate("/account/adminhome");
-                            }
-                            else {
-                                navigate("/account/userhome");
-                            }
-                           
+                            navigate("/account/adminhome");
                         })
                         .catch((error) => {
                             console.error('Error', error);
                         });
 
                 }
-                else if (data == "Incorrect Password") {
-                    alert(data);
+                else if (data.message == "Account is authenticated" && data.isAuthorized == false)
+                {
+                    navigate("/account/verification", { state: { email: email } });
                 }
-                else if (data == "Account not found.") {
-                    alert(data);;
+                else if (data.message == "Incorrect Password") {
+                    alert(data.message);
+                }
+                else if (data.message == "Account not found.") {
+                    alert(data.message);;
                 }
                 else {
-                    alert(data);
+                    alert(data.message);
                 }
             })
             .catch((error) => {
@@ -107,10 +79,7 @@ export const Login = (props) => {
 
     return (
         <>
-            <div id='notification' className='notification-container'>
-                {message}
-
-            </div>
+           
             <div className='form-container'>
                 <form onSubmit={loginHandler}>
                     <h3>Log in</h3>

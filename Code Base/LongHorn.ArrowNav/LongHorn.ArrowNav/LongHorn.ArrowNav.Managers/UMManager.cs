@@ -77,7 +77,7 @@ namespace LongHorn.ArrowNav.Managers
             return result;
         }
 
-        public string AuthenAccount(LoginModel model)
+        public LoginResponse AuthenAccount(LoginModel model)
         {
             AuthnService authnService = new AuthnService();
             var result = authnService.ApplyAuthn(model);
@@ -92,14 +92,20 @@ namespace LongHorn.ArrowNav.Managers
            
             return otp;
         }
-
-
-        public bool GetAuthorizationLevel(LoginModel model)
+        public string UpdatingSuccessfulAttempts(string email)
         {
-            AuthnService authnService = new AuthnService();
-            var result = authnService.isAdmin(model);
+            UpdateService updateService = new UpdateService();
+            var result = updateService.UpdateSuccessfulAttempt(email);
             return result;
         }
+
+        public string UpdatingFailedAttempts (string email)
+        {
+            UpdateService updateService = new UpdateService();
+            var result = updateService.UpdateAttempts(email);
+            return result;
+        }
+
         public string AuthzAccount(AccountInfo account)
         {
             AuthzService authzService = new AuthzService();
@@ -123,17 +129,24 @@ namespace LongHorn.ArrowNav.Managers
 
         public async Task<bool> sendConfirmationEmailAsync(string email)
         {
-            var apiKey = ConfigurationManager.AppSettings.Get("SendGridApiKey");
-            var client = new SendGridClient(apiKey);
-            var from = new EmailAddress("longhornarrownav@gmail.com", "ArrowNav");
-            var subject = "Confirmation Email";
-            var to = new EmailAddress(email);
-            var plainTextContent = "";
-            var htmlContent = string.Format("Please click the following link to confirm your email which will fully activate you account.\n" +
-                "Click <a href=\"https://arrownav2.azurewebsites.net/register/confirmemail?email={0}\">here</a>.", email);
-            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-            var response = await client.SendEmailAsync(msg);
-            return response.IsSuccessStatusCode;
+            try
+            {
+                var apiKey = ConfigurationManager.AppSettings.Get("SendGridApiKey");
+                var client = new SendGridClient(apiKey);
+                var from = new EmailAddress("longhornarrownav@gmail.com", "ArrowNav");
+                var subject = "Confirmation Email";
+                var to = new EmailAddress(email);
+                var plainTextContent = "";
+                var htmlContent = string.Format("Please click the following link to confirm your email which will fully activate you account.\n" +
+                    "Click <a href=\"https://arrownav2.azurewebsites.net/register/confirmemail?email={0}\">here</a>.", email);
+                var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+                var response = await client.SendEmailAsync(msg);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
             
         }
 

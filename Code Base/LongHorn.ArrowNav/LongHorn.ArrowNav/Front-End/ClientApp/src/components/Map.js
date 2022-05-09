@@ -30,7 +30,22 @@ export const Map = () => {
     const [firstRouteDistance, setFirstRouteDistance] = useState(0);
     const [secondRouteDistance, setSecondRouteDistance] = useState(0);
 
+    const sessionEmail = getEmailFromCookies();
 
+    function getEmailFromCookies() {
+        var decodedCookies = decodeURIComponent(document.cookie);
+        var listOfCookies = decodedCookies.split("; ");
+        for (var i = 0; i < listOfCookies.length; i++) {
+            let temp = listOfCookies[i].split("=");
+            if (temp[0] == process.env.REACT_APP_COOKIE_KEY) {
+                let cookieSplit = listOfCookies[i].split('"');
+                let name = cookieSplit[3];
+                let newName = name.replace("'", "");
+                return newName;
+            }
+        }
+        return "";
+    }
 
     // Initialize map when component mounts
     useEffect(() => {
@@ -88,6 +103,15 @@ export const Map = () => {
 
             addLayer(coordinates, RouteColor, routeID);
         }
+        async function getListOfTodayClasses() {
+            
+        }
+
+        if (sessionEmail != "") {
+            getListOfTodayClasses();
+        }
+
+
         //adds the route onto the map
         function addLayer(route, routeColor, routeID) {
 

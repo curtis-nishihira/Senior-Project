@@ -3,7 +3,6 @@ using LongHorn.ArrowNav.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using LongHorn.ArrowNav.DAL;
 
 namespace LongHorn.ArrowNav.Services
 {
@@ -40,6 +39,24 @@ namespace LongHorn.ArrowNav.Services
         {
             UMRepository umRepository = new UMRepository();
             var result = umRepository.getAllUsers();
+            return result;
+
+        }
+
+
+
+        public string UpdateAttempts(string email)
+        {
+            var today = DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
+            UMRepository umRepository = new UMRepository();
+            var result = umRepository.UpdateFailedAttempts(email,today);
+            return result;
+
+        }
+        public string UpdateSuccessfulAttempt(string email)
+        {
+            UMRepository umRepository = new UMRepository();
+            var result = umRepository.UpdateSucessfulAttempt(email);
             return result;
 
         }

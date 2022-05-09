@@ -1,16 +1,31 @@
-﻿import React, { useEffect, useState,useRef } from 'react';
+﻿import React, { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
 export function OTP() {
 
     const otp = useRef("");
-    const userInput = useRef("");
     const location = useLocation();
     const navigate = useNavigate();
 
     function isValid() {
         if ((document.getElementById("user-otp").value === otp.current) && document.getElementById('time').innerHTML != "0:00") {
+            fetch(process.env.REACT_APP_FETCH + '/login/updateSuccessfulAttempt?email=' + location.state.email, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                })
+                .catch((error) => {
+                    console.error('Error', error);
+                });
+
+
             fetch(process.env.REACT_APP_FETCH + '/login/createcookie', {
                 method: 'POST',
                 headers: {
@@ -18,13 +33,12 @@ export function OTP() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    _Username: location.state.email,
-                    _Password: "",
+                    Email: location.state.email,
+                    IsAuthorized: false,
                 }),
             })
                 .then(response => response.json())
                 .then(cookieResponse => {
-
                     navigate("/account/userhome");
 
                 })
@@ -33,10 +47,27 @@ export function OTP() {
                 });
         }
         else {
-            alert(userInput.current + " :" + otp.current);
+            fetch(process.env.REACT_APP_FETCH + '/login/updateFailedAttempts?email=' + location.state.email, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    alert(data);
+
+                })
+                .catch((error) => {
+                    console.error('Error', error);
+                });
+
         }
     }
-    
+
     async function getOTP() {
 
         var url = process.env.REACT_APP_FETCH + "/login/getOTP?email=" + location.state.email;
@@ -54,7 +85,7 @@ export function OTP() {
             .catch((error) => {
                 console.error('Error', error);
             });
-        
+
     }
     function startTimer(duration, display) {
         var timer = duration, minutes, seconds;
@@ -76,7 +107,7 @@ export function OTP() {
 
     useEffect(() => {
         getOTP();
-        startTimer(60 * 2,document.querySelector('#time'))
+        startTimer(60 * 2, document.querySelector('#time'))
         const validateButton = document.getElementById("validate-btn");
         validateButton.addEventListener('click', () => {
             isValid();
@@ -89,9 +120,9 @@ export function OTP() {
         <>
             <div>
                 <div>Registration closes in <span id="time">02:00</span> minutes!</div>
-                <input className="otp-bar" id = "user-otp" placeholder="Enter the One time Passphrase" />
+                <input className="otp-bar" id="user-otp" placeholder="Enter the One time Passphrase" />
                 <button type="button" id="validate-btn" > validate</button>
-                </div>
+            </div>
 
         </>
     );

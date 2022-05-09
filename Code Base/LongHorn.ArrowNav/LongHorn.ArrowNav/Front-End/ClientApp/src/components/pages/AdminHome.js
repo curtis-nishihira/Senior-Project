@@ -188,20 +188,24 @@ export function AdminHome() {
 
 
     function deleteAccount() {
-        fetch(process.env.REACT_APP_FETCH + "/login/deleteAccount?email=" + userEmail, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
+        if (window.confirm("Are you sure you want to delete your account?")) {
+            fetch(process.env.REACT_APP_FETCH + "/login/deleteAccount?email=" + userEmail, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
             })
-            .catch((error) => {
-                console.error('Error', error);
-            });
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch((error) => {
+                    console.error('Error', error);
+                });
+        }
+
+        
     }
 
     function validate() {

@@ -7,7 +7,7 @@ namespace LongHorn.ArrowNav.Services
 {
     public interface IAuthnService<T>
     {
-        public string ApplyAuthn(T model);
+        public LoginResponse ApplyAuthn(T model);
         public string confirmEmail(string email);
     }
 }

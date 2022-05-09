@@ -18,10 +18,35 @@ namespace Front_End.Controllers
     {
 
         [HttpPost]
-        public string Login(LoginModel login)
+        public LoginResponse Login(LoginModel login)
         {
             UMManager umManager = new UMManager();
             var result = umManager.AuthenAccount(login);
+            return result;
+        }
+        [HttpPost]
+        [Route("updateSuccessfulAttempt")]
+        public string UpdateSuccessfulAttempt(string email)
+        {
+
+            UMManager uMManager = new UMManager();
+            var result = uMManager.UpdatingFailedAttempts(email);
+            return result;
+        }
+
+        [HttpPost]
+        [Route("updateFailedAttempts")]
+        public string UpdateFailedAttempts(string email)
+        {
+            
+            UMManager uMManager = new UMManager();
+            var result = uMManager.UpdatingFailedAttempts(email);
+            if (result.Contains("disabled"))
+            {
+                AccountInfo accountInfo = new AccountInfo();
+                accountInfo._email = email;
+                var response = uMManager.Disable(accountInfo);
+            }
             return result;
         }
 
@@ -51,24 +76,15 @@ namespace Front_End.Controllers
 
         [HttpPost]
         [Route("createcookie")]
-        public string CreateCookie(LoginModel model)
+        public string CreateCookie(CookieModel model)
         {
-            LoginModel loginModel = new LoginModel()
-            {
-                Username = model.Username
-            };
-            
+
             CookieOptions cookieOptions = new CookieOptions
             {
                 Expires = DateTime.Now.AddDays(2)
             };
 
-            UMManager uMManager = new UMManager();
-            var isAdmin = uMManager.GetAuthorizationLevel(loginModel);
-
-            loginModel.IsAuthorized = isAdmin;
-
-            Response.Cookies.Append(key, JsonSerializer.Serialize(loginModel), cookieOptions);
+            Response.Cookies.Append(key, JsonSerializer.Serialize(model), cookieOptions);
             return "cookie created";
 
         }

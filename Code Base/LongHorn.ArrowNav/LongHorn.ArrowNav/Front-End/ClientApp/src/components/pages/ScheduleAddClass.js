@@ -211,11 +211,11 @@ export const ScheduleAddClass = (props) => {
                             <option value="T TH">TUESDAY + THURSDAY</option>
                             <option value="M W F">MONDAY + WEDNESDAY + FRIDAY</option>
                             <option value="M">MONDAY</option>
-                            <option value="T">TUESDAY</option>
+                            <option value="T ">TUESDAY</option>
                             <option value="W">WEDNESDAY</option>
                             <option value="TH">THURSDAY</option>
                             <option value="F">FRIDAY</option>
-                            <option value="S">SATURDAY</option>
+                            <option value="S ">SATURDAY</option>
                             <option value="SU">SUNDAY</option>
                             <option value="M T W TH F">WEEKDAYS</option>
                             <option value="M T W TH F S SU">EVERYDAY</option>

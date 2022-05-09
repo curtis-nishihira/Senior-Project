@@ -9,7 +9,6 @@ namespace LongHorn.ArrowNav.Models
 
         public string Username { get; set; } = "";
         public string Password { get; set; } = "";
-        public bool IsAuthorized { get; set; } = false;
 
     }
 }

@@ -11,7 +11,7 @@ namespace LongHorn.ArrowNav.DAL
 {
     public class ScheduleRepository : IRepository<StudentClassModel>
     {
-        public string Create(StudentClassModel studentclass)
+        public string CreateClass(StudentClassModel studentclass, string fullBuildingName)
         {
             try
             {
@@ -33,7 +33,8 @@ namespace LongHorn.ArrowNav.DAL
                         else
                         {
                             reader.Close();
-                            var addStudentClass = string.Format("exec AddStudentClass '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}'", studentclass._Username, studentclass._course, studentclass._coursetype, studentclass._building, studentclass._room, studentclass._days, studentclass._startTime, studentclass._endTime);
+                            var addStudentClass = string.Format("exec AddStudentClass '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}'", studentclass._Username, 
+                                studentclass._course, studentclass._coursetype, studentclass._building, studentclass._room, studentclass._days, studentclass._startTime, studentclass._endTime, fullBuildingName);
                             using (var addCommand = new SqlCommand(addStudentClass, connection))
                             {
                                 addCommand.ExecuteNonQuery();
@@ -203,6 +204,44 @@ namespace LongHorn.ArrowNav.DAL
             }
         }
 
+        public List<string> GetTodayClass(string letters, string email)
+        {
+            try
+            {
+                List<string> list = new List<string>();
+                var sqlConnectionString = getConnection();
+
+
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+                    //checks if the class already exists
+                    var checkClassExistence = string.Format("exec TodayClass '{0}', '{1}'", letters,email);
+                    using (var checkClass = new SqlCommand(checkClassExistence, connection))
+                    {
+                        SqlDataReader reader = checkClass.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while(reader.Read())
+                            {
+                                var buildingAcronym = (string)reader["building"];
+                                list.Add(buildingAcronym);
+                            }
+                            
+                        }
+
+                    }
+                }
+                return list;
+
+            }
+            catch (SqlException e)
+            {
+                List<string> list = new List<string>();
+                return list;
+            }
+        }
+
         public string getConnection()
         {
             var AzureConnectionString = ConfigurationManager.AppSettings.Get("DatabaseString");
@@ -210,6 +249,11 @@ namespace LongHorn.ArrowNav.DAL
         }
 
         public List<string> Read(StudentClassModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string Create(StudentClassModel model)
         {
             throw new NotImplementedException();
         }

@@ -12,16 +12,26 @@ export const NavBar = () => {
             var cookieExist = false;
             var decodedCookies = decodeURIComponent(document.cookie);
             var listOfCookies = decodedCookies.split("; ");
+            var accessLevel = false;
             for (var i = 0; i < listOfCookies.length; i++)
             {
                 let temp = listOfCookies[i].split("=");
                 if (temp[0] == cookieKey)
                 {
                     cookieExist = true;
+                    let cookieSplit = listOfCookies[i].split('"');
+                    let temp = cookieSplit[6];
+                    if (temp.includes("true")) {
+                        accessLevel = true;
+                    }
                     break;
                 }
             }
-            if (cookieExist)
+            if (cookieExist && accessLevel)
+            {
+                return "/account/adminhome";
+            }
+            else if (cookieExist)
             {
                 return "/account/userhome";
             }

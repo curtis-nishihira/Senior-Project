@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef } from 'react';
+﻿import React, { useEffect, useState,useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
@@ -7,6 +7,11 @@ export function OTP() {
     const otp = useRef("");
     const location = useLocation();
     const navigate = useNavigate();
+    const [resend, setResend] = useState(false);
+
+    const toggleResend = () => {
+        setResend(!resend);
+    }
 
     function isValid() {
         if ((document.getElementById("user-otp").value === otp.current) && document.getElementById('time').innerHTML != "0:00") {
@@ -19,32 +24,31 @@ export function OTP() {
             })
                 .then(response => response.json())
                 .then(data => {
+                    fetch(process.env.REACT_APP_FETCH + '/login/createcookie', {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            Email: location.state.email,
+                            IsAuthorized: false,
+                        }),
+                    })
+                        .then(response => response.json())
+                        .then(cookieResponse => {
+                            navigate("/account/userhome");
 
+                        })
+                        .catch((error) => {
+                            console.error('Error', error);
+                        });
                 })
                 .catch((error) => {
                     console.error('Error', error);
                 });
 
-
-            fetch(process.env.REACT_APP_FETCH + '/login/createcookie', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    Email: location.state.email,
-                    IsAuthorized: false,
-                }),
-            })
-                .then(response => response.json())
-                .then(cookieResponse => {
-                    navigate("/account/userhome");
-
-                })
-                .catch((error) => {
-                    console.error('Error', error);
-                });
+            
         }
         else {
             fetch(process.env.REACT_APP_FETCH + '/login/updateFailedAttempts?email=' + location.state.email, {
@@ -57,8 +61,13 @@ export function OTP() {
             })
                 .then(response => response.json())
                 .then(data => {
-
-                    alert(data);
+                    if (data.includes("disabled")) {
+                        alert(data);
+                        navigate("/account");
+                    }
+                    else {
+                        alert(data);
+                    }
 
                 })
                 .catch((error) => {
@@ -89,7 +98,7 @@ export function OTP() {
     }
     function startTimer(duration, display) {
         var timer = duration, minutes, seconds;
-        setInterval(function () {
+        const interval = setInterval(function () {
             minutes = parseInt(timer / 60, 10);
             seconds = parseInt(timer % 60, 10);
 
@@ -101,6 +110,16 @@ export function OTP() {
             if (--timer < 0) {
                 timer = duration;
             }
+            if (minutes == 0 && seconds == 0) {
+                clearInterval(interval);
+                if (window.confirm("Time Ran Out. Resend OTP? Else get redirected to the login page.")) {
+                    toggleResend();
+                }
+                else {
+                    navigate("/account");
+                }
+            }
+
         }, 1000);
     }
 
@@ -112,14 +131,14 @@ export function OTP() {
         validateButton.addEventListener('click', () => {
             isValid();
         });
-    }, []);
+    }, [resend]);
 
 
     return (
 
         <>
             <div>
-                <div>Registration closes in <span id="time">02:00</span> minutes!</div>
+                <div>OTP expires in <span id="time">02:00</span> minutes!</div>
                 <input className="otp-bar" id="user-otp" placeholder="Enter the One time Passphrase" />
                 <button type="button" id="validate-btn" > validate</button>
             </div>

@@ -138,7 +138,7 @@ namespace LongHorn.ArrowNav.Managers
                 var to = new EmailAddress(email);
                 var plainTextContent = "";
                 var htmlContent = string.Format("Please click the following link to confirm your email which will fully activate you account.\n" +
-                    "Click <a href=\"https://arrownav2.azurewebsites.net/register/confirmemail?email={0}\">here</a>.", email);
+                    "Click <a href=\"https://arrownav.azurewebsites.net/register/confirmemail?email={0}\">here</a>.", email);
                 var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
                 var response = await client.SendEmailAsync(msg);
                 return response.IsSuccessStatusCode;

@@ -249,24 +249,27 @@ namespace LongHorn.ArrowNav.DAL
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    SqlCommand updateDateAndAttempt = new SqlCommand("UpdateDateAndAttempts", connection);
+                    var defaultAttempts = 0;
+                    var defaultDate = "";
+
+                    SqlCommand updateSuccessfulAttempt = new SqlCommand("UpdateDateAndAttempts", connection);
 
                     //lets the SqlCommand Object know that its a store procedure type
-                    updateDateAndAttempt.CommandType = System.Data.CommandType.StoredProcedure;
+                    updateSuccessfulAttempt.CommandType = System.Data.CommandType.StoredProcedure;
 
                     //adding the necessay parameters for the stored procedure
-                    updateDateAndAttempt.Parameters.Add(new SqlParameter("@email", email));
-                    updateDateAndAttempt.Parameters.Add(new SqlParameter("@date", ""));
-                    updateDateAndAttempt.Parameters.Add(new SqlParameter("@attempts", 0));
-                    
-                    
+                    updateSuccessfulAttempt.Parameters.Add(new SqlParameter("@attempts", defaultAttempts));
+                    updateSuccessfulAttempt.Parameters.Add(new SqlParameter("@email", email));
+                    updateSuccessfulAttempt.Parameters.Add(new SqlParameter("@date", defaultDate));
+
+                    updateSuccessfulAttempt.ExecuteNonQuery();
                 }
 
                 return "updated";
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return "DAL error"; 
+                return e.Message; 
             }
 
 

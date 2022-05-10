@@ -8,60 +8,70 @@ export const Register = () => {
     const [password, setPassphrase] = useState('');
     const navigate = useNavigate();
 
+    function validate() {
+        //That white space after ! means that it will allow the string to have white space
+        let pattern = /[^a-zA-Z0-9.,@! ]/g;
+        let result = pattern.test(password);
+        console.log(result);
+        console.log(password.length);
+        if (result == false && password.length > 7) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     const submitHandler = (e) => {
         //prevents the browser from refreshing
         e.preventDefault();
         //will have to change when it gets published so that it will actually communicate with the
         //live website
-        fetch(process.env.REACT_APP_FETCH +'/register/createaccount', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                _email: email,
-                _passphrase: password,
-                _firstName: firstName,
-                _lastName: lastName
+        if (validate()) {
+            fetch(process.env.REACT_APP_FETCH + '/register/createaccount', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    _email: email,
+                    _passphrase: password,
+                    _firstName: firstName,
+                    _lastName: lastName
 
-            }),
-        })
-            .then(response => response.json())
-            .then(data => {
-
-                if (data == "Successful Account Creation") {
-                    //use this to register to a new page that says something about the confirmation email 
-                    //being sent.
-                    navigate("/account", { state: { message: "Check your email for a confirmation link to complete your registration" } });
-                }
-                else {
-                    alert(data);
-
-                }
+                }),
             })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+                .then(response => response.json())
+                .then(data => {
+
+                    if (data == "Successful Account Creation") {
+                        //use this to register to a new page that says something about the confirmation email 
+                        //being sent.
+                        navigate("/account", { state: { message: "Check your email for a confirmation link to complete your registration" } });
+                    }
+                    else {
+                        alert(data);
+
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+        else {
+            alert("Password must follow criteria:\nPassword must be at minimum 8 characters and can only contain theses characters:\n" +
+                "i. blank space\n ii. a - z\n iii. A - Z\n iv. 0 - 9\n v. .,@!\n");
+        }
+        
 
     };
 
-    const validate = (e) => {
-        //That white space after ! means that it will allow the string to have white space
-        let pattern = /[^a-zA-Z0-9.,@! ]/g;
-        let result = pattern.test(password);
-        if (result == false && password.length > 7) {
-            submitHandler();
-        }
-        else {
-            alert("Password must follow criteria:\nPassword must be at minimum 8 characters and can only contain theses characters:\n"+
-                "i. blank space\n ii. a - z\n iii. A - Z\n iv. 0 - 9\n v. .,@!\n");
-        }
-    }
+   
 
     return (
         <div className='form-container'>
-            <form onSubmit={validate}>
+            <form onSubmit={submitHandler}>
                 <h2>Register</h2>
 
                 <div className="form-group">

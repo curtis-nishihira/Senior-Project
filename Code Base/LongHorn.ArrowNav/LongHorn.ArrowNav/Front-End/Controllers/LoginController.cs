@@ -30,7 +30,7 @@ namespace Front_End.Controllers
         {
 
             UMManager uMManager = new UMManager();
-            var result = uMManager.UpdatingFailedAttempts(email);
+            var result = uMManager.UpdatingSuccessfulAttempts(email);
             return result;
         }
 

@@ -18,7 +18,7 @@ namespace Front_End.Controllers
             var result = manager.confirmEmail(email);
             if (result == "confirmed")
             {
-                Response.Redirect("https://arrownav2.azurewebsites.net/account/confirmationpage");
+                Response.Redirect("https://arrownav.azurewebsites.net/account/confirmationpage");
             }
             else
             {

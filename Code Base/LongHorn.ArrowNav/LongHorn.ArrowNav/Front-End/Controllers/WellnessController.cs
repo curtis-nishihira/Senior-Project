@@ -11,7 +11,7 @@ namespace Front_End.Controllers
     {
         [HttpPost]
         [Route("setForm")]
-        public string setForm(StudentWellnessModel form)
+        public string SetForm(StudentWellnessModel form)
         {
             WellnessRepository repo = new WellnessRepository();
             var result = repo.Create(form);
@@ -20,7 +20,7 @@ namespace Front_End.Controllers
         
         [HttpGet]
         [Route("getWaterIntake")]
-        public double getWaterIntake(string Username)
+        public double GetWaterIntake(string Username)
         {
             WellnessRepository repo = new WellnessRepository();
             var bodyWeight = repo.GetWaterIntake(Username);
@@ -29,7 +29,7 @@ namespace Front_End.Controllers
 
         [HttpGet]
         [Route("getBodyWeight")]
-        public int getBodyWeight(string Username)
+        public int GetBodyWeight(string Username)
         {
             WellnessRepository repo = new WellnessRepository();
             var bodyWeight = repo.GetBodyWeight(Username);
@@ -38,7 +38,7 @@ namespace Front_End.Controllers
 
         [HttpGet]
         [Route("getStartTime")]
-        public string getStartTime(string Username)
+        public string GetStartTime(string Username)
         {
             WellnessRepository repo = new WellnessRepository();
             var startTime = repo.GetStartTime(Username);
@@ -47,7 +47,7 @@ namespace Front_End.Controllers
 
         [HttpGet]
         [Route("getEndTime")]
-        public string getEndTime(string Username)
+        public string GetEndTime(string Username)
         {
             WellnessRepository repo = new WellnessRepository();
             var endTime = repo.GetEndTime(Username);
@@ -56,7 +56,7 @@ namespace Front_End.Controllers
 
         [HttpPost]
         [Route("setBodyWeight")]
-        public string setBodyWeight(StudentWellnessModel Username)
+        public string SetBodyWeight(StudentWellnessModel Username)
         {
             WellnessRepository repo = new WellnessRepository();
             var bodyWeight = repo.SetBodyWeight(Username);
@@ -65,7 +65,7 @@ namespace Front_End.Controllers
 
         [HttpPost]
         [Route("setStartTime")]
-        public string setStartTime(StudentWellnessModel Username)
+        public string SetStartTime(StudentWellnessModel Username)
         {
             WellnessRepository repo = new WellnessRepository();
             var startTime =repo.SetStartTime(Username);
@@ -74,11 +74,27 @@ namespace Front_End.Controllers
 
         [HttpPost]
         [Route("setEndTime")]
-        public string setEndTime(StudentWellnessModel Username)
+        public string SetEndTime(StudentWellnessModel Username)
         {
             WellnessRepository repo = new WellnessRepository();
             var endTime = repo.SetEndTime(Username);
             return endTime;
+        }
+        [HttpGet]
+        [Route("getReminder")]
+        public bool GetReminder(string Username)
+        {
+            try
+            {
+                WellnessRepository repo = new WellnessRepository();
+                var endTime = repo.GetReminder(Username);
+                return endTime;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
         }
     }
 }

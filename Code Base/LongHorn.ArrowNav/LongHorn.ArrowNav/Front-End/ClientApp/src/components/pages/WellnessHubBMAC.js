@@ -4,6 +4,23 @@ import './WellnessHubBMAC.css';
 
 
 function WellnessHubBMAC() {
+    function findOnMap() {
+        fetch(process.env.REACT_APP_FETCH + '/building/getBuildingbyAcronym?acronym=SSC', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                navigate("/", { state: { building: data } });
+            })
+            .catch((error) => {
+                console.error('Error', error);
+            });
+    }
 
     let navigate = useNavigate();
 
@@ -54,13 +71,14 @@ function WellnessHubBMAC() {
                         </div>
                         <div className="get-here">
                             <h3> Get Here: </h3>
-                            Bob Murphy Access Center Location: SSSC building, room 110 ; Phone: (562) 985-5401 ; E-mail: bmac@csulb.edu. Mon.-Fri., 10am-4pm.
+                            Bob Murphy Access Center Location: SSC building, room 110 ; Phone: (562) 985-5401 ; E-mail: bmac@csulb.edu. Mon.-Fri., 10am-4pm.
                         </div>
                     </div>
                 </div>
 
             </div>
             <div className="footer">
+                <button onClick={() => { findOnMap() }}> Find BMAC </button>
                 <button onClick={() => { navigate("/wellnesshub") }}>Return to Wellness Hub Main</button>
             </div>
         </div>

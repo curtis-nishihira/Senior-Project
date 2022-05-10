@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState,useRef } from 'react';
+﻿import React, { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
@@ -8,6 +8,7 @@ export function OTP() {
     const location = useLocation();
     const navigate = useNavigate();
     const [resend, setResend] = useState(false);
+    const isClosed = useRef(false);
 
     const toggleResend = () => {
         setResend(!resend);
@@ -37,6 +38,7 @@ export function OTP() {
                     })
                         .then(response => response.json())
                         .then(cookieResponse => {
+                            isClosed.current = true;
                             navigate("/account/userhome");
 
                         })
@@ -48,7 +50,7 @@ export function OTP() {
                     console.error('Error', error);
                 });
 
-            
+
         }
         else {
             fetch(process.env.REACT_APP_FETCH + '/login/updateFailedAttempts?email=' + location.state.email, {
@@ -99,6 +101,7 @@ export function OTP() {
     function startTimer(duration, display) {
         var timer = duration, minutes, seconds;
         const interval = setInterval(function () {
+            var breakout = isClosed.current;
             minutes = parseInt(timer / 60, 10);
             seconds = parseInt(timer % 60, 10);
 
@@ -107,6 +110,9 @@ export function OTP() {
 
             display.textContent = minutes + ":" + seconds;
 
+            if (breakout) {
+                clearInterval(interval);
+            }
             if (--timer < 0) {
                 timer = duration;
             }
@@ -120,17 +126,26 @@ export function OTP() {
                 }
             }
 
+
         }, 1000);
     }
 
 
     useEffect(() => {
         getOTP();
-        startTimer(60 * 2, document.querySelector('#time'))
+        startTimer(60 * 2, document.querySelector('#time'));
         const validateButton = document.getElementById("validate-btn");
         validateButton.addEventListener('click', () => {
             isValid();
         });
+        const cancelBtn = document.getElementById("cancel-btn");
+        cancelBtn.addEventListener('click', () => {
+            if (window.confirm("Are you sure you want to go back?")) {
+                isClosed.current = true;
+                navigate("/account");
+            }
+           
+        })
     }, [resend]);
 
 
@@ -139,8 +154,9 @@ export function OTP() {
         <>
             <div>
                 <div>OTP expires in <span id="time">02:00</span> minutes!</div>
-                <input className="otp-bar" id="user-otp" placeholder="Enter the One time Passphrase" />
+                <input className="otp-bar" id="user-otp" placeholder="Enter the OTP" />
                 <button type="button" id="validate-btn" > validate</button>
+                <button type="button" id="cancel-btn" > cancel</button>
             </div>
 
         </>

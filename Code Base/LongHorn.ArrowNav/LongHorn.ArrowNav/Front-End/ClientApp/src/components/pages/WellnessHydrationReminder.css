@@ -30,3 +30,6 @@ input{
     border-radius: 6px;
     cursor: pointer;
 }
+.timerRemind {
+    visibility: hidden;
+}

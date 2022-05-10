@@ -16,16 +16,53 @@ namespace LongHorn.ArrowNav.DAL
             try
             {
                 var sqlConnectionString = getConnection();
+
                 using (var connection = new SqlConnection(sqlConnectionString))
                 {
                     connection.Open();
-                    var sqlStatement = string.Format("exec insertReminder '{0}', {1}, '{2}','{3}', {4}", studentWellness._Username, studentWellness._bodyWeight, studentWellness._startTime, studentWellness._endTime,studentWellness._waterIntake);
-                    using (var command = new SqlCommand(sqlStatement, connection))
+                    SqlCommand doesReminderExist = new SqlCommand("GetHydrationReminder", connection);
+
+                    // Lets the SqlCommand Object know that its a store procedure type
+                    doesReminderExist.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    // Adding the necessay parameters for the stored procedure
+                    doesReminderExist.Parameters.Add(new SqlParameter("@email", studentWellness._Username));
+
+                    using (SqlDataReader reader = doesReminderExist.ExecuteReader())
                     {
-                        command.ExecuteNonQuery();
-                        connection.Close();
-                        return "Information saved";
+                        if (reader.HasRows)
+                        {
+
+                            reader.Close();
+                            SqlCommand updateReminder = new SqlCommand("UpdateReminder", connection);
+
+                            // Lets the SqlCommand Object know that its a store procedure type
+                            updateReminder.CommandType = System.Data.CommandType.StoredProcedure;
+
+                            // Adding the necessay parameters for the stored procedure
+                            updateReminder.Parameters.Add(new SqlParameter("@email", studentWellness._Username));
+                            updateReminder.Parameters.Add(new SqlParameter("@bodyWeight", studentWellness._bodyWeight));
+                            updateReminder.Parameters.Add(new SqlParameter("@startTime", studentWellness._startTime));
+                            updateReminder.Parameters.Add(new SqlParameter("@endTime", studentWellness._endTime));
+                            updateReminder.Parameters.Add(new SqlParameter("@waterIntake", studentWellness._waterIntake));
+
+                            updateReminder.ExecuteNonQuery();
+
+                            return "Reminder Updated";
+                        }
+                        else
+                        {
+                            reader.Close();
+                            var sqlStatement = string.Format("exec insertReminder '{0}', {1}, '{2}','{3}', {4}", studentWellness._Username, studentWellness._bodyWeight, studentWellness._startTime, studentWellness._endTime, studentWellness._waterIntake);
+                            using (var command = new SqlCommand(sqlStatement, connection))
+                            {
+                                command.ExecuteNonQuery();
+                                connection.Close();
+                                return "Information saved";
+                            }
+                        }
                     }
+                    
                 }
             }
             catch (Exception e)
@@ -84,6 +121,43 @@ namespace LongHorn.ArrowNav.DAL
             catch (Exception e)
             {
                 return 0;
+            }
+        }
+
+        public bool GetReminder(string Username)
+        {
+            try
+            {
+                var sqlConnectionString = getConnection();
+                using (var connection = new SqlConnection(sqlConnectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand getReminder = new SqlCommand("GetHydrationReminder", connection);
+
+                    // Lets the SqlCommand Object know that its a store procedure type
+                    getReminder.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    // Adding the necessay parameters for the stored procedure
+                    getReminder.Parameters.Add(new SqlParameter("@email", Username));
+
+                    using (SqlDataReader reader = getReminder.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            return true;
+
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
         public string SetBodyWeight(StudentWellnessModel Username)

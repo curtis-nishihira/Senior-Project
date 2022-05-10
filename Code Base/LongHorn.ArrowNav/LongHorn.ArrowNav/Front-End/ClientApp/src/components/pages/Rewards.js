@@ -66,7 +66,6 @@ export const Rewards = () => {
     async function getCredits() {
         var url = process.env.REACT_APP_FETCH + "/rewards/GetCredits?email=" + email;
         var credits = await fetchData(url, "GET", []);
-        console.log("credits", credits);
         setCredit(credits);
     }
 

@@ -11,7 +11,7 @@ namespace LongHorn.ArrowNav.DAL
 {
     public class ScheduleRepository : IRepository<StudentClassModel>
     {
-        public string CreateClass(StudentClassModel studentclass, string fullBuildingName)
+        public string Create(StudentClassModel studentclass)
         {
             try
             {
@@ -33,8 +33,8 @@ namespace LongHorn.ArrowNav.DAL
                         else
                         {
                             reader.Close();
-                            var addStudentClass = string.Format("exec AddStudentClass '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}'", studentclass._Username, 
-                                studentclass._course, studentclass._coursetype, studentclass._building, studentclass._room, studentclass._days, studentclass._startTime, studentclass._endTime, fullBuildingName);
+                            var addStudentClass = string.Format("exec AddStudentClass '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}'", studentclass._Username, 
+                                studentclass._course, studentclass._coursetype, studentclass._building, studentclass._room, studentclass._days, studentclass._startTime, studentclass._endTime);
                             using (var addCommand = new SqlCommand(addStudentClass, connection))
                             {
                                 addCommand.ExecuteNonQuery();
@@ -253,9 +253,5 @@ namespace LongHorn.ArrowNav.DAL
             throw new NotImplementedException();
         }
 
-        public string Create(StudentClassModel model)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

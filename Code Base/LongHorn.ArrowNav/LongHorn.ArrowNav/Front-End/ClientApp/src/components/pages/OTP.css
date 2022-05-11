@@ -1,0 +1,16 @@
+﻿.otp-container {
+    width:100%;
+    position: relative;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+
+    margin:60px auto;
+}
+.buttons-container {
+    display: inline-block;
+    margin-top:10px;
+}
+.otp-bar {
+    margin-top:10px;
+}

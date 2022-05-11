@@ -6,13 +6,9 @@ function WellnessHydrationReminder() {
     const [varTracker, setTracker] = useState(false);
     const beginTime = useRef("");
     const finalTime = useRef("");
-    const totalReminders = useRef(0.0);
     const email = getEmailFromCookies();
-    const today = new Date();
-    const timeMins = today.getMinutes();
-    const timeHrs = today.getHours();
-    const timeRemInSecs = (60 - timeMins) * 60
-    const getStr = (60 - timeMins) + ":00";
+    
+    const isUpdated = useRef(false);
 
     async function fetchData(url, methodType, bodyData) {
         if (methodType === "GET") {
@@ -35,7 +31,8 @@ function WellnessHydrationReminder() {
 
     function startTimer(duration, display, waterIntake) {
         var timer = duration, minutes, seconds;
-        setInterval(function () {
+        const interval = setInterval(function () {
+            var breakout = isUpdated.current;
             minutes = parseInt(timer / 60, 10);
             seconds = parseInt(timer % 60, 10);
 
@@ -43,12 +40,16 @@ function WellnessHydrationReminder() {
             seconds = seconds < 10 ? "0" + seconds : seconds;
 
             display.textContent = minutes + ":" + seconds;
-
+            if (breakout) {
+                clearInterval(interval);
+                isUpdated.current = false;
+            }
             if (--timer < 0) {
                 timer = duration;
             }
             if (minutes == 0 && seconds == 0) {
                 alert("Remember to drink:" + waterIntake + "oz");
+                toggleTracker();
             }
         }, 1000);
     }
@@ -98,7 +99,7 @@ function WellnessHydrationReminder() {
                 startHour = parseInt(startTime.substring(1, 2));
             }
             else {
-                startHour = parseInt(endTime.substring(0, 2));
+                startHour = parseInt(startTime.substring(0, 2));
             }
             if (endHour == 0) {
                 endHour = parseInt(endTime.substring(1, 2));
@@ -107,14 +108,31 @@ function WellnessHydrationReminder() {
                 endHour = parseInt(endTime.substring(0, 2));
             }
             
-
-            if (endHour < startHour) {
+            if (endTime.includes("PM")) {
                 endHour += 12;
             }
-            totalReminders.current = waterIntake;
-            beginTime.current = startTime;
-            finalTime.current = endTime;
-            if (startHour < timeHrs && endHour > timeHrs) {
+            if (startTime.includes("PM")) {
+                startTime += 12;
+            }
+
+            if (waterIntake != null && startTime != null && endTime != null) {
+                document.getElementById("water-intake").innerHTML = waterIntake;
+                document.getElementById("start-time").innerHTML = startTime;
+                document.getElementById("end-time").innerHTML = endTime;
+            }
+            const today = new Date();
+
+            const timeMins = today.getMinutes();
+
+            const seconds = today.getSeconds();
+
+            const timeHrs = today.getHours();
+
+            const timeRemInSecs = ((60 - timeMins) * 60) + (60 - seconds);
+
+            const getStr = (60 - timeMins) + ":" + (60 - seconds);
+
+            if (startHour <= timeHrs && endHour > timeHrs) {
                 document.getElementById('time').innerHTML = getStr;
                 document.getElementById("time-container").style.visibility = 'visible';
                 startTimer(timeRemInSecs, document.querySelector('#time'), waterIntake)
@@ -147,15 +165,14 @@ function WellnessHydrationReminder() {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
                 })
                 .catch((error) => {
                     console.error('Error', error);
                 });
         }
-
-        toggleTracker();
+        isUpdated.current = true;
         setSubmitted(true);
+        toggleTracker();
 
     }
 
@@ -202,10 +219,11 @@ function WellnessHydrationReminder() {
                 <div className="header">
                     <h2>Reminders</h2>
                 </div>
-                <div className="timerRemind" id="time-container">Next Reminder in: <span id="time"></span> minutes!</div>
+                
                 <div className="box">
-                    Reminder for hydration from: {beginTime.current} {finalTime.current}<br></br>
-                    Water Intake per day: {totalReminders.current} ozs
+                    <div className="timerRemind" id="time-container">Next Reminder in: <span id="time"></span> minutes!</div>
+                    Reminder for hydration from: <span id="start-time"></span> - <span id="end-time"></span><br></br>
+                    Water Intake per day: <span id="water-intake"></span> ozs
                 </div>
             </div>
 

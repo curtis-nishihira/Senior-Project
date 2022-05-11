@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-
+import "./OTP.css";
 
 export function OTP() {
 
@@ -152,11 +152,14 @@ export function OTP() {
     return (
 
         <>
-            <div>
-                <div>OTP expires in <span id="time">02:00</span> minutes!</div>
+            <div className = "otp-container">
+                <div className = "otp-message">OTP expires in <span id="time">02:00</span> minutes!</div>
                 <input className="otp-bar" id="user-otp" placeholder="Enter the OTP" />
-                <button type="button" id="validate-btn" > validate</button>
-                <button type="button" id="cancel-btn" > cancel</button>
+                <div className = "buttons-container">
+                    <button type="button" id="validate-btn" > validate</button>
+                    <button type="button" id="cancel-btn" > cancel</button>
+                </div>
+                
             </div>
 
         </>
